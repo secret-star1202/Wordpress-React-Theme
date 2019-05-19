@@ -1,0 +1,31 @@
+{
+  "name": "custom-react-theme",
+  "author": "Derek Chan",
+  "version": "0.0.1",
+  "description": "Custom React Theme for KTUH WordPress website",
+  "repository": "https://github.com/ktuh-wordpress-site/custom-react-theme",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/plugin-transform-strict-mode": "^7.2.0",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.0",
+    "prop-types": "^15.7.2",
+    "styled-components": "^4.2.0",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  }
+}
