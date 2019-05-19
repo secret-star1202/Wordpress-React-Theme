@@ -7,6 +7,8 @@
 <html>
   <head>
     <?php wp_head(); ?>
+    <script src="https://use.typekit.net/kdq4qji.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body>
     <div id="react-root">
