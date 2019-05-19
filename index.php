@@ -5,9 +5,12 @@
  ?>
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <?php wp_head(); ?>
+  </head>
   <body>
     <div id="react-root">
     </div>
+    <?php wp_footer(); ?>
   </body>
 </html>
