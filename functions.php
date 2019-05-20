@@ -37,6 +37,12 @@ function create_posttype() {
                 'show_in_rest' => true
             )
         );
+
+    register_rest_field('review', 'year');
+    register_rest_field('review', 'label');
+    register_rest_field('review', 'title');
+    register_rest_field('review', 'artist');
+    register_rest_field('review', 'rating');
 }
 
 add_action( 'init', 'create_posttype' );
