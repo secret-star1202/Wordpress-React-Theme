@@ -43,27 +43,27 @@ add_action( 'init', 'create_posttype' );
 add_action('rest_api_init', function() {
     register_rest_field('review', 'year', array(
       'get_callback' => function($obj) {
-            return get_metadata('review', $obj['id'], 'year' );
+            return get_post_data($obj['id'], 'year' );
       }
      ));
      register_rest_field('review', 'label', array(
         'get_callback' => function($obj) {
-              return get_metadata('review', $obj['id'], 'label' );
+              return get_post_data($obj['id'], 'label' );
         }
        ));
      register_rest_field('review', 'title', array(
       'get_callback' => function($obj) {
-            return get_metadata('review', $obj['id'], 'title' );
+            return get_post_data($obj['id'], 'title' );
       }
      ));
      register_rest_field('review', 'artist', array(
        'get_callback' => function($obj) {
-             return get_metadata('review', $obj['id'], 'artist' );
+             return get_post_data($obj['id'], 'artist' );
        }
       ));
      register_rest_field('review', 'rating', array(
        'get_callback' => function($obj) {
-             return get_metadata('review', $obj['id'], 'rating' );
+             return get_post_data($obj['id'], 'rating' );
        }
       ));
 });
