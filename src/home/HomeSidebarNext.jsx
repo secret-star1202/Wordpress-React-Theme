@@ -8,8 +8,7 @@ class HomeSidebarNext extends Component {
   };
 
   render() {
-    if (this.props.ready)
-      return (<div className='home__next-show'>
+    return (<div className='home__next-show'>
         <div className='home__next-show-deets'>
           <p className="home__next-on-air">Next On Air</p>
           <p className='home__next-show-name'>
@@ -21,7 +20,6 @@ class HomeSidebarNext extends Component {
           </p>
         </div>
       </div>);
-    else return null;
   }
 }
 
