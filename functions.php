@@ -37,13 +37,34 @@ function create_posttype() {
                 'show_in_rest' => true
             )
         );
-
-    register_meta('review', 'year', array('show_in_rest' => true));
-    register_meta('review', 'label', array('show_in_rest' => true));
-    register_meta('review', 'title', array('show_in_rest' => true));
-    register_meta('review', 'artist', array('show_in_rest' => true));
-    register_meta('review', 'rating', array('show_in_rest' => true));
 }
 
 add_action( 'init', 'create_posttype' );
+add_action('rest_api_init', function() {
+    register_rest_field('review', 'year', array(
+      'get_callback' => function($obj) {
+            return get_metdata('review', $obj['id'], 'year' );
+      }
+     ));
+     register_rest_field('review', 'label', array(
+        'get_callback' => function($obj) {
+              return get_metdata('review', $obj['id'], 'label' );
+        }
+       ));
+     register_rest_field('review', 'title', array(
+      'get_callback' => function($obj) {
+            return get_metdata('review', $obj['id'], 'title' );
+      }
+     ));
+     register_rest_field('review', 'artist', array(
+       'get_callback' => function($obj) {
+             return get_metdata('review', $obj['id'], 'artist' );
+       }
+      ));
+     register_rest_field('review', 'rating', array(
+       'get_callback' => function($obj) {
+             return get_metdata('review', $obj['id'], 'rating' );
+       }
+      ));
+});
 add_action('wp_enqueue_scripts', 'init_scripts');
