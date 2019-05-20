@@ -13,4 +13,31 @@ function init_scripts() {
   wp_enqueue_script('custom-react-theme-script', get_template_directory_uri() . '/dist/app.js' , array(), '1.0', true);
 }
 
+function create_posttype() {
+    register_post_type( 'review',
+        array(
+            'labels' => array(
+                'name' => __( 'Reviews' ),
+                'singular_name' => __( 'Review' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true
+        )
+    );
+
+    register_post_type( 'playlist',
+            array(
+                'labels' => array(
+                    'name' => __( 'Playlists' ),
+                    'singular_name' => __( 'Playlist' )
+                ),
+                'public' => true,
+                'has_archive' => true,
+                'show_in_rest' => true
+            )
+        );
+}
+
+add_action( 'init', 'create_posttype' );
 add_action('wp_enqueue_scripts', 'init_scripts');
