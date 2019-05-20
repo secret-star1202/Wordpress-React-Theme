@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { moment as momentUtil } from 'moment';
+import { default as momentUtil } from 'moment';
 
 class HomeSidebarNext extends Component {
   static propTypes = {
