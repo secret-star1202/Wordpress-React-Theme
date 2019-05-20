@@ -38,11 +38,11 @@ function create_posttype() {
             )
         );
 
-    register_rest_field('review', 'year');
-    register_rest_field('review', 'label');
-    register_rest_field('review', 'title');
-    register_rest_field('review', 'artist');
-    register_rest_field('review', 'rating');
+    register_meta('review', 'year', array('show_in_rest' => true));
+    register_meta('review', 'label', array('show_in_rest' => true));
+    register_meta('review', 'title', array('show_in_rest' => true));
+    register_meta('review', 'artist', array('show_in_rest' => true));
+    register_meta('review', 'rating', array('show_in_rest' => true));
 }
 
 add_action( 'init', 'create_posttype' );
