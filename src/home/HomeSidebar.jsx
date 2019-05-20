@@ -21,7 +21,7 @@ export default class HomeSidebar extends Component {
   render() {
     return (
       <div className='home__sidebar'>
-        {this.state.nextOnAir ? <HomeSidebarNext props={this.state.nextOnAir} /> : null}
+        {this.state.nextOnAir ? <HomeSidebarNext nextOnAir={this.state.nextOnAir} /> : null}
       </div>
     );
   }
