@@ -3,6 +3,7 @@ import HomeContentNews from './HomeContentNews.jsx';
 import HomeContentReviews from './HomeContentReviews.jsx';
 import HomeSidebar from './HomeSidebar.jsx';
 import axios from 'axios';
+import { default as siteInfo } from '../utils/config';
 
 export default class HomeContent extends Component {
   constructor(props) {
@@ -17,12 +18,12 @@ export default class HomeContent extends Component {
   componentWillMount() {
     let self = this;
     axios.all([
-      axios.get(`${this.props.siteUrl}/wp-json/wp/v2/posts?per_page=4'`),
-      axios.get(`${this.props.siteUrl}/wp-json/wp/v2/review?per_page=6'`)
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts`),
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review`)
     ]).then(axios.spread((gotPosts, gotReviews) => {
         self.setState({
-          posts: JSON.parse(gotPosts.data),
-          reviews: JSON.parse(gotReviews.data)
+          posts: gotPosts.data,
+          reviews: gotReviews.data
         });
       }
     ));

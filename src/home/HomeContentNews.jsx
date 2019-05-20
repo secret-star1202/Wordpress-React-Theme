@@ -4,7 +4,6 @@ import HomeContentNewsItem from './HomeContentNewsItem.jsx';
 
 export default class HomeContentNews extends Component {
   static propTypes = {
-    ready: PropTypes.bool,
     posts: PropTypes.array
   };
 
@@ -13,7 +12,6 @@ export default class HomeContentNews extends Component {
   }
 
   render() {
-    if (this.props.ready)
       return (
         <div className='home__news'>
           <a href='/radioblog'>
@@ -29,6 +27,5 @@ export default class HomeContentNews extends Component {
           </div>
         </div>
       );
-    else return null;
   }
 }

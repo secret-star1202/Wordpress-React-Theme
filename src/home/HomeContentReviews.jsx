@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
-import Reviews from '../../../api/reviews/reviews_collection.js';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
-import { Meteor } from 'meteor/meteor';
 
 class HomeContentReviews extends Component {
   static propTypes = {
@@ -33,13 +30,4 @@ class HomeContentReviews extends Component {
   }
 }
 
-export default withTracker(() => {
-  var s1 = Meteor.subscribe('reviewsLimited',
-    { limit: 6, sort: { submitted: -1 } });
-
-  return {
-    ready: s1.ready(),
-    reviews: Reviews.find({ approved: true },
-      { sort: { submitted: -1 } }).fetch()
-  };
-})(HomeContentReviews);
+export default HomeContentReviews;

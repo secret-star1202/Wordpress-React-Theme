@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
-import Home from "../home/Home";
+import Home from "../home/Home.jsx";
 
 class App extends Component {
   static propTypes = {

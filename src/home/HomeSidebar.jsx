@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomeSidebarNext from './HomeSidebarNext.jsx';
-import { spinAccessToken } from '../utils/config';
+import { default as siteInfo } from '../utils/config';
 import axios from 'axios';
 
 export default class HomeSidebar extends Component {
@@ -13,8 +13,8 @@ export default class HomeSidebar extends Component {
 
   componentWillMount() {
     let self = this;
-    axios.get(`https://spinitron.com/api/shows?access-token=${spinAccessToken}`).then(response => response.data).then(
-      data => JSON.parse(data)
+    axios.get(`https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`).then(response => response.data).then(
+      data => data
     ).then(function(json) {
       self.setState({ nextOnAir: json.items[0] });
     });
