@@ -128,37 +128,35 @@ class Landing extends Component {
   }
 
   render() {
-    if (this.props.ready)
-      return (
-        <div className='landing' style={{ backgroundImage: this.background() }}>
-          <div className='landing__box'>
-            <div className='landing__play-btn-outer'
-              onClick={this.handlePlayBtn}>
-              {this.state.playing ? [
-                <div className='landing__pause-btn-l' />,
-                <div className='landing__pause-btn-r' />
-              ] : (
-                <div className='landing__play-btn' key='play-button'>
-                  <div className='landing__play-btn-triangle' />
-                </div>
-              )}
-            </div>
-            <LandingInfo nowPlaying={this.props.nowPlaying} />
+    return (
+      <div className='landing' style={{ backgroundImage: this.background() }}>
+        <div className='landing__box'>
+          <div className='landing__play-btn-outer'
+            onClick={this.handlePlayBtn}>
+            {this.state.playing ? [
+              <div className='landing__pause-btn-l' />,
+              <div className='landing__pause-btn-r' />
+            ] : (
+              <div className='landing__play-btn' key='play-button'>
+                <div className='landing__play-btn-triangle' />
+              </div>
+            )}
           </div>
-          <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
-          <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
-          <a href='/playlists'>
-            <h6 className='landing__current-playlist'>
-              <span className='landing__view-current'>
-                View Current{' '}
-              </span>Playlist{'  '}
-              <span className='glyphicon glyphicon-eye-open' />
-            </h6>
-          </a>
-          <div className='landing__down-arrow' onClick={this.handleClickDownArrow} />
+          <LandingInfo nowPlaying={this.props.nowPlaying} />
         </div>
-      );
-    else return null;
+        <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
+        <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
+        <a href='/playlists'>
+          <h6 className='landing__current-playlist'>
+            <span className='landing__view-current'>
+              View Current{' '}
+            </span>Playlist{'  '}
+            <span className='glyphicon glyphicon-eye-open' />
+          </h6>
+        </a>
+        <div className='landing__down-arrow' onClick={this.handleClickDownArrow} />
+      </div>
+    );
   }
 }
 
