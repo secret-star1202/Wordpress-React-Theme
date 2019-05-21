@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   render() {
-    return <BrowserRouter>
+    return <BrowserRouter basename={siteInfo.siteUrl.match(/\/[a-z-]*\/?$/)}>
       <div className='container'>
         {new RegExp('^' + siteInfo.siteUrl + '/?$').test(window.location.href) &&
         [<Landing key='landing' />,
@@ -37,7 +37,6 @@ class App extends Component {
             <Route path="/join-ktuh" component={Join}/>
             <Route path="/timeline" component={Timeline}/>
             <Route path="/underwriting" component={Underwriting}/>
-
           </Switch>
         </div>
       </div>
