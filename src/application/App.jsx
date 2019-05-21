@@ -29,14 +29,14 @@ class App extends Component {
         <Header />
         <div id="main">
           <Switch>
-            <Route exact path="/about-us" component={About}/>
-            <Route exact path="/alumni" component={Alumni}/>
-            <Route exact path="/contact-us" component={Contact}/>
-            <Route exact path="/faq" component={FAQ}/>
-            <Route exact path="/join-ktuh" component={Join}/>
-            <Route exact path="/timeline" component={Timeline}/>
-            <Route exact path="/underwriting" component={Underwriting}/>
             <Route exact path="/" component={Home}/>
+            <Route path="/about-us" component={About}/>
+            <Route path="/alumni" component={Alumni}/>
+            <Route path="/contact-us" component={Contact}/>
+            <Route path="/faq" component={FAQ}/>
+            <Route path="/join-ktuh" component={Join}/>
+            <Route path="/timeline" component={Timeline}/>
+            <Route path="/underwriting" component={Underwriting}/>
           </Switch>
         </div>
       </div>
