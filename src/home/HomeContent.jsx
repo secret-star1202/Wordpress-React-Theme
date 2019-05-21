@@ -19,7 +19,7 @@ export default class HomeContent extends Component {
     let self = this;
     axios.all([
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review`)
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`)
     ]).then(axios.spread((gotPosts, gotReviews) => {
         self.setState({
           posts: gotPosts.data,

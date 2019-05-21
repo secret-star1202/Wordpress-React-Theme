@@ -9,7 +9,8 @@ export default class HomeContentReviewsItem extends Component {
   render() {
     var featuredImage = this.props.item._embedded && this.props.item._embedded['wp:featuredmedia'] &&
       this.props.item._embedded['wp:featuredmedia']['0'] &&
-      this.props.item._embedded['wp:featuredmedia']['0'].source_url || undefined;
+      this.props.item._embedded['wp:featuredmedia']['0'].sizes &&
+      this.props.item._embedded['wp:featuredmedia']['0'].sizes.thumbnail.source_url || undefined;
 
     return (
       <div key={this.props.item._id} className='home__reviews-item'>
