@@ -12,7 +12,7 @@ class Header extends Component {
     return (
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
-          <a className='info-box__link' href='/'>
+          <a className='info-box__link' href={siteInfo.siteUrl}>
             <img alt='KTUH FM'
               src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png`} />
           </a>
