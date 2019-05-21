@@ -26,7 +26,7 @@ export default class HomeContentNewsItem extends Component {
           <h4 className='home__title'>{this.props.item.title.rendered}</h4>
         </a>
         <p className='home__synopsis'>
-          {renderSummary(this.props.item.content.rendered)}
+          {renderSummary(this.props.item.content.rendered, 50)}
         </p>
         <p className='home__byline'>
           by KTUH FM / {this.props.item.date.toString()}

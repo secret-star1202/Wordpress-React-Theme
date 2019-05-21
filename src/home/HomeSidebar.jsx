@@ -14,7 +14,7 @@ export default class HomeSidebar extends Component {
   componentWillMount() {
     let self = this;
     axios.get(`https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`).then(
-      response => { self.setState({ nextOnAir: response.data.items[0] });
+      response => { self.setState({ nextOnAir: response.data.items[1] });
     });
   }
 
