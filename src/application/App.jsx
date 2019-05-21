@@ -9,7 +9,7 @@ import Alumni from '../static_pages/Alumni.jsx';
 import Contact from '../static_pages/Contact.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Join from '../static_pages/Join.jsx';
-import Timeline from '../static_pages/Timeline';
+import Timeline from '../static_pages/Timeline.jsx';
 import Underwriting from '../static_pages/Underwriting.jsx';
 
 class App extends Component {

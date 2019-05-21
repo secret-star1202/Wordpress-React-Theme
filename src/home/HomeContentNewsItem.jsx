@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { default as siteInfo } from "../utils/config";
+import renderSummary from '../utils/summary';
 
 export default class HomeContentNewsItem extends Component {
   static propTypes = {
@@ -25,7 +26,7 @@ export default class HomeContentNewsItem extends Component {
           <h4 className='home__title'>{this.props.item.title.rendered}</h4>
         </a>
         <p className='home__synopsis'>
-          {this.props.item.content.rendered}
+          {renderSummary(this.props.item.content.rendered)}
         </p>
         <p className='home__byline'>
           by KTUH FM / {this.props.item.date.toString()}
