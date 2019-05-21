@@ -12,11 +12,16 @@ export default class HomeContentNewsItem extends Component {
   }
 
   render() {
+    var featuredImage = this.props.item._embedded && this.props.item._embedded['wp:featuredmedia'] &&
+      this.props.item._embedded['wp:featuredmedia']['0'] &&
+      this.props.item._embedded['wp:featuredmedia']['0'].source_url || undefined;
+
     return (
       <div className='home__news-item'>
         <a href={this.props.item.link}>
           <img className='home__news-img'
-            src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
+            src={featuredImage ||
+            `${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
           <h4 className='home__title'>{this.props.item.title.rendered}</h4>
         </a>
         <p className='home__synopsis'>
