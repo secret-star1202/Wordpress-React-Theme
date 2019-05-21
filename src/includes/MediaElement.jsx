@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'mediaelement';
+import { default as siteInfo } from '../utils/config';
 
 export default class MediaElement extends Component {
   static propTypes = {
@@ -48,7 +49,7 @@ export default class MediaElement extends Component {
     const options = Object.assign({}, this.props.options, {
       // Read the Notes below for more explanation
       // about how to set up the path for shims
-      pluginPath: './mejs/',
+      pluginPath:  `${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/mejs/`,
       alwaysShowControls: true,
       features: ['playpause', 'progress'],
       iPadUseNativeControls: false,
