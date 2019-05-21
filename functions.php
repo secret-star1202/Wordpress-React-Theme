@@ -13,6 +13,15 @@ function init_scripts() {
   wp_enqueue_script('custom-react-theme-script', get_template_directory_uri() . '/dist/app.js' , array(), '1.0', true);
 }
 
+function get_rest_featured_image( $object, $field_name, $request ) {
+    if( $object['featured_media'] ){
+        $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );
+        return $img[0];
+    }
+    return false;
+}
+
+
 function create_posttype() {
     register_post_type( 'review',
         array(
@@ -41,6 +50,16 @@ function create_posttype() {
 
 add_action( 'init', 'create_posttype' );
 add_action('rest_api_init', function() {
+    register_rest_field('review', 'img_url', array(
+            'get_callback' => 'get_rest_featured_image'
+        )
+    );
+
+    register_rest_field('post', 'img_url', array(
+                'get_callback' => 'get_rest_featured_image'
+            )
+        );
+
     register_rest_field('review', 'year', array(
       'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'year' );
