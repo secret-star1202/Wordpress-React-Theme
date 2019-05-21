@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MediaElement from "./MediaElement";
+import MediaElement from "./MediaElement.jsx";
 
 function activePage() {
   var routeNames = Array.from(arguments);
