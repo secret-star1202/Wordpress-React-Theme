@@ -88,19 +88,23 @@ class Landing extends Component {
   }
 
   background() {
-    var h = getLocalTime().hour();
+    let h = new Date().getHours();
 
     if (h >= 6 && h < 18) {
-      return 'url(\'/img/tantalus-morning.jpg\')';
+      return `url(\'${
+        siteInfo.siteUrl
+        }}/wp-content/themes/custom-react-theme/dist/images/img/tantalus-morning.jpg\')`;
     }
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
-      return 'url(\'/img/tantalus-evening.jpg\')';
+      return `url(\'${
+        siteInfo.siteUrl
+        }}/wp-content/themes/custom-react-theme/dist/images/img/tantalus-evening.jpg\')`
     }
   }
 
   handleClickDownArrow() {
-    var position = $('#main').offset().top;
-    var navHeight = $('.navbar-header').height();
+    let position = $('#main').offset().top,
+      navHeight = $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 

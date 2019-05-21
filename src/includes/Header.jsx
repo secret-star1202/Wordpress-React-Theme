@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MediaElement from "./MediaElement.jsx";
+import { default as siteInfo } from '../utils/config';
 
 function activePage() {
   var routeNames = Array.from(arguments);
@@ -12,7 +13,8 @@ class Header extends Component {
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
           <a className='info-box__link' href='/'>
-            <img alt='KTUH FM' src='/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png' />
+            <img alt='KTUH FM'
+              src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png`} />
           </a>
         </div>
         <div className='navbar-header'>
@@ -44,8 +46,7 @@ class Header extends Component {
                 <li><a href='/staff'>KTUH Staff</a></li>
                 <li><a href='/alumni'>KTUH Alumni</a></li>
                 <li><a href=
-                  {'https://www.uhfoundation.org/give/giving-gift.aspx' +
-                    '?school_code=ktuh'}>Donate</a>
+                  'https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate</a>
                 </li>
                 <li><a href='/join-ktuh'>Join KTUH</a></li>
                 <li><a href='/contact-us'>Contact Us</a></li>
@@ -78,8 +79,7 @@ class Header extends Component {
           <ul className='nav navbar-nav navbar-right'>
             <li className='nav-item'>
               <a className='header__support-link'
-                href={'https://www.uhfoundation.org/give/giving-gift.aspx' +
-                  '?school_code=ktuh'}>
+                href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
                 <button type='button'
                   className='btn btn-md header__support-btn'>
                   <span>DONATE</span>
