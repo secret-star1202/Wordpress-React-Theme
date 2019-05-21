@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaElement from "./MediaElement";
 
 function activePage() {
   var routeNames = Array.from(arguments);
@@ -11,7 +12,7 @@ class Header extends Component {
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
           <a className='info-box__link' href='/'>
-            <img alt='KTUH FM' src='/wp-content/themes/images/ktuh-fm-logo.png' />
+            <img alt='KTUH FM' src='/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png' />
           </a>
         </div>
         <div className='navbar-header'>
@@ -34,8 +35,7 @@ class Header extends Component {
               </a>
               <ul className='dropdown-menu'>
                 <li className='header__submenu-support'>
-                  <a href={'https://www.uhfoundation.org/give/giving-gift.aspx'+
-                    '?school_code=ktuh'}>
+                  <a href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
                     <button className='btn btn-md'>Donate Now</button>
                   </a>
                 </li>
@@ -89,6 +89,7 @@ class Header extends Component {
           </ul>
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
+              <MediaElement id="audio-player" src='http://stream.ktuh.org:8000/stream-mp3' />
             </li>
           </ul>
         </div>
