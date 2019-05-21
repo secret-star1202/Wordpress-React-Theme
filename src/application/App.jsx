@@ -20,7 +20,7 @@ class App extends Component {
   };
 
   render() {
-    return <BrowserRouter basename={siteInfo.siteUrl.match(/\/[a-z-]*\/?$/)}>
+    return <BrowserRouter basename={siteInfo.siteUrl.match(/\/[a-z-]*\/?$/)[0]}>
       <div className='container'>
         {new RegExp('^' + siteInfo.siteUrl + '/?$').test(window.location.href) &&
         [<Landing key='landing' />,
