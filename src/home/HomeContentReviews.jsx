@@ -5,7 +5,7 @@ import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 class HomeContentReviews extends Component {
   static propTypes = {
     reviews: PropTypes.array
-  }
+  };
 
   constructor(props) {
     super(props);
