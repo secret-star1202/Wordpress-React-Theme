@@ -82,8 +82,8 @@ class Landing extends Component {
 
   componentDidMount() {
     this.setState({
-      playing: player && (!player.getPaused() &&
-        player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3') || false
+      playing: global.player && (!global.player.getPaused() &&
+        global.player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3') || false
     });
   }
 
@@ -105,20 +105,20 @@ class Landing extends Component {
   }
 
   handlePlayBtn() {
-    var paused = player.getPaused();
-    if (player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
-      player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-      player.play();
+    var paused = global.player.getPaused();
+    if (global.player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
+      global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+      global.player.play();
       this.setState({ playing: true });
       return;
     }
 
     if (paused) {
-      player.play();
+      global.player.play();
       this.setState({ playing: true });
     }
     else {
-      player.pause();
+      global.player.pause();
       this.setState({ playing: false });
     }
   }
