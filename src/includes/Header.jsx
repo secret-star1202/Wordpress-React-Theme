@@ -41,17 +41,17 @@ class Header extends Component {
                     <button className='btn btn-md'>Donate Now</button>
                   </a>
                 </li>
-                <li><a href='/about-us'>KTUH History</a></li>
-                <li><a href='/timeline'>KTUH Timeline</a></li>
-                <li><a href='/staff'>KTUH Staff</a></li>
-                <li><a href='/alumni'>KTUH Alumni</a></li>
+                <li><a href={`${siteInfo.siteUrl}/about-us`}>KTUH History</a></li>
+                <li><a href={`${siteInfo.siteUrl}/timeline`}>KTUH Timeline</a></li>
+                <li><a href={`${siteInfo.siteUrl}/staff`}>KTUH Staff</a></li>
+                <li><a href={`${siteInfo.siteUrl}/alumni`}>KTUH Alumni</a></li>
                 <li><a href=
                   'https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate</a>
                 </li>
-                <li><a href='/join-ktuh'>Join KTUH</a></li>
-                <li><a href='/contact-us'>Contact Us</a></li>
-                <li><a href='/faq'>FAQ</a></li>
-                <li><a href='/underwriting'>Underwriting</a></li>
+                <li><a href={`${siteInfo.siteUrl}/join-ktuh`}>Join KTUH</a></li>
+                <li><a href={`${siteInfo.siteUrl}/contact-us`}>Contact Us</a></li>
+                <li><a href={`${siteInfo.siteUrl}/faq`}>FAQ</a></li>
+                <li><a href={`${siteInfo.siteUrl}/underwriting`}>Underwriting</a></li>
               </ul>
             </li>
             <li className={`dropdown ${activePage('show', 'showPage',
@@ -62,19 +62,17 @@ class Header extends Component {
                 Music <span className='caret'></span>
               </a>
               <ul className='dropdown-menu'>
-                <li><a href='/shows'>Show Schedule</a></li>
-                <li><a href='/playlists'>Playlists</a></li>
-                <li><a href='/reviews'>Reviews</a></li>
-                <li><a href='/charts'>Charts</a></li>
+                <li><a href={`${siteInfo.siteUrl}/playlists`}>Playlists</a></li>
+                <li><a href={`${siteInfo.siteUrl}/reviews`}>Reviews</a></li>
               </ul>
             </li>
             <li className={`${activePage('party', 'partyPage', 'partyCreate',
               'partyEdit')}' nav-item nav-item__parties`}>
-              <a href='/party'>Events</a>
+              <a href={`${siteInfo.siteUrl}/events`}>Events</a>
             </li>
             <li className={activePage('radioblog', 'blogPage') +
               ' nav-item nav-item__news'}>
-              <a href='/radioblog'>Radioblog</a></li>
+              <a href={`${siteInfo.siteUrl}/radioblog`}>Radioblog</a></li>
           </ul>
           <ul className='nav navbar-nav navbar-right'>
             <li className='nav-item'>
