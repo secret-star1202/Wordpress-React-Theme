@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { default as siteInfo } from '../utils/config';
 
 class Footer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.officeEmail = this.officeEmail.bind(this);
   }
 
@@ -23,7 +24,9 @@ class Footer extends Component {
       <div className='footer'>
         <div className='footer__mission-wrapper'>
           <div className='footer__logo-wrapper'>
-            <img src='/img/ktuh-logo-white-alpha.png' />
+            <img src={`${
+              siteInfo.siteUrl
+            }/wp-content/themes/custom-react-theme/dist/images/ktuh-logo-white-alpha.png`} />
           </div>
           <div className='footer__mission'>
             <h5 className='footer__subheading'>Our Mission</h5>
@@ -64,15 +67,21 @@ class Footer extends Component {
         <div className='footer__social'>
           <a href='http://instagram.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
-            <img src='/img/instagram-white.png' />
+            <img src={`${
+              siteInfo.siteUrl
+              }/wp-content/themes/custom-react-theme/dist/images/instagram-white.png`} />
           </a>
           <a href='https://www.facebook.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
-            <img src='/img/facebook-white.png' />
+            <img src={`${
+              siteInfo.siteUrl
+            }/wp-content/themes/custom-react-theme/dist/images/facebook-white.png`} />
           </a>
           <a href='http://twitter.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
-            <img src='/img/twitter-white.png' />
+            <img src={`${
+              siteInfo.siteUrl
+            }/wp-content/themes/custom-react-theme/dist/images/twitter-white.png`} />
           </a>
         </div>
         <p className='footer__copyright'>

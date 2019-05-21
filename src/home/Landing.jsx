@@ -93,7 +93,7 @@ class Landing extends Component {
     if (h >= 6 && h < 18) {
       return `url(\'${
         siteInfo.siteUrl
-        }}/wp-content/themes/custom-react-theme/dist/images/img/tantalus-morning.jpg\')`;
+        }/wp-content/themes/custom-react-theme/dist/images/img/tantalus-morning.jpg\')`;
     }
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return `url(\'${

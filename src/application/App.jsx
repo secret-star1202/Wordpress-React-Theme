@@ -29,7 +29,6 @@ class App extends Component {
         <Header />
         <div id="main">
           <Switch>
-            <Route exact="/" component={Home}/>
             <Route exact="/about-us" component={About}/>
             <Route exact="/alumni" component={Alumni}/>
             <Route exact="/contact-us" component={Contact}/>
@@ -37,6 +36,7 @@ class App extends Component {
             <Route exact="/join-ktuh" component={Join}/>
             <Route exact="/timeline" component={Timeline}/>
             <Route exact="/underwriting" component={Underwriting}/>
+            <Route exact="/" component={Home}/>
           </Switch>
         </div>
       </div>
