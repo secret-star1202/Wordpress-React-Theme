@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "jquery": "^3.4.1",
+    "mediaelement": "^4.2.9",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "react": "^16.8.6",
