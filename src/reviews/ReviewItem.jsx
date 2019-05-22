@@ -11,9 +11,9 @@ export default class ReviewItem extends Component {
   }
 
   render() {
-    let featuredImage = this.state.review._embedded && this.state.review._embedded['wp:featuredmedia'] &&
-      this.state.review._embedded['wp:featuredmedia']['0'] &&
-      this.state.review._embedded['wp:featuredmedia']['0'].source_url || undefined;
+    let featuredImage = this.props.item._embedded && this.props.item._embedded['wp:featuredmedia'] &&
+      this.props.item._embedded['wp:featuredmedia']['0'] &&
+      this.props.item._embedded['wp:featuredmedia']['0'].source_url || undefined;
 
     return (
       <div className='review-item'>
