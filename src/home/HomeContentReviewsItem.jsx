@@ -14,7 +14,7 @@ export default class HomeContentReviewsItem extends Component {
 
     return (
       <div key={this.props.item._id} className='home__reviews-item'>
-        <a href={'/reviews/' + this.props.item.slug}>
+        <a href={siteInfo.siteUrl + '/reviews/' + this.props.item.slug}>
           <img className='home__reviews-img'
             src={featuredImage ||
             `${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
