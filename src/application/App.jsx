@@ -16,6 +16,7 @@ import ReviewPage from '../reviews/ReviewPage.jsx';
 import ReviewList from "../reviews/ReviewList.jsx";
 import NewsPage from "../news/NewsPage.jsx";
 import NewsList from "../news/NewsList.jsx";
+import NotFound from './NotFound.jsx';
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -45,6 +46,8 @@ class App extends Component {
             <Route path="/join-ktuh" component={Join}/>
             <Route path="/timeline" component={Timeline}/>
             <Route path="/underwriting" component={Underwriting}/>
+            <Route path="/not-found" component={NotFound}/>
+            <Route exact path='*' component={NotFound} />
           </Switch>
         </div>
       </div>
