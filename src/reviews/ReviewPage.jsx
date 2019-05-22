@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Metamorph } from 'react-metamorph';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { default as siteInfo } from '../utils/config';
 
 class ReviewPage extends Component {
   static propTypes = {
@@ -20,8 +21,8 @@ class ReviewPage extends Component {
   componentWillMount() {
     let self = this;
     axios.get(
-      'http://localhost:9000/wordpress/wp-json/wp/v2/review?_embed&slug=' +
-          this.props.match.params.slug.replace(/\/$/, '')).then(
+      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&slug=${
+          this.props.match.params.slug.replace(/\/$/, '')}`).then(
       res => {
         self.setState({ review: res.data.length > 0 ? res.data[0] : null });
       }
