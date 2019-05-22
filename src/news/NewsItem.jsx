@@ -21,7 +21,7 @@ export default class NewsItem extends Component {
       <div className='news-list__post'>
         <div className='news-list__post-image'>
           <span className='purple-tag'>Radioblog</span>
-          <a className="news-list__photo-link" href={}>
+          <a className="news-list__photo-link" href={`${siteInfo.siteUrl}/radioblog/${this.props.item.slug}`}>
             <img className='news-list__photo'
               src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
           </a>
