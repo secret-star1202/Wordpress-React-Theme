@@ -41,14 +41,14 @@ class ReviewPage extends Component {
         this.state.review._embedded['wp:featuredmedia']['0'].source_url || undefined;
 
       return [
-        <Metamorph title={'Review of "' + this.state.review.release[0] +
+        <Metamorph title={'Review of "' + this.state.review.title[0] +
           '" by ' + this.state.review.artist[0] + ' - KTUH FM Honolulu | ' +
         'Radio for the People'} description={'Review of ' +
-          this.state.review.release[0] + ' by ' + this.state.review.artist[0]}
+          this.state.review.title[0] + ' by ' + this.state.review.artist[0]}
         image={featuredImage ||
           'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h1 className="general__header" key='header'>
-          <b>{this.state.review.release[0]}</b>
+          <b>{this.state.review.title[0]}</b>
           <br />{this.state.review.artist[0]}</h1>,
         <div className='review__link' key='back-link'>
           <a href='/reviews' className='back-to'>← all reviews</a>
