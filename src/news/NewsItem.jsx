@@ -27,8 +27,7 @@ export default class NewsItem extends Component {
           </a>
         </div>
         <div className='news-list__info'>
-          <a className='news-list__title'
-            href={path}>
+          <a className='news-list__title' href={`${siteInfo.siteUrl}/radioblog/${this.props.item.slug}`}>
             <h3>{this.props.item.title.rendered}</h3>
           </a>
           <p className='news-list__excerpt'>
