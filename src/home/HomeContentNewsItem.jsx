@@ -19,7 +19,7 @@ export default class HomeContentNewsItem extends Component {
 
     return (
       <div className='home__news-item'>
-        <a href={this.props.item.link}>
+        <a href={siteInfo.siteUrl + '/radioblog/' + this.props.item.slug}>
           <img className='home__news-img'
             src={featuredImage ||
             `${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
