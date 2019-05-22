@@ -12,6 +12,7 @@ import FAQ from '../static_pages/FAQ.jsx';
 import Join from '../static_pages/Join.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import Underwriting from '../static_pages/Underwriting.jsx';
+import ReviewPage from '../reviews/ReviewPage.jsx';
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
         <div id="main">
           <Switch>
             <Route exact path="/" component={Home}/>
+            <Route exact path="/reviews/:slug" component={ReviewPage}/>
             <Route path="/about-us" component={About}/>
             <Route path="/alumni" component={Alumni}/>
             <Route path="/contact-us" component={Contact}/>

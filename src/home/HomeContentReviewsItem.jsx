@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { default as siteInfo } from '../utils/config'
+import { default as siteInfo } from '../utils/config';
+
 export default class HomeContentReviewsItem extends Component {
   static propTypes = {
     item: PropTypes.object
