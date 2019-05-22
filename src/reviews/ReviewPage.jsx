@@ -69,6 +69,9 @@ class ReviewPage extends Component {
     else if (this.state.review === null) {
       return <Redirect to='/not-found' />;
     }
+    else if (this.state.review === undefined) {
+      return null;
+    }
   }
 }
 
