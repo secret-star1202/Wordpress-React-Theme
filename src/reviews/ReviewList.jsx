@@ -25,16 +25,18 @@ class ReviewList extends Component {
   }
 
   render() {
-    return [
-      <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
-        description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
-      />,
-      <h2 className="general__header" key="header-title">Reviews</h2>,
-      <div className="reviews__content" key="reviews-content">
-        <EverAfter.Paginator wrapper={ReviewItem} perPage={8}
-          items={this.state.reviews} />
-      </div>
-    ];
+    if (this.state.reviews)
+      return [
+        <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
+          description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
+        />,
+        <h2 className="general__header" key="header-title">Reviews</h2>,
+        <div className="reviews__content" key="reviews-content">
+          <EverAfter.Paginator wrapper={ReviewItem} perPage={8}
+            items={this.state.reviews} />
+        </div>
+      ];
+    else return null;
   }
 }
 
