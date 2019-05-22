@@ -25,7 +25,7 @@ class ReviewList extends Component {
   }
 
   render() {
-    if (this.state.reviews)
+    if (this.state.reviews && this.state.reviews.length > 0)
       return [
         <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
           description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
