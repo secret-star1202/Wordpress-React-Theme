@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { default as siteInfo } from '../utils/config';
 
 export default class ReviewItem extends Component {
   static propTypes = {
@@ -17,7 +18,7 @@ export default class ReviewItem extends Component {
 
     return (
       <div className='review-item'>
-        <a href={'/reviews/' + this.props.item.slug}>
+        <a href={siteInfo.siteUrl + '/reviews/' + this.props.item.slug}>
           <img className='review-item__image'
             src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
           <div className='review-item__release'>

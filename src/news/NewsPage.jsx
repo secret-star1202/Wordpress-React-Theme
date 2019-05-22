@@ -31,7 +31,7 @@ class NewsPage extends Component {
         this.state.post._embedded['wp:featuredmedia']['0'].source_url || undefined;
 
     return [
-      <Metamorph title={this.status.post.title +
+      <Metamorph title={this.state.post.title +
         ' - KTUH FM Honolulu | Radio for the People'}
       description={renderSummary(this.state.post.content.rendered, 50)}
       image={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />,
