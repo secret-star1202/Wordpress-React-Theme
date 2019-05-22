@@ -20,7 +20,8 @@ class ReviewPage extends Component {
   componentWillMount() {
     let self = this;
     axios.get(
-      'http://localhost:9000/wordpress/wp-json/wp/v2/review?_embed&slug=' + this.props.match.params.slug).then(
+      'http://localhost:9000/wordpress/wp-json/wp/v2/review?_embed&slug=' +
+          this.props.match.params.slug.replace(/\/$/, '')).then(
       res => {
         self.setState({ review: res.data.length > 0 ? res.data[0] : null });
       }
