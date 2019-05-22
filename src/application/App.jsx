@@ -13,6 +13,7 @@ import Join from '../static_pages/Join.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import Underwriting from '../static_pages/Underwriting.jsx';
 import ReviewPage from '../reviews/ReviewPage.jsx';
+import ReviewList from "../reviews/ReviewList.jsx";
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path={["/reviews/:slug", "/review/:slug"]} component={ReviewPage}/>
+            <Route exact path={["/reviews", "/review"]} component={ReviewList}/>
             <Route path="/about-us" component={About}/>
             <Route path="/alumni" component={Alumni}/>
             <Route path="/contact-us" component={Contact}/>
