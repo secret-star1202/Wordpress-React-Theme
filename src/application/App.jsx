@@ -14,6 +14,8 @@ import Timeline from '../static_pages/Timeline.jsx';
 import Underwriting from '../static_pages/Underwriting.jsx';
 import ReviewPage from '../reviews/ReviewPage.jsx';
 import ReviewList from "../reviews/ReviewList.jsx";
+import NewsPage from "../news/NewsPage.jsx";
+import NewsList from "../news/NewsList.jsx";
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -34,6 +36,8 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path={["/reviews/:slug", "/review/:slug"]} component={ReviewPage}/>
             <Route exact path={["/reviews", "/review"]} component={ReviewList}/>
+            <Route exact path={["/radioblog/:slug", "/news/:slug"]} component={NewsPage}/>
+            <Route exact path={["/radioblog", "/news"]} component={NewsList}/>
             <Route path="/about-us" component={About}/>
             <Route path="/alumni" component={Alumni}/>
             <Route path="/contact-us" component={Contact}/>
