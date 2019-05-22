@@ -4,6 +4,7 @@ import { Metamorph } from 'react-metamorph';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { default as siteInfo } from '../utils/config';
+import moment from 'moment';
 
 class ReviewPage extends Component {
   static propTypes = {
