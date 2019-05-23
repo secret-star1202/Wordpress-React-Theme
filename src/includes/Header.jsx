@@ -80,7 +80,10 @@ class Header extends Component {
                 href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
                 <button type='button'
                   className='btn btn-md header__support-btn'>
-                  <span>DONATE</span>
+                  <span>
+                    <a className='header__support-link'
+                       href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>DONATE</a>
+                  </span>
                 </button>
               </a>
             </li>
