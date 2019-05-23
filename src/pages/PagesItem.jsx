@@ -19,6 +19,7 @@ class PagesItem extends Component {
   }
 
   componentWillMount() {
+    var self = this;
     axios.get(
       `${siteInfo.siteUrl}/wp-json/wp/v2/pages?slug=${
         this.props.match.params.slug.replace(/\/$/, '')}`).then(
