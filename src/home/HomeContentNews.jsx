@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HomeContentNewsItem from './HomeContentNewsItem.jsx';
+import { default as siteInfo } from '../utils/config';
 
 export default class HomeContentNews extends Component {
   static propTypes = {
@@ -14,10 +15,10 @@ export default class HomeContentNews extends Component {
   render() {
       return (
         <div className='home__news'>
-          <a href='/radioblog'>
+          <a href={siteInfo.siteUrl + '/radioblog'}>
             <h3 className='home__section'>RADIOBLOG</h3>
           </a>
-          <a href='/radioblog' className='home__more'>
+          <a href={siteInfo.siteUrl + '/radioblog'} className='home__more'>
             MORE NEWS{'  '}
             <span className='glyphicon glyphicon-arrow-right'></span>
           </a>

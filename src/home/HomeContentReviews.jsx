@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
+import { default as siteInfo } from "../utils/config";
 
 class HomeContentReviews extends Component {
   static propTypes = {
@@ -14,10 +15,10 @@ class HomeContentReviews extends Component {
   render() {
     return (
       <div className='home__reviews'>
-        <a href='/reviews' key='reviews-link'>
+        <a href={siteInfo.siteUrl + '/reviews'}>
           <h3 className="home__section">MUSIC REVIEWS</h3>
         </a>
-        <a href='/reviews' className='home__more' key='reviews-more'>
+        <a href={siteInfo.siteUrl + '/reviews'} className='home__more' key='reviews-more'>
           MORE REVIEWS{'  '}
           <span className='glyphicon glyphicon-arrow-right'></span>
         </a>
