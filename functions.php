@@ -32,6 +32,8 @@ function get_menus() {
 }
 
 function create_posttype() {
+    add_theme_support( 'post-thumbnails' );
+
     register_post_type( 'review',
         array(
             'labels' => array(
@@ -40,7 +42,8 @@ function create_posttype() {
             ),
             'public' => true,
             'has_archive' => true,
-            'show_in_rest' => true
+            'show_in_rest' => true,
+            'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'page-attributes')
         )
     );
 
