@@ -1,13 +1,56 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MediaElement from "./MediaElement.jsx";
 import { default as siteInfo } from '../utils/config';
+import axios from 'axios';
 
-function activePage() {
-  var routeNames = Array.from(arguments);
-  return routeNames.includes(window.location.pathname.replace('/', '')) && 'active';
+class HeaderMenu extends Component {
+  static propTypes = {
+    menuItems: PropTypes.arrayOf(PropTypes.object)
+  };
+
+  render() {
+    return (
+      <ul className='nav navbar-nav navbar-left'>
+        {this.props.menuItems.map(function(menuItem) {
+          return <li className= 'dropdown'>
+            <a href='#' className='dropdown-toggle' data-toggle='dropdown'
+               role='button' aria-haspopup='true' aria-expanded='false'>
+              {menuItem.name}
+              <span className='caret'></span>
+            </a>
+            <ul className='dropdown-menu'>
+              {menuItem.items.map(function(item) {
+                return <li>
+                  <a href={item.url}>{item.title}</a>
+                </li>
+              })}
+            </ul>
+          </li>
+        })}
+      </ul>
+    );
+  }
 }
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menus: []
+    }
+  }
+
+  componentWillMount() {
+    let self = this;
+    axios.get(
+      `${siteInfo.siteUrl}/wp-json/wp/v2/menus`).then(
+      res => {
+        self.setState({ menus: res.data });
+      }
+    );
+  }
+
   render() {
     return (
       <nav className='navbar navbar-default' role='navigation'>
@@ -27,53 +70,7 @@ class Header extends Component {
           </button>
         </div>
         <div className='collapse navbar-collapse' id='navigation'>
-          <ul className='nav navbar-nav navbar-left'>
-            <li className=
-              {`dropdown ${activePage('about', 'timeline', 'join', 'faq',
-                'contact-us', 'staff', 'alumni', 'underwriting')}`}>
-              <a href='#' className='dropdown-toggle' data-toggle='dropdown'
-                role='button' aria-haspopup='true' aria-expanded='false'>
-                  About Us <span className='caret'></span>
-              </a>
-              <ul className='dropdown-menu'>
-                <li className='header__submenu-support'>
-                  <a href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
-                    <button className='btn btn-md'>Donate Now</button>
-                  </a>
-                </li>
-                <li><a href={`${siteInfo.siteUrl}/about-us`}>KTUH History</a></li>
-                <li><a href={`${siteInfo.siteUrl}/timeline`}>KTUH Timeline</a></li>
-                <li><a href={`${siteInfo.siteUrl}/staff`}>KTUH Staff</a></li>
-                <li><a href={`${siteInfo.siteUrl}/alumni`}>KTUH Alumni</a></li>
-                <li><a href=
-                  'https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate</a>
-                </li>
-                <li><a href={`${siteInfo.siteUrl}/join-ktuh`}>Join KTUH</a></li>
-                <li><a href={`${siteInfo.siteUrl}/contact-us`}>Contact Us</a></li>
-                <li><a href={`${siteInfo.siteUrl}/faq`}>FAQ</a></li>
-                <li><a href={`${siteInfo.siteUrl}/underwriting`}>Underwriting</a></li>
-              </ul>
-            </li>
-            <li className={`dropdown ${activePage('show', 'showPage',
-              'showCreate', 'showEdit', 'playlistPage', 'playlistList',
-              'reviewsPage', 'chartList', 'chartPage')}`}>
-              <a href='#' className='dropdown-toggle' data-toggle='dropdown'
-                role='button' aria-haspopup='true' aria-expanded='false'>
-                Music <span className='caret'></span>
-              </a>
-              <ul className='dropdown-menu'>
-                <li><a href={`${siteInfo.siteUrl}/playlists`}>Playlists</a></li>
-                <li><a href={`${siteInfo.siteUrl}/reviews`}>Reviews</a></li>
-              </ul>
-            </li>
-            <li className={`${activePage('party', 'partyPage', 'partyCreate',
-              'partyEdit')}' nav-item nav-item__parties`}>
-              <a href={`${siteInfo.siteUrl}/events`}>Events</a>
-            </li>
-            <li className={activePage('radioblog', 'blogPage') +
-              ' nav-item nav-item__news'}>
-              <a href={`${siteInfo.siteUrl}/radioblog`}>Radioblog</a></li>
-          </ul>
+          <HeaderMenu menuItems={this.state.menus} />
           <ul className='nav navbar-nav navbar-right'>
             <li className='nav-item'>
               <a className='header__support-link'
