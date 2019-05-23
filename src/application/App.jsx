@@ -10,7 +10,7 @@ import ReviewList from "../reviews/ReviewList.jsx";
 import NewsPage from "../news/NewsPage.jsx";
 import NewsList from "../news/NewsList.jsx";
 import NotFound from './NotFound.jsx';
-import PagesItem from './PagesItem.jsx';
+import PagesItem from '../pages/PagesItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
