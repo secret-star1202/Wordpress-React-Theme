@@ -450,6 +450,7 @@ h1, h2, h3, h4, h5 {
   padding: 0 27px !important;
 }
 .header__support-link {
+  color: white;
   z-index: 9001;
   height: 100%;
   border-top-width: 0px !important;

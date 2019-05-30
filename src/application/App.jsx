@@ -5,19 +5,12 @@ import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
 import Home from "../home/Home.jsx";
 import Landing from '../home/Landing.jsx';
-import About from '../static_pages/About.jsx';
-import Alumni from '../static_pages/Alumni.jsx';
-import Contact from '../static_pages/Contact.jsx';
-import FAQ from '../static_pages/FAQ.jsx';
-import Join from '../static_pages/Join.jsx';
-import Timeline from '../static_pages/Timeline.jsx';
-import Podcasts from '../static_pages/Podcasts.jsx';
-import Underwriting from '../static_pages/Underwriting.jsx';
 import ReviewPage from '../reviews/ReviewPage.jsx';
 import ReviewList from "../reviews/ReviewList.jsx";
 import NewsPage from "../news/NewsPage.jsx";
 import NewsList from "../news/NewsList.jsx";
 import NotFound from './NotFound.jsx';
+import PagesItem from '../pages/PagesItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -39,16 +32,9 @@ class App extends Component {
             <Route exact path={["/reviews/:slug", "/review/:slug"]} component={ReviewPage}/>
             <Route exact path={["/reviews", "/review"]} component={ReviewList}/>
             <Route exact path={["/radioblog/:slug", "/news/:slug"]} component={NewsPage}/>
-            <Route exact path={["/radioblog", "/news"]} component={NewsList}/>
-            <Route path="/about-us" component={About}/>
-            <Route path="/podcasts" component={Podcasts}/>
-            <Route path="/alumni" component={Alumni}/>
-            <Route path="/contact-us" component={Contact}/>
-            <Route path="/faq" component={FAQ}/>
-            <Route path="/join-ktuh" component={Join}/>
-            <Route path="/timeline" component={Timeline}/>
-            <Route path="/underwriting" component={Underwriting}/>
+            <Route exact path={["/radioblog", "/news"]} component={NewsList} />
             <Route path="/not-found" component={NotFound}/>
+            <Route path='/:slug' component={PagesItem} />
             <Route exact path='*' component={NotFound} />
           </Switch>
         </div>

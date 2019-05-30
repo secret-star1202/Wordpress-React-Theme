@@ -23,8 +23,17 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     return false;
 }
 
+function get_menus() {
+    $menus = wp_get_nav_menus();
+    array_map(function(&$m) {
+        $m->items = wp_get_nav_menu_items($m);
+    }, $menus);
+    return $menus;
+}
 
 function create_posttype() {
+    add_theme_support( 'post-thumbnails' );
+
     register_post_type( 'review',
         array(
             'labels' => array(
@@ -33,7 +42,8 @@ function create_posttype() {
             ),
             'public' => true,
             'has_archive' => true,
-            'show_in_rest' => true
+            'show_in_rest' => true,
+            'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'page-attributes')
         )
     );
 
@@ -52,6 +62,11 @@ function create_posttype() {
 
 add_action( 'init', 'create_posttype' );
 add_action('rest_api_init', function() {
+	 register_rest_route( 'wp/v2', '/menus', array(
+        'methods' => 'GET',
+        'callback' => 'get_menus'
+    ));
+
     register_rest_field('review', 'img_url', array(
             'get_callback' => 'get_rest_featured_image'
         )
