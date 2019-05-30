@@ -12,6 +12,7 @@ import NewsList from "../news/NewsList.jsx";
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
 import { default as siteInfo } from '../utils/config';
+import Podcasts from '../static_pages/Podcasts';
 
 class App extends Component {
   static propTypes = {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path={["/reviews/:slug", "/review/:slug"]} component={ReviewPage}/>
             <Route exact path={["/reviews", "/review"]} component={ReviewList}/>
+            <Route exact path={["/podcasts", "/podcast"]} component={Podcasts}/>
             <Route exact path={["/radioblog/:slug", "/news/:slug"]} component={NewsPage}/>
             <Route exact path={["/radioblog", "/news"]} component={NewsList} />
             <Route path="/not-found" component={NotFound}/>
