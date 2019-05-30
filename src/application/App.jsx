@@ -11,6 +11,7 @@ import Contact from '../static_pages/Contact.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Join from '../static_pages/Join.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
+import Podcasts from '../static_pages/Podcasts.jsx';
 import Underwriting from '../static_pages/Underwriting.jsx';
 import ReviewPage from '../reviews/ReviewPage.jsx';
 import ReviewList from "../reviews/ReviewList.jsx";
@@ -40,6 +41,7 @@ class App extends Component {
             <Route exact path={["/radioblog/:slug", "/news/:slug"]} component={NewsPage}/>
             <Route exact path={["/radioblog", "/news"]} component={NewsList}/>
             <Route path="/about-us" component={About}/>
+            <Route path="/podcasts" component={Podcasts}/>
             <Route path="/alumni" component={Alumni}/>
             <Route path="/contact-us" component={Contact}/>
             <Route path="/faq" component={FAQ}/>

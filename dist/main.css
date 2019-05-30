@@ -3,9 +3,9 @@
   font-family: 'icomoon';
   src:url('/fonts/icomoon.eot');
   src:url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/icomoon.woff') format('woff'),
-    url('/fonts/icomoon.ttf') format('truetype'),
-    url('/fonts/icomoon.svg#icomoon') format('svg');
+  url('/fonts/icomoon.woff') format('woff'),
+  url('/fonts/icomoon.ttf') format('truetype'),
+  url('/fonts/icomoon.svg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5 {
 }
 /* The landing's negative z-index was a problem, which setting these all to positive fixed. */
 .errors, .notifications, .footer, #main {
-    z-index: 10;
+  z-index: 10;
 }
 /* Fixes an issue on the profileEdit page */
 .row {
@@ -294,7 +294,7 @@ h1, h2, h3, h4, h5 {
   float: left !important;
 }
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: #fff;
+  background-color: #fff;
 }
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a,
@@ -366,32 +366,32 @@ h1, h2, h3, h4, h5 {
   font-family: 'Glyphicons Halflings';
   border: 1pt solid #ccc;
   -webkit-transition-property: width;
-     -moz-transition-property: width;
-       -o-transition-property: width;
-          transition-property: width;
+  -moz-transition-property: width;
+  -o-transition-property: width;
+  transition-property: width;
   -webkit-transition-duration: .15s;
-     -moz-transition-duration: .15s;
-       -o-transition-duration: .15s;
-          transition-duration: .15s;
+  -moz-transition-duration: .15s;
+  -o-transition-duration: .15s;
+  transition-duration: .15s;
   -webkit-transition-timing-function: ease-out;
-     -moz-transition-timing-function: ease-out;
-       -o-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 .nav__search input:focus {
   width: 140px;
   -webkit-transition-property: width;
-     -moz-transition-property: width;
-       -o-transition-property: width;
-          transition-property: width;
+  -moz-transition-property: width;
+  -o-transition-property: width;
+  transition-property: width;
   -webkit-transition-duration: .15s;
-     -moz-transition-duration: .15s;
-       -o-transition-duration: .15s;
-          transition-duration: .15s;
+  -moz-transition-duration: .15s;
+  -o-transition-duration: .15s;
+  transition-duration: .15s;
   -webkit-transition-timing-function: ease-out;
-     -moz-transition-timing-function: ease-out;
-       -o-transition-timing-function: ease-out;
-          transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 .spinner {
   top: unset;
@@ -1429,11 +1429,15 @@ audio {
 .home__reviews {
   clear: both;
 }
+.home_podcast {
+  clear: both;
+}
 .home__featured-content {
   width: 100%;
   margin: auto;
   padding: 0 56px;
 }
+.home__podcast-content,
 .home__news-content,
 .home__reviews-content {
   width: 100%;
@@ -1442,6 +1446,12 @@ audio {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+.home_podcast-item {
+  display: inline-block;
+  padding: 0 0 20px 0;
+  color: inherit;
+  float: left;
 }
 .home__featured-category {
   text-transform: uppercase;
@@ -1477,7 +1487,7 @@ audio {
   text-decoration: underline;
 }
 .home__next-show-link {
-margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 .home__main {
   width: 75%;
@@ -1493,16 +1503,16 @@ margin-bottom: 0 !important;
   background-color: inherit;
 }
 .purple-tag {
-    position: absolute;
-    right: -16px;
-    top: 22px;
-    float: right;
-    padding: 6px 14px;
-    font-family: 'nimbus-sans';
-    color: white;
-    font-weight: bold;
-    background: #5940de;
-    text-transform: uppercase;
+  position: absolute;
+  right: -16px;
+  top: 22px;
+  float: right;
+  padding: 6px 14px;
+  font-family: 'nimbus-sans';
+  color: white;
+  font-weight: bold;
+  background: #5940de;
+  text-transform: uppercase;
 }
 .playlist__sidebar {
   position: relative;
@@ -1675,7 +1685,7 @@ margin-bottom: 0 !important;
   text-decoration: underline;
 }
 .home__reviews-item .home__subtitle {
-    font-style: italic;
+  font-style: italic;
 }
 .support {
   background-color: #5940de;
@@ -1893,7 +1903,7 @@ margin-bottom: 0 !important;
   border-color: transparent;
 }
 .playlist-list__table tr {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 }
 .playlist-list__table tr td {
   padding: 5px 10px 5px 0;
@@ -2499,8 +2509,8 @@ margin-bottom: 0 !important;
     padding-right: 0;
   }
   .playlist__sidebar  {
-   width: calc(100% - 80px);
-   margin: 0 40px 10px;
+    width: calc(100% - 80px);
+    margin: 0 40px 10px;
   }
   .playlist-list__latest {
     width: 100%;
@@ -2571,7 +2581,7 @@ margin-bottom: 0 !important;
   }
   .shows {
     padding: 20px 40px 40px;
-   }
+  }
   .show__info {
     float: none;
     max-width: 100%;
@@ -3122,8 +3132,8 @@ margin-bottom: 0 !important;
   width: calc(100% - 244px);
 }
 .scorpius-materialize-admin .header-container {
-    padding: 1rem;
-    font-size: 32px;
+  padding: 1rem;
+  font-size: 32px;
 }
 div.dataTables_length {
   margin-top: 0;
@@ -3193,5 +3203,42 @@ div.dataTables_length select {
 }
 .scorpius-materialize-admin .floating-btn-onheader {
   top: -6rem;
+}
+
+.grid__container {
+  display: inline-grid !important;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px !important;
+  padding: 20px !important;
+}
+.grid__item {
+  margin: 20px;
+}
+.grid__item__submit {
+  margin: 20px;
+}
+
+.submit__podcast {
+  padding: 5px 30px;
+  overflow: auto;
+  background-color: #5940DE;
+  color: white;
+  padding-bottom: 167px !important;
+}
+.submit__podcast a {
+  color: white;
+}
+.submit__podcast a:hover {
+  text-decoration: underline;
+}
+.submit__podcast div {
+  float: left;
+  padding-right: 25px;
+}
+.submit__podcast h3 {
+  font-family: 'alda';
+}
+.submit__podcast__lighter {
+  font-weight: normal;
 }
 

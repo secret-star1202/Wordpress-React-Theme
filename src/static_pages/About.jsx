@@ -14,7 +14,7 @@ export default class About extends Component {
       <div className='about__desc'>
         <p>
           <span className='copy__caps'>KTUH</span>
-          is a student-run noncommercial radio station broadcasting from the
+           is a student-run noncommercial radio station broadcasting from the
           University of Hawaiʻi at Mānoa. We’ve been serving the community since
           1969 with a variety of programs that include public announcements,
           equipment for community events, and a practical chance to learn about

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeContentNews from './HomeContentNews.jsx';
 import HomeContentReviews from './HomeContentReviews.jsx';
+import HomeContentPodcasts from './HomeContentPodcasts.jsx';
 import HomeSidebar from './HomeSidebar.jsx';
 import axios from 'axios';
 import { default as siteInfo } from '../utils/config';
@@ -34,6 +35,7 @@ export default class HomeContent extends Component {
         <div className='home__main'>
           <HomeContentNews posts={this.state.posts} />
           <HomeContentReviews reviews={this.state.reviews} />
+          <HomeContentPodcasts podcast={this.state.podcast} />
         </div>
         <HomeSidebar />
       </div>
