@@ -22,7 +22,7 @@ class HeaderMenu extends Component {
             <ul className='dropdown-menu'>
               {menuItem.items.map(function(item) {
                 return <li>
-                  <a href={item.url}>{item.title}</a>
+                  <a href={item.url} target={item.target || "_self"}>{item.title}</a>
                 </li>
               })}
             </ul>

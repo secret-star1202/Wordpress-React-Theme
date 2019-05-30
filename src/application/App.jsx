@@ -11,6 +11,7 @@ import NewsPage from "../news/NewsPage.jsx";
 import NewsList from "../news/NewsList.jsx";
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
+import FAQ from '../static_pages/FAQ.jsx';
 import { default as siteInfo } from '../utils/config';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
             <Route exact path={["/reviews", "/review"]} component={ReviewList}/>
             <Route exact path={["/radioblog/:slug", "/news/:slug"]} component={NewsPage}/>
             <Route exact path={["/radioblog", "/news"]} component={NewsList} />
+            <Route exact path="/faq" component={FAQ} />
             <Route path="/not-found" component={NotFound}/>
             <Route path='/:slug' component={PagesItem} />
             <Route exact path='*' component={NotFound} />
