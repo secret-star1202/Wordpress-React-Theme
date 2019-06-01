@@ -58,11 +58,44 @@ function create_posttype() {
                 'show_in_rest' => true
             )
         );
+
+   register_post_type( 'now_playing',
+       array(
+           'labels' => array(
+               'name' => __( 'Now Playing' ),
+               'singular_name' => __( 'Now Playing' )
+           ),
+           'public' => true,
+           'has_archive' => false,
+           'show_in_rest' => true,
+      )
+   );
+
+}
+
+function update_now_playing($artist, $song) {
+  $p = get_posts(array(
+    'post_type' => 'now_playing',
+    'numberposts' => 1
+  ));
+  $i = $p[0]->ID;
+  update_post_meta($i, 'artist', $artist);
+  update_post_meta($i, 'song', $song);
 }
 
 add_action( 'init', 'create_posttype' );
+
 add_action('rest_api_init', function() {
-	 register_rest_route( 'wp/v2', '/menus', array(
+    register_rest_route( 'wp/v2', '/spin', array(
+        array(
+          'methods' => 'POST',
+          'callback' => function(WP_REST_Request $request) {
+            update_now_playing($request['artist'], $request['song']);
+          }
+        )
+    ));
+
+    register_rest_route( 'wp/v2', '/menus', array(
         'methods' => 'GET',
         'callback' => 'get_menus'
     ));
@@ -102,5 +135,23 @@ add_action('rest_api_init', function() {
              return get_post_meta($obj['id'], 'rating' );
        }
       ));
+
+    register_rest_field('now_playing', 'artist', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'artist' );
+      }
+     ));
+
+    register_rest_field('now_playing', 'song', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'song' );
+      }
+     ));
+
+    register_rest_field('now_playing', 'timestamp', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'timestamp' );
+      }
+     ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');

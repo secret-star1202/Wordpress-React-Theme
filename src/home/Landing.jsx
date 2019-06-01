@@ -7,7 +7,8 @@ class LandingInfo extends Component {
     super(props);
     this.state = {
       currentShow: null,
-      nowPlaying: null
+      nowPlaying: null,
+      interval: -1
     };
   }
 
@@ -39,15 +40,31 @@ class LandingInfo extends Component {
   componentWillMount() {
     let self = this;
     axios.all([
-      axios.get(`https://spinitron.com/api/spins?access-token=${siteInfo.spinAccessToken}&num=1`),
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`),
       axios.get(`https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`)
     ]).then(axios.spread((gotSpin, gotShows) => {
         self.setState({
           currentShow: gotShows.data.items[0],
-          nowPlaying: gotSpin.data.items[0]
+          nowPlaying: {
+            artist: gotSpin.data[0].artist[0],
+            song: gotSpin.data[0].song[0],
+          },
+          interval: setInterval(function() {
+            axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
+              .then(res => {
+                self.setState({nowPlaying: {
+                  artist: res.data[0].artist[0],
+                  song: res.data[0].song[0],
+                }});
+              });
+          }, 1000)
         });
       }
     ));
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
   }
 
   render() {
