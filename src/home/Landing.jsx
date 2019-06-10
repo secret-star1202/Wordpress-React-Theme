@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import { default as siteInfo } from "../utils/config";
 
 class LandingInfo extends Component {
@@ -10,10 +10,6 @@ class LandingInfo extends Component {
       nowPlaying: null,
       interval: -1
     };
-  }
-
-  nowPlaying() {
-      return this.state.nowPlaying || false;
   }
 
   currentShowName() {
@@ -43,24 +39,23 @@ class LandingInfo extends Component {
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`),
       axios.get(`https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`)
     ]).then(axios.spread((gotSpin, gotShows) => {
-        self.setState({
-          currentShow: gotShows.data.items[0],
-          nowPlaying: {
-            artist: gotSpin.data[0].artist[0],
-            song: gotSpin.data[0].song[0],
-          },
-          interval: setInterval(function() {
-            axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-              .then(res => {
-                self.setState({nowPlaying: {
-                  artist: res.data[0].artist[0],
-                  song: res.data[0].song[0],
-                }});
-              });
-          }, 1000)
-        });
-      }
-    ));
+      self.setState({
+        currentShow: gotShows.data.items[0],
+        nowPlaying: {
+          artist: gotSpin.data[0].artist[0],
+          song: gotSpin.data[0].song[0],
+        },
+        interval: setInterval(function() {
+          axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
+            .then(res => {
+              self.setState({nowPlaying: {
+                artist: res.data[0].artist[0],
+                song: res.data[0].song[0],
+              }});
+            });
+        }, 15000)
+      });
+    }));
   }
 
   componentWillUnmount() {
@@ -89,19 +84,8 @@ class LandingInfo extends Component {
 class Landing extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      playing: false
-    };
 
-    this.handlePlayBtn = this.handlePlayBtn.bind(this);
     this.handleClickDownArrow = this.handleClickDownArrow.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      playing: global.player && (!global.player.getPaused() &&
-        global.player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3') || false
-    });
   }
 
   background() {
@@ -125,41 +109,11 @@ class Landing extends Component {
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  handlePlayBtn() {
-    var paused = global.player.getPaused();
-    if (global.player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
-      global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-      global.player.play();
-      this.setState({ playing: true });
-      return;
-    }
-
-    if (paused) {
-      global.player.play();
-      this.setState({ playing: true });
-    }
-    else {
-      global.player.pause();
-      this.setState({ playing: false });
-    }
-  }
-
   render() {
     return (
       <div className='landing' style={{ backgroundImage: this.background() }}>
         <div className='landing__box'>
-          <div className='landing__play-btn-outer'
-            onClick={this.handlePlayBtn}>
-            {this.state.playing ? [
-              <div className='landing__pause-btn-l' />,
-              <div className='landing__pause-btn-r' />
-            ] : (
-              <div className='landing__play-btn' key='play-button'>
-                <div className='landing__play-btn-triangle' />
-              </div>
-            )}
-          </div>
-          <LandingInfo nowPlaying={this.props.nowPlaying} />
+          <LandingInfo />
         </div>
         <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
         <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>

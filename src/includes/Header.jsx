@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MediaElement from "./MediaElement.jsx";
 import { default as siteInfo } from '../utils/config';
 import axios from 'axios';
 import _ from 'underscore';
@@ -11,11 +10,7 @@ class HeaderMenu extends Component {
   };
 
   render() {
-    console.log(this.props.menuItems);
-
     let tree = _.groupBy(this.props.menuItems, 'menu_item_parent');
-
-    console.log(tree);
 
     return (
       <ul className='nav navbar-nav navbar-left'>
@@ -95,11 +90,6 @@ class Header extends Component {
                   </span>
                 </button>
               </a>
-            </li>
-          </ul>
-          <ul className='nav navbar-nav'>
-            <li className='nav-item'>
-              <MediaElement id="audio-player" src='http://stream.ktuh.org:8000/stream-mp3' />
             </li>
           </ul>
         </div>
