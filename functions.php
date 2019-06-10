@@ -6,9 +6,6 @@ function init_scripts() {
   wp_enqueue_style('twbs-css', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
   wp_enqueue_script('twbs-js', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array('jquery-js'), '1.0', true);
 
-  wp_enqueue_style('mediaelement-css', get_template_directory_uri() . '/dist/mejs/mediaelementplayer.min.css');
-  wp_enqueue_script('mediaelement-script', get_template_directory_uri() . '/dist/mejs/mediaelement-and-player.min.js', array(), '1.0', true);
-
   wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/main.css');
 
   wp_enqueue_script('typekit-script', 'https://use.typekit.net/kdq4qji.js', array(), '1.0', true);
@@ -71,6 +68,17 @@ function create_posttype() {
       )
    );
 
+  register_post_type( 'timeline',
+      array(
+          'labels' => array(
+              'name' => __( 'Timelines' ),
+              'singular_name' => __( 'Timeline' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+     )
+  );
 }
 
 function update_now_playing($artist, $song) {
@@ -151,6 +159,12 @@ add_action('rest_api_init', function() {
     register_rest_field('now_playing', 'timestamp', array(
       'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'timestamp' );
+      }
+     ));
+
+    register_rest_field('timeline', 'nodes', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id']);
       }
      ));
 });

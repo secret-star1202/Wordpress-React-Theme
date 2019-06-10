@@ -2175,14 +2175,6 @@ audio {
   left: calc(50% - 8px);
   margin-top: 4px;
 }
-.timeline__node:last-of-type .timeline__node-body:before {
-  content: '';
-  position: absolute;
-  width: 12px;
-  transform: translateX(-24px) translateY(20px);
-  height: 100px;
-  background-color: #fff;
-}
 .profile-edit {
   margin: 20px 60px;
 }
@@ -2299,19 +2291,8 @@ audio {
     margin-right: 0;
     width: auto;
   }
-  #login-dropdown-list .dropdown-menu {
-    left: -150px;
-    margin-left: 0;
-  }
-  #login-dropdown-list .dropdown-toggle {
-    margin-left: 0;
-    width: auto;
-  }
 }
 @media (max-width: 992px) {
-  #login-dropdown-list .dropdown-menu {
-    min-width: 250px !important;
-  }
   .navbar-left {
     margin-left: 10px;
   }
@@ -2439,13 +2420,6 @@ audio {
 }
 
 @media (max-width: 768px) {
-  #login-dropdown-list {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  #login-other-options {
-    display: inline-grid;
-  }
   .general__header {
     padding-left: 40px;
     padding-right: 40px;
@@ -2605,9 +2579,6 @@ audio {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     padding: 8px 15px 8px 20px;
-  }
-  #login-dropdown-list .dropdown-menu {
-    margin-bottom: 10px;
   }
   .home__reviews-item {
     width: 30%;
@@ -3242,4 +3213,3 @@ div.dataTables_length select {
 .submit__podcast__lighter {
   font-weight: normal;
 }
-
