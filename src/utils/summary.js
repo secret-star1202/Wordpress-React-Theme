@@ -1,10 +1,9 @@
-var renderSummary = function(summary, numWords) {
+export default function (summary, numWords) {
+  let newSum = summary, match = null;
+  const regex = new RegExp(`(([^\\s]+\\s\\s*){${numWords}})(.*)`);
   if (summary.indexOf('<') > -1) {
-    summary = $.parseHTML(summary).map(node => node.innerText).join(' ');
+    newSum = $.parseHTML(summary).map(({ innerText }) => innerText).join(' ');
   }
-  var regex = new RegExp('(([^\\s]+\\s\\s*){' + numWords + '})(.*)');
-  var match = regex.exec(summary);
-  return (match && match[1] || summary) + '…';
-};
-
-export default renderSummary;
+  match = regex.exec(newSum);
+  return `${match && match[1] || newSum}…`;
+}

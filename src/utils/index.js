@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { siteUrl } from './config';
+import { default as siteInfo } from './config';
 
-export default function() {
-  return axios.get(`${siteUrl}/wp-json`);
-};
+export default function () {
+  return axios.get(`${siteInfo.siteUrl}/wp-json`);
+}
