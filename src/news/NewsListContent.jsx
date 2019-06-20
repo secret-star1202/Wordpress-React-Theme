@@ -1,41 +1,33 @@
-import React, { Component } from 'react';
-import NewsItem from './NewsItem.jsx';
+import React, { useState, useEffect } from 'react';
 import EverAfter from 'react-everafter';
-import axios from "axios";
-import { default as siteInfo } from "../utils/config";
+import axios from 'axios';
+import NewsItem from './NewsItem.jsx';
+import { default as siteInfo } from '../utils/config';
 
-class NewsListContent extends Component {
-  constructor(props) {
-    super(props);
+function NewsListContent() {
+  let [state, setState] = useState({
+    posts: []
+  });
 
-    this.state = {
-      posts: []
-    }
-  }
-
-  componentWillMount() {
-    let self = this;
+  useEffect(function () {
     axios.get(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed`).then(
-      res => {
-        self.setState({ posts: res.data.length > 0 ? res.data : [] });
-      }
+      `${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed`
+    ).then((res) => {
+      setState({ posts: res.data.length > 0 ? res.data : [] });
+    });
+  });
+
+  if (state.posts && state.posts.length) {
+    return (
+      <div className='news-list__content'>
+        <div className='news-list'>
+          <EverAfter.Paginator wrapper={NewsItem} perPage={4}
+            items={state.posts} truncate={true} />
+        </div>
+      </div>
     );
   }
-
-  render() {
-    if (this.state.posts && this.state.posts.length > 0) {
-      return (
-        <div className='news-list__content'>
-          <div className='news-list'>
-            <EverAfter.Paginator wrapper={NewsItem} perPage={4}
-              items={this.state.posts} truncate={true} />
-          </div>
-        </div>
-      );
-    }
-    else return null;
-  }
+  return null;
 }
 
 export default NewsListContent;

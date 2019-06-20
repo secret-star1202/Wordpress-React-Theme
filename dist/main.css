@@ -1530,9 +1530,6 @@ h1, h2, h3, h4, h5 {
 .contact__content a:hover, .join__content a:hover, .alumni__content a:hover {
   text-decoration: underline;
 }
-.at-form {
-  margin: 0 60px;
-}
 .about__help {
   overflow: auto;
   background-color: #5940DE;
@@ -1917,14 +1914,6 @@ h1, h2, h3, h4, h5 {
   }
 }
 @media (max-width: 979px) {
-  .profile__left {
-    margin-left: 5%;
-    width: 200px;
-  }
-  .profile__info {
-    margin-right: 5%;
-    max-width: 325px;
-  }
   .header__support-btn {
     display: none;
   }
@@ -1933,26 +1922,14 @@ h1, h2, h3, h4, h5 {
   }
 }
 @media (max-width: 899px) {
-  .navbar-left {
-    margin-left: 0;
-  }
-  .footer__contact {
-    width: 74%;
-  }
-  .footer__mission-wrapper {
-    width: 25%;
-  }
-  .footer__mission {
-    display: none;
-  }
-  .home__news-item {
-    width: 47%;
-  }
+  .navbar-left { margin-left: 0; }
+  .footer__contact { width: 74%; }
+  .footer__mission-wrapper { width: 25%; }
+  .footer__mission { display: none; }
+  .home__news-item { width: 47%; }
 }
 @media (min-width: 769px) and (max-width: 786px) {
-  .footer__subheading {
-    font-size: .75em;
-  }
+  .footer__subheading { font-size: .75em; }
 }
 @media (max-width: 767px) {
   .info-box__link {
@@ -1991,17 +1968,11 @@ h1, h2, h3, h4, h5 {
   }
 }
 @media (min-width: 768px) and (max-width: 784px) {
-  .info-box {
-    max-width: 110px;
-    margin-left: 0;
-  }
+  .info-box { max-width: 110px; margin-left: 0; }
 }
 
 @media (max-width: 768px) {
-  .general__header {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
+  .general__header { padding-left: 40px; padding-right: 40px; }
   .landing__hnl-freq { left: -55px; }
   .landing__ns-freq { right: -45px; }
   .event__link, .review__link, .chart__link, .playlist__link {
@@ -2013,11 +1984,8 @@ h1, h2, h3, h4, h5 {
     max-width: calc(100% - 40px);
     min-width: 280px;
   }
-  .landing__show-name,
-  .landing__show-host,
-  .landing__song-title,
-  .landing__host-name,
-  .landing__song-artist {
+  .landing__show-name, .landing__show-host, .landing__song-title,
+  .landing__host-name, .landing__song-artist {
     font-size: 1.75em;
     line-height: 32px;
   }
@@ -2049,9 +2017,6 @@ h1, h2, h3, h4, h5 {
   }
   .home__featured-content, .news-item {
     padding: 0 40px;
-  }
-  .at-form {
-    margin: 0 40px;
   }
   .home__main, .playlist__content {
     width: 100%;
@@ -2505,14 +2470,6 @@ h1, h2, h3, h4, h5 {
 }
 .playlist + .playlist__show-name {
   margin-top: 25px;
-}
-#nav-mobile {
-  padding: 2px 24px;
-  box-shadow: 0 2px 2px 0;
-  border: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  color: black;
 }
 .grid__container {
   display: inline-grid;

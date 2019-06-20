@@ -1,44 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import HomeContentNews from './HomeContentNews.jsx';
 import HomeContentReviews from './HomeContentReviews.jsx';
 import HomeContentPodcasts from './HomeContentPodcasts.jsx';
 import HomeSidebar from './HomeSidebar.jsx';
-import axios from 'axios';
 import { default as siteInfo } from '../utils/config';
 
-export default class HomeContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        posts: [],
-        reviews: []
-    };
-  }
+export default function HomeContent() {
+  let [state, setState] = useState({
+    posts: [],
+    reviews: []
+  });
 
-  componentWillMount() {
-    let self = this;
+  useEffect(function () {
     axios.all([
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed`),
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`)
     ]).then(axios.spread((gotPosts, gotReviews) => {
-        self.setState({
-          posts: gotPosts.data,
-          reviews: gotReviews.data
-        });
-      }
-    ));
-  }
+      setState({
+        posts: gotPosts.data,
+        reviews: gotReviews.data
+      });
+    }));
+  });
 
-    render() {
-    return (
-      <div className='content'>
-        <div className='home__main'>
-          <HomeContentNews posts={this.state.posts} />
-          <HomeContentReviews reviews={this.state.reviews} />
-          <HomeContentPodcasts podcast={this.state.podcast} />
-        </div>
-        <HomeSidebar />
+  return (
+    <div className='content'>
+      <div className='home__main'>
+        <HomeContentNews posts={state.posts} />
+        <HomeContentReviews reviews={state.reviews} />
+        <HomeContentPodcasts podcast={state.podcast} />
       </div>
-    );
-  }
+      <HomeSidebar />
+    </div>
+  );
 }
