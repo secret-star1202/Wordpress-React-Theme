@@ -26,11 +26,11 @@ export default function Timeline() {
   useEffect(function () {
     axios.get(
       `${siteInfo.siteUrl}/wp-json/wp/v2/timeline`
-    ).then(({ data: [nodes] }) => {
+    ).then(({ data: [item] }) => {
       setState({
         timeline_data:
-        nodes.nodes_date_string.map((str, i) => (
-          [str, nodes.nodes_body[i]]
+        item.nodes.nodes_date_string.map((str, i) => (
+          [str, item.nodes.nodes_body[i]]
         ))
       });
     });
