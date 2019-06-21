@@ -14,7 +14,7 @@ function HomeContentReviews({ reviews }) {
         <span className='glyphicon glyphicon-arrow-right'></span>
       </a>
       <div className='home__reviews-content' key='reviews-content'>
-        {reviews.map(item => (
+        {reviews.slice(0,3).map(item => (
           <HomeContentReviewsItem item={item} />))}
       </div>
     </div>

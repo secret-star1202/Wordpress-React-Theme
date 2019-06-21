@@ -12,7 +12,7 @@ function ReviewList() {
 
   useEffect(function () {
     axios.get(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`
+      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=42`
     ).then((res) => {
       setState({ reviews: res.data.length > 0 ? res.data : [] });
     });
