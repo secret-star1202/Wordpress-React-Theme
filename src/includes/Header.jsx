@@ -56,7 +56,7 @@ function Header() {
         setState({ menuItems: res.data[0].items });
       }
     );
-  });
+  }, []);
 
   return (
     <nav className='navbar navbar-default' role='navigation'>

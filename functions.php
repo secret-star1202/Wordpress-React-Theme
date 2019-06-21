@@ -91,6 +91,18 @@ function create_posttype() {
           'show_in_rest' => true,
      )
   );
+
+  register_post_type( 'podcast',
+      array(
+          'labels' => array(
+              'name' => __( 'Podcasts' ),
+              'singular_name' => __( 'Podcast' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+     )
+  );
 }
 
 function update_now_playing($artist, $song) {
@@ -183,6 +195,12 @@ add_action('rest_api_init', function() {
     register_rest_field('frequently_asked', 'data', array(
       'get_callback' => function($obj) {
             return get_post_meta($obj['id']);
+      }
+     ));
+
+    register_rest_field('podcast', 'playlist_id', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['playlist_id']);
       }
      ));
 });
