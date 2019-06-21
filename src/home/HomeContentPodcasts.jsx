@@ -14,7 +14,7 @@ function HomeContentPodcasts() {
         <span className='glyphicon glyphicon-arrow-right'/>
       </a>
       <div className='home__podcast-content' key='podcast-content'>
-        <HomeContentPodcastItem />
+        <HomeContentPodcastItem src='638285631' />
       </div>
     </div>
   );
