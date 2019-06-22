@@ -32,7 +32,7 @@ export default function HomeContent() {
       <div className='home__main'>
         <HomeContentNews posts={state.posts} />
         <HomeContentReviews reviews={state.reviews} />
-        <HomeContentPodcasts podcast={state.podcast} />
+        <HomeContentPodcasts podcasts={state.podcasts} />
       </div>
       <HomeSidebar />
     </div>
