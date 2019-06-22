@@ -1,8 +1,12 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
 
-export default function HomeContentPodcastItem({ src }) {
+export default function HomeContentPodcastItem({
+  item: {
+    playlist_id: [src]
+  }
+}) {
   return <div className='home_podcast-item'>
     <a href={`${siteInfo.siteUrl}/podcasts`}>
       <iframe width="85%" height="250"
@@ -17,5 +21,5 @@ export default function HomeContentPodcastItem({ src }) {
 }
 
 HomeContentPodcastItem.propTypes = {
-  src: string
+  item: object
 };
