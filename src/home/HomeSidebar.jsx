@@ -16,7 +16,7 @@ export default function HomeSidebar() {
         setState({ nextOnAir: response.data.items[1] });
       }
     );
-  });
+  }, []);
 
   return (
     <div className='home__sidebar'>
