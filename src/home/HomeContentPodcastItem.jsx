@@ -5,12 +5,16 @@ import { default as siteInfo } from '../utils/config';
 export default function HomeContentPodcastItem({
   item: {
     podcast_id: [src],
-    podcast_type: [type]
+    podcast_type: [type],
+    podcast_name: [name],
+    podcast_date: [date]
   }
 }) {
   return <div className='home_podcast-item'>
     <a href={`${siteInfo.siteUrl}/podcasts`}>
-      <iframe width="85%" height="250"
+      <p className='home__title'>{name}</p>
+      <p className='home__subtitle'> for {date}</p>
+      <iframe width="100%" height="250"
         scrolling="no" frameBorder="no" allow="autoplay" src=
           {'https://w.soundcloud.com/player/'
           + `?url=https%3A//api.soundcloud.com/${type}s/${src}`

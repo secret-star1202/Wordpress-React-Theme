@@ -1042,6 +1042,7 @@ h1, h2, h3, h4, h5 {
   padding: 0 0 20px 0;
   color: inherit;
   float: left;
+  width: 300px;
 }
 .home__featured-category {
   text-transform: uppercase;

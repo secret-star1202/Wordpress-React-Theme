@@ -209,5 +209,15 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'podcast_type');
       }
      ));
+    register_rest_field('podcast', 'podcast_name', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'podcast_name');
+        }
+    ));
+    register_rest_field('podcast', 'podcast_date', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'podcast_date');
+        }
+    ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');
