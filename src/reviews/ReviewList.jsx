@@ -12,7 +12,7 @@ function ReviewList() {
 
   useEffect(function () {
     axios.get(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`
+      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=42`
     ).then((res) => {
       setState({ reviews: res.data.length > 0 ? res.data : [] });
     });
@@ -25,7 +25,7 @@ function ReviewList() {
       />,
       <h2 className="general__header" key="header-title">Reviews</h2>,
       <div className="reviews__content" key="reviews-content">
-        <EverAfter.Paginator wrapper={ReviewItem} perPage={8}
+        <EverAfter.Paginator wrapper={ReviewItem} perPage={11}
           items={state.reviews} />
       </div>
     ];

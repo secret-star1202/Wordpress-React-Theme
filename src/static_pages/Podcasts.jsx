@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metamorph } from 'react-metamorph';
+import { array } from 'prop-types';
 
 export default function Podcast() {
   let podcasts = [

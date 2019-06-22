@@ -9,17 +9,20 @@ import { default as siteInfo } from '../utils/config';
 export default function HomeContent() {
   let [state, setState] = useState({
     posts: [],
-    reviews: []
+    reviews: [],
+    podcasts: [],
   });
 
   useEffect(function () {
     axios.all([
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&per_page=6`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`)
-    ]).then(axios.spread((gotPosts, gotReviews) => {
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`),
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`)
+    ]).then(axios.spread((gotPosts, gotReviews, gotPodcasts) => {
       setState({
         posts: gotPosts.data,
-        reviews: gotReviews.data
+        reviews: gotReviews.data,
+        podcasts: gotPodcasts.data
       });
     }));
   });
@@ -29,7 +32,7 @@ export default function HomeContent() {
       <div className='home__main'>
         <HomeContentNews posts={state.posts} />
         <HomeContentReviews reviews={state.reviews} />
-        <HomeContentPodcasts podcast={state.podcast} />
+        <HomeContentPodcasts podcasts={state.podcasts} />
       </div>
       <HomeSidebar />
     </div>
