@@ -14,7 +14,7 @@ function HomeContentNews({ posts }) {
         <span className='glyphicon glyphicon-arrow-right'></span>
       </a>
       <div className='home__news-content'>
-        {posts.map(item => (<HomeContentNewsItem item={item} />))}
+        {posts.slice(0,3).map(item => (<HomeContentNewsItem item={item} />))}
       </div>
     </div>
   );

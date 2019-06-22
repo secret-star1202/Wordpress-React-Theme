@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
-function HomeContentPodcasts() {
+function HomeContentPodcasts({ podcasts }) {
   return (
     <div className='home__podcast'>
       <a href={`${siteInfo.siteUrl}/podcasts`}>
@@ -16,12 +16,15 @@ function HomeContentPodcasts() {
       <div className='home__podcast-content' key='podcast-content'>
         <HomeContentPodcastItem src='638285631' />
       </div>
+      <div className='home__podcast-content' key='podcast-content'>
+        {podcasts.slice(0,3).map(item => (  <HomeContentPodcastItem item={item} /> ) ) }
+      </div>
     </div>
   );
 }
 
 HomeContentPodcasts.propTypes = {
-  podcast: PropTypes.array
+  podcasts: PropTypes.array
 };
 
 export default HomeContentPodcasts;
