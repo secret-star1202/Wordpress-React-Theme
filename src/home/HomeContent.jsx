@@ -25,7 +25,7 @@ export default function HomeContent() {
         podcasts: gotPodcasts.data
       });
     }));
-  });
+  }, []);
 
   return (
     <div className='content'>

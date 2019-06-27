@@ -63,7 +63,7 @@ function Home({ siteUrl }) {
       window.scroll(0, 0);
       window.onscroll = null;
     };
-  });
+  }, []);
 
   return [
     <Metamorph title='KTUH FM Honolulu | Radio for the People'

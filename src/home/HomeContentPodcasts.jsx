@@ -14,7 +14,8 @@ function HomeContentPodcasts({ podcasts }) {
         <span className='glyphicon glyphicon-arrow-right'/>
       </a>
       <div className='home__podcast-content' key='podcast-content'>
-        {podcasts.slice(0,3).map(item => (  <HomeContentPodcastItem item={item} /> ) ) }
+        {podcasts.slice(0, 3).map(item => (
+          <HomeContentPodcastItem item={item} />)) }
       </div>
     </div>
   );

@@ -105,7 +105,7 @@ function create_posttype() {
   );
 }
 
-function update_now_playing($artist, $song) {
+function update_now_playing($artist, $song, $show) {
   $p = get_posts(array(
     'post_type' => 'now_playing',
     'numberposts' => 1
@@ -113,16 +113,52 @@ function update_now_playing($artist, $song) {
   $i = $p[0]->ID;
   update_post_meta($i, 'artist', $artist);
   update_post_meta($i, 'song', $song);
+  update_post_meta($i, 'show', $show);
 }
 
 add_action( 'init', 'create_posttype' );
 
 add_action('rest_api_init', function() {
+    register_rest_route( 'wp/v2', '/open_sesame', array(
+        array(
+          'methods' => 'POST',
+          'callback' => function(WP_REST_Request $request) {
+              wp_insert_post(array(
+				        'post_author' => 1,
+        				'post_title' => $request['title'],
+        				'post_content' => $request['content'],
+        				'post_excerpt' => $request['excerpt'],
+        				'post_status' => 'publish'
+			       ));
+          }
+        )
+    ));
+
+    register_rest_route( 'wp/v2', '/open_barley', array(
+        array(
+          'methods' => 'POST',
+          'callback' => function(WP_REST_Request $request) {
+             $id = wp_insert_post(array(
+				        'post_author' => 1,
+                'post_type' => 'review',
+        				'post_title' => $request[artist] . ' - ' .  $request['title'],
+        				'post_content' => $request['content'],
+        				'post_status' => 'publish'
+			       ));
+            update_post_meta($id, 'artist', $request['artist']);
+            update_post_meta($id, 'title', $request['title']);
+            update_post_meta($id, 'year', $request['year']);
+            update_post_meta($id, 'label', $request['label']);
+            update_post_meta($id, 'rating', $request['rating']);
+          }
+        )
+    ));
+
     register_rest_route( 'wp/v2', '/spin', array(
         array(
           'methods' => 'POST',
           'callback' => function(WP_REST_Request $request) {
-            update_now_playing($request['artist'], $request['song']);
+            update_now_playing($request['artist'], $request['song'], $request['show']);
           }
         )
     ));
@@ -171,6 +207,12 @@ add_action('rest_api_init', function() {
     register_rest_field('now_playing', 'artist', array(
       'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'artist' );
+      }
+     ));
+
+    register_rest_field('now_playing', 'show', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'show' );
       }
      ));
 
