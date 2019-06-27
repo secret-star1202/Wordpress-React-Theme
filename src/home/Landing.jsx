@@ -28,11 +28,10 @@ function LandingInfo() {
 
   useEffect(function () {
     axios.all([
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`),
-      axios.get(`https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`)
-    ]).then(axios.spread((gotSpin, gotShows) => {
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
+    ]).then(axios.spread((gotSpin) => {
       setState({
-        currentShow: gotShows.data.items[0],
+        currentShow: gotSpin.data[0].show[0],
         nowPlaying: {
           artist: gotSpin.data[0].artist[0],
           song: gotSpin.data[0].song[0],
@@ -41,9 +40,10 @@ function LandingInfo() {
           axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
             .then((res) => {
               setState({
+                currentShow: gotSpin.data[0].show[0],
                 nowPlaying: {
                   artist: res.data[0].artist[0],
-                  song: res.data[0].song[0],
+                  song: res.data[0].song[0]
                 }
               });
             });
