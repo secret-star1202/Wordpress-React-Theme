@@ -342,6 +342,11 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'event_description' );
         }
     ));
+    register_rest_field('event', 'event_time', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'event_time' );
+        }
+    ));
     register_rest_field('event', 'event_lineup', array(
         'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'event_lineup' );
