@@ -1905,6 +1905,19 @@ h1, h2, h3, h4, h5 {
   .news-list__excerpt {
     clear: both;
   }
+  .news-list__post-parent {
+    height: 1200px;
+    position: relative
+  }
+  .wp-block-image {
+    width: 412px;
+    height: 265px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .wp-block-button { color: #5940de; }
 }
 @media (min-width: 980px) and (max-width: 1019px) {
   .dropdown-menu {

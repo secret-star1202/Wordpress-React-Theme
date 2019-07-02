@@ -6,50 +6,51 @@ import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import { default as momentUtil } from 'moment';
 
-function NewsPage({ match }) {
+function EventPage({ item }) {
   let [state, setState] = useState({
-    post: undefined
+    event: undefined
   });
 
   useEffect(function () {
     axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
       match.params.slug.replace(/\/$/, '')}`).then((res) => {
-      setState({ post: res.data.length > 0 ? res.data[0] : null });
+      setState({ event: res.data.length > 0 ? res.data[0] : null });
     });
   });
 
-  let { post } = state;
+  let { event } = state;
 
-  if (post) {
-    let featuredImage = post._embedded && post._embedded['wp:featuredmedia']
-      && post._embedded['wp:featuredmedia']['0']
-      && post._embedded['wp:featuredmedia']['0'].source_url || undefined;
+  if (event) {
+    let featuredImage = event._embedded && event._embedded['wp:featuredmedia']
+      && event._embedded['wp:featuredmedia']['0']
+      && event._embedded['wp:featuredmedia']['0'].source_url || undefined;
 
-    return [<Metamorph title={`${
-      post.title.rendered} - KTUH FM Honolulu | Radio for the People`}
-    description={renderSummary(post.content.rendered, 50)} />,
+    return [ <div className={news-list__post-parent}>
+      <hr className="wp-block-separator"/> <Metamorph title={`${
+      event.title.rendered} - KTUH FM Honolulu | Radio for the People`}
+    description={renderSummary(event.content.rendered, 50)} />,
     <h1 key="header-title" className='general__header'>
-      {post.title.rendered}</h1>,
+      {event.event_title.rendered}</h1>,
     <div key="radioblog-back-link" className='show__link'>
       <a href='/radioblog' className='back-to'>← Back to Radioblog</a>
     </div>,
     <div className='news-item' key="name-submitted">
       <p className='news-item__author'>
-          <b>Posted by {post.nickname}</b>
+          <b>Posted by {event.nickname}</b>
         <br />
-        {momentUtil(post.date).format("dddd, MMMM Do YYYY at h:mm a")}
+        {momentUtil(event.date).format("dddd, MMMM Do YYYY at h:mm a")}
       </p>
       <div className='news-item__body'
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-    </div>];
+        dangerouslySetInnerHTML={{ __html: event.content.rendered }} />
+    </div></div>];
   }
-  if (post === null) {
+  if (event === null) {
     return <Redirect to='/not-found' />;
   }
 
-  if (post === undefined) {
+  if (event === undefined) {
     return null;
   }
 }
 
-export default NewsPage;
+export default EventPage;

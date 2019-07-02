@@ -44,6 +44,18 @@ function create_posttype() {
         )
     );
 
+    register_post_type( 'event',
+        array(
+            'labels' => array(
+                'name' => __( 'Events' ),
+                'singular_name' => __( 'Event' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true
+        )
+    );
+
     register_post_type( 'playlist',
             array(
                 'labels' => array(
@@ -104,6 +116,20 @@ function create_posttype() {
      )
   );
 }
+
+add_action( 'init', 'create_event_tax' );
+
+function create_event_tax() {
+    register_taxonomy(
+        'event',
+        array(
+            'label' => __( 'Event' ),
+            'rewrite' => array( 'slug' => 'event' ),
+            'hierarchical' => true,
+        )
+    );
+}
+
 
 function update_now_playing($artist, $song, $show) {
   $p = get_posts(array(
@@ -259,6 +285,56 @@ add_action('rest_api_init', function() {
     register_rest_field('podcast', 'podcast_date', array(
         'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'podcast_date');
+        }
+    ));
+    register_rest_field('review', 'date', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'date' );
+        }
+    ));
+    register_rest_field('event', 'name', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'event_name' );
+        }
+    ));
+    register_rest_field('event', 'location', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'location' );
+        }
+    ));
+    register_rest_field('event', 'minor_age', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'minor_age' );
+        }
+    ));
+    register_rest_field('event', 'adult_age', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'date' );
+        }
+    ));
+    register_rest_field('event', 'event_description', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'event_description' );
+        }
+    ));
+    register_rest_field('event', 'event_lineup', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'event_lineup' );
+        }
+    ));
+    register_rest_field('event', 'button_link', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'button_link' );
+        }
+    ));
+    register_rest_field('event', 'button_text', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'button_text' );
+        }
+    ));
+    register_rest_field('event', 'event_image', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'event_image' );
         }
     ));
 });

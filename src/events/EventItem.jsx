@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import renderSummary from '../utils/summary';
 import { default as siteInfo } from '../utils/config';
 
-function NewsItem({
+function EventItem({
   item: {
-    _embedded, slug, title, content, nickname
+    _embedded, slug, event_title, event_description, nickname
   }
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
@@ -24,10 +24,10 @@ function NewsItem({
       </div>
       <div className='news-list__info'>
         <a className='news-list__title' href={`${
-          siteInfo.siteUrl}/radioblog/${slug}`}><h3>{title.rendered}</h3>
+          siteInfo.siteUrl}/radioblog/${slug}`}><h3>{event_title.rendered}</h3>
         </a>
         <p className='news-list__excerpt'>
-          {renderSummary(content.rendered, 50)}{'  '}
+          {renderSummary(event_description.rendered, 50)}{'  '}
           <a className='purple-text' href={`${
             siteInfo.siteUrl}/radioblog/${slug}`}>
             <i>Read On</i>
@@ -40,8 +40,8 @@ function NewsItem({
   );
 }
 
-NewsItem.propTypes = {
+EventItem.propTypes = {
   item: PropTypes.object
 };
 
-export default NewsItem;
+export default EventItem;
