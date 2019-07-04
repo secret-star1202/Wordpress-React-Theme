@@ -32,14 +32,16 @@ function EventItem({ event: {
   if (event) {
 
     return [ <div className='news-list__post-parent'>
-      <hr className="wp-block-separator"/> <Metamorph title={`KTUH Community Events & Calender - KTUH FM Honolulu | Radio for the People`}
-    description='KTUH Community Events & Calender' />,
+      <hr className="wp-block-separator"/> <Metamorph title={`KTUH Community Events & Calendar - KTUH FM Honolulu | Radio for the People`}
+    description='KTUH Community Events & Calendar' />,
         <h3 className="home__section">{event_date} | {event_time}</h3>
       <a href={event_link} className='home__more'>
         {event_name}{'  '}
       </a>
-      <div href={event_link} className='event__title'>
-      {event_name}
+      <div className='event__title'>
+        <a href={event_link}>
+        {event_name}
+        </a>
       </div>
       <div className='home__synopsis'>
         {event_description}
