@@ -7,7 +7,7 @@ function HomeContentPodcasts({ podcasts }) {
   return (
     <div className='home__podcast'>
       <a href={`${siteInfo.siteUrl}/podcasts`}>
-        <h3 className="home__section">Podcast</h3>
+        <h3 className="home__section">Podcasts</h3>
       </a>
       <a href={`${siteInfo.siteUrl}/podcasts`} className='home__more'>
         MORE PODCASTS{'  '}

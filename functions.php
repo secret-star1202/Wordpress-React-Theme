@@ -352,14 +352,9 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'event_lineup' );
         }
     ));
-    register_rest_field('event', 'button_link', array(
+    register_rest_field('event', 'event_link', array(
         'get_callback' => function($obj) {
-            return get_post_meta($obj['id'], 'button_link' );
-        }
-    ));
-    register_rest_field('event', 'button_text', array(
-        'get_callback' => function($obj) {
-            return get_post_meta($obj['id'], 'button_text' );
+            return get_post_meta($obj['id'], 'event_link' );
         }
     ));
     register_rest_field('event', 'event_image', array(

@@ -2529,3 +2529,10 @@ h1, h2, h3, h4, h5 {
 .submit__podcast__lighter {
   font-weight: normal;
 }
+.event__title {
+  font-weight: bold;
+  color: #5940de;
+}
+.event__image {
+  float: right;
+}

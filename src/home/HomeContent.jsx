@@ -11,18 +11,21 @@ export default function HomeContent() {
     posts: [],
     reviews: [],
     podcasts: [],
+    events: [],
   });
 
   useEffect(function () {
     axios.all([
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&per_page=6`),
       axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`)
-    ]).then(axios.spread((gotPosts, gotReviews, gotPodcasts) => {
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`),
+      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/event?_embed&per_page=6`)
+    ]).then(axios.spread((gotPosts, gotReviews, gotPodcasts, gotEvents) => {
       setState({
         posts: gotPosts.data,
         reviews: gotReviews.data,
-        podcasts: gotPodcasts.data
+        podcasts: gotPodcasts.data,
+        events: gotEvents.data
       });
     }));
   }, []);

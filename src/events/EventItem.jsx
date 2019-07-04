@@ -1,47 +1,66 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import renderSummary from '../utils/summary';
+import React, { useState, useEffect } from 'react';
+import { Metamorph } from 'react-metamorph';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import { default as siteInfo } from '../utils/config';
+import renderSummary from '../utils/summary';
+import { default as momentUtil } from 'moment';
 
-function EventItem({
-  item: {
-    _embedded, slug, event_title, event_description, nickname
-  }
-}) {
-  let featuredImage = _embedded && _embedded['wp:featuredmedia']
-    && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url || undefined;
+function EventItem({ event: {
+  event_name: [event_name],
+  location: [location],
+  address: [location_address],
+  date: [event_date],
+  event_link: [event_link],
+  event_time: [event_time],
+  event_description: [event_description],
+  event_image: [event_image],
+}, }) {
+  let [state, setState] = useState({
+    event: undefined
+  });
 
-  return (
-    <div className='news-list__post'>
-      <div className='news-list__post-image'>
-        <span className='purple-tag'>Radioblog</span>
-        <a className="news-list__photo-link" href={`${
-          siteInfo.siteUrl}/radioblog/${slug}`}>
-          <img className='news-list__photo'
-            src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        </a>
+  useEffect(function () {
+    axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/events?_embed&slug=${
+      match.params.slug.replace(/\/$/, '')}`).then((res) => {
+      setState({ event: res.data.length > 0 ? res.data[0] : null });
+    });
+  });
+
+  let { event } = state;
+
+  if (event) {
+
+    return [ <div className='news-list__post-parent'>
+      <hr className="wp-block-separator"/> <Metamorph title={`KTUH Community Events & Calender - KTUH FM Honolulu | Radio for the People`}
+    description='KTUH Community Events & Calender' />,
+        <h3 className="home__section">{event_date} | {event_time}</h3>
+      <a href={event_link} className='home__more'>
+        {event_name}{'  '}
+      </a>
+      <div href={event_link} className='event__title'>
+      {event_name}
       </div>
-      <div className='news-list__info'>
-        <a className='news-list__title' href={`${
-          siteInfo.siteUrl}/radioblog/${slug}`}><h3>{event_title.rendered}</h3>
-        </a>
-        <p className='news-list__excerpt'>
-          {renderSummary(event_description.rendered, 50)}{'  '}
-          <a className='purple-text' href={`${
-            siteInfo.siteUrl}/radioblog/${slug}`}>
-            <i>Read On</i>
-          </a>
-        </p>
-        <br />
-        <p className='news-list__byline'>by {nickname}</p>
+      <div className='home__synopsis'>
+        {event_description}
       </div>
+      <div className='event_title'>
+        {location} |
+      </div>
+      <div className='home__synopsis'>
+        {location_address}
+      </div>
+      <img className='event__image' src={event_image} alt='event image'/>
     </div>
-  );
-}
+    ];
+  }
+  if (event === null) {
+    return <Redirect to='/not-found' />;
+  }
 
-EventItem.propTypes = {
-  item: PropTypes.object
-};
+  if (event === undefined) {
+    return null;
+  }
+}
 
 export default EventItem;
