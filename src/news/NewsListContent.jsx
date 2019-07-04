@@ -15,7 +15,7 @@ function NewsListContent() {
     ).then((res) => {
       setState({ posts: res.data.length > 0 ? res.data : [] });
     });
-  });
+  }, []);
 
   if (state.posts && state.posts.length) {
     return (

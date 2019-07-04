@@ -8,6 +8,7 @@ import ReviewPage from '../reviews/ReviewPage.jsx';
 import ReviewList from '../reviews/ReviewList.jsx';
 import NewsPage from '../news/NewsPage.jsx';
 import NewsList from '../news/NewsList.jsx';
+import EventsList from '../events/EventsList.jsx';
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
@@ -32,6 +33,7 @@ function App() {
           <Route exact path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
           <Route exact path={['/radioblog', '/news']} component={NewsList} />
           <Route exact path={['/timeline', '/ktuh-timeline']} component={Timeline} />
+          <Route exact path={['/events', '/event']} component={EventsList} />
           <Route exact path="/faq" component={FAQ} />
           <Route exact path="/not-found" component={NotFound}/>
           <Route exact path='/:slug' component={PagesItem} />
