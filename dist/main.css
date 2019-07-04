@@ -1244,7 +1244,7 @@ h1, h2, h3, h4, h5 {
 }
 .home__title {
   font-family: 'alda', sans-serif;
-  line-height: 1.25em;
+  line-height: 1.00em;
   font-weight: bold;
 }
 .home__featured-item .home__title {
