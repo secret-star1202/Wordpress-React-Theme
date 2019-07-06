@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { object } from 'prop-types';
 import EverAfter from 'react-everafter';
 import { Metamorph } from 'react-metamorph';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
-function ReviewList() {
+function ReviewList({ history }) {
   let [state, setState] = useState({
     reviews: []
   });
@@ -18,6 +19,14 @@ function ReviewList() {
     });
   });
 
+  function ReviewItemWithHistory({ item }) {
+    return <ReviewItem item={item} history={history} />;
+  }
+
+  ReviewItemWithHistory.propTypes = {
+    item: object
+  };
+
   if (state.reviews && state.reviews.length) {
     return [
       <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
@@ -25,7 +34,7 @@ function ReviewList() {
       />,
       <h2 className="general__header" key="header-title">Reviews</h2>,
       <div className="reviews__content" key="reviews-content">
-        <EverAfter.Paginator wrapper={ReviewItem} perPage={11}
+        <EverAfter.Paginator wrapper={ReviewItemWithHistory} perPage={11}
           items={state.reviews} />
       </div>
     ];
@@ -34,3 +43,7 @@ function ReviewList() {
 }
 
 export default ReviewList;
+
+ReviewList.propTypes = {
+  history: object
+};

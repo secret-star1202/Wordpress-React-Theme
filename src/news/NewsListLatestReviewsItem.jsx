@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-export default function NewsListLatestReviewsItem({ review }) {
+export default function NewsListLatestReviewsItem({ review, history }) {
   let featuredImage = review._embedded
     && review._embedded['wp:featuredmedia']
     && review._embedded['wp:featuredmedia']['0']
@@ -10,15 +11,17 @@ export default function NewsListLatestReviewsItem({ review }) {
 
   return (
     <div className='news-list__latest-review'>
-      <a href={`${siteInfo.siteUrl}/reviews/${review.slug}`}>
+      <SamePageAnchor history={history}
+        href={`${siteInfo.siteUrl}/reviews/${review.slug}`}>
         <img src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
         <p><b>{review.artist[0]}</b></p>
         <p>{review.title[0]}</p>
-      </a>
+      </SamePageAnchor>
     </div>
   );
 }
 
 NewsListLatestReviewsItem.propTypes = {
-  review: PropTypes.object
+  review: object,
+  history: object
 };

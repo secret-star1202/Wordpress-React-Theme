@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { Metamorph } from 'react-metamorph';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function ReviewPage({ match }) {
+function ReviewPage({ match, history }) {
   let [state, setState] = useState({
     review: undefined
   });
@@ -42,7 +43,9 @@ function ReviewPage({ match }) {
         <b>{review.title[0]}</b><br />
         {review.artist[0]}</h1>,
       <div className='review__link' key='back-link'>
-        <a href='/reviews' className='back-to'>← all reviews</a>
+        <SamePageAnchor history={history} href='/reviews' className='back-to'>
+          ← all reviews
+        </SamePageAnchor>
       </div>,
       <div className="review__content" key='review-content'>
         <img className='review-page__image'
@@ -68,7 +71,8 @@ function ReviewPage({ match }) {
   }
 }
 ReviewPage.propTypes = {
-  match: PropTypes.object
+  match: object,
+  history: object
 };
 
 export default ReviewPage;

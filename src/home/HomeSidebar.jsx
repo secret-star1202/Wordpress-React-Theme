@@ -18,9 +18,7 @@ export default function HomeSidebar() {
     );
   }, []);
 
-  return (
-    <div className='home__sidebar'>
+  return <div className='home__sidebar'>
       {state.nextOnAir ? <HomeSidebarNext nextOnAir={state.nextOnAir} /> : null}
-    </div>
-  );
+    </div>;
 }

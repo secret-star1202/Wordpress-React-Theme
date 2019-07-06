@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { default as momentUtil } from 'moment';
 
 function HomeSidebarNext({ nextOnAir: { title, start, end } }) {
@@ -17,7 +17,7 @@ function HomeSidebarNext({ nextOnAir: { title, start, end } }) {
 }
 
 HomeSidebarNext.propTypes = {
-  nextOnAir: PropTypes.object
+  nextOnAir: object
 };
 
 export default HomeSidebarNext;

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
-import { default as momentUtil } from 'moment';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function NewsPage({ match }) {
+function NewsPage({ match, history }) {
   let [state, setState] = useState({
     post: undefined
   });
@@ -31,13 +32,15 @@ function NewsPage({ match }) {
     <h1 key="header-title" className='general__header'>
       {post.title.rendered}</h1>,
     <div key="radioblog-back-link" className='show__link'>
-      <a href='/radioblog' className='back-to'>← Back to Radioblog</a>
+      <SamePageAnchor href='/radioblog' className='back-to' history={history}>
+        ← Back to Radioblog
+      </SamePageAnchor>
     </div>,
     <div className='news-item' key="name-submitted">
       <p className='news-item__author'>
           <b>Posted by {post.nickname}</b>
         <br />
-        {momentUtil(post.date).format("dddd, MMMM Do YYYY at h:mm a")}
+        {momentUtil(post.date).format('dddd, MMMM Do YYYY at h:mm a')}
       </p>
       <div className='news-item__body'
         dangerouslySetInnerHTML={{ __html: post.content.rendered }} />

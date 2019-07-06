@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import renderSummary from '../utils/summary';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 function NewsItem({
   item: {
     _embedded, slug, title, content, nickname
-  }
+  },
+  history
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
     && _embedded['wp:featuredmedia']['0']
@@ -16,22 +18,22 @@ function NewsItem({
     <div className='news-list__post'>
       <div className='news-list__post-image'>
         <span className='purple-tag'>Radioblog</span>
-        <a className="news-list__photo-link" href={`${
-          siteInfo.siteUrl}/radioblog/${slug}`}>
+        <SamePageAnchor history={history} className="news-list__photo-link"
+          href={`${siteInfo.siteUrl}/radioblog/${slug}`}>
           <img className='news-list__photo'
             src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        </a>
+        </SamePageAnchor>
       </div>
       <div className='news-list__info'>
-        <a className='news-list__title' href={`${
+        <SamePageAnchor history={history} className='news-list__title' href={`${
           siteInfo.siteUrl}/radioblog/${slug}`}><h3>{title.rendered}</h3>
-        </a>
+        </SamePageAnchor>
         <p className='news-list__excerpt'>
           {renderSummary(content.rendered, 50)}{'  '}
-          <a className='purple-text' href={`${
+          <SamePageAnchor history={history} className='purple-text' href={`${
             siteInfo.siteUrl}/radioblog/${slug}`}>
             <i>Read On</i>
-          </a>
+          </SamePageAnchor>
         </p>
         <br />
         <p className='news-list__byline'>by {nickname}</p>
@@ -41,7 +43,8 @@ function NewsItem({
 }
 
 NewsItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default NewsItem;

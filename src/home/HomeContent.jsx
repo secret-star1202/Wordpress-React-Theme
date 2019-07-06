@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { object } from 'prop-types';
 import axios from 'axios';
 import HomeContentNews from './HomeContentNews.jsx';
 import HomeContentReviews from './HomeContentReviews.jsx';
@@ -6,7 +7,7 @@ import HomeContentPodcasts from './HomeContentPodcasts.jsx';
 import HomeSidebar from './HomeSidebar.jsx';
 import { default as siteInfo } from '../utils/config';
 
-export default function HomeContent() {
+export default function HomeContent({ history }) {
   let [state, setState] = useState({
     posts: [],
     reviews: [],
@@ -30,14 +31,16 @@ export default function HomeContent() {
     }));
   }, []);
 
-  return (
-    <div className='content'>
+  return <div className='content'>
       <div className='home__main'>
-        <HomeContentNews posts={state.posts} />
-        <HomeContentReviews reviews={state.reviews} />
-        <HomeContentPodcasts podcasts={state.podcasts} />
+        <HomeContentNews posts={state.posts} history={history} />
+        <HomeContentReviews reviews={state.reviews} history={history} />
+        <HomeContentPodcasts podcasts={state.podcasts} history={history} />
       </div>
       <HomeSidebar />
-    </div>
-  );
+    </div>;
 }
+
+HomeContent.propTypes = {
+  history: object
+};

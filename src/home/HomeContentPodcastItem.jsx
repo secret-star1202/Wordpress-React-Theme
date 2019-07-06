@@ -1,7 +1,8 @@
 import React from 'react';
 import { object } from 'prop-types';
+import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
-import {default as momentUtil} from 'moment';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 export default function HomeContentPodcastItem({
   item: {
@@ -10,10 +11,10 @@ export default function HomeContentPodcastItem({
     podcast_name: [name],
     podcast_date: [date],
   },
-
+  history
 }) {
-    return <div className='home_podcast-item'>
-    <a href={`${siteInfo.siteUrl}/podcasts`}>
+  return <div className='home_podcast-item'>
+    <SamePageAnchor history={history} href={`${siteInfo.siteUrl}/podcasts`}>
       <p className='home__title'>{name}</p>
       <p className='home__subtitle'> {momentUtil(date).format('MMMM Do')}</p>
       <iframe width="100%" height="250"
@@ -23,10 +24,11 @@ export default function HomeContentPodcastItem({
           + '&color=%23ff5500&auto_play=false&hide_related=false'
           + '&show_comments=true&show_user=true&show_reposts=false'
           + '&show_teaser=true&visual=true'} />
-    </a>
+    </SamePageAnchor>
   </div>;
 }
 
 HomeContentPodcastItem.propTypes = {
-  item: object
+  item: object,
+  history: object
 };

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { object } from 'prop-types';
 import EverAfter from 'react-everafter';
 import axios from 'axios';
 import NewsItem from './NewsItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
-function NewsListContent() {
+function NewsListContent({ history }) {
   let [state, setState] = useState({
     posts: []
   });
@@ -17,11 +18,19 @@ function NewsListContent() {
     });
   }, []);
 
+  function NewsItemWithHistory({ item }) {
+    return <NewsItem item={item} history={history} />;
+  }
+
+  NewsItemWithHistory.propTypes = {
+    item: object
+  };
+
   if (state.posts && state.posts.length) {
     return (
       <div className='news-list__content'>
         <div className='news-list'>
-          <EverAfter.Paginator wrapper={NewsItem} perPage={4}
+          <EverAfter.Paginator wrapper={NewsItemWithHistory} perPage={4}
             items={state.posts} truncate={true} />
         </div>
       </div>
@@ -31,3 +40,7 @@ function NewsListContent() {
 }
 
 export default NewsListContent;
+
+NewsListContent.propTypes = {
+  history: object
+};
