@@ -4,6 +4,7 @@ import axios from 'axios';
 import { groupBy } from 'underscore';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import MediaElement from './MediaElement.jsx';
 
 function HeaderMenu({ menuItems, history }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -94,6 +95,12 @@ function Header({ history }) {
                 </span>
               </button>
             </a>
+          </li>
+        </ul>
+        <ul className='nav navbar-nav'>
+          <li className='nav-item'>
+            <MediaElement id="audio-player"
+              src='http://stream.ktuh.org:8000/stream-mp3' />
           </li>
         </ul>
       </div>
