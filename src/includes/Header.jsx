@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { groupBy } from 'underscore';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function HeaderMenu({ menuItems }) {
+function HeaderMenu({ menuItems, history }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
 
   return <ul className='nav navbar-nav navbar-left'>
@@ -30,8 +31,9 @@ function HeaderMenu({ menuItems }) {
               url: treeUrl, target: treeTarget, title: treeTitle
             }) {
               return <li>
-                <a href={treeUrl} target={treeTarget || '_self'}>
-                  {treeTitle}</a></li>;
+                <SamePageAnchor history={history}
+                  href={treeUrl} target={treeTarget || '_self'}>
+                  {treeTitle}</SamePageAnchor></li>;
             })}
           </ul> : null}
         </li>;
@@ -40,10 +42,11 @@ function HeaderMenu({ menuItems }) {
 }
 
 HeaderMenu.propTypes = {
-  menuItems: PropTypes.arrayOf(PropTypes.object)
+  menuItems: PropTypes.arrayOf(PropTypes.object),
+  history: PropTypes.object
 };
 
-function Header() {
+function Header({ history }) {
   let [state, setState] = useState({
     menuItems: []
   });
@@ -61,10 +64,11 @@ function Header() {
   return (
     <nav className='navbar navbar-default' role='navigation'>
       <div className='info-box'>
-        <a className='info-box__link' href={siteInfo.siteUrl}>
+        <SamePageAnchor history={history}
+            className='info-box__link' href={siteInfo.siteUrl}>
           <img alt='KTUH FM'
             src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png`} />
-        </a>
+        </SamePageAnchor>
       </div>
       <div className='navbar-header'>
         <button type='button' className='navbar-toggle collapsed'
@@ -76,7 +80,8 @@ function Header() {
         </button>
       </div>
       <div className='collapse navbar-collapse' id='navigation'>
-        {state.menuItems.length ? <HeaderMenu menuItems={state.menuItems} /> : null}
+        {state.menuItems.length ? <HeaderMenu history={history}
+          menuItems={state.menuItems} /> : null}
         <ul className='nav navbar-nav navbar-right'>
           <li className='nav-item'>
             <a className='header__support-link'
