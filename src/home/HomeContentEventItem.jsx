@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import {default as momentUtil} from 'moment';
@@ -29,5 +29,5 @@ export default function HomeContentEventItem({ item }) {
 }
 
 HomeContentEventItem.propTypes = {
-  item: PropTypes.object
+  item: object
 };

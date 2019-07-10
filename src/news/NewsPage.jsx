@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { get as axget } from 'axios';
 import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function NewsPage({ match, history }) {
+function NewsPage({
+  match: {
+    params: { slug }
+  }, history
+}) {
   let [state, setState] = useState({
     post: undefined
   });
 
   useEffect(function () {
-    axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
-      match.params.slug.replace(/\/$/, '')}`).then((res) => {
-      setState({ post: res.data.length > 0 ? res.data[0] : null });
+    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
+      slug.replace(/\/$/, '')}`).then(({ data }) => {
+      setState({ post: data.length > 0 ? data[0] : null });
     });
   });
 
   let { post } = state;
 
   if (post) {
-    let featuredImage = post._embedded && post._embedded['wp:featuredmedia']
-      && post._embedded['wp:featuredmedia']['0']
-      && post._embedded['wp:featuredmedia']['0'].source_url || undefined;
+    let {
+      _embedded, content, title, nickname, date
+    } = post;
 
-    return [<Metamorph title={`${
-      post.title.rendered} - KTUH FM Honolulu | Radio for the People`}
-    description={renderSummary(post.content.rendered, 50)} />,
+    return [<Metamorph title={`${title.rendered
+    } - KTUH FM Honolulu | Radio for the People`}
+    description={renderSummary(content.rendered, 50)} />,
     <h1 key="header-title" className='general__header'>
-      {post.title.rendered}</h1>,
+      {title.rendered}</h1>,
     <div key="radioblog-back-link" className='show__link'>
       <SamePageAnchor href='/radioblog' className='back-to' history={history}>
         ← Back to Radioblog
@@ -38,12 +42,12 @@ function NewsPage({ match, history }) {
     </div>,
     <div className='news-item' key="name-submitted">
       <p className='news-item__author'>
-          <b>Posted by {post.nickname}</b>
+          <b>Posted by {nickname}</b>
         <br />
-        {momentUtil(post.date).format('dddd, MMMM Do YYYY at h:mm a')}
+        {momentUtil(date).format('dddd, MMMM Do YYYY at h:mm a')}
       </p>
       <div className='news-item__body'
-        dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+        dangerouslySetInnerHTML={{ __html: content.rendered }} />
     </div>];
   }
   if (post === null) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import renderSummary from '../utils/summary';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
@@ -43,8 +43,8 @@ function NewsItem({
 }
 
 NewsItem.propTypes = {
-  item: PropTypes.object,
-  history: PropTypes.object
+  item: object,
+  history: object
 };
 
 export default NewsItem;

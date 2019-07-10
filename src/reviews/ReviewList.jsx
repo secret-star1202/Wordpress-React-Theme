@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
 import EverAfter from 'react-everafter';
 import { Metamorph } from 'react-metamorph';
-import axios from 'axios';
+import { get as axget } from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
@@ -12,32 +12,32 @@ function ReviewList({ history }) {
   });
 
   useEffect(function () {
-    axios.get(
+    axget(
       `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=42`
-    ).then((res) => {
-      setState({ reviews: res.data.length > 0 ? res.data : [] });
+    ).then(({ data }) => {
+      setState({ reviews: data.length > 0 ? data : [] });
     });
   });
 
   function ReviewItemWithHistory({ item }) {
-    return <ReviewItem item={item} history={history} />;
+    return <ReviewItem {... { item, history }} />;
   }
 
   ReviewItemWithHistory.propTypes = {
     item: object
   };
 
-  if (state.reviews && state.reviews.length) {
-    return [
-      <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
-        description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
-      />,
-      <h2 className="general__header" key="header-title">Reviews</h2>,
-      <div className="reviews__content" key="reviews-content">
-        <EverAfter.Paginator wrapper={ReviewItemWithHistory} perPage={11}
-          items={state.reviews} />
-      </div>
-    ];
+  let { reviews } = state;
+
+  if (reviews && reviews.length) {
+    return [<Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
+      description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
+    />,
+    <h2 className="general__header" key="header-title">Reviews</h2>,
+    <div className="reviews__content" key="reviews-content">
+      <EverAfter.Paginator wrapper={ReviewItemWithHistory} perPage={11}
+        items={reviews} />
+    </div>];
   }
   return null;
 }

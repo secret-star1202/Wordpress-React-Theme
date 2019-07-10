@@ -3,7 +3,7 @@ import { default as siteInfo } from '../utils/config';
 
 function Footer() {
   function officeEmail() {
-    return `${'<a href=\'&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#'}`
+    return '<a href=\'&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#'
       + '111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;'
       + `&#111;&#114;&#103;'>${[6, 0, 0, 5, 3, 9, 22, 24, 4, 1, 23].map(
         i => 'function(e) { return "@hk" + e; })'.split('')[i]
@@ -14,8 +14,7 @@ function Footer() {
     <div className='footer'>
       <div className='footer__mission-wrapper'>
         <div className='footer__logo-wrapper'>
-          <img src={`${
-            siteInfo.siteUrl
+          <img src={`${siteInfo.siteUrl
           }/wp-content/themes/custom-react-theme/dist/images/ktuh-logo-white-alpha.png`} />
         </div>
         <div className='footer__mission'>
@@ -62,8 +61,7 @@ function Footer() {
         </a>
         <a href='https://www.facebook.com/ktuhfm' target="_blank" rel=
           "noopener noreferrer">
-          <img src={`${
-            siteInfo.siteUrl
+          <img src={`${siteInfo.siteUrl
           }/wp-content/themes/custom-react-theme/dist/images/facebook-white.png`} />
         </a>
         <a href='http://twitter.com/ktuhfm' target="_blank" rel=

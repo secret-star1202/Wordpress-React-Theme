@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { object } from 'prop-types';
-import axios from 'axios';
+import { all as axall, get as axget, spread as axspr } from 'axios';
 import HomeContentNews from './HomeContentNews.jsx';
 import HomeContentReviews from './HomeContentReviews.jsx';
 import HomeContentPodcasts from './HomeContentPodcasts.jsx';
@@ -16,26 +16,26 @@ export default function HomeContent({ history }) {
   });
 
   useEffect(function () {
-    axios.all([
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&per_page=6`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`),
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/event?_embed&per_page=6`)
-    ]).then(axios.spread((gotPosts, gotReviews, gotPodcasts, gotEvents) => {
+    axall([
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&per_page=6`),
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`),
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`),
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/event?_embed&per_page=6`)
+    ]).then(axspr(({ data: posts }, { data: reviews }, { data: podcasts },
+      { data: events }) => {
       setState({
-        posts: gotPosts.data,
-        reviews: gotReviews.data,
-        podcasts: gotPodcasts.data,
-        events: gotEvents.data
+        posts, reviews, podcasts, events
       });
     }));
   }, []);
 
+  let { posts, reviews, podcasts } = state;
+
   return <div className='content'>
       <div className='home__main'>
-        <HomeContentNews posts={state.posts} history={history} />
-        <HomeContentReviews reviews={state.reviews} history={history} />
-        <HomeContentPodcasts podcasts={state.podcasts} history={history} />
+        <HomeContentNews {...{ posts, history }} />
+        <HomeContentReviews {...{ reviews, history }} />
+        <HomeContentPodcasts {...{ podcasts, history }} />
       </div>
       <HomeSidebar />
     </div>;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metamorph } from 'react-metamorph';
-import { array } from 'prop-types';
 
 export default function Podcast() {
   let podcasts = [
@@ -10,7 +9,7 @@ export default function Podcast() {
     + '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true'
     + '&show_user=true&show_reposts=false&show_teaser=true&visual=true';
 
-  return ([
+  return [
     <Metamorph title="Podcasts - KTUH FM Honolulu | Podcasts for the People"
       description="KTUH Podcasts" image='https://ktuh.org/img/ktuh-logo.jpg'/>,
     <h2 className='general__header'>KTUH Podcasts</h2>,
@@ -27,6 +26,5 @@ export default function Podcast() {
             <h3><a href='/contact-us'>Submit a podcast</a></h3></div>
           </div>
         </a></div>
-    </div>]
-  );
+    </div>];
 }

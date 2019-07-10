@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import { object, arrayOf } from 'prop-types';
+import { get as axget } from 'axios';
 import { groupBy } from 'underscore';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
@@ -43,8 +43,8 @@ function HeaderMenu({ menuItems, history }) {
 }
 
 HeaderMenu.propTypes = {
-  menuItems: PropTypes.arrayOf(PropTypes.object),
-  history: PropTypes.object
+  menuItems: arrayOf(object),
+  history: object
 };
 
 function Header({ history }) {
@@ -53,7 +53,7 @@ function Header({ history }) {
   });
 
   useEffect(function () {
-    axios.get(
+    axget(
       `${siteInfo.siteUrl}/wp-json/wp/v2/menus`
     ).then(
       (res) => {
@@ -107,5 +107,9 @@ function Header({ history }) {
     </nav>
   );
 }
+
+Header.propTypes = {
+  history: object
+};
 
 export default Header;

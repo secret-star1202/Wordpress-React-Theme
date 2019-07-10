@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { get as axget, all as axall, spread as axspr } from 'axios';
 import { default as siteInfo } from '../utils/config';
 
 function LandingInfo() {
@@ -27,9 +27,9 @@ function LandingInfo() {
   }
 
   useEffect(function () {
-    axios.all([
-      axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-    ]).then(axios.spread((gotSpin) => {
+    axall([
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
+    ]).then(axspr((gotSpin) => {
       setState({
         currentShow: gotSpin.data[0].show[0],
         nowPlaying: {
@@ -37,7 +37,7 @@ function LandingInfo() {
           song: gotSpin.data[0].song[0],
         },
         interval: setInterval(function () {
-          axios.get(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
+          axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
             .then((res) => {
               setState({
                 currentShow: gotSpin.data[0].show[0],

@@ -5,7 +5,7 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 function ReviewItem({
   item: {
-    _embedded, slug, title, artist
+    _embedded, slug, title: [title], artist: [artist]
   },
   history
 }) {
@@ -13,21 +13,19 @@ function ReviewItem({
     && _embedded['wp:featuredmedia']['0']
     && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
-  return (
-    <div className='review-item'>
-      <SamePageAnchor history={history}
-        href={`${siteInfo.siteUrl}/reviews/${slug}`}>
-        <img className='review-item__image'
-          src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        <div className='review-item__release'>
-          {title[0]}
-        </div>
-        <div className='review-item__artist'>
-          {artist[0]}
-        </div>
-      </SamePageAnchor>
-    </div>
-  );
+  return <div className='review-item'>
+    <SamePageAnchor {...{ history }}
+      href={`${siteInfo.siteUrl}/reviews/${slug}`}>
+      <img className='review-item__image'
+        src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
+      <div className='review-item__release'>
+        {title}
+      </div>
+      <div className='review-item__artist'>
+        {artist}
+      </div>
+    </SamePageAnchor>
+  </div>;
 }
 
 ReviewItem.propTypes = {

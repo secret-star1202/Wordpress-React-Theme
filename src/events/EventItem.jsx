@@ -11,23 +11,15 @@ function EventItem({ item }) {
       event_link: [event_link],
       event_time: [event_time],
       event_description: [event_description],
-      event_image: [event_image],
+      event_image: [event_image]
     } = item;
     return <div className='news-list__post-parent'>
         <hr className="wp-block-separator" />
         <h3 className="home__section">{event_date} | {event_time}</h3>
-        <a href={event_link} className='home__more'>
-          {event_name}{'  '}
-        </a>
-        <div className='home__synopsis'>
-          {event_description}
-        </div>
-        <div className='event_title'>
-          {location} |
-        </div>
-        <div className='home__synopsis'>
-          {location_address}
-        </div>
+        <a href={event_link} className='home__more'>{event_name}{'  '}</a>
+        <div className='home__synopsis'>{event_description}</div>
+        <div className='event_title'>{location} | </div>
+        <div className='home__synopsis'>{location_address}</div>
         <img className='event__image' src={event_image} alt='event image' />
       </div>;
   }

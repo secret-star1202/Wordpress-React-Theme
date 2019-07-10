@@ -1,5 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {
+  string, oneOfType, func, object, array
+} from 'prop-types';
 import { default as siteInfo } from '../utils/config';
 
 function SamePageAnchor({
@@ -18,11 +20,11 @@ function SamePageAnchor({
 export default SamePageAnchor;
 
 SamePageAnchor.propTypes = {
-  href: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  target: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-  history: PropTypes.object
+  href: oneOfType([string, func]),
+  target: oneOfType([string, func]),
+  className: oneOfType([string, func]),
+  id: oneOfType([string, func]),
+  style: oneOfType([object, func]),
+  children: oneOfType([array, func]),
+  history: object
 };
