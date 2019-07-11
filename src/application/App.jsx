@@ -15,6 +15,7 @@ import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import { default as siteInfo } from '../utils/config';
 import Podcasts from '../static_pages/Podcasts.jsx';
+import MondayNightLive from '../static_pages/MondayNightLive.jsx';
 
 function App() {
   return <BrowserRouter
@@ -35,6 +36,7 @@ function App() {
           <Route exact path={['/reviews/:slug', '/review/:slug']} component={ReviewPage}/>
           <Route exact path={['/reviews', '/review']} component={ReviewList}/>
           <Route exact path={['/podcasts', '/podcast']} component={Podcasts}/>
+          <Route exact path={['/monday-night-live', '/mondaynightlive']} component={MondayNightLive}/>
           <Route exact path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
           <Route exact path={['/radioblog', '/news']} component={NewsList} />
           <Route exact path={['/timeline', '/ktuh-timeline']} component={Timeline} />
