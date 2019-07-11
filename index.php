@@ -7,6 +7,7 @@
 <html lang="en">
   <head>
     <?php wp_head(); ?>
+    <title>KTUH Honolulu | Radio for the People</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content=
       "KTUH,college radio,UHM,UH Manoa,UH Mānoa,KTUH radio,KTUH FM,KTUH Honolulu" />
