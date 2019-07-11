@@ -25,44 +25,44 @@ export default function MondayNightLive() {
                   </button>
                 </p>
               </div>
-              <div class="button__wrapper">
-                <p class="show__host"><button type="button" class="btn btn-default goto-dj-profile color-button purple-button" aria-label="Left Align">DJ Profile</button></p>
+              <div className="button__wrapper">
+                <p className="show__host"><button type="button" className="btn btn-default goto-dj-profile color-button purple-button" aria-label="Left Align">DJ Profile</button></p>
               </div>
             </div>
-            <div class="container" style="box-sizing: border-box; width: 975.333px; max-width: 1920px; color: rgb(51, 51, 51);">
+            <div className="container" style="box-sizing: border-box; width: 975.333px; max-width: 1920px; color: rgb(51, 51, 51);">
               <div id="main" style="box-sizing: border-box;">
-                <div class="show__wrapper" style="box-sizing: border-box;">
-                  <div class="show__content" style="box-sizing: border-box;">
-                    <div class="show__info" style="box-sizing: border-box; width: 427.667px;">
-                      <p class="show__body" style="box-sizing: border-box;"></p>
-                      <p class="p1" style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: bold; font-size: 18px; font-style: italic;">60 minutes of live music by local artists on Monday nights!</span></p>
-                      <p class="p2" style="box-sizing: border-box;"></p>
+                <div className="show__wrapper" style="box-sizing: border-box;">
+                  <div className="show__content" style="box-sizing: border-box;">
+                    <div className="show__info" style="box-sizing: border-box; width: 427.667px;">
+                      <p className="show__body" style="box-sizing: border-box;"></p>
+                      <p className="p1" style="box-sizing: border-box;"><span style="box-sizing: border-box; font-weight: bold; font-size: 18px; font-style: italic;">60 minutes of live music by local artists on Monday nights!</span></p>
+                      <p className="p2" style="box-sizing: border-box;"></p>
                       <span style="box-sizing: border-box; font-weight: bold;">&nbsp;</span>
-                      <h5 class="show__time">Past Shows</h5>
-                      <div class="grid__container__mnl">
-                        <div class="grid__item__mnl">
+                      <h5 className="show__time">Past Shows</h5>
+                      <div className="grid__container__mnl">
+                        <div className="grid__item__mnl">
                           <a>
                             <iframe width="100%" height="300" src="https://www.youtube.com/embed/DeQZSqxhluk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                           </a></div>
-                        <div class="grid__item__mnl">
+                        <div className="grid__item__mnl">
                           <a>
                             <iframe width="100%" height="300" src="https://www.youtube.com/embed/ag9ShrAeCA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                           </a></div>
-                        <div class="grid__item__mnl">
+                        <div className="grid__item__mnl">
                           <a>
                             <iframe width="100%" height="300" src="https://www.youtube.com/embed/mi8uEOeFEPE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                           </a></div>
-                        <div class="grid__item__mnl">
+                        <div className="grid__item__mnl">
                           <a>
                             <iframe width="100%" height="300" src="https://www.youtube.com/embed/nqMKKVekF8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                           </a></div>
-                        <div class="grid__item__mnl">
+                        <div className="grid__item__mnl">
                           <a>
                             <iframe width="100%" height="300" src="https://www.youtube.com/embed/O0oXdJNOk5w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                           </a></div>
-                        <div class="grid__item__submit">
-                          <div class="submit__podcast1">
-                            <div class="submit__podcast">
+                        <div className="grid__item__submit">
+                          <div className="submit__podcast1">
+                            <div className="submit__podcast">
                               <h3><a href="https://www.youtube.com/playlist?list=PLCnpa6YAfA3mIbJIlwV_1ZyKX7ez-5MMI">Entire Playlist</a></h3>
                             </div>
                           </div>
