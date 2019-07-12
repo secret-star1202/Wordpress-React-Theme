@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EverAfter from 'react-everafter';
 import { get as axget } from 'axios';
+import { MonthView } from 'react-cal-viz';
 import EventItem from './EventItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
@@ -17,15 +18,26 @@ function EventsListContent() {
     });
   }, []);
 
-  let events = { state };
+  let { events } = state;
 
   if (events && events.length) {
     return (
-      <div className='news-list__content'>
-        <div className='news-list'>
+      <div className='events-list__content'>
+          <div className="events-list__over">
           <EverAfter.Paginator wrapper={EventItem} perPage={4} items={events}
             truncate={true} />
-        </div>
+          </div>
+          <div className='events-list__calendar'>
+          <MonthView events={events.map(function (event) {
+            let retval = Object.assign(event, {});
+            retval.title = event.event_name[0];
+            retval.location = `${event.location[0]} - ${event.location_address[0]}`;
+            retval.description = event.event_description[0];
+            retval.link = event.event_link[0];
+            retval.start = new Date(`${event.event_date[0]} ${event.event_time[0]}`);
+            return retval;
+          })} />
+          </div>
       </div>
     );
   }

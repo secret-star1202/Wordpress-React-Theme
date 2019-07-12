@@ -17,6 +17,7 @@
   <body>
     <div id="react-root">
     </div>
+    <script src="https://apis.google.com/js/api.js"></script>
     <?php wp_footer(); ?>
   </body>
 </html>

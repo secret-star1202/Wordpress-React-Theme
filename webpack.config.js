@@ -3,6 +3,7 @@ let path = require('path'),
   UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+  target: 'web',
   plugins: [
     new MinifyPlugin({
       removeConsole: true
@@ -48,16 +49,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             plugins: ['./babel/mejs_no_i18n', './babel/mejs_no_video']
-          }
-        }
-      },
-      {
-        test: /\.jsx?$/,
-        include: /node_modules\/react-everafter/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['./babel/hashify']
           }
         }
       }
