@@ -3,4 +3,7 @@ node_modules/
 dist/app.js
 .idea/
 src/utils/config.js
+token.json
+apiGoogleconfig.json
 *.log
+credentials.json

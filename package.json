@@ -17,6 +17,7 @@
     "react-cal-viz": "^0.2.0",
     "react-dom": "^16.8.6",
     "react-everafter": "^1.0.2",
+    "react-google-calendar-api": "^1.0.10",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
     "react-router-dom": "^5.0.1",

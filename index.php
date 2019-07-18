@@ -15,6 +15,7 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
     <div id="react-root">
     </div>
     <script src="https://apis.google.com/js/api.js"></script>

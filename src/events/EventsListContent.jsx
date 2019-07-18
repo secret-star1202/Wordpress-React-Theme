@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EverAfter from 'react-everafter';
-import { get as axget } from 'axios';
 import { MonthView } from 'react-cal-viz';
+import ApiCalendar from 'react-google-calendar-api';
 import EventItem from './EventItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
@@ -11,10 +11,14 @@ function EventsListContent() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/event?_embed`
-    ).then((res) => {
-      setState({ events: res.data.length > 0 ? res.data : [] });
+    ApiCalendar.handleAuthClick();
+    ApiCalendar.onLoad(function () {
+      if (ApiCalendar.sign) {
+        ApiCalendar.listUpcomingEvents(10, siteInfo.calendarId)
+          .then(({ result }) => {
+            setState({ events: result.items });
+          });
+      }
     });
   }, []);
 
@@ -23,21 +27,21 @@ function EventsListContent() {
   if (events && events.length) {
     return (
       <div className='events-list__content'>
-          <div className="events-list__over">
-          <EverAfter.Paginator wrapper={EventItem} perPage={4} items={events}
+        <div className="events-list__over">
+          <EverAfter.Paginator wrapper={EventItem} perPage={10} items={events}
             truncate={true} />
-          </div>
-          <div className='events-list__calendar'>
+        </div>
+        <div className='events-list__calendar'>
           <MonthView events={events.map(function (event) {
             let retval = Object.assign(event, {});
-            retval.title = event.event_name[0];
-            retval.location = `${event.location[0]} - ${event.location_address[0]}`;
-            retval.description = event.event_description[0];
-            retval.link = event.event_link[0];
-            retval.start = new Date(`${event.event_date[0]} ${event.event_time[0]}`);
+            retval.title = event.summary;
+            retval.location = event.location;
+            retval.description = event.description;
+            retval.link = event.htmlLink;
+            retval.start = new Date(event.start.dateTime);
             return retval;
           })} />
-          </div>
+        </div>
       </div>
     );
   }
