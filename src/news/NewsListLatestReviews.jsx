@@ -10,9 +10,7 @@ function NewsListLatestReviews({ history }) {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`
-    ).then(({ data }) => {
+    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`).then(({ data }) => {
       setState({ reviews: data.length ? data : [] });
     });
   });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { object } from 'prop-types';
 
 function EventItem({ item: event }) {
   return <div className='news-list__post-parent'>
@@ -11,5 +12,9 @@ function EventItem({ item: event }) {
     </div>
   </div>;
 }
+
+EventItem.propTypes = {
+  item: object
+};
 
 export default EventItem;

@@ -14,12 +14,11 @@ export default function HomeContentPodcastItem({
   history
 }) {
   return <div className='home_podcast-item'>
-    <SamePageAnchor history={history} href={`${siteInfo.siteUrl}/podcasts`}>
+    <SamePageAnchor {...{ history }} href={`${siteInfo.siteUrl}/podcasts`}>
       <p className='home__title'>{name}</p>
       <p className='home__subtitle'> {momentUtil(date).format('MMMM Do')}</p>
-      <iframe width="100%" height="250"
-        scrolling="no" frameBorder="no" allow="autoplay" src=
-          {'https://w.soundcloud.com/player/'
+      <iframe width="100%" height="250" scrolling="no" frameBorder="no"
+        allow="autoplay" src={'https://w.soundcloud.com/player/'
           + `?url=https%3A//api.soundcloud.com/${type}s/${src}`
           + '&color=%23ff5500&auto_play=false&hide_related=false'
           + '&show_comments=true&show_user=true&show_reposts=false'

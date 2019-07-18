@@ -16,8 +16,7 @@ export default function NewsListLatestReviewsItem({
       <SamePageAnchor history={history}
         href={`${siteInfo.siteUrl}/reviews/${slug}`}>
         <img src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        <p><b>{artist}</b></p>
-        <p>{title}</p>
+        <p><b>{artist}</b></p><p>{title}</p>
       </SamePageAnchor>
     </div>;
 }

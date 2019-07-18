@@ -13,13 +13,13 @@ function NewsListContent({ history }) {
   useEffect(function () {
     axget(
       `${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed`
-    ).then((res) => {
-      setState({ posts: res.data.length > 0 ? res.data : [] });
+    ).then(({ data }) => {
+      setState({ posts: data.length ? data : [] });
     });
   }, []);
 
   function NewsItemWithHistory({ item }) {
-    return <NewsItem item={item} history={history} />;
+    return <NewsItem {...{ item, history }} />;
   }
 
   NewsItemWithHistory.propTypes = {

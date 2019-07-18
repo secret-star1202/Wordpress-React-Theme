@@ -52,19 +52,13 @@ function LandingInfo() {
     }));
   }, []);
 
-  return (
-    <div className='landing__info'>
-      {state.currentShow && currentShowName() || (state.nowPlaying
-        ? <p className='landing__now-playing' key='landing-onair-text'>
-          On Air Now:</p> : null)}
-        {state.nowPlaying ? renderNowPlaying() : [
-        <p className='landing__show-host' key='landing-show-host'>
-          <b>Welcome to KTUH<br />FM Honolulu</b>
-        </p>,
-        <p className='landing__host-name' key="landing-host-name">
-          Radio for the People</p>]}
-    </div>
-  );
+  let { currentShow, nowPlaying } = state;
+
+  return <div className='landing__info'>{currentShow && currentShowName()
+    || (nowPlaying ? <p className='landing__now-playing'>On Air Now:</p> : null)}
+      {nowPlaying ? renderNowPlaying() : [<p className='landing__show-host'>
+        <b>Welcome to KTUH<br />FM Honolulu</b></p>,
+      <p className='landing__host-name'>Radio for the People</p>]}</div>;
 }
 
 function Landing() {
@@ -76,16 +70,15 @@ function Landing() {
       }/wp-content/themes/custom-react-theme/dist/images/tantalus-morning.jpg')`;
     }
     if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
-      ret = `url('${
-        siteInfo.siteUrl
+      ret = `url('${siteInfo.siteUrl
       }/wp-content/themes/custom-react-theme/dist/images/tantalus-evening.jpg')`;
     }
     return ret;
   }
 
   function handleClickDownArrow() {
-    let position = $('#main').offset().top,
-      navHeight = $('.navbar-header').height();
+    let position = $('#main').offset().top, navHeight =
+      $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 

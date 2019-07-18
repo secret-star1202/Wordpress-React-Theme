@@ -31,14 +31,13 @@ export default function HomeContent({ history }) {
 
   let { posts, reviews, podcasts } = state;
 
-  return <div className='content'>
-      <div className='home__main'>
-        <HomeContentNews {...{ posts, history }} />
-        <HomeContentReviews {...{ reviews, history }} />
-        <HomeContentPodcasts {...{ podcasts, history }} />
-      </div>
-      <HomeSidebar />
-    </div>;
+  return <div className='content'><div className='home__main'>
+      <HomeContentNews {...{ posts, history }} />
+      <HomeContentReviews {...{ reviews, history }} />
+      <HomeContentPodcasts {...{ podcasts, history }} />
+    </div>
+    <HomeSidebar />
+  </div>;
 }
 
 HomeContent.propTypes = {

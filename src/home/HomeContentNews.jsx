@@ -7,17 +7,16 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 function HomeContentNews({ posts, history }) {
   return (
     <div className='home__news'>
-      <SamePageAnchor history={history} href={`${siteInfo.siteUrl}/radioblog`}>
+      <SamePageAnchor {...{ history }} href={`${siteInfo.siteUrl}/radioblog`}>
         <h3 className='home__section'>RADIOBLOG</h3>
       </SamePageAnchor>
-      <SamePageAnchor href={`${siteInfo.siteUrl}/radioblog`} history={history}
-        className='home__more'>
-        MORE NEWS{'  '}
+      <SamePageAnchor href={`${siteInfo.siteUrl}/radioblog`} {...{ history }}
+        className='home__more'>MORE NEWS{'  '}
         <span className='glyphicon glyphicon-arrow-right'></span>
       </SamePageAnchor>
       <div className='home__news-content'>
         {posts.slice(0, 3).map(item => (
-          <HomeContentNewsItem item={item} history={history} />))}
+          <HomeContentNewsItem {...{ item, history }} />))}
       </div>
     </div>
   );
