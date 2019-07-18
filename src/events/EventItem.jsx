@@ -1,51 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import EventsListContent from './EventsListContent.jsx';
+import HomeContentNewsItem from '../home/HomeContentNews';
 
 function EventItem({ item }) {
-  <script src="https://apis.google.com/js/api.js"></script>;
-  let CLIENT_ID = '672776659571-c168uuk5t9m0vc6o1rg7khlalrlsdq4r.apps.googleusercontent.com';
-  let SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-
-  function checkAuth() {
-    gapi.auth.authorize(
-      {
-        'client_id': CLIENT_ID,
-        'scope': SCOPES.join(' '),
-        'immediate': true
-      }, handleAuthResult);
-    gapi.client.setApiKey('AIzaSyCstf2CR3SB_JxJLO3VWVsFyqyDaxzzeQI');
-    handleAuthResult({ error: false });
-  }
-
-  function listUpcomingEvents() {
-    var request = gapi.client.calendar.events.list({
-      'calendarId': 'ktuh.org_dvev66apcpnti1lcrd0929krb0@group.calendar.google.com',
-      'timeMin': (new Date()).toISOString(),
-      'showDeleted': false,
-      'singleEvents': true,
-      'maxResults': 10,
-      'orderBy': 'startTime'
-    });
-
-    request.execute(function (resp) {
-      var events = resp.items;
-      appendPre('Upcoming events:');
-
-      if (events.length > 0) {
-        for (i = 0; i < events.length; i++) {
-          var event = events[i];
-          var when = event.start.dateTime;
-          if (!when) {
-            when = event.start.date;
-          }
-          appendPre(event.summary + ' (' + when + ')');
-        }
-      } else {
-        appendPre('No upcoming events found.');
-      }
-
-    });
-  }
 
   return <div className='news-list__post-parent'>
     <h3 className="home__section">{event.summary} | {event.start.dateTime} - {event.end.dateTime}</h3>
@@ -57,6 +15,8 @@ function EventItem({ item }) {
     </div>
   </div>;
 
+
+  //old code
   if (item) {
     let {
       event_name: [event_name],
