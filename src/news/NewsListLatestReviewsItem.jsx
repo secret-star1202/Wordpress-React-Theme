@@ -1,24 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-export default function NewsListLatestReviewsItem({ review }) {
-  let featuredImage = review._embedded
-    && review._embedded['wp:featuredmedia']
-    && review._embedded['wp:featuredmedia']['0']
-    && review._embedded['wp:featuredmedia']['0'].source_url || undefined;
+export default function NewsListLatestReviewsItem({
+  review: {
+    slug, artist: [artist], title: [title], _embedded
+  }, history
+}) {
+  let featuredImage = _embedded && _embedded['wp:featuredmedia']
+    && _embedded['wp:featuredmedia']['0']
+    && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
-  return (
-    <div className='news-list__latest-review'>
-      <a href={`${siteInfo.siteUrl}/reviews/${review.slug}`}>
+  return <div className='news-list__latest-review'>
+      <SamePageAnchor history={history}
+        href={`${siteInfo.siteUrl}/reviews/${slug}`}>
         <img src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        <p><b>{review.artist[0]}</b></p>
-        <p>{review.title[0]}</p>
-      </a>
-    </div>
-  );
+        <p><b>{artist}</b></p><p>{title}</p>
+      </SamePageAnchor>
+    </div>;
 }
 
 NewsListLatestReviewsItem.propTypes = {
-  review: PropTypes.object
+  review: object,
+  history: object
 };

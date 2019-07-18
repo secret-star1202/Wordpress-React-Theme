@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { Metamorph } from 'react-metamorph';
-import axios from 'axios';
+import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function ReviewPage({ match }) {
+function ReviewPage({ match: { params: { slug } }, history }) {
   let [state, setState] = useState({
     review: undefined
   });
 
   useEffect(function () {
-    axios.get(
+    axget(
       `${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&slug=${
-        match.params.slug.replace(/\/$/, '')}`
+        slug.replace(/\/$/, '')}`
     ).then(
       ({ data }) => {
         setState({ review: data.length > 0 ? data[0] : null });
@@ -26,49 +27,56 @@ function ReviewPage({ match }) {
     return (rating % 1 !== 0.5) ? `${Number(rating).toString()}.0` : rating;
   }
 
-  if (state.review) {
-    let { review } = state, featuredImage = review._embedded
-      && review._embedded['wp:featuredmedia']
-      && review._embedded['wp:featuredmedia']['0']
-      && review._embedded['wp:featuredmedia']['0'].source_url
-      || undefined;
+  let { review } = state;
+
+  if (review) {
+    let {
+      _embedded, title: [title], artist: [artist], rating: [rating],
+      submitted, content
+    } = review;
+
+    let featuredImage = _embedded && _embedded['wp:featuredmedia']
+      && _embedded['wp:featuredmedia']['0']
+      && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
     return [
-      <Metamorph title={`Review of "${review.title[0]} by ${review.artist[0]}`
+      <Metamorph title={`Review of "${title} by ${artist}`
       + ' - KTUH FM Honolulu | Radio for the People'} description={
-        `Review of ${review.title[0]} by ${review.artist[0]}`}
+        `Review of ${title} by ${artist}`}
       image={featuredImage || 'https://ktuh.org/img/ktuh-logo.jpg'} />,
       <h1 className="general__header" key='header'>
-        <b>{review.title[0]}</b><br />
-        {review.artist[0]}</h1>,
+        <b>{title}</b><br />{artist}</h1>,
       <div className='review__link' key='back-link'>
-        <a href='/reviews' className='back-to'>← all reviews</a>
+        <SamePageAnchor {...{ history }} href='/reviews' className='back-to'>
+          ← all reviews
+        </SamePageAnchor>
       </div>,
       <div className="review__content" key='review-content'>
         <img className='review-page__image'
           src={featuredImage || 'https://ktuh.org/img/ktuh-logo.jpg'} />
         <div className='review-page__copy'>
           <h4 className='review-page__rating'>
-            {`${formattedRating(review.rating[0])} / 5.0`}</h4>
+            {`${formattedRating(rating)} / 5.0`}</h4>
           <div className='review-page__byline'>
             {`Review by KTUH FM • ${
-              moment(review.submitted).fromNow()}`}
+              moment(submitted).fromNow()}`}
           </div>
           <div className='review-page__body' dangerouslySetInnerHTML=
-            {{ __html: review.content.rendered }}/>
+            {{ __html: content.rendered }}/>
         </div>
       </div>
     ];
   }
-  if (state.review === null) {
+  if (review === null) {
     return <Redirect to='/not-found' />;
   }
-  if (state.review === undefined) {
+  if (review === undefined) {
     return null;
   }
 }
 ReviewPage.propTypes = {
-  match: PropTypes.object
+  match: object,
+  history: object
 };
 
 export default ReviewPage;

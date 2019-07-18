@@ -3,7 +3,7 @@ import { Metamorph } from 'react-metamorph';
 import Support from '../includes/Support.jsx';
 import HomeContent from './HomeContent.jsx';
 
-function Home({ siteUrl }) {
+function Home({ siteUrl, history }) {
   useEffect(function () {
     /* This next section makes our sticky nav possible. */
     let myNavBar = {
@@ -65,11 +65,8 @@ function Home({ siteUrl }) {
     };
   }, []);
 
-  return [
-    <Metamorph title='KTUH FM Honolulu | Radio for the People'
+  return [<Metamorph title='KTUH FM Honolulu | Radio for the People'
       description="KTUH Homepage" image="https://ktuh.org/img/ktuh-logo.jpg" />,
-    <HomeContent {...{ siteUrl }} />,
-    <Support key='support' />
-  ];
+    <HomeContent {...{ siteUrl, history }} />, <Support key='support' />];
 }
 export default Home;

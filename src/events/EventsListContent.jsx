@@ -25,8 +25,7 @@ function EventsListContent() {
   let { events } = state;
 
   if (events && events.length) {
-    return (
-      <div className='events-list__content'>
+    return <div className='events-list__content'>
         <div className="events-list__over">
           <EverAfter.Paginator wrapper={EventItem} perPage={10} items={events}
             truncate={true} />
@@ -42,8 +41,7 @@ function EventsListContent() {
             return retval;
           })} />
         </div>
-      </div>
-    );
+      </div>;
   }
   return null;
 }

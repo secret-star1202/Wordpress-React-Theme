@@ -2551,3 +2551,147 @@ div.submit__podcast1 { margin-top: 18px; padding: 5px 30px; overflow: auto; back
 div.submit__podcast { text-align: center; }
 .event__calendar{
 }
+/** audio player styles **/
+audio {
+  display: none;
+}
+.audio-player, .audio-player div, .audio-player h2, .audio-player a,
+.audio-player span, .audio-player > button {
+}
+.audio-player, .mejs__container, .mejs__mediaelement {
+  width: 130px;
+  height: 40px;
+}
+.mejs__controls {
+  position: static !important;
+  padding: 0 !important;
+}
+.mejs__container,
+.mejs__controls {
+  background: none !important;
+}
+.mejs__offscreen { display: none !important; }
+.mejs__broadcast {
+  color: #fff !important;
+  font-family: 'nimbus-sans' !important;
+  font-size: 11px !important;
+  text-transform: none !important;
+  top: 7px !important;
+}
+.mejs__time-handle, .mejs__time-handle-content {
+  left: 0 !important;
+}
+/* play/pause control */
+.mejs__button {
+  margin: 0 !important;
+  cursor: pointer;
+}
+.mejs__button > button {
+  width: 17px !important;
+  height: 17px !important;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAA4CAMAAADZ7miGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////////VXz1bAAAAAJ0Uk5T/wDltzBKAAAAUklEQVR42uzTMQ6AMBADweH/n0Y0VGQjXUvcThP5HFzLeJK4YoIJJphggn0k8WWCCRZJnGf2oFkJUV8UHyeLY8dMRtOMUW++w345Bw/+Hm8BBgARcgJaqhIBEwAAAABJRU5ErkJggg==') !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-size: cover !important;
+}
+.mejs__pause > button { background-position: 0 -17px !important; }
+
+/* time scrubber bar */
+.mejs__time-rail {
+  width: 140px !important;
+  top: 7px;
+  right: 10px;
+  margin: 0 7px 0 0 !important;
+}
+.mejs__time-rail a,
+.mejs__time-rail span {
+  position: absolute;
+  display: block;
+  width: 78px;
+  height: 5px;
+  top: 5px;
+  left: 20px;
+  cursor: pointer;
+}
+.mejs__time-float-corner {
+  display: none !important;
+}
+.mejs__time-rail .mejs__time-total {
+  background: #999;
+  width: 79px !important; /* fixes display bug using jQuery 1.8+ */
+}
+.mejs__time-rail .mejs__time-loaded {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #53C1B9;
+}
+.mejs__time-rail .mejs__time-current {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #999;
+}
+/* metallic sliders */
+.mejs__time-rail .mejs__time-handle {
+  position: absolute;
+  display: block;
+  width: 11px;
+  height: 11px;
+  top: -3px;
+  background: url('/img/handle-lg.png') no-repeat;
+}
+/* time progress tooltip */
+.mejs__time-rail .mejs__time-float {
+  position: absolute;
+  display: none;
+  width: 33px;
+  height: 16px;
+  top: -23px;
+  margin-left: -20px;
+  z-index: 9999;
+  background: url('/img/time-box.png');
+}
+.mejs__time-rail .mejs__time-float-current {
+  width: 33px;
+  display: block;
+  left: -3px;
+  top: 0;
+  font-family: 'alda', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  z-index: 9999;
+}
+@media (max-width: 767px) {
+  .mejs__broadcast, .mejs__time-rail span {
+    width: 85px;
+  }
+  .mejs__button {
+    margin-bottom: 15px !important;
+  }
+  .mejs__controls {
+    padding-top: 0 !important;
+  }
+}
+@media (max-width: 480px) {
+  .mejs__controls {
+    margin-left: 2px;
+  }
+}
+
+.events-list__content {
+  width: 100%;
+  display: inline;
+}
+
+.events-list__over {
+  width: 49%;
+  display: inline-block;
+}
+
+.events-list__calendar {
+  width: 49%;
+  display: inline-block;
+}

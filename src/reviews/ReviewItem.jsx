@@ -1,34 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 function ReviewItem({
   item: {
-    _embedded, slug, title, artist
-  }
+    _embedded, slug, title: [title], artist: [artist]
+  },
+  history
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
     && _embedded['wp:featuredmedia']['0']
     && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
-  return (
-    <div className='review-item'>
-      <a href={`${siteInfo.siteUrl}/reviews/${slug}`}>
-        <img className='review-item__image'
-          src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
-        <div className='review-item__release'>
-          {title[0]}
-        </div>
-        <div className='review-item__artist'>
-          {artist[0]}
-        </div>
-      </a>
-    </div>
-  );
+  return <div className='review-item'>
+    <SamePageAnchor {...{ history }}
+      href={`${siteInfo.siteUrl}/reviews/${slug}`}>
+      <img className='review-item__image'
+        src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
+      <div className='review-item__release'>
+        {title}
+      </div>
+      <div className='review-item__artist'>
+        {artist}
+      </div>
+    </SamePageAnchor>
+  </div>;
 }
 
 ReviewItem.propTypes = {
-  item: PropTypes.object
+  item: object,
+  history: object
 };
 
 export default ReviewItem;

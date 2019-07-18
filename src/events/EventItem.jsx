@@ -1,4 +1,5 @@
 import React from 'react';
+import { object } from 'prop-types';
 
 
 function parseUrl(description) {
@@ -22,5 +23,9 @@ function EventItem({ item: event }) {
     </div>
   </div>;
 }
+
+EventItem.propTypes = {
+  item: object
+};
 
 export default EventItem;
