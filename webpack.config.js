@@ -4,9 +4,7 @@ let path = require('path'),
 
 module.exports = {
   plugins: [
-    new MinifyPlugin({
-      removeConsole: true
-    }, {
+    new MinifyPlugin({}, {
       comments: false
     })
   ],

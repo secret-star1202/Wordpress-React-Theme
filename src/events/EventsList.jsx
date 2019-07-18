@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Metamorph } from 'react-metamorph';
 import EventsListContent from './EventsListContent.jsx';
