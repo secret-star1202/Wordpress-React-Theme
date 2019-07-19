@@ -77,8 +77,8 @@ function Landing() {
   }
 
   function handleClickDownArrow() {
-    let position = $('#main').offset().top, navHeight =
-      $('.navbar-header').height();
+    let position = $('#main').offset().top,
+      navHeight = $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
@@ -87,8 +87,6 @@ function Landing() {
       <div className='landing__box'>
         <LandingInfo />
       </div>
-      <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
-      <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
       <a href='/playlists'>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>
