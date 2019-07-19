@@ -27,7 +27,7 @@ function EventsListContent() {
   if (events && events.length) {
     return <div className='events-list__content'>
         <div className="events-list__over">
-          <EverAfter.Paginator wrapper={EventItem} perPage={10} items={events}
+          <EverAfter.Paginator wrapper={EventItem} perPage={40} items={events}
             truncate={true} />
         </div>
         <div className='events-list__calendar'>

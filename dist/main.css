@@ -1042,7 +1042,7 @@ h1, h2, h3, h4, h5 {
   padding: 0 0 20px 0;
   color: inherit;
   float: left;
-  width: 300px;
+  width: 250px;
 }
 .home__featured-category {
   text-transform: uppercase;
@@ -1261,6 +1261,17 @@ h1, h2, h3, h4, h5 {
   font-size: .875em;
   font-weight: bold;
   background-color: #222222;
+  color: white;
+  border: thin #222222 solid;
+  font-family: 'nimbus-sans', sans-serif;
+}
+.home__more-empty {
+  position: relative;
+  bottom: 35px;
+  float: right;
+  padding: 3px 18px;
+  font-size: .875em;
+  font-weight: bold;
   color: white;
   border: thin #222222 solid;
   font-family: 'nimbus-sans', sans-serif;
@@ -2694,4 +2705,6 @@ audio {
 .events-list__calendar {
   width: 49%;
   display: inline-block;
+  vertical-align: top;
+  margin-left: 15px;
 }
