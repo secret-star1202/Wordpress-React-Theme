@@ -19,7 +19,7 @@ function renderLink(description) {
       MORE INFO{'  '}
     </a>;
   }
-  return undefined
+  return undefined;
 }
 
 function buildLink(description) {

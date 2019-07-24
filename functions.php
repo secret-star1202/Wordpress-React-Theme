@@ -30,6 +30,18 @@ function get_menus() {
     return $menus;
 }
 
+function chart_meta($post) {
+  wp_nonce_field( basename( __FILE__ ), 'chart_meta_box_nonce' );
+  
+  $current_table = get_post_meta($post->ID, 'chart_table', true) ?
+  get_post_meta($post->ID, 'chart_table', true) : array();
+  
+  $html = '<div class="inside"><h3>Chart Table</h3>';
+  $html .= '<p><input type="file" id="chart_csv" name="chart_csv" /></p>';
+  
+  echo $html;
+}
+  
 function create_posttype() {
     add_theme_support( 'post-thumbnails' );
 
@@ -117,8 +129,53 @@ function create_posttype() {
           'show_in_rest' => true,
      )
   );
+
+  register_post_type( 'chart',
+      array(
+          'labels' => array(
+              'name' => __('Charts'),
+              'singular_name' => __( 'Chart' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+          'register_meta_box_cb' => function($post) {
+              add_meta_box('chart_table', 'Chart Table', 'chart_meta', 'chart', 'side', 'low');
+          }
+    )
+  );
+
+  register_meta('chart', 'chart_table', array(
+    'show_in_rest' => true
+  ));
 }
 
+function save_custom_meta_data($id) {
+  if('chart' == $_POST['post_type']) {
+      if(!current_user_can('edit_page', $id)) {
+        return $id;
+      }
+    } else {
+        if(!current_user_can('edit_page', $id)) {
+            return $id;
+        }
+    }
+
+  if (!empty($_FILES['chart_csv']['name'])) {
+    $supported_types = array('text/csv');
+
+    $arr_file_type = wp_check_filetype(basename($_FILES['chart_csv']['name']));
+    $uploaded_type = $arr_file_type['type'];
+        if(in_array($uploaded_type, $supported_types)) {
+            $upload = file_get_contents($_FILES['chart_csv']['tmp_name']);
+            update_post_meta($id, 'chart_table', $upload);
+        } else {
+            wp_die('The file you\'ve uploaded is not a CSV.');
+        }
+  }
+}
+
+add_action('save_post', 'save_custom_meta_data');
 add_action( 'init', 'create_event_tax' );
 
 function create_event_tax() {
@@ -364,5 +421,11 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'event_image' );
         }
     ));
+           
+   register_rest_field('chart', 'chart_table', array(
+       'get_callback' => function($obj) {
+         return get_post_meta($obj['id'], 'chart_table' );
+       }
+   ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');

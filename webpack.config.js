@@ -35,7 +35,9 @@ module.exports = {
       'prop-types': path.resolve(__dirname, 'node_modules', 'prop-types',
         'prop-types.min.js'),
       history: path.resolve(__dirname, 'node_modules', 'history', 'cjs',
-        'history.min.js')
+        'history.min.js'),
+      mediaelement: path.resolve(__dirname, 'node_modules', 'mediaelement',
+        'build', 'mediaelement-and-player.min.js')
     }
   },
   module: {
