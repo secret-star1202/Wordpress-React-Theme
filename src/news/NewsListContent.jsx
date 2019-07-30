@@ -11,11 +11,11 @@ function NewsListContent({ history }) {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed`
-    ).then(({ data }) => {
-      setState({ posts: data.length ? data : [] });
-    });
+    if (!state.posts.length) {
+      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/all_posts`).then(({ data }) => {
+        setState({ posts: data.length ? data : [] });
+      });
+    }
   }, []);
 
   function NewsItemWithHistory({ item }) {
@@ -28,15 +28,12 @@ function NewsListContent({ history }) {
 
   let { posts } = state;
 
-  if (posts && posts.length) {
-    return <div className='news-list__content'>
-      <div className='news-list'>
-        <EverAfter.Paginator wrapper={NewsItemWithHistory} perPage={4}
-          items={posts} truncate={true} />
-      </div>
-    </div>;
-  }
-  return null;
+  return <div className='news-list__content'>
+    <div className='news-list'>
+      {posts && posts.length ? <EverAfter.Paginator wrapper={NewsItemWithHistory} perPage={4}
+        items={posts} truncate={true} /> : <p>No results.</p>}
+    </div>
+  </div>;
 }
 
 export default NewsListContent;

@@ -32,16 +32,16 @@ function get_menus() {
 
 function chart_meta($post) {
   wp_nonce_field( basename( __FILE__ ), 'chart_meta_box_nonce' );
-  
+
   $current_table = get_post_meta($post->ID, 'chart_table', true) ?
   get_post_meta($post->ID, 'chart_table', true) : array();
-  
+
   $html = '<div class="inside"><h3>Chart Table</h3>';
   $html .= '<p><input type="file" id="chart_csv" name="chart_csv" /></p>';
-  
+
   echo $html;
 }
-  
+
 function create_posttype() {
     add_theme_support( 'post-thumbnails' );
 
@@ -253,6 +253,43 @@ add_action('rest_api_init', function() {
         'callback' => 'get_menus'
     ));
 
+    register_rest_route( 'wp/v2', '/all_posts', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+          $ps = get_posts(array(
+            'posts_per_page' => '-1',
+            'post_status' => 'publish')
+          );
+          $array = [];
+          $controller = new \WP_REST_Posts_Controller('post');
+          foreach($ps as $p) {
+            $data = $controller->prepare_item_for_response($p, $request);
+            $array[] = $controller->prepare_response_for_collection($data);
+          }
+          return new \WP_REST_Response($array, 200);
+        }
+    ));
+
+    register_rest_route( 'wp/v2', '/search', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+          if(isset($request['s'])) {
+            $ps = get_posts(array(
+              's' => $request['s'],
+              'posts_per_page' => '-1',
+              'post_status' => 'publish')
+            );
+            $array = [];
+            $controller = new \WP_REST_Posts_Controller('post');
+            foreach($ps as $p) {
+              $data = $controller->prepare_item_for_response($p, $request);
+              $array[] = $controller->prepare_response_for_collection($data);
+            }
+            return new \WP_REST_Response($array, 200);
+          }
+        }
+    ));
+
     register_rest_field('review', 'img_url', array(
             'get_callback' => 'get_rest_featured_image'
         )
@@ -421,7 +458,7 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'event_image' );
         }
     ));
-           
+
    register_rest_field('chart', 'chart_table', array(
        'get_callback' => function($obj) {
          return get_post_meta($obj['id'], 'chart_table' );
