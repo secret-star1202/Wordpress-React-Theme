@@ -6,16 +6,14 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 function ReviewItem({
   item: {
     _embedded, slug, title: [title], artist: [artist]
-  },
-  history
+  }
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
     && _embedded['wp:featuredmedia']['0']
     && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
   return <div className='review-item'>
-    <SamePageAnchor {...{ history }}
-      href={`${siteInfo.siteUrl}/reviews/${slug}`}>
+    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews/${slug}`}>
       <img className='review-item__image'
         src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
       <div className='review-item__release'>
@@ -29,8 +27,7 @@ function ReviewItem({
 }
 
 ReviewItem.propTypes = {
-  item: object,
-  history: object
+  item: object
 };
 
 export default ReviewItem;

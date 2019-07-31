@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
 import Home from '../home/Home.jsx';
@@ -14,43 +14,46 @@ import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
-import { default as siteInfo } from '../utils/config';
 import Podcasts from '../static_pages/Podcasts.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
+import { GeneralContextProvider } from '../contexts/GeneralContext';
 
-function App() {
-  return <BrowserRouter
-    basename={siteInfo.siteUrl.match(/\/[a-z-]*\/?$/)[0]}>
-      <div className='container'>
-      <Switch>
-        <Route exact path="/" component={() => [<Landing key='landing' />,
-        <div className='spacer-lg' key='lg'/>]} />
-        <Route path="*" component={() => (
-          <div className='spacer-sm' key='sm' />)} />
-      </Switch>
-      <Switch>
-        <Route path='*' component={Header} />
-      </Switch>
-      <div id="main">
-        <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path={['/reviews/:slug', '/review/:slug']} component={ReviewPage}/>
-        <Route exact path={['/reviews', '/review']} component={ReviewList}/>
-        <Route exact path={['/podcasts', '/podcast']} component={Podcasts}/>
-        <Route exact path={['/monday-night-live', '/mondaynightlive']} component={MondayNightLive}/>
-        <Route exact path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
-        <Route exact path={['/radioblog', '/news']} component={NewsList} />
-        <Route exact path={['/chart/:slug', '/charts/:slug']} component={ChartPage}/>
-        <Route exact path={['/timeline', '/ktuh-timeline']} component={Timeline} />
-        <Route exact path={['/events', '/event']} component={EventsList} />
-        <Route exact path="/faq" component={FAQ} />
-        <Route exact path="/not-found" component={NotFound}/>
-        <Route exact path='/:slug' component={PagesItem} />
-        <Route exact path='*' component={NotFound} />
-        </Switch>
-      </div>
-    </div>
-    <Footer /></BrowserRouter>;
-}
+let SeamlessRoute = ({ component: Component, ...rest }) => (
+   <Route exact {...rest} component={({ history, match }) => (
+    <GeneralContextProvider initialVals={{ history, match }}>
+      <Component />
+    </GeneralContextProvider>
+   )} />);
+
+let App = () => ([<div className='container'>
+  <Switch>
+    <Route exact path="/" component={() => [<Landing key='landing' />,
+    <div className='spacer-lg' key='lg'/>]} />
+    <Route path="*" component={() => (
+      <div className='spacer-sm' key='sm' />)} />
+  </Switch>
+  <Switch>
+    <Route path='*' component={Header} />
+  </Switch>
+  <div id="main">
+    <Switch>
+      <SeamlessRoute path={['/reviews/:slug', '/review/:slug']} component={ReviewPage}/>
+      <SeamlessRoute path={['/reviews', '/review']} component={ReviewList}/>
+      <SeamlessRoute path={['/podcasts', '/podcast']} component={Podcasts}/>
+      <SeamlessRoute path={['/monday-night-live', '/mondaynightlive']} component={MondayNightLive}/>
+      <SeamlessRoute path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
+      <SeamlessRoute path={['/radioblog', '/news']} component={NewsList} />
+      <SeamlessRoute path={['/chart/:slug', '/charts/:slug']} component={ChartPage}/>
+      <SeamlessRoute path={['/timeline', '/ktuh-timeline']} component={Timeline} />
+      <SeamlessRoute path={['/events', '/event']} component={EventsList} />
+      <SeamlessRoute path="/faq" component={FAQ} />
+      <SeamlessRoute path="/not-found" component={NotFound}/>
+      <SeamlessRoute path='/:slug' component={PagesItem} />
+      <SeamlessRoute path="/" component={Home}/>
+      <SeamlessRoute path='*' component={NotFound} />
+    </Switch>
+  </div>
+</div>,
+<Footer />]);
 
 export default App;

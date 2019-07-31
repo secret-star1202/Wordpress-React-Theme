@@ -1,31 +1,30 @@
 import React from 'react';
-import { array, object } from 'prop-types';
+import { array } from 'prop-types';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-function HomeContentReviews({ reviews, history }) {
+function HomeContentReviews({ reviews }) {
   return (
     <div className='home__reviews'>
-      <SamePageAnchor {...{ history }} href={`${siteInfo.siteUrl}/reviews`}>
+      <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`}>
         <h3 className="home__section">MUSIC REVIEWS</h3>
       </SamePageAnchor>
-      <SamePageAnchor {...{ history }} href={`${siteInfo.siteUrl}/reviews`}
+      <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`}
         className='home__more' key='reviews-more'>
         MORE REVIEWS{'  '}
         <span className='glyphicon glyphicon-arrow-right'></span>
       </SamePageAnchor>
       <div className='home__reviews-content' key='reviews-content'>
         {reviews.slice(0, 5).map(item => (
-          <HomeContentReviewsItem {...{ item, history }} />))}
+          <HomeContentReviewsItem {...{ item }} />))}
       </div>
     </div>
   );
 }
 
 HomeContentReviews.propTypes = {
-  reviews: array,
-  history: object
+  reviews: array
 };
 
 export default HomeContentReviews;

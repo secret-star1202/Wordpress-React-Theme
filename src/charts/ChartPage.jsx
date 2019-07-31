@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { object } from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import ChartTable from './ChartTable.jsx';
+import GeneralContext from '../contexts/GeneralContext';
 
-export default function ChartPage({ match: { params: { slug } }, history }) {
-  let [state, setState] = useState({
-    chart: undefined
-  });
+export default function ChartPage() {
+  let { generalState } = useContext(GeneralContext),
+    { match: { params: { slug } } } = generalState,
+    [state, setState] = useState({
+      chart: undefined
+    });
 
   useEffect(function () {
     axget(
@@ -34,7 +36,7 @@ export default function ChartPage({ match: { params: { slug } }, history }) {
       <h1 className="general__header" key='header'>
         <b>{title}</b></h1>,
       <div className='review__link' key='back-link'>
-        <SamePageAnchor {...{ history }} href='/charts' className='back-to'>
+        <SamePageAnchor href='/charts' className='back-to'>
           ← all charts
         </SamePageAnchor>
       </div>,
@@ -50,8 +52,3 @@ export default function ChartPage({ match: { params: { slug } }, history }) {
     return null;
   }
 }
-
-ChartPage.propTypes = {
-  match: object,
-  history: object
-};

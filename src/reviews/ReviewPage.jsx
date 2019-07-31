@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { object } from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import GeneralContext from '../contexts/GeneralContext';
 
-function ReviewPage({ match: { params: { slug } }, history }) {
-  let [state, setState] = useState({
-    review: undefined
-  });
+function ReviewPage() {
+  let { generalState } = useContext(GeneralContext), {
+      match: { params: { slug } }
+    } = generalState, [state, setState] = useState({
+      review: undefined
+    });
 
   useEffect(function () {
     axget(
@@ -47,7 +49,7 @@ function ReviewPage({ match: { params: { slug } }, history }) {
       <h1 className="general__header" key='header'>
         <b>{title}</b><br />{artist}</h1>,
       <div className='review__link' key='back-link'>
-        <SamePageAnchor {...{ history }} href='/reviews' className='back-to'>
+        <SamePageAnchor href='/reviews' className='back-to'>
           ← all reviews
         </SamePageAnchor>
       </div>,
@@ -74,9 +76,5 @@ function ReviewPage({ match: { params: { slug } }, history }) {
     return null;
   }
 }
-ReviewPage.propTypes = {
-  match: object,
-  history: object
-};
 
 export default ReviewPage;

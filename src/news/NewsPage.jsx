@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import { get as axget } from 'axios';
@@ -6,15 +6,15 @@ import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import GeneralContext from '../contexts/GeneralContext';
 
-function NewsPage({
-  match: {
-    params: { slug }
-  }, history
-}) {
-  let [state, setState] = useState({
-    post: undefined
-  });
+function NewsPage() {
+  let { generalState } = useContext(GeneralContext), {
+      match: { params: { slug } }
+    } = generalState,
+    [state, setState] = useState({
+      post: undefined
+    });
 
   useEffect(function () {
     axget(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
@@ -27,7 +27,7 @@ function NewsPage({
 
   if (post) {
     let {
-      _embedded, content, title, nickname, date
+      content, title, nickname, date
     } = post;
 
     return [<Metamorph title={`${title.rendered
@@ -36,7 +36,7 @@ function NewsPage({
     <h1 key="header-title" className='general__header'>
       {title.rendered}</h1>,
     <div key="radioblog-back-link" className='show__link'>
-      <SamePageAnchor href='/radioblog' className='back-to' history={history}>
+      <SamePageAnchor href='/radioblog' className='back-to'>
         ← Back to Radioblog
       </SamePageAnchor>
     </div>,

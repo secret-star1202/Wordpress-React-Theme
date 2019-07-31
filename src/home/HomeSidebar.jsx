@@ -21,6 +21,6 @@ export default function HomeSidebar() {
   let { nextOnAir } = state;
 
   return nextOnAir && <div className='home__sidebar'>
-    {nextOnAir ? <HomeSidebarNext nextOnAir={state.nextOnAir} /> : null}
+    {nextOnAir ? <HomeSidebarNext {...{ nextOnAir }} /> : null}
   </div> || null;
 }

@@ -6,15 +6,14 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 export default function NewsListLatestReviewsItem({
   review: {
     slug, artist: [artist], title: [title], _embedded
-  }, history
+  }
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
     && _embedded['wp:featuredmedia']['0']
     && _embedded['wp:featuredmedia']['0'].source_url || undefined;
 
   return <div className='news-list__latest-review'>
-      <SamePageAnchor history={history}
-        href={`${siteInfo.siteUrl}/reviews/${slug}`}>
+      <SamePageAnchor href={`${siteInfo.siteUrl}/reviews/${slug}`}>
         <img src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
         <p><b>{artist}</b></p><p>{title}</p>
       </SamePageAnchor>
@@ -22,6 +21,5 @@ export default function NewsListLatestReviewsItem({
 }
 
 NewsListLatestReviewsItem.propTypes = {
-  review: object,
-  history: object
+  review: object
 };

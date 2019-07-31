@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   string, oneOfType, func, object, array
 } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
+import GeneralContext from '../contexts/GeneralContext';
 
 function SamePageAnchor({
-  children, href, target, className, id, style, history
+  children, href, target, className, id, style
 }) {
+  let { generalState, setGeneralState } = useContext(GeneralContext);
+
   function handleClick(event) {
-    event.preventDefault();
-    history.push(href.replace(siteInfo.siteUrl, ''));
+    if (href.startsWith(siteInfo.siteUrl)) {
+      event.preventDefault();
+      let newState = Object.assign({}, generalState);
+      newState.history.push(href.replace(siteInfo.siteUrl, ''));
+      setGeneralState(newState);
+    }
   }
 
   return <a {...{
@@ -25,6 +32,5 @@ SamePageAnchor.propTypes = {
   className: oneOfType([string, func]),
   id: oneOfType([string, func]),
   style: oneOfType([object, func]),
-  children: oneOfType([array, func]),
-  history: object
+  children: oneOfType([array, func])
 };

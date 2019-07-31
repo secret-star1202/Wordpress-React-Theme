@@ -30,6 +30,10 @@ module.exports = {
     alias: {
       'react-router-dom': path.resolve(__dirname, 'node_modules',
         'react-router-dom', 'cjs', 'react-router-dom.min.js'),
+      'react-dom/server': path.resolve(__dirname, 'node_modules', 'react-dom',
+        'cjs', 'react-dom-server.browser.production.min.js'),
+      'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom', 'cjs',
+        'react-dom.production.min.js'),
       react: path.resolve(__dirname, 'node_modules',
         'react', 'cjs', 'react.production.min.js'),
       'prop-types': path.resolve(__dirname, 'node_modules', 'prop-types',
@@ -45,11 +49,11 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['./babel/hashify']
-          }
+        loader: 'babel-loader',
+        options: {
+          babelrc: true,
+          comments: false,
+          plugins: ['./babel/hashify']
         }
       },
       {
@@ -58,7 +62,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            plugins: ['./babel/moment_no_i18n', './babel/hashify']
+            plugins: ['./babel/moment_no_i18n']
           }
         }
       },

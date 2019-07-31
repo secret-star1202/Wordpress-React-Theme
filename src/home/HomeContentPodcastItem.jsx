@@ -10,11 +10,10 @@ export default function HomeContentPodcastItem({
     podcast_type: [type],
     podcast_name: [name],
     podcast_date: [date],
-  },
-  history
+  }
 }) {
   return <div className='home_podcast-item'>
-    <SamePageAnchor {...{ history }} href={`${siteInfo.siteUrl}/podcasts`}>
+    <SamePageAnchor href={`${siteInfo.siteUrl}/podcasts`}>
       <p className='home__title'>{name}</p>
       <p className='home__subtitle'> {momentUtil(date).format('MMMM Do')}</p>
       <iframe width="100%" height="250" scrolling="no" frameBorder="no"
@@ -28,6 +27,5 @@ export default function HomeContentPodcastItem({
 }
 
 HomeContentPodcastItem.propTypes = {
-  item: object,
-  history: object
+  item: object
 };

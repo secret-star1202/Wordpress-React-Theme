@@ -5,13 +5,13 @@ import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
-export default function HomeContentNewsItem({ item, history }) {
+export default function HomeContentNewsItem({ item }) {
   let featuredImage = item._embedded && item._embedded['wp:featuredmedia']
     && item._embedded['wp:featuredmedia']['0']
     && item._embedded['wp:featuredmedia']['0'].source_url || undefined;
 
   return <div className='home__news-item'>
-    <SamePageAnchor history={history}
+    <SamePageAnchor
       href={`${siteInfo.siteUrl}/radioblog/${item.slug}`}><img className=
       'home__news-img' src={featuredImage || `${siteInfo.siteUrl
       }/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
@@ -27,6 +27,5 @@ export default function HomeContentNewsItem({ item, history }) {
 }
 
 HomeContentNewsItem.propTypes = {
-  item: object,
-  history: object
+  item: object
 };

@@ -20,9 +20,6 @@ module.exports = function () {
       },
       VariableDeclarator(path) {
         renameToHash(path, 'id', true);
-      },
-      ImportSpecifier(path) {
-        renameToHash(path, 'local', false);
       }
     },
   };

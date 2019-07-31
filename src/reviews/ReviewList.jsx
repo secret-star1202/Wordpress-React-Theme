@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { object } from 'prop-types';
 import EverAfter from 'react-everafter';
 import { Metamorph } from 'react-metamorph';
 import { get as axget } from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
-function ReviewList({ history }) {
+function ReviewList() {
   let [state, setState] = useState({
     reviews: []
   });
@@ -19,14 +18,6 @@ function ReviewList({ history }) {
     });
   });
 
-  function ReviewItemWithHistory({ item }) {
-    return <ReviewItem {... { item, history }} />;
-  }
-
-  ReviewItemWithHistory.propTypes = {
-    item: object
-  };
-
   let { reviews } = state;
 
   if (reviews && reviews.length) {
@@ -35,15 +26,10 @@ function ReviewList({ history }) {
     />,
     <h2 className="general__header" key="header-title">Reviews</h2>,
     <div className="reviews__content" key="reviews-content">
-      <EverAfter.Paginator wrapper={ReviewItemWithHistory} perPage={11}
-        items={reviews} />
+      <EverAfter.Paginator wrapper={ReviewItem} perPage={11} items={reviews} />
     </div>];
   }
   return null;
 }
 
 export default ReviewList;
-
-ReviewList.propTypes = {
-  history: object
-};
