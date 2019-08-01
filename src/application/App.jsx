@@ -33,7 +33,7 @@ let App = () => ([<div className='container'>
       <div className='spacer-sm' key='sm' />)} />
   </Switch>
   <Switch>
-    <Route path='*' component={Header} />
+    <SeamlessRoute path='*' component={Header} />
   </Switch>
   <div id="main">
     <Switch>

@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { object } from 'prop-types';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import { get as axget } from 'axios';
 import { default as siteInfo } from '../utils/config';
+import GeneralContext from '../contexts/GeneralContext';
 
-function PagesItem({
-  match: {
-    params: { slug }
-  }
-}) {
-  let [state, setState] = useState({
-    page: undefined
-  });
+function PagesItem() {
+  let {
+      generalState: {
+        match: { params: { slug } }
+      }
+    } = useContext(GeneralContext), [state, setState] = useState({
+      page: undefined
+    });
 
   useEffect(function () {
     axget(
