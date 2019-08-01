@@ -82,22 +82,21 @@ function Header() {
       {menuItems.length ? <HeaderMenu {...{ menuItems }} /> : null}
       <ul className='nav navbar-nav navbar-right'>
         <li className='nav-item'>
-          <a className='header__support-link'
-            href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
-            <button type='button'
-              className='btn btn-md header__support-btn'>
+          <SamePageAnchor className='header__support-link'
+            href={`${siteInfo.siteUrl}/donate`}>
+            <button type='button' className='btn btn-md header__support-btn'>
               <span>
-                <a className='header__support-link'
-                   href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>DONATE</a>
+                <SamePageAnchor className='header__support-link'
+                   href={`${siteInfo.siteUrl}/donate`}>DONATE</SamePageAnchor>
               </span>
             </button>
-          </a>
+          </SamePageAnchor>
         </li>
       </ul>
       <ul className='nav navbar-nav'>
         <li className='nav-item'>
           <MediaElement id="audio-player"
-            src='http://stream.ktuh.org:8000/stream-mp3' />
+            src='http://128.171.43.149:8000/stream' />
         </li>
       </ul>
     </div>

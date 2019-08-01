@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { array } from 'prop-types';
+import { get as axget } from 'axios';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
-function HomeContentPodcasts({ podcasts }) {
-  return <div className='home__podcast'>
+function HomeContentPodcasts() {
+  let [state, setState] = useState({
+    podcasts: []
+  });
+
+  useEffect(function () {
+    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`)
+      .then(({ data }) => {
+        setState({
+          podcasts: data
+        });
+      });
+  }, []);
+
+  let { podcasts } = state;
+
+  return podcasts && podcasts.length ? <div className='home__podcast'>
     <a href={`${siteInfo.siteUrl}/podcasts`}>
       <h3 className="home__section">Podcasts</h3>
     </a>
@@ -16,7 +32,7 @@ function HomeContentPodcasts({ podcasts }) {
       {podcasts.slice(0, 3).map(item => (
         <HomeContentPodcastItem {...{ item }} />)) }
     </div>
-  </div>;
+  </div> : null;
 }
 
 HomeContentPodcasts.propTypes = {
