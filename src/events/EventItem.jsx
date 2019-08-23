@@ -1,6 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { default as momentUtil } from 'moment';
+import { default as siteInfo } from '../utils/config';
 
 function parseUrl(description) {
   if (description) {
@@ -33,11 +34,10 @@ function buildLink(description) {
 
 function EventItem({ item: event }) {
   return <div className='news-list__post-parent'>
-    <h3 className="home__section">{event.summary} | {event.start.date}</h3>
-    {buildLink(event.description)}
     <h3 className="home__section">{event.summary} | {momentUtil(event.start.date).format('MMMM Do')}</h3>
+    {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start.dateTime).format('HA')} | {event.location}
+      {momentUtil(event.start.dateTime).format('HA')} - momentUtil(event.end.dateTime).format('HA')} | {event.location}
     </div>
     <div className='event_title'>
       {event.description}
