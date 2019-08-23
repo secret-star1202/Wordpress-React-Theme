@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import EverAfter from 'react-everafter';
 import { MonthView } from 'react-cal-viz';
-import ApiCalendar from 'react-google-calendar-api';
+import { get as axget } from 'axios';
+import { default as momentUtil } from 'moment';
 import EventItem from './EventItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
@@ -11,14 +12,16 @@ function EventsListContent() {
   });
 
   useEffect(function () {
-    ApiCalendar.handleAuthClick();
-    ApiCalendar.onLoad(function () {
-      if (ApiCalendar.sign) {
-        ApiCalendar.listUpcomingEvents(10, siteInfo.calendarId)
-          .then(({ result }) => {
-            setState({ events: result.items });
-          });
-      }
+    axget(`https://www.googleapis.com/calendar/v3/calendars/${
+      siteInfo.calendarId}/events?key=${siteInfo.apiKey}`).then(({
+      data: { items }
+    }) => {
+      items.sort(function(a, b) {
+        let aTime = +momentUtil(a.start.dateTime).toDate(),
+          bTime = +momentUtil(b.start.dateTime).toDate();
+        return aTime > bTime ? -1 : aTime < bTime ? 1 : 0;
+      });
+      setState({ events: items });
     });
   }, []);
 
@@ -37,7 +40,7 @@ function EventsListContent() {
             retval.location = event.location;
             retval.description = event.description;
             retval.link = event.htmlLink;
-            retval.start = new Date(event.start.dateTime);
+            retval.start = momentUtil(event.start.dateTime).toDate();
             return retval;
           })} />
         </div>
