@@ -37,7 +37,7 @@ function EventItem({ item: event }) {
     <h3 className="home__section">{event.summary} | {momentUtil(event.start.date).format('MMMM Do')}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start.dateTime).format('HA')} - momentUtil(event.end.dateTime).format('HA')} | {event.location}
+      {momentUtil(event.start.dateTime).format('HA')} - {momentUtil(event.end.dateTime).format('HA')} | {event.location}
     </div>
     <div className='event_title'>
       {event.description}
