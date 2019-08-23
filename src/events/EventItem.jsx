@@ -1,11 +1,10 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { default as momentUtil } from 'moment';
-import { default as siteInfo } from '../utils/config';
 
 function parseUrl(description) {
   if (description) {
-    let reg = /(https?:\/\/)?[a-z0-9.]+(\/[^\s\t]*)?/;
+    let reg = /https?:\/\/[A-Za-z0-9.]+(\/[^\s\t\n]*)?/;
     let url = description.match(reg);
     if (url) {
       return url[0];
@@ -34,13 +33,15 @@ function buildLink(description) {
 
 function EventItem({ item: event }) {
   return <div className='news-list__post-parent'>
-    <h3 className="home__section">{event.summary} | {momentUtil(event.start).format('MMMM Do')}</h3>
+    <h3 className="home__section">{event.summary} | {momentUtil(event.start.dateTime).format('MMMM Do')}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start).format('HA')} - {momentUtil(event.end).format('HA')} | {event.location}
+      {momentUtil(event.start.dateTime).format('HA')} - {momentUtil(event.end.dateTime).format('HA')} | {event.location}
     </div>
     <div className='event_title'>
-      {event.description}
+      {parseUrl(event.description)
+        ? event.description.replace(parseUrl(event.description), '')
+        : event.description}
     </div>
   </div>;
 }

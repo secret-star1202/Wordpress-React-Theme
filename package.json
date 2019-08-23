@@ -15,7 +15,7 @@
     "moment-timezone": "^0.5.26",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-cal-viz": "^0.2.0",
+    "react-cal-viz": "^0.3.2",
     "react-dom": "^16.8.6",
     "react-everafter": "^1.1.0",
     "react-google-calendar-api": "^1.0.10",

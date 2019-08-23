@@ -19,9 +19,12 @@ function EventsListContent() {
       items.sort(function(a, b) {
         let aTime = +momentUtil(a.start.dateTime).toDate(),
           bTime = +momentUtil(b.start.dateTime).toDate();
-        return aTime > bTime ? -1 : aTime < bTime ? 1 : 0;
+        return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
       });
-      setState({ events: items });
+      let events = items.filter(function(evt) {
+        return +momentUtil(evt.start.dateTime).toDate() > +new Date()
+      });
+      setState({ events });
     });
   }, []);
 
@@ -35,13 +38,13 @@ function EventsListContent() {
         </div>
         <div className='events-list__calendar'>
           <MonthView events={events.map(function (event) {
-            let retval = Object.assign(event, {});
+            let retval = Object.assign({}, event);
             retval.title = event.summary;
             retval.location = event.location;
             retval.description = event.description;
             retval.link = event.htmlLink;
-            retval.start = momentUtil(event.start.dateTime).toDate();
-            retval.end = momentUtil(event.end.dateTime).toDate();
+            retval.start = momentUtil(retval.start.dateTime).toDate();
+            retval.end = momentUtil(retval.end.dateTime).toDate();
             return retval;
           })} />
         </div>
