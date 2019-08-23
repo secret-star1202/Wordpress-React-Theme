@@ -1,6 +1,7 @@
 import React from 'react';
 import { object } from 'prop-types';
 import { default as momentUtil } from 'moment';
+import { default as siteInfo } from '../utils/config';
 
 function parseUrl(description) {
   if (description) {
@@ -36,7 +37,7 @@ function EventItem({ item: event }) {
     <h3 className="home__section">{event.summary} | {momentUtil(event.start).format('MMMM Do')}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start).format('HA')} | {event.location}
+      {momentUtil(event.start).format('HA')} - {momentUtil(event.end).format('HA')} | {event.location}
     </div>
     <div className='event_title'>
       {event.description}

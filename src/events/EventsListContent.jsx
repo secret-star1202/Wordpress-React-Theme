@@ -41,6 +41,7 @@ function EventsListContent() {
             retval.description = event.description;
             retval.link = event.htmlLink;
             retval.start = momentUtil(event.start.dateTime).toDate();
+            retval.end = momentUtil(event.end.dateTime).toDate();
             return retval;
           })} />
         </div>
