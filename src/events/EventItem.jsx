@@ -13,6 +13,11 @@ function parseUrl(description) {
   return undefined;
 }
 
+function parseAddress(location) {
+  let name = location.split(',');
+  return name[1];
+}
+
 function renderLink(description) {
   if (description) {
     return <a href={parseUrl(description)} className='home__more'>
@@ -36,7 +41,7 @@ function EventItem({ item: event }) {
     <h3 className="home__section">{event.summary} | {momentUtil(event.start.dateTime).format('MMMM Do')}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start.dateTime).format('hh a')} - {momentUtil(event.end.dateTime).format('HA')} | {event.location}
+      {momentUtil(event.start.dateTime).format('hh a')} - {momentUtil(event.end.dateTime).format('HA')} | {parseAddress(event.location)}
     </div>
     <div className='event_title'>
       {parseUrl(event.description)
