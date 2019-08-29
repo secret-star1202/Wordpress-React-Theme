@@ -26,9 +26,7 @@ function buildLink(description) {
   if (parseUrl(description)) {
     return renderLink(description);
   }
-  return <a className='home__more-empty'>
-    {'  '}
-  </a>;
+  return null;
 }
 
 function EventItem({ item: event }) {
