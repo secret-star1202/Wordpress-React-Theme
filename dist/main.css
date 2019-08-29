@@ -1776,6 +1776,9 @@ h1, h2, h3, h4, h5 {
 .bootstrap-datetimepicker-widget {
   background-color: #fff;
 }
+.day {
+  min-height: 80px;
+}
 .day:not(.new), .picker-switch, .month:not(.active), .year:not(.active),
 .decade:not(.active) {
   color: black;
@@ -2721,4 +2724,39 @@ audio {
   display: inline-block;
   vertical-align: top;
   margin-left: 15px;
+}
+
+.events-list__event-item {
+  width: 49%;
+}
+
+.events-list__event-item {
+  width: 100%;
+}
+
+@media (max-width: 867px) {
+  .events-list__calendar {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .events-list__event-item {
+    width: 100%;
+  }
+
+  .events-list__over {
+    width: 100%;
+  }
+}
+
+td button span {
+  display: none;
+}
+
+.day {
+  height: 70px !important;
+}
+
+thead tr {
+  height: auto !important;
 }

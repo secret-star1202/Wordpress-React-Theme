@@ -35,7 +35,7 @@ function buildLink(description) {
 }
 
 function EventItem({ item: event }) {
-  return <div className='news-list__post-parent'>
+  return <div className='events-list__event-item'>
     <h3 className="home__section">{event.summary} | {momentUtil(event.start.dateTime).format('MMMM Do')}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
