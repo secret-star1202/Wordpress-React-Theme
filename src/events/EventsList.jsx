@@ -9,7 +9,6 @@ export default function EventsList() {
       'https://ktuh.org/img/ktuh-logo.jpg' />,
     <h2 key="header-title" className='general__header'>
       Community Events & Calendar</h2>,
-    <h3 key="header-title" className='general__header'>Recent Events</h3>,
     <div className='news-list__wrapper' key='news-content'>
       <EventsListContent /></div>
   ];

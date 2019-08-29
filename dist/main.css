@@ -1268,7 +1268,6 @@ h1, h2, h3, h4, h5 {
 .home__more-empty {
   position: relative;
   bottom: 35px;
-  float: right;
   padding: 3px 18px;
   font-size: .875em;
   font-weight: bold;
