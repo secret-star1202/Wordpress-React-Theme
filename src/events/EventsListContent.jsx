@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import EverAfter from 'react-everafter';
 import { MonthView } from 'react-cal-viz';
 import { get as axget } from 'axios';
 import { default as momentUtil } from 'moment';
@@ -23,7 +22,7 @@ function EventsListContent() {
       });
       let events = items.filter(function(evt) {
         return +momentUtil(evt.start.dateTime).toDate() > +new Date()
-      });
+      }).slice(0, 6);
       setState({ events });
     });
   }, []);
@@ -33,8 +32,7 @@ function EventsListContent() {
   if (events && events.length) {
     return <div className='events-list__content'>
         <div className="events-list__over">
-          <EverAfter.Paginator wrapper={EventItem} perPage={40} items={events}
-            truncate={true} />
+          {events.map(event => <EventItem item={event} />)}
         </div>
         <div className='events-list__calendar'>
           <MonthView events={events.map(function (event) {
