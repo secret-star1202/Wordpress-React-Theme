@@ -2548,18 +2548,33 @@ h1, h2, h3, h4, h5 {
   float: right;
 }
 .show__wrapper { padding: 0px; }
-div.show__info { width: 300px; margin: 0px; }
+div.show__info { padding: 10px 0; margin: 0px; }
+div.show__info__head { padding: 10px 60px; margin: 0px; }
 div.show__buttons { display: flex; }
 p.show__tag, p.show__host { padding: 0px; }
 p.p1 { padding: 0px; }
-img.show__image { max-width: 25%; height: auto; float: right; }
-.grid__container__mnl { fluid: true; display: inline-grid !important; grid-template-columns: auto auto auto; grid-template-rows: repeat(2, 1fr); grid-gap: 10px !important; margin-left: -25px; }
+img.show__image { max-width: 25%; height: auto; float: right; margin: 10px 40px 0 0; }
+.grid__container__mnl { fluid: true; display: inline-grid; grid-template-columns: auto auto auto; grid-template-rows: repeat(2, 1fr); grid-gap: 10px !important; margin-left: -25px; }
 div.grid__item__mnl { margin: 20px; width: 350px; }
 div.grid__item__mnl1 { margin-top: 40px; margin-left: 20px; width: 350px; }
 div.grid__item__mnl2 { margin-top: 20px; margin-left: 20px; width: 350px;}
 div.submit__podcast1 { margin-top: 18px; padding: 5px 30px; overflow: auto; background-color: #5940DE; color: white; padding-bottom: 67px !important; }
 div.submit__podcast { text-align: center; }
 .event__calendar{
+}
+@media (max-width: 767px) {
+  div.grid__item__mnl {
+    width: 100%;
+  }
+  .grid__container__mnl {
+    display: block;
+  }
+  div.show__info__head {
+    padding: 10px 40px;
+  }
+}
+.show__time {
+  margin-top: 0;
 }
 /** audio player styles **/
 audio {
