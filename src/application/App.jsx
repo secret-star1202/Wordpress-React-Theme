@@ -10,11 +10,11 @@ import NewsPage from '../news/NewsPage.jsx';
 import NewsList from '../news/NewsList.jsx';
 import ChartPage from '../charts/ChartPage.jsx';
 import EventsList from '../events/EventsList.jsx';
+import PodcastList from '../podcasts/PodcastList.jsx';
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
-import Podcasts from '../static_pages/Podcasts.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 
@@ -25,7 +25,7 @@ let SeamlessRoute = ({ component: Component, ...rest }) => (
     </GeneralContextProvider>
    )} />);
 
-let App = () => ([<div className='container'>
+const App = () => ([<div className='container'>
   <Switch>
     <Route exact path="/" component={() => [<Landing key='landing' />,
     <div className='spacer-lg' key='lg'/>]} />
@@ -39,7 +39,7 @@ let App = () => ([<div className='container'>
     <Switch>
       <SeamlessRoute path={['/reviews/:slug', '/review/:slug']} component={ReviewPage}/>
       <SeamlessRoute path={['/reviews', '/review']} component={ReviewList}/>
-      <SeamlessRoute path={['/podcasts', '/podcast']} component={Podcasts}/>
+      <SeamlessRoute path={['/podcasts', '/podcast']} component={PodcastList}/>
       <SeamlessRoute path={['/monday-night-live', '/mondaynightlive']} component={MondayNightLive}/>
       <SeamlessRoute path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
       <SeamlessRoute path={['/radioblog', '/news']} component={NewsList} />
