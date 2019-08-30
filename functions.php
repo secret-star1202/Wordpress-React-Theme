@@ -1,5 +1,86 @@
 <?php
 
+add_action( 'admin_init', 'my_settings_init' );
+
+function my_settings_init(){
+    register_setting(
+        'general',             // Options group
+        'spinitron_key',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'calendar_id',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'calendar_key',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    add_settings_section('api-credentials', 'API Credentials',
+      'station_credentials_fxn', 'general');
+
+    add_settings_field(
+        'spinitron_key',
+        'Spinitron API Key',
+        'spinitron_callback',
+        'general',
+        'api-credentials'
+    );
+
+    add_settings_field(
+        'calendar_id',
+        'Google Calendar ID',
+        'calendar_id_callback',
+        'general',
+        'api-credentials'
+    );
+
+    add_settings_field(
+        'calendar_key',
+        'Google Calendar API Key',
+        'calendar_key_callback',
+        'general',
+        'api-credentials'
+    );
+}
+
+function spinitron_callback(){
+    ?>
+    <label for="spinitron_key">
+      <input id="spinitron_key" type="textbox" name="spinitron_key" value="<?php echo get_option( 'spinitron_key' ); ?>" />
+    </label>
+    <?php
+}
+
+function calendar_id_callback(){
+    ?>
+    <label for="calendar_id">
+      <input id="calendar_id" type="textbox" name="calendar_id" value="<?php echo get_option( 'calendar_id' ); ?>" />
+    </label>
+    <?php
+}
+
+function calendar_key_callback(){
+    ?>
+    <label for="calendar_key">
+      <input id="calendar_key" type="textbox" name="calendar_key" value="<?php echo get_option( 'calendar_key' ); ?>" />
+    </label>
+    <?php
+}
+
+function my_settings_sanitize( $input ){
+    return $input ;
+}
+
+function station_credentials_fxn($arg) {
+  echo '<p>Enter credentials here.</p>';
+}
+
 function init_scripts() {
   wp_enqueue_script('jquery-js', 'https://code.jquery.com/jquery-1.12.4.min.js', array(), '1.0', true);
 
@@ -300,6 +381,20 @@ add_action('rest_api_init', function() {
             return new \WP_REST_Response($array, 200);
           }
         }
+    ));
+
+    register_rest_route( 'wp/v2', '/next_on_air', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+            $url = "https://spinitron.com/api/shows?access-token=" . $key;
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $str = curl_exec($ch);
+            curl_close($ch);
+            return new \WP_REST_Response(json_decode($str), 200);
+          }
     ));
 
     register_rest_field('review', 'img_url', array(
