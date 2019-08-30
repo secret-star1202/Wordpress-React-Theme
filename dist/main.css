@@ -2764,3 +2764,8 @@ td button span {
 thead tr {
   height: auto !important;
 }
+
+.month__name {
+  font-size: 22px;
+  font-weight: 700;
+}
