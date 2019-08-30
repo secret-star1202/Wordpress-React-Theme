@@ -11,8 +11,7 @@ function EventsListContent() {
   });
 
   useEffect(function () {
-    axget(`https://www.googleapis.com/calendar/v3/calendars/${
-      siteInfo.calendarId}/events?key=${siteInfo.apiKey}`).then(({
+    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/g_cal`).then(({
       data: { items }
     }) => {
       items.sort(function(a, b) {

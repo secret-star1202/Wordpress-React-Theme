@@ -397,6 +397,22 @@ add_action('rest_api_init', function() {
           }
     ));
 
+    register_rest_route( 'wp/v2', '/g_cal', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $key = get_option('calendar_key');
+            $id = get_option('calendar_id');
+            $ch = curl_init();
+            $url = "https://www.googleapis.com/calendar/v3/calendars/" .
+              $id . "/events?key=" . $key;
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $str = curl_exec($ch);
+            curl_close($ch);
+            return new \WP_REST_Response(json_decode($str), 200);
+          }
+    ));
+
     register_rest_field('review', 'img_url', array(
             'get_callback' => 'get_rest_featured_image'
         )
