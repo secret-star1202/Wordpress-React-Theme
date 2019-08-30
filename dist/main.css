@@ -2711,7 +2711,7 @@ audio {
 
 .events-list__content {
   width: 100%;
-  display: inline;
+  display: block;
 }
 
 .events-list__over {
@@ -2747,6 +2747,10 @@ audio {
   .events-list__over {
     width: 100%;
   }
+}
+
+.events-list__calendar > div {
+  height: fit-content;
 }
 
 td button span {
