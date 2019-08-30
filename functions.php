@@ -130,6 +130,18 @@ function create_posttype() {
      )
   );
 
+  register_post_type( 'podcast_series',
+      array(
+          'labels' => array(
+              'name' => __( 'Podcast Series' ),
+              'singular_name' => __( 'Podcast Series' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+     )
+  );
+
   register_post_type( 'chart',
       array(
           'labels' => array(
@@ -381,6 +393,16 @@ add_action('rest_api_init', function() {
     register_rest_field('podcast', 'podcast_date', array(
         'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'podcast_date');
+        }
+    ));
+    register_rest_field('podcast_series', 'playlist_id', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'playlist_id');
+        }
+    ));
+    register_rest_field('podcast_series', 'title', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'title');
         }
     ));
     register_rest_field('review', 'date', array(
