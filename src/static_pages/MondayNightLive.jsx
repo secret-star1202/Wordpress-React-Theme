@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
+import { get as axget } from 'axios';
+import { default as siteInfo } from '../utils/config';
+import MNLItem from './MNLItem.jsx';
 
 export default function MondayNightLive() {
+  function watchToEmbed(url) {
+    return url.replace('watch?v=', 'embed/');
+  }
+
+  let [state, setState] = useState({
+    videos: []
+  });
+
+  useEffect(function () {
+    axget(
+      `${siteInfo.siteUrl}/wp-json/wp/v2/mnl_video`
+    ).then(({ data }) => {
+      setState({
+        videos: data
+      });
+    });
+  });
+
+  let { videos } = state;
+
   return [<Metamorph description="KTUH Monday Night Live" title=
     "Monday Night Live- KTUH FM Honolulu | Radio for the People" image=
       'https://ktuh.org/img/ktuh-logo.jpg' />, <h2 className='general__header'>
@@ -38,32 +61,9 @@ export default function MondayNightLive() {
                   <p className="p2" style={{ boxSizing: 'border-box' }}></p>
                   <span style={{ boxSizing: 'border-box', fontWeight: 'bold' }}>&nbsp;</span>
                   <h5 className="show__time">Past Shows</h5>
-                  <div className="grid__container__mnl"><div className=
-                      "grid__item__mnl"><a><iframe width="100%" height="300"
-                      frameBorder="0" allowFullScreen="" src=
-                      "https://www.youtube.com/embed/DeQZSqxhluk" allow=
-                      "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></a></div>
-                    <div className="grid__item__mnl"><a><iframe width="100%"
-                      height="300" frameBorder="0" allowFullScreen="" src=
-                        "https://www.youtube.com/embed/ag9ShrAeCA0" allow=
-                        "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                      </a></div><div className="grid__item__mnl">
-                      <a><iframe width="100%" height="300" frameBorder="0"
-                        src="https://www.youtube.com/embed/mi8uEOeFEPE"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen=""></iframe></a></div>
-                    <div className="grid__item__mnl"><a><iframe width="100%"
-                      height="300" frameBorder="0" allowFullScreen="" src=
-                        "https://www.youtube.com/embed/nqMKKVekF8U"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          ></iframe>
-                      </a></div>
-                    <div className="grid__item__mnl">
-                      <a><iframe width="100%" height="300" frameBorder="0"
-                          src="https://www.youtube.com/embed/O0oXdJNOk5w"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen=""></iframe>
-                      </a></div>
+                  <div className="grid__container__mnl">{
+                    videos.map(({ video_url: [videoUrl] }) => <MNLItem url={watchToEmbed(videoUrl)} />)
+                  }
                     <div className="grid__item__submit"><div className="submit__podcast1">
                       <div className="submit__podcast"><h3><a href=
                         "https://www.youtube.com/playlist?list=PLCnpa6YAfA3mIbJIlwV_1ZyKX7ez-5MMI">

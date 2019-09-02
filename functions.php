@@ -238,6 +238,18 @@ function create_posttype() {
     )
   );
 
+  register_post_type( 'mnl_video',
+      array(
+          'labels' => array(
+              'name' => __('MNL Video'),
+              'singular_name' => __( 'MNL Videos' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+    )
+  );
+
   register_meta('chart', 'chart_table', array(
     'show_in_rest' => true
   ));
@@ -597,5 +609,11 @@ add_action('rest_api_init', function() {
          return get_post_meta($obj['id'], 'chart_table' );
        }
    ));
+
+    register_rest_field('mnl_video', 'video_url', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'video_url' );
+        }
+    ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');
