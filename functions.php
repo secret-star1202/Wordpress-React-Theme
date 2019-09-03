@@ -250,6 +250,18 @@ function create_posttype() {
     )
   );
 
+  register_post_type( 'staff',
+      array(
+          'labels' => array(
+              'name' => __('Staff Member'),
+              'singular_name' => __( 'Staff Members' )
+          ),
+          'public' => true,
+          'has_archive' => false,
+          'show_in_rest' => true,
+    )
+  );
+
   register_meta('chart', 'chart_table', array(
     'show_in_rest' => true
   ));
@@ -613,6 +625,24 @@ add_action('rest_api_init', function() {
     register_rest_field('mnl_video', 'video_url', array(
         'get_callback' => function($obj) {
           return get_post_meta($obj['id'], 'video_url' );
+        }
+    ));
+
+    register_rest_field('staff', 'member_name', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'member_name' );
+        }
+    ));
+
+    register_rest_field('staff', 'member_role', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'member_role' );
+        }
+    ));
+
+    register_rest_field('staff', 'member_bio', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'member_bio' );
         }
     ));
 });
