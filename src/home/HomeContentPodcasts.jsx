@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { array } from 'prop-types';
 import { get as axget } from 'axios';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
 import { default as siteInfo } from '../utils/config';
@@ -34,9 +33,5 @@ function HomeContentPodcasts() {
     </div>
   </div> : null;
 }
-
-HomeContentPodcasts.propTypes = {
-  podcasts: array
-};
 
 export default HomeContentPodcasts;

@@ -1,12 +1,10 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 
 export default function HomeContentEventItem({
   item: {
-    _embedded, slug, event_title, content, nickname, date
+    _embedded, slug, event_title: eventTitle, content, nickname, date
   }
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
@@ -18,14 +16,11 @@ export default function HomeContentEventItem({
       <img className='home__Event-img' src={featuredImage || `${siteInfo.siteUrl
       }/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`
         } />
-      <h4 className='home__title'>{event_title.rendered}</h4>
+      <h4 className='home__title'>{eventTitle.rendered}</h4>
     </a>
     <p className='home__synopsis'>{renderSummary(content.rendered, 15)}</p>
-    <p className='home__byline'>by {nickname} | {momentUtil(date).format('MMMM Do')}
+    <p className='home__byline'>by {nickname} | {
+      new Date(date).date.toDateString().split(' ').slice(1, 3)}
     </p>
   </div>;
 }
-
-HomeContentEventItem.propTypes = {
-  item: object
-};

@@ -1,19 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { object } from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import { get as axget } from 'axios';
 import { default as siteInfo } from '../utils/config';
-import GeneralContext from '../contexts/GeneralContext';
+import useParamMatch from '../hooks/useParamMatch';
 
 function PagesItem() {
-  let {
-      generalState: {
-        match: { params: { slug } }
-      }
-    } = useContext(GeneralContext), [state, setState] = useState({
-      page: undefined
-    });
+  let { slug } = useParamMatch(['slug']), [state, setState] = useState({
+    page: undefined
+  });
 
   useEffect(function () {
     axget(
@@ -45,8 +40,5 @@ function PagesItem() {
     return <Redirect to={`${siteInfo.siteUrl}/not-found`} />;
   }
 }
-PagesItem.propTypes = {
-  match: object
-};
 
 export default PagesItem;

@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
-import {
-  string, oneOfType, func, object, array
-} from 'prop-types';
+import React from 'react';
 import { default as siteInfo } from '../utils/config';
-import GeneralContext from '../contexts/GeneralContext';
+import useGeneralContext from '../hooks/useGeneralContext';
 
 function SamePageAnchor({
   children, href, target, className, id, style
 }) {
-  let { generalState, setGeneralState } = useContext(GeneralContext);
+  let { generalState, setGeneralState } = useGeneralContext();
 
   function handleClick(event) {
     if (href.startsWith(siteInfo.siteUrl)) {
@@ -25,12 +22,3 @@ function SamePageAnchor({
 }
 
 export default SamePageAnchor;
-
-SamePageAnchor.propTypes = {
-  href: oneOfType([string, func]),
-  target: oneOfType([string, func]),
-  className: oneOfType([string, func]),
-  id: oneOfType([string, func]),
-  style: oneOfType([object, func]),
-  children: oneOfType([array, func])
-};

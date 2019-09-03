@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { object, arrayOf } from 'prop-types';
 import { get as axget } from 'axios';
-import { groupBy } from 'underscore';
+import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import MediaElement from './MediaElement.jsx';
@@ -40,10 +39,6 @@ function HeaderMenu({ menuItems }) {
     })}
   </ul>;
 }
-
-HeaderMenu.propTypes = {
-  menuItems: arrayOf(object)
-};
 
 function Header() {
   let [state, setState] = useState({
