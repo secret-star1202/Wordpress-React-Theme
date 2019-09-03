@@ -1,5 +1,4 @@
 import React from 'react';
-import { string } from 'prop-types';
 
 export default function MNLItem({ url }) {
   return <div className="grid__item__mnl">
@@ -8,7 +7,3 @@ export default function MNLItem({ url }) {
       allowFullScreen=""></iframe>
   </a></div>;
 }
-
-MNLItem.propTypes = {
-  url: string
-};

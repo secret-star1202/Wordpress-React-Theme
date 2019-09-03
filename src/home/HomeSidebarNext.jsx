@@ -1,6 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as momentUtil } from 'moment';
 
 function HomeSidebarNext({ nextOnAir: { title, start, end } }) {
   return <div className='home__next-show'>
@@ -8,14 +6,10 @@ function HomeSidebarNext({ nextOnAir: { title, start, end } }) {
       <p className="home__next-on-air">Next On Air</p>
       <p className='home__next-show-name'>{title}</p>
       <p className='home__next-show-time'>
-        {`${momentUtil(start).format('h:mm A')}-${momentUtil(end).format('h:mm A')}`}
+        {`${new Date(start).toLocaleTimeString()} - ${new Date(end).toLocaleTimeString()}`}
       </p>
     </div>
   </div>;
 }
-
-HomeSidebarNext.propTypes = {
-  nextOnAir: object
-};
 
 export default HomeSidebarNext;

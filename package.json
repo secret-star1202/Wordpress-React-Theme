@@ -11,18 +11,14 @@
     "axios": "^0.19.0",
     "csv-parse": "^4.4.5",
     "mediaelement": "^4.2.12",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-cal-viz": "^0.3.2",
+    "react-cal-viz": "^0.4.0",
     "react-dom": "^16.9.0",
     "react-everafter": "^1.1.0",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
     "react-router-dom": "^5.0.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "underscore": "^1.9.1"
+    "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

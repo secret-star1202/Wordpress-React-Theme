@@ -1,6 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as momentUtil } from 'moment';
 
 function parseUrl(description) {
   if (description) {
@@ -34,12 +32,25 @@ function buildLink(description) {
   return null;
 }
 
+function printTime(date) {
+  return `${date.getHours()}:${date.getMinutes()}`;
+}
+
+function formatTimes(start, end) {
+  return `${printTime(new Date(start))} - ${printTime(new Date(end))}`;
+}
+
+function printDate(date) {
+  return date.toDateString().split(' ').slice(1, 3).join(' ');
+}
+
 function EventItem({ item: event }) {
   return <div className='events-list__event-item'>
-    <h3 className="home__section">{event.summary} | {momentUtil(event.start.dateTime).format('MMMM Do')}</h3>
+    <h3 className="home__section">{event.summary} | {printDate(new Date(event.start.dateTime))}</h3>
     {buildLink(event.description)}
     <div className='event_title'>
-      {momentUtil(event.start.dateTime).format('hh a')} - {momentUtil(event.end.dateTime).format('HA')} | {parseAddress(event.location)}
+      {formatTimes(event.start.dateTime, event.end.dateTime)
+      } | {parseAddress(event.location)}
     </div>
     <div className='event_title'>
       {parseUrl(event.description)
@@ -48,9 +59,5 @@ function EventItem({ item: event }) {
     </div>
   </div>;
 }
-
-EventItem.propTypes = {
-  item: object
-};
 
 export default EventItem;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MonthView } from 'react-cal-viz';
 import { get as axget } from 'axios';
-import { default as momentUtil } from 'moment';
 import EventItem from './EventItem.jsx';
 import { default as siteInfo } from '../utils/config';
 
@@ -15,12 +14,12 @@ function EventsListContent() {
       data: { items }
     }) => {
       items.sort(function(a, b) {
-        let aTime = +momentUtil(a.start.dateTime).toDate(),
-          bTime = +momentUtil(b.start.dateTime).toDate();
+        let aTime = +new Date(a.start.dateTime),
+          bTime = +new Date(b.start.dateTime);
         return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
       });
       let events = items.filter(function(evt) {
-        return +momentUtil(evt.start.dateTime).toDate() > +new Date()
+        return +new Date(evt.start.dateTime) > +new Date();
       }).slice(0, 6);
       setState({ events });
     });
@@ -40,8 +39,8 @@ function EventsListContent() {
             retval.location = event.location;
             retval.description = event.description;
             retval.link = event.htmlLink;
-            retval.start = momentUtil(retval.start.dateTime).toDate();
-            retval.end = momentUtil(retval.end.dateTime).toDate();
+            retval.start = new Date(retval.start.dateTime);
+            retval.end = new Date(retval.end.dateTime);
             return retval;
           })} />
         </div>

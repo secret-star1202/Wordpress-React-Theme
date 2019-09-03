@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
-import moment from 'moment';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import GeneralContext from '../contexts/GeneralContext';
+import useParamMatch from '../hooks/useParamMatch';
 
 function ReviewPage() {
-  let { generalState } = useContext(GeneralContext), {
-      match: { params: { slug } }
-    } = generalState, [state, setState] = useState({
-      review: undefined
-    });
+  let { slug } = useParamMatch(['slug']), [state, setState] = useState({
+    review: undefined
+  });
 
   useEffect(function () {
     axget(
@@ -60,8 +57,7 @@ function ReviewPage() {
           <h4 className='review-page__rating'>
             {`${formattedRating(rating)} / 5.0`}</h4>
           <div className='review-page__byline'>
-            {`Review by KTUH FM • ${
-              moment(submitted).fromNow()}`}
+            {`Review by KTUH FM • ${submitted.toDateString()}`}
           </div>
           <div className='review-page__body' dangerouslySetInnerHTML=
             {{ __html: content.rendered }}/>
