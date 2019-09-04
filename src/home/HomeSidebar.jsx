@@ -10,7 +10,7 @@ export default function HomeSidebar() {
 
   useEffect(function () {
     axget(
-      `https://spinitron.com/api/shows?access-token=${siteInfo.spinAccessToken}`
+      `${siteInfo.siteUrl}/wp-json/wp/v2/next_on_air`
     ).then(
       ({ data }) => {
         setState({ nextOnAir: data && data.items[1] });
