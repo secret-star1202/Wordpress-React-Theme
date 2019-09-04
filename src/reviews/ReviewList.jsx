@@ -24,7 +24,7 @@ function ReviewList() {
     return [<Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
       description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
     />,
-    <h2 className="general__header" key="header-title">Reviews</h2>,
+    <h2 className="general__header" key="header-title">Music Reviews</h2>,
     <div className="reviews__content" key="reviews-content">
       <EverAfter.Paginator wrapper={ReviewItem} perPage={11} items={reviews} />
     </div>];
