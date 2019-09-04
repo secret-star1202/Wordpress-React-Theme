@@ -179,7 +179,7 @@ function create_posttype() {
       array(
           'labels' => array(
               'name' => __( 'Timelines' ),
-              'singular_name' => __( 'Timeline' )
+              'singular_name' => __( 'SubmitPodcast' )
           ),
           'public' => true,
           'has_archive' => false,

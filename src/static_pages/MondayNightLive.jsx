@@ -37,7 +37,7 @@ export default function MondayNightLive() {
         <span className="glyphicon glyphicon-music"></span> Live Music, Local Music
         </div><div className="show__buttons"><div className="button__wrapper">
           <p className="show__tag"><button type="button" data-path=
-            "http://stream.ktuh.org/archives/1.monday/9-12am.mp3" className=
+            "https://stream.ktuh.org/archives/1.monday/9-12am.mp3" className=
             "btn btn-default show__play-btn color-button purple-button"
             aria-label="Left Align"><span className="glyphicon glyphicon-play"
             aria-hidden="true"></span> Play latest episode</button></p></div>

@@ -11,6 +11,7 @@ import NewsList from '../news/NewsList.jsx';
 import ChartPage from '../charts/ChartPage.jsx';
 import EventsList from '../events/EventsList.jsx';
 import PodcastList from '../podcasts/PodcastList.jsx';
+import SubmitPodcast from '../podcasts/SubmitPodcast.jsx';
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
@@ -40,6 +41,7 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path={['/reviews/:slug', '/review/:slug']} component={ReviewPage}/>
       <SeamlessRoute path={['/reviews', '/review']} component={ReviewList}/>
       <SeamlessRoute path={['/podcasts', '/podcast']} component={PodcastList}/>
+      <SeamlessRoute path={['/submit-podcasts', '/submit-podcast']} component={SubmitPodcast}/>
       <SeamlessRoute path={['/monday-night-live', '/mondaynightlive']} component={MondayNightLive}/>
       <SeamlessRoute path={['/radioblog/:slug', '/news/:slug']} component={NewsPage}/>
       <SeamlessRoute path={['/radioblog', '/news']} component={NewsList} />

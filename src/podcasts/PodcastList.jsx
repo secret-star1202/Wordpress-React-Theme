@@ -26,6 +26,6 @@ export default function PodcastList() {
     <div className='grid__container'>
       {podcasts.map(({ playlist_id }) => <PodcastItem {...{ playlist_id }} />)}
       <div className='grid__item__submit'><a><div className='submit__podcast'>
-        <div className='submit__podcast'><h3><a href='/contact-us'>
+        <div className='submit__podcast'><h3><a href='`${siteInfo.siteUrl}/submit-podcasts`'>
           Submit a podcast</a></h3></div></div></a></div></div>];
 }
