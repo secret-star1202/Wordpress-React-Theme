@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import { get as axget } from 'axios';
-import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import GeneralContext from '../contexts/GeneralContext';
+import useParamMatch from '../hooks/useParamMatch';
 
 function NewsPage() {
-  let { generalState } = useContext(GeneralContext), {
-      match: { params: { slug } }
-    } = generalState,
-    [state, setState] = useState({
-      post: undefined
-    });
+  let { slug } = useParamMatch(['slug']), [state, setState] = useState({
+    post: undefined
+  });
 
   useEffect(function () {
     axget(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
@@ -42,9 +38,10 @@ function NewsPage() {
     </div>,
     <div className='news-item' key="name-submitted">
       <p className='news-item__author'>
-          <b>Posted by {nickname}</b>
+          <b>Posted by {nickname} at</b>
         <br />
-        {momentUtil(date).format('dddd, MMMM Do YYYY at h:mm a')}
+        {`${new Date(date).toDateString()} at ${
+          new Date(date).toLocaleTimeString()}`}
       </p>
       <div className='news-item__body'
         dangerouslySetInnerHTML={{ __html: content.rendered }} />

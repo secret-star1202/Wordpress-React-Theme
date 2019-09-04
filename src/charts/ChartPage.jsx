@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import ChartTable from './ChartTable.jsx';
-import GeneralContext from '../contexts/GeneralContext';
+import useParamMatch from '../hooks/useParamMatch';
 
 export default function ChartPage() {
-  let { generalState } = useContext(GeneralContext),
-    { match: { params: { slug } } } = generalState,
+  let { slug } = useParamMatch(['slug']),
     [state, setState] = useState({
       chart: undefined
     });
@@ -28,7 +27,7 @@ export default function ChartPage() {
   let { chart } = state;
 
   if (chart) {
-    let { chart_table: [chart_data], title: { rendered: title } } = chart;
+    let { chart_table: [chartData], title: { rendered: title } } = chart;
     return [
       <Metamorph title={`${title}`
       + ' - KTUH FM Honolulu | Radio for the People'}
@@ -41,7 +40,7 @@ export default function ChartPage() {
         </SamePageAnchor>
       </div>,
       <div className="review__content" key='review-content'>
-        <ChartTable data={chart_data} />
+        <ChartTable data={chartData} />
       </div>
     ];
   }

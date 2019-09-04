@@ -1,5 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
@@ -24,7 +23,3 @@ export default function HomeContentReviewsItem({
     </div>
   );
 }
-
-HomeContentReviewsItem.propTypes = {
-  item: object
-};

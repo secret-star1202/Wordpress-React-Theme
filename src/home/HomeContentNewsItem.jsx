@@ -1,6 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
@@ -21,11 +19,7 @@ export default function HomeContentNewsItem({ item }) {
       {renderSummary(item.content.rendered, 15)}
     </p>
     <p className='home__byline'>
-      by {item.nickname} | {momentUtil(item.date).format('MMMM Do')}
+      by {item.nickname} | {new Date(item.date).toDateString()}
     </p>
   </div>;
 }
-
-HomeContentNewsItem.propTypes = {
-  item: object
-};

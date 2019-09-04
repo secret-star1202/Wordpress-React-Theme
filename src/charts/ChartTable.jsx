@@ -1,6 +1,5 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as parse } from 'csv-parse/lib/es5/sync'
+import { default as parse } from 'csv-parse/lib/es5/sync';
 
 export default function ChartTable({ data }) {
   let tableVals = parse(data, { bom: true, columns: true });
@@ -20,7 +19,3 @@ export default function ChartTable({ data }) {
     </tbody>
   </table>;
 }
-
-ChartTable.propTypes = {
-  data: object
-};

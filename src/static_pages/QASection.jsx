@@ -1,5 +1,4 @@
 import React from 'react';
-import { string, array } from 'prop-types';
 import QAPair from './QAPair.jsx';
 
 export default function QASection({ title, pairs }) {
@@ -10,8 +9,3 @@ export default function QASection({ title, pairs }) {
     </div>
   </div>;
 }
-
-QASection.propTypes = {
-  title: string,
-  pairs: array
-};

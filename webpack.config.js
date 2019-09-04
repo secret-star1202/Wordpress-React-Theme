@@ -58,16 +58,6 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: /node_modules\/moment/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['./babel/moment_no_i18n']
-          }
-        }
-      },
-      {
-        test: /\.js$/,
         include: /node_modules\/mediaelement/,
         use: {
           loader: 'babel-loader',

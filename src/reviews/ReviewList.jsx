@@ -26,7 +26,8 @@ function ReviewList() {
     />,
     <h2 className="general__header" key="header-title">Music Reviews</h2>,
     <div className="reviews__content" key="reviews-content">
-      <EverAfter.Paginator wrapper={ReviewItem} perPage={11} items={reviews} />
+      <EverAfter.Paginator wrapper={ReviewItem} truncate={true} perPage={8}
+        items={reviews} />
     </div>];
   }
   return null;

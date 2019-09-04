@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { string } from 'prop-types';
 
 export default function QAPair({ question, answer }) {
   let [state, setState] = useState({
@@ -28,8 +27,3 @@ export default function QAPair({ question, answer }) {
     </div>
   </div>;
 }
-
-QAPair.propTypes = {
-  question: string,
-  answer: string
-};

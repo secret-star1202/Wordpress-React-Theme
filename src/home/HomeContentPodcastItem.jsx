@@ -1,6 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
-import { default as momentUtil } from 'moment';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
@@ -15,7 +13,7 @@ export default function HomeContentPodcastItem({
   return <div className='home_podcast-item'>
     <SamePageAnchor href={`${siteInfo.siteUrl}/podcasts`}>
       <p className='home__title'>{name}</p>
-      <p className='home__subtitle'> {momentUtil(date).format('MMMM Do')}</p>
+      <p className='home__subtitle'> {new Date(date).toDateString()}</p>
       <iframe width="100%" height="250" scrolling="no" frameBorder="no"
         allow="autoplay" src={'https://w.soundcloud.com/player/'
           + `?url=https%3A//api.soundcloud.com/${type}s/${src}`
@@ -25,7 +23,3 @@ export default function HomeContentPodcastItem({
     </SamePageAnchor>
   </div>;
 }
-
-HomeContentPodcastItem.propTypes = {
-  item: object
-};

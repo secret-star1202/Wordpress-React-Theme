@@ -1,5 +1,4 @@
 import React from 'react';
-import { object } from 'prop-types';
 import renderSummary from '../utils/summary';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
@@ -36,9 +35,5 @@ function NewsItem({
     </div>
   </div>;
 }
-
-NewsItem.propTypes = {
-  item: object
-};
 
 export default NewsItem;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { string, object } from 'prop-types';
 import 'mediaelement';
 
 export default function MediaElement({ options, id, src }) {
@@ -51,9 +50,3 @@ export default function MediaElement({ options, id, src }) {
   return <div className="audio-player"
     dangerouslySetInnerHTML={{ __html: mediaHtml }}></div>;
 }
-
-MediaElement.propTypes = {
-  options: object,
-  id: string,
-  src: string
-};

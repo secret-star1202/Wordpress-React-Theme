@@ -17,6 +17,7 @@ import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
+import StaffPage from '../static_pages/StaffPage.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 
 let SeamlessRoute = ({ component: Component, ...rest }) => (
@@ -30,8 +31,6 @@ const App = () => ([<div className='container'>
   <Switch>
     <Route exact path="/" component={() => [<Landing key='landing' />,
     <div className='spacer-lg' key='lg'/>]} />
-    <Route path="*" component={() => (
-      <div className='spacer-sm' key='sm' />)} />
   </Switch>
   <Switch>
     <SeamlessRoute path='*' component={Header} />
@@ -48,6 +47,7 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path={['/chart/:slug', '/charts/:slug']} component={ChartPage}/>
       <SeamlessRoute path={['/timeline', '/ktuh-timeline']} component={Timeline} />
       <SeamlessRoute path={['/events', '/event']} component={EventsList} />
+      <SeamlessRoute path={'/staff'} component={StaffPage} />
       <SeamlessRoute path="/faq" component={FAQ} />
       <SeamlessRoute path="/not-found" component={NotFound}/>
       <SeamlessRoute path='/:slug' component={PagesItem} />
