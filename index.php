@@ -16,6 +16,33 @@
   </head>
   <body>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+    <script id="uhf-donations-widget">
+        window.UHF = { cannedAmounts: null, fundId: 12063604, theme: 'neutral' };
+        setInterval(function() {
+          if (document.querySelector('#donate') &&
+            !document.querySelector(
+              'script[src="https://giving.uhfoundation.org/widget-v2.js"]')) {
+            var script = document.createElement('script');
+            script.src = "https://giving.uhfoundation.org/widget-v2.js";
+            document.querySelector('#donate').appendChild(script);
+          }
+          else if (!document.querySelector('#donate') &&
+            document.querySelector(
+              'script[src="https://giving.uhfoundation.org/widget-v2.js"]')) {
+            document.querySelector(
+              'script[src="https://giving.uhfoundation.org/widget-v2.js"]').remove();
+          }
+
+          if (document.querySelector('#donate') && document.querySelector('iframe') &&
+            !document.querySelector('#donate iframe')) {
+            document.querySelector('iframe').style.display = 'block';
+            document.querySelector('#donate').appendChild(document.querySelector('iframe'));
+          }
+          else if (!document.querySelector('#donate') && document.querySelector('iframe')) {
+            document.querySelector('iframe').style.display = 'none';
+          }
+        }, 1);
+    </script>
     <div id="react-root">
     </div>
     <script src="https://apis.google.com/js/api.js"></script>
