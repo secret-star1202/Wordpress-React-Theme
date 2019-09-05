@@ -3,7 +3,7 @@ import { get as axget } from 'axios';
 import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import MediaElement from './MediaElement.jsx';
+import StreamPlayer from './StreamPlayer.jsx';
 
 function HeaderMenu({ menuItems }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -90,8 +90,7 @@ function Header() {
       </ul>
       <ul className='nav navbar-nav'>
         <li className='nav-item'>
-          <MediaElement id="audio-player"
-            src='http://128.171.43.149:8000/stream' />
+          <StreamPlayer src='http://stream.ktuh.org:8000/stream-mp3' />
         </li>
       </ul>
     </div>

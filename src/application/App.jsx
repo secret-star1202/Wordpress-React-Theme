@@ -18,6 +18,7 @@ import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
 import StaffPage from '../static_pages/StaffPage.jsx';
+import Donate from '../static_pages/Donate.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 
 let SeamlessRoute = ({ component: Component, ...rest }) => (
@@ -33,7 +34,10 @@ const App = () => ([<div className='container'>
     <div className='spacer-lg' key='lg'/>]} />
   </Switch>
   <Switch>
-    <SeamlessRoute path='*' component={Header} />
+    <Route path="*" component={({ history, match }) => (
+      <GeneralContextProvider initialVals={{ history, match }}>
+        <Header />
+      </GeneralContextProvider>)} />
   </Switch>
   <div id="main">
     <Switch>
@@ -49,6 +53,7 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path={['/events', '/event']} component={EventsList} />
       <SeamlessRoute path={'/staff'} component={StaffPage} />
       <SeamlessRoute path="/faq" component={FAQ} />
+      <SeamlessRoute path="/donate" component={Donate}/>
       <SeamlessRoute path="/not-found" component={NotFound}/>
       <SeamlessRoute path='/:slug' component={PagesItem} />
       <SeamlessRoute path="/" component={Home}/>
