@@ -7,9 +7,8 @@ export default function EventsList() {
       "Community Events & Calendar - KTUH FM Honolulu | Radio for the People"
       description="KTUH Community Events & Calendar" image=
       'https://ktuh.org/img/ktuh-logo.jpg' />,
-    <h2 key="header-title" className='general__header'>
-      Community Events & Calendar</h2>,
-    <div className='news-list__wrapper' key='news-content'>
+    <h2 className='general__header'>Community Events & Calendar</h2>,
+    <div className='news-list__wrapper'>
       <EventsListContent /></div>
   ];
 }

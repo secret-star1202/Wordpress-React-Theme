@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget } from 'axios';
 import NewsListLatestReviewsItem from './NewsListLatestReviewsItem.jsx';
-import { default as siteInfo } from '../utils/config';
+import getApiRequest from '../utils/get_api_request';
 
 function NewsListLatestReviews() {
   let [state, setState] = useState({
@@ -9,7 +8,7 @@ function NewsListLatestReviews() {
   });
 
   useEffect(function () {
-    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed`).then(({ data }) => {
+    getApiRequest('review?_embed', ({ data }) => {
       setState({ reviews: data.length ? data : [] });
     });
   });
@@ -19,8 +18,7 @@ function NewsListLatestReviews() {
   if (reviews && reviews.length) {
     return <div className='news-list__latest-reviews'>
       <h4>LATEST REVIEWS</h4>
-      {reviews.map(review => (
-        <NewsListLatestReviewsItem {...{ review }} />))}
+      {reviews.map(review => <NewsListLatestReviewsItem {...{ review }} />)}
     </div>;
   } return null;
 }

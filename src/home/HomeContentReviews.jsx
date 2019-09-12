@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { get as axget } from 'axios';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import getApiRequest from '../utils/get_api_request';
 
 function HomeContentReviews() {
   let [state, setState] = useState({
@@ -10,10 +10,9 @@ function HomeContentReviews() {
   });
 
   useEffect(function () {
-    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/review?_embed&per_page=6`)
-      .then(({ data }) => {
-        setState({ reviews: data });
-      });
+    getApiRequest('review?_embed&per_page=6', ({ data }) => {
+      setState({ reviews: data || [] });
+    });
   }, []);
 
   let { reviews } = state;
@@ -22,12 +21,11 @@ function HomeContentReviews() {
     <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`}>
       <h3 className="home__section">MUSIC REVIEWS</h3>
     </SamePageAnchor>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`}
-      className='home__more' key='reviews-more'>
+    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`} className='home__more'>
       MORE REVIEWS{'  '}
       <span className='glyphicon glyphicon-arrow-right'></span>
     </SamePageAnchor>
-    <div className='home__reviews-content' key='reviews-content'>
+    <div className='home__reviews-content'>
       {reviews.slice(0, 5).map(item => (
         <HomeContentReviewsItem {...{ item }} />))}
     </div>

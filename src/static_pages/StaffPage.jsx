@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
-import { get as axget } from 'axios';
 import StaffItem from './StaffItem.jsx';
-import { default as siteInfo } from '../utils/config';
+import getApiRequest from '../utils/get_api_request';
 
 export default function StaffPage() {
   let [state, setState] = useState({
@@ -10,9 +9,7 @@ export default function StaffPage() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/staff`
-    ).then(({ data }) => {
+    getApiRequest('staff', ({ data }) => {
       setState({
         staff: data
       });
@@ -27,8 +24,7 @@ export default function StaffPage() {
       'https://ktuh.org/img/ktuh-logo.jpg' />, <h2 className='general__header'>
       Staff</h2>, <div>
         {staff.map(({
-          member_bio: bio, member_name: name,
-          member_role: role
+          member_bio: bio, member_name: name, member_role: role
         }) => <StaffItem {...{ bio, name, role }} />)}
       </div>];
 }

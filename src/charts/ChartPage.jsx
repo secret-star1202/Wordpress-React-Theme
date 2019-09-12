@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
-import { get as axget } from 'axios';
 import { Redirect } from 'react-router-dom';
-import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import ChartTable from './ChartTable.jsx';
-import useParamMatch from '../hooks/useParamMatch';
+import useSlug from '../hooks/useSlug';
+import getApiRequest from '../utils/get_api_request';
 
 export default function ChartPage() {
-  let { slug } = useParamMatch(['slug']),
-    [state, setState] = useState({
-      chart: undefined
-    });
+  let slug = useSlug(), [state, setState] = useState({
+    chart: undefined
+  });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/chart?slug=${
-        slug.replace(/\/$/, '')}`
-    ).then(
-      ({ data }) => {
-        setState({ chart: data.length > 0 ? data[0] : null });
-      }
-    );
+    getApiRequest(`chart?slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
+      setState({ chart: data.length > 0 ? data[0] : null });
+    });
   }, []);
 
   let { chart } = state;
@@ -32,14 +25,14 @@ export default function ChartPage() {
       <Metamorph title={`${title}`
       + ' - KTUH FM Honolulu | Radio for the People'}
         description={title} image='https://ktuh.org/img/ktuh-logo.jpg' />,
-      <h1 className="general__header" key='header'>
+      <h1 className="general__header">
         <b>{title}</b></h1>,
-      <div className='review__link' key='back-link'>
+      <div className='review__link'>
         <SamePageAnchor href='/charts' className='back-to'>
           ← all charts
         </SamePageAnchor>
       </div>,
-      <div className="review__content" key='review-content'>
+      <div className="review__content">
         <ChartTable data={chartData} />
       </div>
     ];

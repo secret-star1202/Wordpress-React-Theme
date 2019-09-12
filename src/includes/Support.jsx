@@ -9,8 +9,7 @@ export default function Support() {
       addition to funding from UHM student fees, KTUH
       also looks to donations from the community.
     </p>
-    <a href=
-      'https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'
+    <a href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'
     className='color-button purple-button'>Donate Now</a>
   </div>;
 }

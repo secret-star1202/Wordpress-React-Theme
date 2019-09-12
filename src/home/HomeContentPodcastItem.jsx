@@ -10,10 +10,12 @@ export default function HomeContentPodcastItem({
     podcast_date: [date],
   }
 }) {
+  let { siteUrl } = siteInfo, dateStr = new Date(date).toDateString();
+
   return <div className='home_podcast-item'>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/podcasts`}>
+    <SamePageAnchor href={`${siteUrl}/podcasts`}>
       <p className='home__title'>{name}</p>
-      <p className='home__subtitle'> {new Date(date).toDateString()}</p>
+      <p className='home__subtitle'>{dateStr}</p>
       <iframe width="100%" height="250" scrolling="no" frameBorder="no"
         allow="autoplay" src={'https://w.soundcloud.com/player/'
           + `?url=https%3A//api.soundcloud.com/${type}s/${src}`

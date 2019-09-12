@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget, all as axall, spread as axspr } from 'axios';
-import { default as siteInfo } from '../utils/config';
+import getApiRequest from '../utils/get_api_request';
+import getImgAsset from '../utils/get_img_asset';
 
 function LandingInfo() {
   let [state, setState] = useState({
@@ -10,7 +10,7 @@ function LandingInfo() {
   });
 
   function currentShowName() {
-    return <p className='landing__show-name caps' key='landing-show-name'>
+    return <p className='landing__show-name caps'>
       {state.currentShow.title}
     </p>;
   }
@@ -19,37 +19,32 @@ function LandingInfo() {
     let { nowPlaying } = state, { artist, song: title } = nowPlaying;
 
     return [
-      <p className="landing__song-title caps" key='landing-song-title'>
-        {title} </p>,
-      <p className="landing__song-artist caps" key='landing-sort-artist'>
-        {` by ${artist}`}</p>
+      <p className="landing__song-title caps">{title} </p>,
+      <p className="landing__song-artist caps">{` by ${artist}`}</p>
     ];
   }
 
   useEffect(function () {
-    axall([
-      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-    ]).then(axspr((gotSpin) => {
+    getApiRequest('now_playing', function ({ data: [now] }) {
       setState({
-        currentShow: gotSpin.data[0].show[0],
+        currentShow: now.show[0],
         nowPlaying: {
-          artist: gotSpin.data[0].artist[0],
-          song: gotSpin.data[0].song[0],
+          artist: now.artist[0],
+          song: now.song[0],
         },
         interval: setInterval(function () {
-          axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-            .then((res) => {
-              setState({
-                currentShow: gotSpin.data[0].show[0],
-                nowPlaying: {
-                  artist: res.data[0].artist[0],
-                  song: res.data[0].song[0]
-                }
-              });
+          getApiRequest('/now_playing', ({ data: [then] }) => {
+            setState({
+              currentShow: then.show[0],
+              nowPlaying: {
+                artist: then.artist[0],
+                song: then.song[0]
+              }
             });
+          });
         }, 15000)
       });
-    }));
+    });
   }, []);
 
   let { currentShow, nowPlaying } = state;
@@ -66,12 +61,10 @@ function Landing() {
     let ret = '', h = new Date().getHours();
 
     if (h >= 6 && h < 18) {
-      ret = `url('${siteInfo.siteUrl
-      }/wp-content/themes/custom-react-theme/dist/images/tantalus-morning.jpg')`;
+      ret = `url('${getImgAsset('tantalus-morning.jpg')}`;
     }
     if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
-      ret = `url('${siteInfo.siteUrl
-      }/wp-content/themes/custom-react-theme/dist/images/tantalus-evening.jpg')`;
+      ret = `url('${getImgAsset('tantalus-evening.jpg')}`;
     }
     return ret;
   }
@@ -84,9 +77,7 @@ function Landing() {
 
   return (
     <div className='landing' style={{ backgroundImage: background() }}>
-      <div className='landing__box'>
-        <LandingInfo />
-      </div>
+      <div className='landing__box'><LandingInfo /></div>
       <a href='/playlists'>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>

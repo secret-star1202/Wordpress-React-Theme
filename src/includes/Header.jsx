@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget } from 'axios';
 import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import StreamPlayer from './StreamPlayer.jsx';
+import getApiRequest from '../utils/get_api_request';
+import getImgAsset from '../utils/get_img_asset';
 
 function HeaderMenu({ menuItems }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -46,22 +47,17 @@ function Header() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/menus`
-    ).then(
-      (res) => {
-        setState({ menuItems: res.data[0].items });
-      }
-    );
+    getApiRequest('menus', ({ data: [data] }) => {
+      setState({ menuItems: data.items });
+    });
   }, []);
 
-  let { menuItems } = state;
+  let { menuItems } = state, { siteUrl } = siteInfo;
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
-      <SamePageAnchor className='info-box__link' href={siteInfo.siteUrl}>
-        <img alt='KTUH FM'
-          src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png`} />
+      <SamePageAnchor className='info-box__link' href={siteUrl}>
+        <img alt='KTUH FM' src={getImgAsset('ktuh-fm-logo.png')} />
       </SamePageAnchor>
     </div>
     <div className='navbar-header'>
@@ -78,11 +74,11 @@ function Header() {
       <ul className='nav navbar-nav navbar-right'>
         <li className='nav-item'>
           <SamePageAnchor className='header__support-link'
-            href={`${siteInfo.siteUrl}/donate`}>
+            href={`${siteUrl}/donate`}>
             <button type='button' className='btn btn-md header__support-btn'>
               <span>
                 <SamePageAnchor className='header__support-link'
-                   href={`${siteInfo.siteUrl}/donate`}>DONATE</SamePageAnchor>
+                   href={`${siteUrl}/donate`}>DONATE</SamePageAnchor>
               </span>
             </button>
           </SamePageAnchor>

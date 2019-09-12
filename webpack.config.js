@@ -55,16 +55,6 @@ module.exports = {
           comments: false,
           plugins: ['./babel/hashify']
         }
-      },
-      {
-        test: /\.js$/,
-        include: /node_modules\/mediaelement/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['./babel/mejs_no_i18n', './babel/mejs_no_video']
-          }
-        }
       }
     ]
   }

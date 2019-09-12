@@ -67,6 +67,6 @@ function Home() {
 
   return [<Metamorph title='KTUH FM Honolulu | Radio for the People'
       description="KTUH Homepage" image="https://ktuh.org/img/ktuh-logo.jpg" />,
-    <HomeContent />, <Support key='support' />];
+    <HomeContent />, <Support />];
 }
 export default Home;

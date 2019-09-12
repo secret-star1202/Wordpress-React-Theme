@@ -9,11 +9,12 @@ export default function NewsListLatestReviewsItem({
 }) {
   let featuredImage = _embedded && _embedded['wp:featuredmedia']
     && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url || undefined;
+    && _embedded['wp:featuredmedia']['0'].source_url
+    || 'https://ktuh.org/img/ktuh-logo.png', { siteUrl } = siteInfo;
 
   return <div className='news-list__latest-review'>
-      <SamePageAnchor href={`${siteInfo.siteUrl}/reviews/${slug}`}>
-        <img src={featuredImage || 'https://ktuh.org/img/ktuh-logo.png'} />
+      <SamePageAnchor href={`${siteUrl}/reviews/${slug}`}>
+        <img src={featuredImage} />
         <p><b>{artist}</b></p><p>{title}</p>
       </SamePageAnchor>
     </div>;

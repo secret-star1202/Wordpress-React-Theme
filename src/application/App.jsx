@@ -30,8 +30,8 @@ let SeamlessRoute = ({ component: Component, ...rest }) => (
 
 const App = () => ([<div className='container'>
   <Switch>
-    <Route exact path="/" component={() => [<Landing key='landing' />,
-    <div className='spacer-lg' key='lg'/>]} />
+    <Route exact path="/" component={() => [<Landing />,
+    <div className='spacer-lg' />]} />
   </Switch>
   <Switch>
     <Route path="*" component={({ history, match }) => (
@@ -57,7 +57,6 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path="/not-found" component={NotFound}/>
       <SeamlessRoute path='/:slug' component={PagesItem} />
       <SeamlessRoute path="/" component={Home}/>
-      <SeamlessRoute path='*' component={NotFound} />
     </Switch>
   </div>
 </div>,

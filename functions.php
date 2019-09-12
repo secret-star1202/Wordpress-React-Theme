@@ -87,7 +87,6 @@ function init_scripts() {
   wp_enqueue_style('twbs-css', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
   wp_enqueue_script('twbs-js', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array('jquery-js'), '1.0', true);
 
-  wp_enqueue_style('player-style', get_template_directory_uri() . '/dist/mediaelementplayer.min.css');
   wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/main.css');
 
 

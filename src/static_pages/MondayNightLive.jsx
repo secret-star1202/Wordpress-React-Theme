@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
 import MNLItem from './MNLItem.jsx';
+import getApiRequest from '../utils/get_api_request';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {
@@ -14,9 +13,7 @@ export default function MondayNightLive() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/mnl_video`
-    ).then(({ data }) => {
+    getApiRequest('mnl_video', ({ data }) => {
       setState({
         videos: data
       });

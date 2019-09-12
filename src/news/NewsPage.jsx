@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import useParamMatch from '../hooks/useParamMatch';
+import useSlug from '../hooks/useSlug';
+import getApiRequest from '../utils/get_api_request';
 
 function NewsPage() {
-  let { slug } = useParamMatch(['slug']), [state, setState] = useState({
+  let slug = useSlug(), [state, setState] = useState({
     post: undefined
   });
 
   useEffect(function () {
-    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/posts?_embed&slug=${
-      slug.replace(/\/$/, '')}`).then(({ data }) => {
+    getApiRequest(`posts?_embed&slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
       setState({ post: data.length > 0 ? data[0] : null });
     });
   });
@@ -23,30 +21,29 @@ function NewsPage() {
 
   if (post) {
     let {
-      content, title, nickname, date
-    } = post;
+        content: { rendered: content }, title: { rendered: title }, nickname, date
+      } = post, dateObj = new Date(date);
 
-    return [<Metamorph title={`${title.rendered
+    return [<Metamorph title={`${title
     } - KTUH FM Honolulu | Radio for the People`}
-    description={renderSummary(content.rendered, 50)} />,
-    <h1 key="header-title" className='general__header'>
-      {title.rendered}</h1>,
-    <div key="radioblog-back-link" className='show__link'>
+    description={renderSummary(content, 50)} />,
+    <h1 className='general__header'>{title}</h1>,
+    <div className='show__link'>
       <SamePageAnchor href='/radioblog' className='back-to'>
         ← Back to Radioblog
       </SamePageAnchor>
     </div>,
-    <div className='news-item' key="name-submitted">
+    <div className='news-item'>
       <p className='news-item__author'>
           <b>Posted by {nickname} at</b>
         <br />
-        {`${new Date(date).toDateString()} at ${
-          new Date(date).toLocaleTimeString()}`}
+        {`${dateObj.toDateString()} at ${dateObj.toLocaleTimeString()}`}
       </p>
       <div className='news-item__body'
         dangerouslySetInnerHTML={{ __html: content.rendered }} />
     </div>];
   }
+
   if (post === null) {
     return <Redirect to='/not-found' />;
   }

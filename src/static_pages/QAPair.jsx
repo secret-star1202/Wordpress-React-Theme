@@ -21,7 +21,7 @@ export default function QAPair({ question, answer }) {
     <div className='faq__section-qna-content'>
       <p onClick={handleClick} className='faq__question'><span>{question}</span>
       </p>
-      <p className={`faq__answer ${isExpanded()}`} dangerouslySetInnerHTML={
+      <p className={`faq__answer${isExpanded()}`} dangerouslySetInnerHTML={
         { __html: answer }
       } />
     </div>

@@ -1,20 +1,15 @@
 import React, { useState, useRef } from 'react';
 
 export default function MediaElement({ src }) {
-  let [playing, setPlaying] = useState(false),
-    player = useRef(null);
+  let [playing, setPlaying] = useState(false), player = useRef(null);
 
   function handleClick() {
-    if (!playing) {
-      player.current.play();
-    } else {
-      player.current.pause();
-    }
+    player.current[playing ? 'pause' : 'play']();
     setPlaying(!playing);
   }
 
   return <div className="player__container">
-    <audio ref={player} preload='none' src={src}></audio>
+    <audio ref={player} preload='none' {...{ src }}></audio>
     <button type="button" onClick={() => handleClick()}>
       {playing ? '■' : '►'}
     </button>

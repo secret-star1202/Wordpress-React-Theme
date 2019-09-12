@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
+import getApiRequest from '../utils/get_api_request';
 
 export default function Donate() {
   let [state, setState] = useState({
-    text: undefined
+    text: ''
   });
 
   useEffect(function () {
     if (!state.text) {
-      axget(
-        `${siteInfo.siteUrl}/wp-json/wp/v2/pages?slug=donate`
-      ).then(({ data: [item] }) => {
-        setState({
-          text: item.content.rendered
-        });
+      getApiRequest('pages?slug=donate', ({ data: [{ content: { rendered: text } }] }) => {
+        setState({ text });
       });
     }
   }, []);
