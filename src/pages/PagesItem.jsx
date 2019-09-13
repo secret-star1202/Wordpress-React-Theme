@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import ContentBox from '../reusables/ContentBox.jsx';
 
 function PagesItem() {
   let slug = useSlug(), [state, setState] = useState({
@@ -21,8 +22,7 @@ function PagesItem() {
     let { title: { rendered: title }, content: { rendered: content } } = page;
 
     return [<HeadStuff title={title} />,
-      <div className="page__content" dangerouslySetInnerHTML={{ __html: content }} />
-    ];
+      <ContentBox className="page__content" {...{ content }} />];
   }
   if (page === undefined) {
     return null;

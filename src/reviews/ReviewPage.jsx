@@ -6,6 +6,7 @@ import getApiRequest from '../utils/get_api_request';
 import getFeaturedImg from '../utils/get_featured_img';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import getFullUrl from '../utils/get_full_url';
+import ContentBox from '../reusables/ContentBox.jsx';
 
 function ReviewPage() {
   let slug = useSlug(), [state, setState] = useState({
@@ -50,8 +51,7 @@ function ReviewPage() {
           <div className='review-page__byline'>
             {`Review by KTUH FM • ${new Date(submitted).toDateString()}`}
           </div>
-          <div className='review-page__body' dangerouslySetInnerHTML=
-            {{ __html: content }}/>
+          <ContentBox className='review-page__body' {...{ content }}/>
         </div>
       </div>
     ];

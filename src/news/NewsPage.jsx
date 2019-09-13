@@ -6,6 +6,7 @@ import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
 import siteInfo from '../utils/config';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import ContentBox from '../reusables/ContentBox.jsx';
 
 function NewsPage() {
   let slug = useSlug(), [state, setState] = useState({
@@ -37,7 +38,7 @@ function NewsPage() {
         <br />
         {`${dateObj.toDateString()} at ${dateObj.toLocaleTimeString()}`}
       </p>
-      <div className='news-item__body' dangerouslySetInnerHTML={{ __html: content }} />
+      <ContentBox className='news-item__body' {...{ content }} />
     </div>];
   }
 
