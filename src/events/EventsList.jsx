@@ -1,13 +1,9 @@
 import React from 'react';
-import { Metamorph } from 'react-metamorph';
 import EventsListContent from './EventsListContent.jsx';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function EventsList() {
-  return [<Metamorph title=
-      "Community Events & Calendar - KTUH FM Honolulu | Radio for the People"
-      description="KTUH Community Events & Calendar" image=
-      'https://ktuh.org/img/ktuh-logo.jpg' />,
-    <h2 className='general__header'>Community Events & Calendar</h2>,
+  return [<HeadStuff title="Community Events & Calendar" />,
     <div className='news-list__wrapper'>
       <EventsListContent /></div>
   ];

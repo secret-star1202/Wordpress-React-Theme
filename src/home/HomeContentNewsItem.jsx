@@ -1,8 +1,9 @@
 import React from 'react';
-import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getImgAsset from '../utils/get_img_asset';
+import getFeaturedImg from '../utils/get_featured_img';
+import getFullUrl from '../utils/get_full_url';
 
 export default function HomeContentNewsItem({
   item: {
@@ -10,13 +11,10 @@ export default function HomeContentNewsItem({
     nickname, date
   }
 }) {
-  let featuredImage = _embedded && _embedded['wp:featuredmedia']
-    && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url
-    || getImgAsset('mstile-310x310.png');
+  let featuredImage = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
 
   return <div className='home__news-item'>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/radioblog/${slug}`}><img
+    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
       className='home__news-img' src={featuredImage} />
       <h4 className='home__title'>{title}</h4>
     </SamePageAnchor>

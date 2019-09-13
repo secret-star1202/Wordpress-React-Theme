@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import PodcastItem from './PodcastItem.jsx';
 import { default as siteInfo } from '../utils/config';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function PodcastList() {
   let [state, setState] = useState({
@@ -15,15 +15,12 @@ export default function PodcastList() {
     });
   });
 
-  let { podcasts } = state;
+  let { podcasts } = state, { siteUrl } = siteInfo;
 
-  return [
-    <Metamorph title="Podcasts - KTUH FM Honolulu | Podcasts for the People"
-      description="KTUH Podcasts" image='https://ktuh.org/img/ktuh-logo.jpg'/>,
-    <h2 className='general__header'>KTUH Podcasts</h2>,
+  return [<HeadStuff title="KTUH Podcasts" />,
     <div className='grid__container'>
       {podcasts.map(({ playlist_id: playlistId }) => <PodcastItem {...{ playlistId }} />)}
       <div className='grid__item__submit'><a><div className='submit__podcast'>
-        <div className='submit__podcast'><h3><a href={`${siteInfo.siteUrl}/submit-podcasts`}>
+        <div className='submit__podcast'><h3><a href={`${siteUrl}/submit-podcasts`}>
           Submit a podcast</a></h3></div></div></a></div></div>];
 }

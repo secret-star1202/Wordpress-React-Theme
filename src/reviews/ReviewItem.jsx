@@ -1,19 +1,17 @@
 import React from 'react';
-import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import getFeaturedImg from '../utils/get_featured_img';
+import getFullUrl from '../utils/get_full_url';
 
 function ReviewItem({
   item: {
     _embedded, slug, title: [title], artist: [artist]
   }
 }) {
-  let featuredImage = _embedded && _embedded['wp:featuredmedia']
-    && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url
-    || 'https://ktuh.org/img/ktuh-logo.png';
+  let featuredImage = getFeaturedImg(_embedded);
 
   return <div className='review-item'>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews/${slug}`}>
+    <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img className='review-item__image' src={featuredImage} />
       <div className='review-item__release'>{title}</div>
       <div className='review-item__artist'>{artist}</div>

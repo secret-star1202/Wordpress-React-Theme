@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import HomeContentNewsItem from './HomeContentNewsItem.jsx';
-import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getApiRequest from '../utils/get_api_request';
+import getFullUrl from '../utils/get_full_url';
 
 function HomeContentNews() {
   let [state, setState] = useState({
@@ -15,13 +15,13 @@ function HomeContentNews() {
     });
   }, []);
 
-  let { posts } = state, { siteUrl } = siteInfo;
+  let { posts } = state, link = getFullUrl('radioblog');
 
   return posts.length ? <div className='home__news'>
-    <SamePageAnchor href={`${siteUrl}/radioblog`}>
+    <SamePageAnchor href={link}>
       <h3 className='home__section'>RADIOBLOG</h3>
     </SamePageAnchor>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/radioblog`}
+    <SamePageAnchor href={link}
       className='home__more'>MORE NEWS{'  '}
       <span className='glyphicon glyphicon-arrow-right'></span>
     </SamePageAnchor>

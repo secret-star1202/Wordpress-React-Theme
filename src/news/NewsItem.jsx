@@ -2,16 +2,14 @@ import React from 'react';
 import renderSummary from '../utils/summary';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import getFeaturedImg from '../utils/get_featured_img';
 
 function NewsItem({
   item: {
     _embedded, slug, title: { rendered: title }, content: { rendered: content }, nickname
   }
 }) {
-  let featuredImage = _embedded && _embedded['wp:featuredmedia']
-    && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url
-    || 'https://ktuh.org/img/ktuh-logo.png', { siteUrl } = siteInfo;
+  let featuredImage = getFeaturedImg(_embedded), { siteUrl } = siteInfo;
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
@@ -21,8 +19,8 @@ function NewsItem({
       </SamePageAnchor>
     </div>
     <div className='news-list__info'>
-      <SamePageAnchor className='news-list__title' href={`${
-        siteUrl}/radioblog/${slug}`}><h3>{title}</h3>
+      <SamePageAnchor className='news-list__title' href={`${siteUrl
+      }/radioblog/${slug}`}><h3>{title}</h3>
       </SamePageAnchor>
       <p className='news-list__excerpt'>{renderSummary(content, 50)}
         {'  '}

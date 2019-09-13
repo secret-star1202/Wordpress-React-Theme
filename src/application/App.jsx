@@ -21,12 +21,16 @@ import StaffPage from '../static_pages/StaffPage.jsx';
 import Donate from '../static_pages/Donate.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 
-let SeamlessRoute = ({ component: Component, ...rest }) => (
-   <Route exact {...rest} component={({ history, match }) => (
-    <GeneralContextProvider initialVals={{ history, match }}>
-      <Component />
-    </GeneralContextProvider>
-   )} />);
+let WrappedComponent = function ({ history, match, component: Component }) {
+  return <GeneralContextProvider initialVals={{ history, match }}>
+    <Component />
+  </GeneralContextProvider>;
+};
+
+let SeamlessRoute = ({ component, ...rest }) => (
+    <Route exact {...rest} component={({ history, match }) => (
+      <WrappedComponent {...{ history, match, component }} />)} />
+);
 
 const App = () => ([<div className='container'>
   <Switch>
@@ -35,9 +39,7 @@ const App = () => ([<div className='container'>
   </Switch>
   <Switch>
     <Route path="*" component={({ history, match }) => (
-      <GeneralContextProvider initialVals={{ history, match }}>
-        <Header />
-      </GeneralContextProvider>)} />
+      <WrappedComponent {...{ history, match }} component={Header} />)} />
   </Switch>
   <div id="main">
     <Switch>

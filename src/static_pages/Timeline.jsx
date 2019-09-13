@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function TimelineNode({ title, body }) {
   return <div className='timeline__node'>
@@ -27,9 +27,7 @@ export default function Timeline() {
 
   let { timelineData } = state;
 
-  return [<Metamorph title="Timeline - KTUH FM Honolulu | Radio for the People"
-    description="KTUH Timeline" image='https://ktuh.org/img/ktuh-logo.jpg' />,
-  <h2 className='general__header'>KTUH Timeline</h2>,
+  return [<HeadStuff title="KTUH Timeline" />,
   <div className='timeline'>
     <div className='timeline__content'>
       {timelineData.map(([title, body]) => (

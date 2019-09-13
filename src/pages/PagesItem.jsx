@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function PagesItem() {
   let slug = useSlug(), [state, setState] = useState({
@@ -20,9 +20,7 @@ function PagesItem() {
   if (page) {
     let { title: { rendered: title }, content: { rendered: content } } = page;
 
-    return [<Metamorph title={`${title} - KTUH FM Honolulu | Radio for the People`}
-      image='https://ktuh.org/img/ktuh-logo.jpg' />,
-      <h2 className='general__header'>{title}</h2>,
+    return [<HeadStuff title={title} />,
       <div className="page__content" dangerouslySetInnerHTML={{ __html: content }} />
     ];
   }

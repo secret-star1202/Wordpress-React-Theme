@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import ChartTable from './ChartTable.jsx';
 import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
+import getFullUrl from '../utils/get_full_url';
 
 export default function ChartPage() {
   let slug = useSlug(), [state, setState] = useState({
@@ -21,14 +22,9 @@ export default function ChartPage() {
 
   if (chart) {
     let { chart_table: [chartData], title: { rendered: title } } = chart;
-    return [
-      <Metamorph title={`${title}`
-      + ' - KTUH FM Honolulu | Radio for the People'}
-        description={title} image='https://ktuh.org/img/ktuh-logo.jpg' />,
-      <h1 className="general__header">
-        <b>{title}</b></h1>,
+    return [<HeadStuff title={title} />,
       <div className='review__link'>
-        <SamePageAnchor href='/charts' className='back-to'>
+        <SamePageAnchor href={getFullUrl('charts')} className='back-to'>
           ← all charts
         </SamePageAnchor>
       </div>,

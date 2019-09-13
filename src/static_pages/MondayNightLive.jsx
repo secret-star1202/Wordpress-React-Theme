@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import MNLItem from './MNLItem.jsx';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {
@@ -22,12 +22,9 @@ export default function MondayNightLive() {
 
   let { videos } = state;
 
-  return [<Metamorph description="KTUH Monday Night Live" title=
-    "Monday Night Live- KTUH FM Honolulu | Radio for the People" image=
-      'https://ktuh.org/img/ktuh-logo.jpg' />, <h2 className='general__header'>
-      Monday Night Live</h2>, <div className="show__wrapper"><div className=
-        "show__content"><div className="show__image-div"><img className=
-        "show__image" src=
+  return [<HeadStuff title="Monday Night Live" />,
+      <div className="show__wrapper"><div className="show__content">
+        <div className="show__image-div"><img className="show__image" src=
         "https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/Moday-Night-Live-ad.jpg"/>
       </div><div className="show__info__head"><h5 className="show__time">
         Mondays from 9:00PM-12:00AM</h5><div className="show-item__genres">

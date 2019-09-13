@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
-import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getApiRequest from '../utils/get_api_request';
+import getFullUrl from '../utils/get_full_url';
 
 function HomeContentReviews() {
   let [state, setState] = useState({
@@ -15,13 +15,13 @@ function HomeContentReviews() {
     });
   }, []);
 
-  let { reviews } = state;
+  let { reviews } = state, link = getFullUrl('reviews');
 
-  return reviews && reviews.length ? <div className='home__reviews'>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`}>
+  return reviews.length ? <div className='home__reviews'>
+    <SamePageAnchor href={link}>
       <h3 className="home__section">MUSIC REVIEWS</h3>
     </SamePageAnchor>
-    <SamePageAnchor href={`${siteInfo.siteUrl}/reviews`} className='home__more'>
+    <SamePageAnchor href={link} className='home__more'>
       MORE REVIEWS{'  '}
       <span className='glyphicon glyphicon-arrow-right'></span>
     </SamePageAnchor>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { default as siteInfo } from '../utils/config';
 import getApiRequest from '../utils/get_api_request';
 import getImgAsset from '../utils/get_img_asset';
 
@@ -25,20 +26,28 @@ function LandingInfo() {
   }
 
   useEffect(function () {
-    getApiRequest('now_playing', function ({ data: [now] }) {
+    getApiRequest('now_playing', function ({
+      data: [{
+        show: [showNow], artist: [artistNow], song: [songNow]
+      }]
+    }) {
       setState({
-        currentShow: now.show[0],
+        currentShow: showNow,
         nowPlaying: {
-          artist: now.artist[0],
-          song: now.song[0],
+          artist: artistNow,
+          song: songNow,
         },
         interval: setInterval(function () {
-          getApiRequest('/now_playing', ({ data: [then] }) => {
+          getApiRequest('/now_playing', ({
+            data: [{
+              show: [showThen], artist: [artistThen], song: [songThen]
+            }]
+          }) => {
             setState({
-              currentShow: then.show[0],
+              currentShow: showThen,
               nowPlaying: {
-                artist: then.artist[0],
-                song: then.song[0]
+                artist: artistThen,
+                song: songThen
               }
             });
           });
@@ -58,15 +67,9 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    let ret = '', h = new Date().getHours();
-
-    if (h >= 6 && h < 18) {
-      ret = `url('${getImgAsset('tantalus-morning.jpg')}`;
-    }
-    if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
-      ret = `url('${getImgAsset('tantalus-evening.jpg')}`;
-    }
-    return ret;
+    let h = new Date().getHours();
+    return `url(${getImgAsset(`tantalus-${
+      ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) ? 'evening' : 'morning'}`)}.jpg`;
   }
 
   function handleClickDownArrow() {
@@ -78,7 +81,7 @@ function Landing() {
   return (
     <div className='landing' style={{ backgroundImage: background() }}>
       <div className='landing__box'><LandingInfo /></div>
-      <a href='/playlists'>
+      <a href={`${siteInfo.siteUrl}/playlists`}>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>
             View Current{' '}

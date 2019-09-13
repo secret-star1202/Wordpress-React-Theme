@@ -7,7 +7,7 @@ export default function Donate() {
   });
 
   useEffect(function () {
-    if (!state.text) {
+    if (state.text === '') {
       getApiRequest('pages?slug=donate', ({ data: [{ content: { rendered: text } }] }) => {
         setState({ text });
       });

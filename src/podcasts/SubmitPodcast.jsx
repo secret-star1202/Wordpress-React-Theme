@@ -1,11 +1,8 @@
 import React from 'react';
-import { Metamorph } from 'react-metamorph';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function SubmitPodcast() {
-  return [<Metamorph title="Submit Podcast - KTUH FM Honolulu | Radio for the People"
-    description="Submit Podcast" image='https://ktuh.org/img/ktuh-logo.jpg'
-  />,
-  <h2 className='general__header'>Submit a Podcast</h2>,
+  return [<HeadStuff title="Submit Podcast" headerText="Submit a Podcast" />,
     <h5 className="show__time">
       Do you want to hear your podcast on KTUH?</h5>,
     <div className="show-item__genres">

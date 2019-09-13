@@ -10,9 +10,9 @@ function Footer() {
       <div className='footer__mission'>
         <h5 className='footer__subheading'>Our Mission</h5>
         <p className='mission__body'>
-          To provide the people of Honolulu with alternative
-          programming for the cultural and educational enrichment of the
-          students of the university system and the community.
+          To provide the people of Honolulu with alternative programming for the
+          cultural and educational enrichment of the students of the university
+          system and the community.
         </p>
       </div>
     </div>

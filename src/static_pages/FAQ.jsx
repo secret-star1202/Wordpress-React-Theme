@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import QASection from './QASection.jsx';
 import getApiRequest from '../utils/get_api_request';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function FAQ() {
   let [state, setState] = useState({
@@ -31,10 +31,7 @@ export default function FAQ() {
 
   let { faqData } = state;
 
-  return [<Metamorph title=
-    'Frequently Asked Questions - KTUH FM Honolulu | Radio for the People'
-    description="KTUH FAQ" image='https://ktuh.org/img/ktuh-logo.jpg' />,
-  <h2 className='general__header'>Frequently Asked Questions</h2>,
+  return [<HeadStuff title='Frequently Asked Questions' />,
   <div className='faq__content'>
     {faqData.map(({ title, pairs }) => (
       <QASection {...{ title, pairs }} />

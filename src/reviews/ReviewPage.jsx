@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
+import getFeaturedImg from '../utils/get_featured_img';
+import HeadStuff from '../reusables/HeadStuff.jsx';
+import getFullUrl from '../utils/get_full_url';
 
 function ReviewPage() {
   let slug = useSlug(), [state, setState] = useState({
@@ -30,18 +32,13 @@ function ReviewPage() {
       date_gmt: submitted, content: { rendered: content }
     } = review;
 
-    let featuredImage = _embedded && _embedded['wp:featuredmedia']
-      && _embedded['wp:featuredmedia']['0']
-      && _embedded['wp:featuredmedia']['0'].source_url
-      || 'https://ktuh.org/img/ktuh-logo.jpg';
+    let featuredImage = getFeaturedImg(_embedded);
 
     return [
-      <Metamorph title={`Review of "${title} by ${artist
-      } - KTUH FM Honolulu | Radio for the People`} description={
-        `Review of ${title} by ${artist}`} image={featuredImage} />,
-      <h1 className="general__header"><b>{title}</b><br />{artist}</h1>,
+      <HeadStuff title={`Review of "${title}" by ${artist}"`}
+        image={featuredImage} headerText={`${title}\n${artist}`}/>,
       <div className='review__link'>
-        <SamePageAnchor href='/reviews' className='back-to'>
+        <SamePageAnchor href={getFullUrl('reviews')} className='back-to'>
           ← all reviews
         </SamePageAnchor>
       </div>,
