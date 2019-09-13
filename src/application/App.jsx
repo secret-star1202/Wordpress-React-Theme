@@ -34,7 +34,7 @@ let SeamlessRoute = ({ component, ...rest }) => (
 
 const App = () => ([<div className='container'>
   <Switch>
-    <Route exact path="/" component={() => [<Landing />,
+    <SeamlessRoute exact path="/" component={() => [<Landing />,
     <div className='spacer-lg' />]} />
   </Switch>
   <Switch>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { default as siteInfo } from '../utils/config';
 import getApiRequest from '../utils/get_api_request';
 import getImgAsset from '../utils/get_img_asset';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import getFullUrl from '../utils/get_full_url';
 
 function LandingInfo() {
   let [state, setState] = useState({
@@ -81,14 +82,14 @@ function Landing() {
   return (
     <div className='landing' style={{ backgroundImage: background() }}>
       <div className='landing__box'><LandingInfo /></div>
-      <a href={`${siteInfo.siteUrl}/playlists`}>
+      <SamePageAnchor href={getFullUrl('playlist')}>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>
             View Current{' '}
           </span>Playlist{'  '}
           <span className='glyphicon glyphicon-eye-open' />
         </h6>
-      </a>
+      </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
     </div>
   );
