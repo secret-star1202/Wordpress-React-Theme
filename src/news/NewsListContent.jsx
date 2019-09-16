@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EverAfter from 'react-everafter';
+import { Paginator } from 'react-everafter';
 import NewsItem from './NewsItem.jsx';
 import getApiRequest from '../utils/get_api_request';
 
@@ -20,8 +20,8 @@ function NewsListContent() {
 
   return <div className='news-list__content'>
     <div className='news-list'>
-      {posts.length ? <EverAfter.Paginator wrapper={NewsItem} perPage={4}
-        items={posts} truncate={true} /> : <p>No results.</p>}
+      {posts.length ? <Paginator wrapper={NewsItem} perPage={4} items={posts}
+        truncate={true} /> : <p>No results.</p>}
     </div>
   </div>;
 }

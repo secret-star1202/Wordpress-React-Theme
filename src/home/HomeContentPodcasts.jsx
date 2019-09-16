@@ -3,6 +3,7 @@ import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
 import getApiRequest from '../utils/get_api_request';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getFullUrl from '../utils/get_full_url';
+import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentPodcasts() {
   let [state, setState] = useState({
@@ -24,7 +25,7 @@ function HomeContentPodcasts() {
     </SamePageAnchor>
     <SamePageAnchor href={link} className='home__more'>
       MORE PODCASTS{'  '}
-      <span className='glyphicon glyphicon-arrow-right'/>
+      <Glyph symbol='arrow-right' />
     </SamePageAnchor>
     <div className='home__podcast-content'>
       {podcasts.slice(0, 3).map(item => (

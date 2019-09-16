@@ -21,8 +21,17 @@ function my_settings_init(){
         'my_settings_sanitize' // Sanitize callback function
     );
 
+    register_setting(
+        'general',             // Options group
+        'support_text',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
     add_settings_section('api-credentials', 'API Credentials',
       'station_credentials_fxn', 'general');
+
+    add_settings_section('misc-settings', 'API Credentials',
+      'misc_settings_fxn', 'general');
 
     add_settings_field(
         'spinitron_key',
@@ -46,6 +55,14 @@ function my_settings_init(){
         'calendar_key_callback',
         'general',
         'api-credentials'
+    );
+
+    add_settings_field(
+        'support_text',
+        'Support Text',
+        'support_text_callback',
+        'general',
+        'misc-settings'
     );
 }
 
@@ -73,12 +90,24 @@ function calendar_key_callback(){
     <?php
 }
 
+function support_text_callback(){
+    ?>
+    <label for="calendar_key">
+      <textarea id="calendar_key" name="support_text"><?php echo get_option( 'support_text' ); ?></textarea>
+    </label>
+    <?php
+}
+
 function my_settings_sanitize( $input ){
     return $input ;
 }
 
 function station_credentials_fxn($arg) {
   echo '<p>Enter credentials here.</p>';
+}
+
+function misc_settings_fxn($arg) {
+  echo '<h2>Miscellaneous Settings</h2>';
 }
 
 function init_scripts() {
@@ -433,6 +462,14 @@ add_action('rest_api_init', function() {
             $str = curl_exec($ch);
             curl_close($ch);
             return new \WP_REST_Response(json_decode($str), 200);
+          }
+    ));
+
+    register_rest_route( 'wp/v2', '/support_text', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $str = get_option('support_text');
+            return new \WP_REST_Response($str, 200);
           }
     ));
 

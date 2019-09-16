@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EverAfter from 'react-everafter';
+import { Paginator } from 'react-everafter';
 import ReviewItem from './ReviewItem.jsx';
 import getApiRequest from '../utils/get_api_request';
 import HeadStuff from '../reusables/HeadStuff.jsx';
@@ -20,8 +20,7 @@ function ReviewList() {
   if (reviews.length) {
     return [<HeadStuff title="Reviews" headerText="Music Reviews" />,
     <div className="reviews__content">
-      <EverAfter.Paginator wrapper={ReviewItem} truncate={true} perPage={8}
-        items={reviews} />
+      <Paginator wrapper={ReviewItem} truncate={true} perPage={8} items={reviews} />
     </div>];
   }
   return null;

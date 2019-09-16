@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QASection from './QASection.jsx';
 import getApiRequest from '../utils/get_api_request';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import ContentBox from '../reusables/ContentBox.jsx';
 
 export default function FAQ() {
   let [state, setState] = useState({
@@ -32,9 +33,9 @@ export default function FAQ() {
   let { faqData } = state;
 
   return [<HeadStuff title='Frequently Asked Questions' />,
-  <div className='faq__content'>
+  <ContentBox className='faq__content'>
     {faqData.map(({ title, pairs }) => (
       <QASection {...{ title, pairs }} />
     ))}
-  </div>];
+  </ContentBox>];
 }

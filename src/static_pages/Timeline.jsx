@@ -15,12 +15,15 @@ export default function Timeline() {
   });
 
   useEffect(function () {
-    getApiRequest('timeline', ({ data: [item] }) => {
+    getApiRequest('timeline', ({
+      data: [{
+        nodes: {
+          nodes_date_string: nodesDateString, nodes_body: nodesBody
+        }
+      }]
+    }) => {
       setState({
-        timelineData:
-        item.nodes.nodes_date_string.map((str, i) => (
-          [str, item.nodes.nodes_body[i]]
-        ))
+        timelineData: nodesDateString.map((str, i) => ([str, nodesBody[i]]))
       });
     });
   }, []);
@@ -30,8 +33,7 @@ export default function Timeline() {
   return [<HeadStuff title="KTUH Timeline" />,
   <div className='timeline'>
     <div className='timeline__content'>
-      {timelineData.map(([title, body]) => (
-        <TimelineNode {...{ title, body }} />))}
+      {timelineData.map(([title, body]) => <TimelineNode {...{ title, body }} />)}
     </div>
   </div>];
 }

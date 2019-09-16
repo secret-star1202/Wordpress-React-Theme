@@ -4,7 +4,7 @@ import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import useSlug from '../hooks/useSlug';
 import getApiRequest from '../utils/get_api_request';
-import siteInfo from '../utils/config';
+import getFullUrl from '../utils/get_full_url';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
 
@@ -28,7 +28,7 @@ function NewsPage() {
 
     return [<HeadStuff title={title} description={renderSummary(content, 50)} />,
     <div className='show__link'>
-      <SamePageAnchor href={`${siteInfo.siteUrl}/radioblog`} className='back-to'>
+      <SamePageAnchor href={getFullUrl('radioblog')} className='back-to'>
         ← Back to Radioblog
       </SamePageAnchor>
     </div>,

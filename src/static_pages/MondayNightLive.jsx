@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MNLItem from './MNLItem.jsx';
 import getApiRequest from '../utils/get_api_request';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import Glyph from '../reusables/Glyph.jsx';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {
@@ -22,19 +23,20 @@ export default function MondayNightLive() {
 
   let { videos } = state;
 
+
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">
         <div className="show__image-div"><img className="show__image" src=
         "https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/Moday-Night-Live-ad.jpg"/>
       </div><div className="show__info__head"><h5 className="show__time">
         Mondays from 9:00PM-12:00AM</h5><div className="show-item__genres">
-        <span className="glyphicon glyphicon-music"></span> Live Music, Local Music
+        <Glyph symbol="music" />{' '}Live Music, Local Music
         </div><div className="show__buttons"><div className="button__wrapper">
           <p className="show__tag"><button type="button" data-path=
             "https://stream.ktuh.org/archives/1.monday/9-12am.mp3" className=
             "btn btn-default show__play-btn color-button purple-button"
-            aria-label="Left Align"><span className="glyphicon glyphicon-play"
-            aria-hidden="true"></span> Play latest episode</button></p></div>
+            aria-label="Left Align"><Glyph symbol="play" />
+              {' '}Play latest episode</button></p></div>
             </div><div className="container" style={{
               boxSizing: 'border-box',
               maxWidth: '1920px',

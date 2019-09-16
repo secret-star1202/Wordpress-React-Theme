@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import HomeSidebarNext from './HomeSidebarNext.jsx';
 import getApiRequest from '../utils/get_api_request';
 
 export default function HomeSidebar() {
@@ -15,7 +14,20 @@ export default function HomeSidebar() {
 
   let { nextOnAir } = state;
 
-  return nextOnAir && <div className='home__sidebar'>
-    <HomeSidebarNext {...{ nextOnAir }} />
-  </div> || null;
+  if (!nextOnAir) return null;
+
+  let { title, start, end } = nextOnAir, startStr = new Date(start).toLocaleTimeString(),
+    endStr = new Date(end).toLocaleTimeString();
+
+  return <div className='home__sidebar'>
+    <div className='home__next-show'>
+      <div className='home__next-show-deets'>
+        <p className="home__next-on-air">Next On Air</p>
+        <p className='home__next-show-name'>{title}</p>
+        <p className='home__next-show-time'>
+          {`${startStr} - ${endStr}`}
+        </p>
+      </div>
+    </div>
+  </div>;
 }

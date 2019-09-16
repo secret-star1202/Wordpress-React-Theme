@@ -3,6 +3,7 @@ import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getApiRequest from '../utils/get_api_request';
 import getFullUrl from '../utils/get_full_url';
+import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentReviews() {
   let [state, setState] = useState({
@@ -23,7 +24,7 @@ function HomeContentReviews() {
     </SamePageAnchor>
     <SamePageAnchor href={link} className='home__more'>
       MORE REVIEWS{'  '}
-      <span className='glyphicon glyphicon-arrow-right'></span>
+      <Glyph symbol='arrow-right' />
     </SamePageAnchor>
     <div className='home__reviews-content'>
       {reviews.slice(0, 5).map(item => (

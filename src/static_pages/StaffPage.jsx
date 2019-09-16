@@ -9,9 +9,9 @@ export default function StaffPage() {
   });
 
   useEffect(function () {
-    getApiRequest('staff', ({ data }) => {
+    getApiRequest('staff', ({ data: staff }) => {
       setState({
-        staff: data
+        staff
       });
     });
   });

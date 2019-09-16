@@ -5,6 +5,7 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import StreamPlayer from './StreamPlayer.jsx';
 import getApiRequest from '../utils/get_api_request';
 import getImgAsset from '../utils/get_img_asset';
+import getFullUrl from '../utils/get_full_url';
 
 function HeaderMenu({ menuItems }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -52,7 +53,7 @@ function Header() {
     });
   }, []);
 
-  let { menuItems } = state, { siteUrl } = siteInfo;
+  let { menuItems } = state, { siteUrl } = siteInfo, donateLink = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
@@ -61,8 +62,8 @@ function Header() {
       </SamePageAnchor>
     </div>
     <div className='navbar-header'>
-      <button type='button' className='navbar-toggle collapsed'
-        data-toggle='collapse' data-target='#navigation'>
+      <button type='button' className='navbar-toggle collapsed' data-toggle='collapse'
+        data-target='#navigation'>
         <span className='sr-only'>Toggle navigation</span>
         <span className='icon-bar'></span>
         <span className='icon-bar'></span>
@@ -73,12 +74,11 @@ function Header() {
       {menuItems.length ? <HeaderMenu {...{ menuItems }} /> : null}
       <ul className='nav navbar-nav navbar-right'>
         <li className='nav-item'>
-          <SamePageAnchor className='header__support-link'
-            href={`${siteUrl}/donate`}>
+          <SamePageAnchor className='header__support-link' href={donateLink}>
             <button type='button' className='btn btn-md header__support-btn'>
               <span>
-                <SamePageAnchor className='header__support-link'
-                   href={`${siteUrl}/donate`}>DONATE</SamePageAnchor>
+                <SamePageAnchor className='header__support-link' href={donateLink}>
+                  DONATE</SamePageAnchor>
               </span>
             </button>
           </SamePageAnchor>

@@ -3,6 +3,7 @@ import getApiRequest from '../utils/get_api_request';
 import getImgAsset from '../utils/get_img_asset';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import getFullUrl from '../utils/get_full_url';
+import Glyph from '../reusables/Glyph.jsx';
 
 function LandingInfo() {
   let [state, setState] = useState({
@@ -87,7 +88,7 @@ function Landing() {
           <span className='landing__view-current'>
             View Current{' '}
           </span>Playlist{'  '}
-          <span className='glyphicon glyphicon-eye-open' />
+          <Glyph symbol='eye-open' />
         </h6>
       </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />

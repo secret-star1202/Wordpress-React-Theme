@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import getApiRequest from '../utils/get_api_request';
+import getFullUrl from '../utils/get_full_url';
 
 export default function Support() {
-  return <div className='support'>
+  let [state, setState] = useState({
+    text: ''
+  });
+
+  useEffect(function () {
+    getApiRequest('support_text', ({ data }) => {
+      setState({ text: data });
+    });
+  });
+
+  return state.text.length ? <div className='support'>
     <h1 className='support__heading'>College Radio Needs Your Support!</h1>
-    <p className='support__about'>
-      KTUH is a non-commercial radio station broadcasting from the UHM. In
-      addition to funding from UHM student fees, KTUH also looks to donations
-      from the community.
-    </p>
-    <a href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'
-    className='color-button purple-button'>Donate Now</a>
-  </div>;
+    <p className='support__about'>{state.text}</p>
+    <a href={getFullUrl('donate')} className='color-button purple-button'>Donate Now</a>
+  </div> : null;
 }

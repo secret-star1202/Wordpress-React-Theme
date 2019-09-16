@@ -29,7 +29,8 @@ function EventsListContent() {
   let { events } = state;
 
   if (events.length) {
-    return <div className='events-list__content'>
+    return <div className='news-list__wrapper'>
+      <div className='events-list__content'>
       <div className="events-list__over">
         {events.map(event => <EventItem item={event} />)}
       </div>
@@ -50,7 +51,7 @@ function EventsListContent() {
           }
         )} />
       </div>
-    </div>;
+    </div></div>;
   }
   return null;
 }
