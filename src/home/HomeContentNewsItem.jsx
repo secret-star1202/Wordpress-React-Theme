@@ -1,25 +1,26 @@
 import React from 'react';
-import { default as siteInfo } from '../utils/config';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
 
-export default function HomeContentNewsItem({ item }) {
-  let featuredImage = item._embedded && item._embedded['wp:featuredmedia']
-    && item._embedded['wp:featuredmedia']['0']
-    && item._embedded['wp:featuredmedia']['0'].source_url || undefined;
+export default function HomeContentNewsItem({
+  item: {
+    _embedded, title: { rendered: title }, content: { rendered: content }, slug,
+    nickname, date
+  }
+}) {
+  let featuredImage = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
 
   return <div className='home__news-item'>
-    <SamePageAnchor
-      href={`${siteInfo.siteUrl}/radioblog/${item.slug}`}><img className=
-      'home__news-img' src={featuredImage || `${siteInfo.siteUrl
-      }/wp-content/themes/custom-react-theme/dist/images/mstile-310x310.png`} />
-      <h4 className='home__title'>{item.title.rendered}</h4>
+    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
+      className='home__news-img' src={featuredImage} />
+      <h4 className='home__title'>{title}</h4>
     </SamePageAnchor>
     <p className='home__synopsis'>
-      {renderSummary(item.content.rendered, 15)}
+      {renderSummary(content, 15)}
     </p>
     <p className='home__byline'>
-      by {item.nickname} | {new Date(item.date).toDateString()}
+      by {nickname} | {new Date(date).toDateString()}
     </p>
   </div>;
 }

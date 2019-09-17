@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget } from 'axios';
 import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import StreamPlayer from './StreamPlayer.jsx';
+import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
 
 function HeaderMenu({ menuItems }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -46,27 +46,22 @@ function Header() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/menus`
-    ).then(
-      (res) => {
-        setState({ menuItems: res.data[0].items });
-      }
-    );
+    getApiRequest('menus', ({ data: [data] }) => {
+      setState({ menuItems: data.items });
+    });
   }, []);
 
-  let { menuItems } = state;
+  let { menuItems } = state, { siteUrl } = siteInfo, donateLink = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
-      <SamePageAnchor className='info-box__link' href={siteInfo.siteUrl}>
-        <img alt='KTUH FM'
-          src={`${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/ktuh-fm-logo.png`} />
+      <SamePageAnchor className='info-box__link' href={siteUrl}>
+        <img alt='KTUH FM' src={getImgAsset('ktuh-fm-logo.png')} />
       </SamePageAnchor>
     </div>
     <div className='navbar-header'>
-      <button type='button' className='navbar-toggle collapsed'
-        data-toggle='collapse' data-target='#navigation'>
+      <button type='button' className='navbar-toggle collapsed' data-toggle='collapse'
+        data-target='#navigation'>
         <span className='sr-only'>Toggle navigation</span>
         <span className='icon-bar'></span>
         <span className='icon-bar'></span>
@@ -77,12 +72,11 @@ function Header() {
       {menuItems.length ? <HeaderMenu {...{ menuItems }} /> : null}
       <ul className='nav navbar-nav navbar-right'>
         <li className='nav-item'>
-          <SamePageAnchor className='header__support-link'
-            href={`${siteInfo.siteUrl}/donate`}>
+          <SamePageAnchor className='header__support-link' href={donateLink}>
             <button type='button' className='btn btn-md header__support-btn'>
               <span>
-                <SamePageAnchor className='header__support-link'
-                   href={`${siteInfo.siteUrl}/donate`}>DONATE</SamePageAnchor>
+                <SamePageAnchor className='header__support-link' href={donateLink}>
+                  DONATE</SamePageAnchor>
               </span>
             </button>
           </SamePageAnchor>
@@ -90,7 +84,7 @@ function Header() {
       </ul>
       <ul className='nav navbar-nav'>
         <li className='nav-item'>
-          <StreamPlayer src='http://stream.ktuh.org:8000/stream-mp3' />
+          <StreamPlayer />
         </li>
       </ul>
     </div>

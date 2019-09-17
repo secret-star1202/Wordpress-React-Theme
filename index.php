@@ -38,9 +38,6 @@
             document.querySelector('iframe').style.display = 'block';
             document.querySelector('#donate').appendChild(document.querySelector('iframe'));
           }
-          else if (!document.querySelector('#donate') && document.querySelector('iframe')) {
-            document.querySelector('iframe').style.display = 'none';
-          }
         }, 1);
     </script>
     <div id="react-root">

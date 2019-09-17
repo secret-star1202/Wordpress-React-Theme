@@ -8,10 +8,12 @@ function SamePageAnchor({
   let { generalState, setGeneralState } = useGeneralContext();
 
   function handleClick(event) {
-    if (href.startsWith(siteInfo.siteUrl)) {
+    let { siteUrl } = siteInfo;
+
+    if (href.startsWith(siteUrl)) {
       event.preventDefault();
       let newState = Object.assign({}, generalState);
-      newState.history.push(href.replace(siteInfo.siteUrl, ''));
+      newState.history.push(href.replace(siteUrl, ''));
       setGeneralState(newState);
     }
   }

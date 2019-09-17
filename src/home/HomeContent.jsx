@@ -6,10 +6,6 @@ import HomeSidebar from './HomeSidebar.jsx';
 
 export default function HomeContent() {
   return <div className='content'><div className='home__main'>
-      <HomeContentNews />
-      <HomeContentReviews />
-      <HomeContentPodcasts />
-    </div>
-    <HomeSidebar />
-  </div>;
+    <HomeContentNews /><HomeContentReviews /><HomeContentPodcasts /></div>
+    <HomeSidebar /></div>;
 }

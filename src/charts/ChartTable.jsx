@@ -4,11 +4,7 @@ import { default as parse } from 'csv-parse/lib/es5/sync';
 export default function ChartTable({ data }) {
   let tableVals = parse(data, { bom: true, columns: true });
 
-  let header = [];
-
-  for (let col in tableVals[0]) {
-    header.push(col);
-  }
+  let header = Object.keys(tableVals[0]);
 
   return <table>
     <thead>

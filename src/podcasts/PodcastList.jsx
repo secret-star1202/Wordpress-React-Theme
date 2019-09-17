@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
-import { get as axget } from 'axios';
 import PodcastItem from './PodcastItem.jsx';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import HeadStuff from '../reusables/HeadStuff.jsx';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 export default function PodcastList() {
   let [state, setState] = useState({
@@ -10,22 +10,17 @@ export default function PodcastList() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/podcast_series`
-    ).then(({ data }) => {
+    getApiRequest('podcast_series', ({ data }) => {
       setState({ podcasts: data.length > 0 ? data : [] });
     });
   });
 
   let { podcasts } = state;
 
-  return [
-    <Metamorph title="Podcasts - KTUH FM Honolulu | Podcasts for the People"
-      description="KTUH Podcasts" image='https://ktuh.org/img/ktuh-logo.jpg'/>,
-    <h2 className='general__header'>KTUH Podcasts</h2>,
+  return [<HeadStuff title="KTUH Podcasts" />,
     <div className='grid__container'>
       {podcasts.map(({ playlist_id: playlistId }) => <PodcastItem {...{ playlistId }} />)}
-      <div className='grid__item__submit'><a><div className='submit__podcast'>
-        <div className='submit__podcast'><h3><a href='`${siteInfo.siteUrl}/submit-podcasts`'>
-          Submit a podcast</a></h3></div></div></a></div></div>];
+      <div className='grid__item__submit'><div className='submit__podcast'>
+        <div className='submit__podcast'><h3><SamePageAnchor href={getFullUrl('submit-podcasts')}>
+          Submit a podcast</SamePageAnchor></h3></div></div></div></div>];
 }

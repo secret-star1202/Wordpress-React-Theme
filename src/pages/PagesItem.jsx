@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import { Redirect } from 'react-router-dom';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
-import useParamMatch from '../hooks/useParamMatch';
+import { useSlug } from '../hooks/useGeneralContext';
+import { getApiRequest } from '../utils/url_utils';
+import HeadStuff from '../reusables/HeadStuff.jsx';
+import ContentBox from '../reusables/ContentBox.jsx';
 
 function PagesItem() {
-  let { slug } = useParamMatch(['slug']), [state, setState] = useState({
+  let slug = useSlug(), [state, setState] = useState({
     page: undefined
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/pages?slug=${
-        slug.replace(/\/$/, '')}`
-    ).then(({ data }) => {
+    getApiRequest(`pages?slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
       setState({ page: data.length > 0 ? data[0] : null });
     });
   });
@@ -22,22 +19,16 @@ function PagesItem() {
   let { page } = state;
 
   if (page) {
-    let { title, content } = page;
+    let { title: { rendered: title }, content: { rendered: content } } = page;
 
-    return [<Metamorph title={
-    `${title.rendered} - KTUH FM Honolulu | Radio for the People`}
-      image='https://ktuh.org/img/ktuh-logo.jpg' />,
-      <h2 className='general__header'>{title.rendered}</h2>,
-      <div className="page__content"
-        dangerouslySetInnerHTML={{ __html: content.rendered }}
-      />
-    ];
+    return [<HeadStuff title={title} />,
+      <ContentBox className="page__content" {...{ content }} />];
   }
   if (page === undefined) {
     return null;
   }
   if (page === null) {
-    return <Redirect to={`${siteInfo.siteUrl}/not-found`} />;
+    return <Redirect to='/not-found' />;
   }
 }
 

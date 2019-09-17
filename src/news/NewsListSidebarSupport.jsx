@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 
 export default function NewsListSidebarSupport() {
-  return <div className='news-list__support'>
+  let [state, setState] = useState({
+    text: ''
+  });
+
+  useEffect(function () {
+    getApiRequest('support_text', ({ data }) => {
+      setState({ text: data });
+    });
+  });
+
+  return state.text.length ? <div className='news-list__support'>
     <p className="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
-    <p>KTUH is a non-commercial radio station, broadcasting out of the
-      University of Hawai‘i at Mānoa. In addition to funding from UHM student
-      fees, KTUH also looks to donations from the community.</p>
+    <p>{state.text}</p>
     <div className='button__wrapper'><a className='color-button purple-button'
-      href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
-        Donate Today</a>
-    </div>
-  </div>;
+      href={getFullUrl('donate')}>
+        Donate Today</a></div>
+  </div> : null;
 }

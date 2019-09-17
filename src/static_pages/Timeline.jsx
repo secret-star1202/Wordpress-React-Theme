@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget } from 'axios';
-import { Metamorph } from 'react-metamorph';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest } from '../utils/url_utils';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function TimelineNode({ title, body }) {
   return <div className='timeline__node'>
@@ -16,28 +15,25 @@ export default function Timeline() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/timeline`
-    ).then(({ data: [item] }) => {
+    getApiRequest('timeline', ({
+      data: [{
+        nodes: {
+          nodes_date_string: nodesDateString, nodes_body: nodesBody
+        }
+      }]
+    }) => {
       setState({
-        timelineData:
-        item.nodes.nodes_date_string.map((str, i) => (
-          [str, item.nodes.nodes_body[i]]
-        ))
+        timelineData: nodesDateString.map((str, i) => ([str, nodesBody[i]]))
       });
     });
   }, []);
 
   let { timelineData } = state;
 
-  return [<Metamorph title="Timeline - KTUH FM Honolulu | Radio for the People"
-    description="KTUH Timeline" image='https://ktuh.org/img/ktuh-logo.jpg'
-  />,
-  <h2 className='general__header'>KTUH Timeline</h2>,
-  <div className='timeline' key='timeline'>
+  return [<HeadStuff title="KTUH Timeline" />,
+  <div className='timeline'>
     <div className='timeline__content'>
-      {timelineData.map(([title, body]) => (
-        <TimelineNode {...{ title, body }} />))}
+      {timelineData.map(([title, body]) => <TimelineNode {...{ title, body }} />)}
     </div>
   </div>];
 }

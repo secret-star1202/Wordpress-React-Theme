@@ -2714,12 +2714,12 @@ audio {
 }
 
 .events-list__over {
-  width: 49%;
+  width: 54%;
   display: inline-block;
 }
 
 .events-list__calendar {
-  width: 49%;
+  width: 45%;
   display: inline-block;
   vertical-align: top;
   margin-left: 15px;

@@ -1,22 +1,18 @@
 import React, { useState, useRef } from 'react';
+import Glyph from '../reusables/Glyph.jsx';
 
-export default function MediaElement({ src }) {
-  let [playing, setPlaying] = useState(false),
-    player = useRef(null);
+export default function StreamPlayer() {
+  let [playing, setPlaying] = useState(false), player = useRef(null);
 
   function handleClick() {
-    if (!playing) {
-      player.current.play();
-    } else {
-      player.current.pause();
-    }
+    player.current[playing ? 'pause' : 'play']();
     setPlaying(!playing);
   }
 
   return <div className="player__container">
-    <audio ref={player} preload='none' src={src}></audio>
+    <audio ref={player} preload='none' src='https://128.171.43.149:8000/stream'></audio>
     <button type="button" onClick={() => handleClick()}>
-      {playing ? '■' : '►'}
+      <Glyph symbol={playing ? 'pause' : 'play'} />
     </button>
     <span className="player__span">Live Broadcast</span>
   </div>;

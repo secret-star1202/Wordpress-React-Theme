@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { get as axget } from 'axios';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentPodcasts() {
   let [state, setState] = useState({
@@ -9,25 +10,23 @@ function HomeContentPodcasts() {
   });
 
   useEffect(function () {
-    axget(`${siteInfo.siteUrl}/wp-json/wp/v2/podcast?_embed&per_page=6`)
-      .then(({ data }) => {
-        setState({
-          podcasts: data
-        });
+    getApiRequest('podcast?_embed&per_page=6', ({ data }) => {
+      setState({
+        podcasts: data || []
       });
+    });
   }, []);
 
-  let { podcasts } = state;
-
-  return podcasts && podcasts.length ? <div className='home__podcast'>
-    <a href={`${siteInfo.siteUrl}/podcasts`}>
+  let { podcasts } = state, link = getFullUrl('podcasts');
+  return podcasts.length ? <div className='home__podcast'>
+    <SamePageAnchor href={link}>
       <h3 className="home__section">Podcasts</h3>
-    </a>
-    <a href={`${siteInfo.siteUrl}/podcasts`} className='home__more'>
+    </SamePageAnchor>
+    <SamePageAnchor href={link} className='home__more'>
       MORE PODCASTS{'  '}
-      <span className='glyphicon glyphicon-arrow-right'/>
-    </a>
-    <div className='home__podcast-content' key='podcast-content'>
+      <Glyph symbol='arrow-right' />
+    </SamePageAnchor>
+    <div className='home__podcast-content'>
       {podcasts.slice(0, 3).map(item => (
         <HomeContentPodcastItem {...{ item }} />)) }
     </div>

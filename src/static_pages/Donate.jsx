@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest } from '../utils/url_utils';
+import ContentBox from '../reusables/ContentBox.jsx';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function Donate() {
   let [state, setState] = useState({
-    text: undefined
+    text: ''
   });
 
   useEffect(function () {
-    if (!state.text) {
-      axget(
-        `${siteInfo.siteUrl}/wp-json/wp/v2/pages?slug=donate`
-      ).then(({ data: [item] }) => {
-        setState({
-          text: item.content.rendered
-        });
+    if (state.text === '') {
+      getApiRequest('pages?slug=donate', ({ data: [{ content: { rendered: text } }] }) => {
+        setState({ text });
       });
     }
   }, []);
 
-  return <div id="uhf">
-    <h2 className='general__header'>Donate</h2>
-    <div dangerouslySetInnerHTML={{ __html: state.text }}></div>
+  return [
+    <HeadStuff title="Donate" />,
+    <ContentBox content={state.text} />,
     <div id='donate'></div>
-  </div>;
+  ];
 }

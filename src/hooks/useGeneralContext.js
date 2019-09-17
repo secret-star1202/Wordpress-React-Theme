@@ -6,3 +6,8 @@ export default function useGeneralContext() {
 
   return { generalState, setGeneralState };
 }
+
+export function useSlug() {
+  let { generalState: { match: { params: { slug } } } } = useGeneralContext();
+  return slug;
+}
