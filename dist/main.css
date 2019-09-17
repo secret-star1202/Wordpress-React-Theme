@@ -908,6 +908,7 @@ h1, h2, h3, h4, h5 {
 .news-list__latest-reviews h4 {
   font-family: 'nimbus-sans-extended';
   font-weight: 900;
+  margin-top: 60px;
 }
 .news-list__latest-review {
   height: 120px;
@@ -1170,7 +1171,7 @@ h1, h2, h3, h4, h5 {
   float: left;
   max-width: 250px;
   padding: 10px 25px;
-  margin: 15px 0;
+  margin: 15px 0 0 -20px;
   border-radius: 0;
   font-family: 'nimbus-sans', sans-serif;
   font-size: .875em;
