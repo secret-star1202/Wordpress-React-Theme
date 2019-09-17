@@ -1,13 +1,15 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   target: 'web',
   plugins: [
     new MinifyPlugin({}, {
       comments: false
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     minimizer: [new UglifyJsPlugin({
@@ -54,16 +56,6 @@ module.exports = {
           babelrc: true,
           comments: false,
           plugins: ['./babel/hashify']
-        }
-      },
-      {
-        test: /\.js$/,
-        include: /node_modules\/mediaelement/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            plugins: ['./babel/mejs_no_i18n', './babel/mejs_no_video']
-          }
         }
       }
     ]

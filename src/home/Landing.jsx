@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget, all as axall, spread as axspr } from 'axios';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import Glyph from '../reusables/Glyph.jsx';
 
 function LandingInfo() {
   let [state, setState] = useState({
@@ -10,7 +11,7 @@ function LandingInfo() {
   });
 
   function currentShowName() {
-    return <p className='landing__show-name caps' key='landing-show-name'>
+    return <p className='landing__show-name caps'>
       {state.currentShow.title}
     </p>;
   }
@@ -19,37 +20,40 @@ function LandingInfo() {
     let { nowPlaying } = state, { artist, song: title } = nowPlaying;
 
     return [
-      <p className="landing__song-title caps" key='landing-song-title'>
-        {title} </p>,
-      <p className="landing__song-artist caps" key='landing-sort-artist'>
-        {` by ${artist}`}</p>
+      <p className="landing__song-title caps">{title} </p>,
+      <p className="landing__song-artist caps">{` by ${artist}`}</p>
     ];
   }
 
   useEffect(function () {
-    axall([
-      axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-    ]).then(axspr((gotSpin) => {
+    getApiRequest('now_playing', function ({
+      data: [{
+        show: [showNow], artist: [artistNow], song: [songNow]
+      }]
+    }) {
       setState({
-        currentShow: gotSpin.data[0].show[0],
+        currentShow: showNow,
         nowPlaying: {
-          artist: gotSpin.data[0].artist[0],
-          song: gotSpin.data[0].song[0],
+          artist: artistNow,
+          song: songNow,
         },
         interval: setInterval(function () {
-          axget(`${siteInfo.siteUrl}/wp-json/wp/v2/now_playing`)
-            .then((res) => {
-              setState({
-                currentShow: gotSpin.data[0].show[0],
-                nowPlaying: {
-                  artist: res.data[0].artist[0],
-                  song: res.data[0].song[0]
-                }
-              });
+          getApiRequest('/now_playing', ({
+            data: [{
+              show: [showThen], artist: [artistThen], song: [songThen]
+            }]
+          }) => {
+            setState({
+              currentShow: showThen,
+              nowPlaying: {
+                artist: artistThen,
+                song: songThen
+              }
             });
+          });
         }, 15000)
       });
-    }));
+    });
   }, []);
 
   let { currentShow, nowPlaying } = state;
@@ -63,17 +67,9 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    let ret = '', h = new Date().getHours();
-
-    if (h >= 6 && h < 18) {
-      ret = `url('${siteInfo.siteUrl
-      }/wp-content/themes/custom-react-theme/dist/images/tantalus-morning.jpg')`;
-    }
-    if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
-      ret = `url('${siteInfo.siteUrl
-      }/wp-content/themes/custom-react-theme/dist/images/tantalus-evening.jpg')`;
-    }
-    return ret;
+    let h = new Date().getHours();
+    return `url(${getImgAsset(`tantalus-${
+      ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) ? 'evening' : 'morning'}`)}.jpg`;
   }
 
   function handleClickDownArrow() {
@@ -84,17 +80,15 @@ function Landing() {
 
   return (
     <div className='landing' style={{ backgroundImage: background() }}>
-      <div className='landing__box'>
-        <LandingInfo />
-      </div>
-      <a href='/playlists'>
+      <div className='landing__box'><LandingInfo /></div>
+      <SamePageAnchor href={getFullUrl('playlist')}>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>
             View Current{' '}
           </span>Playlist{'  '}
-          <span className='glyphicon glyphicon-eye-open' />
+          <Glyph symbol='eye-open' />
         </h6>
-      </a>
+      </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
     </div>
   );

@@ -12,24 +12,8 @@ function parseUrl(description) {
 }
 
 function parseAddress(location) {
-  let name = location.split(',');
-  return name[0];
-}
-
-function renderLink(description) {
-  if (description) {
-    return <a href={parseUrl(description)} className='home__more'>
-      MORE INFO{'  '}
-    </a>;
-  }
-  return undefined;
-}
-
-function buildLink(description) {
-  if (parseUrl(description)) {
-    return renderLink(description);
-  }
-  return null;
+  let [name] = location.split(',');
+  return name;
 }
 
 function printTime(date) {
@@ -44,18 +28,23 @@ function printDate(date) {
   return date.toDateString().split(' ').slice(1, 3).join(' ');
 }
 
-function EventItem({ item: event }) {
+function EventItem({
+  item: {
+    summary, start: { dateTime: start }, description, location, end: { dateTime: end }
+  }
+}) {
+  let descUrl = parseUrl(description), descBody = description;
+
+  if (descUrl) descBody = description.replace(descUrl, '');
+
   return <div className='events-list__event-item'>
-    <h3 className="home__section">{event.summary} | {printDate(new Date(event.start.dateTime))}</h3>
-    {buildLink(event.description)}
+    <h3 className="home__section">{summary} | {printDate(new Date(start))}</h3>
+    {descUrl ? <a href={descUrl} className='home__more'>MORE INFO{'  '}</a> : null}
     <div className='event_title'>
-      {formatTimes(event.start.dateTime, event.end.dateTime)
-      } | {parseAddress(event.location)}
+      {formatTimes(start, end)} | {parseAddress(location)}
     </div>
     <div className='event_title_description'>
-      {parseUrl(event.description)
-        ? event.description.replace(parseUrl(event.description), '')
-        : event.description}
+      {descBody}
     </div>
   </div>;
 }

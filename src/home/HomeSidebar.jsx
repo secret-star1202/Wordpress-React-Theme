@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { get as axget } from 'axios';
-import HomeSidebarNext from './HomeSidebarNext.jsx';
-import { default as siteInfo } from '../utils/config';
+import { getApiRequest } from '../utils/url_utils';
 
 export default function HomeSidebar() {
   let [state, setState] = useState({
@@ -9,18 +7,27 @@ export default function HomeSidebar() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/next_on_air`
-    ).then(
-      ({ data }) => {
-        setState({ nextOnAir: data && data.items[1] });
-      }
-    );
+    getApiRequest('next_on_air', ({ data }) => {
+      setState({ nextOnAir: data && data.items[1] });
+    });
   }, []);
 
   let { nextOnAir } = state;
 
-  return nextOnAir && <div className='home__sidebar'>
-    {nextOnAir ? <HomeSidebarNext {...{ nextOnAir }} /> : null}
-  </div> || null;
+  if (!nextOnAir) return null;
+
+  let { title, start, end } = nextOnAir, startStr = new Date(start).toLocaleTimeString(),
+    endStr = new Date(end).toLocaleTimeString();
+
+  return <div className='home__sidebar'>
+    <div className='home__next-show'>
+      <div className='home__next-show-deets'>
+        <p className="home__next-on-air">Next On Air</p>
+        <p className='home__next-show-name'>{title}</p>
+        <p className='home__next-show-time'>
+          {`${startStr} - ${endStr}`}
+        </p>
+      </div>
+    </div>
+  </div>;
 }

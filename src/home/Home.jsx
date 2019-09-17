@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
 import Support from '../includes/Support.jsx';
 import HomeContent from './HomeContent.jsx';
+import MetaThing from '../reusables/MetaThing.jsx';
 
 function Home() {
   useEffect(function () {
@@ -65,8 +65,6 @@ function Home() {
     };
   }, []);
 
-  return [<Metamorph title='KTUH FM Honolulu | Radio for the People'
-      description="KTUH Homepage" image="https://ktuh.org/img/ktuh-logo.jpg" />,
-    <HomeContent />, <Support key='support' />];
+  return [<MetaThing title='Home' description="KTUH Homepage" />, <HomeContent />, <Support />];
 }
 export default Home;

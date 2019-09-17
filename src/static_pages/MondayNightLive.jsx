@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Metamorph } from 'react-metamorph';
-import { get as axget } from 'axios';
-import { default as siteInfo } from '../utils/config';
 import MNLItem from './MNLItem.jsx';
+import { getApiRequest, getUploadedImage } from '../utils/url_utils';
+import HeadStuff from '../reusables/HeadStuff.jsx';
+import Glyph from '../reusables/Glyph.jsx';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {
@@ -14,9 +14,7 @@ export default function MondayNightLive() {
   });
 
   useEffect(function () {
-    axget(
-      `${siteInfo.siteUrl}/wp-json/wp/v2/mnl_video`
-    ).then(({ data }) => {
+    getApiRequest('mnl_video', ({ data }) => {
       setState({
         videos: data
       });
@@ -25,22 +23,20 @@ export default function MondayNightLive() {
 
   let { videos } = state;
 
-  return [<Metamorph description="KTUH Monday Night Live" title=
-    "Monday Night Live- KTUH FM Honolulu | Radio for the People" image=
-      'https://ktuh.org/img/ktuh-logo.jpg' />, <h2 className='general__header'>
-      Monday Night Live</h2>, <div className="show__wrapper"><div className=
-        "show__content"><div className="show__image-div"><img className=
-        "show__image" src=
-        "https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/Moday-Night-Live-ad.jpg"/>
+
+  return [<HeadStuff title="Monday Night Live" />,
+      <div className="show__wrapper"><div className="show__content">
+        <div className="show__image-div"><img className="show__image" src=
+        {getUploadedImage('2019/06/Moday-Night-Live-ad.jpg')}/>
       </div><div className="show__info__head"><h5 className="show__time">
         Mondays from 9:00PM-12:00AM</h5><div className="show-item__genres">
-        <span className="glyphicon glyphicon-music"></span> Live Music, Local Music
+        <Glyph symbol="music" />{' '}Live Music, Local Music
         </div><div className="show__buttons"><div className="button__wrapper">
           <p className="show__tag"><button type="button" data-path=
             "https://stream.ktuh.org/archives/1.monday/9-12am.mp3" className=
             "btn btn-default show__play-btn color-button purple-button"
-            aria-label="Left Align"><span className="glyphicon glyphicon-play"
-            aria-hidden="true"></span> Play latest episode</button></p></div>
+            aria-label="Left Align"><Glyph symbol="play" />
+              {' '}Play latest episode</button></p></div>
             </div><div className="container" style={{
               boxSizing: 'border-box',
               maxWidth: '1920px',
