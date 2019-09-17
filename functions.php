@@ -681,5 +681,10 @@ add_action('rest_api_init', function() {
           return get_post_meta($obj['id'], 'member_bio' );
         }
     ));
+    register_rest_field('staff', 'member_photo', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'member_photo' );
+        }
+    ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');
