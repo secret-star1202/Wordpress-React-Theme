@@ -2576,6 +2576,7 @@ div.submit__podcast { text-align: center; }
 }
 .show__time {
   margin-top: 0;
+  margin-left: 40px;
 }
 /** audio player styles **/
 audio {
@@ -2788,4 +2789,7 @@ input[placeholder=Search] {
   font-weight: 700;
   color: white;
   text-transform: uppercase;
+}
+.show-item__genres {
+  margin-left: 40px;
 }
