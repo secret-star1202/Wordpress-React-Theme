@@ -22,7 +22,7 @@ function NewsPage() {
 
   if (post) {
     let {
-        content: { rendered: content }, title: { rendered: title }, nickname, date
+        content: { rendered: content }, title: { rendered: title }, author, date
       } = post, dateObj = new Date(date);
 
     return [<HeadStuff title={title} description={renderSummary(content, 50)} />,
@@ -33,7 +33,7 @@ function NewsPage() {
     </div>,
     <div className='news-item'>
       <p className='news-item__author'>
-        <b>Posted by {nickname} at</b>
+        <b>Posted by {author} at</b>
         <br />
         {`${dateObj.toDateString()} at ${dateObj.toLocaleTimeString()}`}
       </p>

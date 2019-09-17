@@ -488,6 +488,11 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'year' );
       }
      ));
+    register_rest_field('post', 'author', array(
+      'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'author' );
+      }
+     ));
      register_rest_field('review', 'label', array(
         'get_callback' => function($obj) {
               return get_post_meta($obj['id'], 'label' );
