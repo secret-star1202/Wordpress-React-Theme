@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 
 export default function NewsListSidebarSupport() {
   let [state, setState] = useState({
@@ -16,7 +16,7 @@ export default function NewsListSidebarSupport() {
     <p className="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
     <p>{state.text}</p>
     <div className='button__wrapper'><a className='color-button purple-button'
-      href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>
+      href={getFullUrl('donate')}>
         Donate Today</a></div>
   </div> : null;
 }

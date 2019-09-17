@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getApiRequest from '../utils/get_api_request';
-import getFullUrl from '../utils/get_full_url';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 
 export default function Support() {
   let [state, setState] = useState({

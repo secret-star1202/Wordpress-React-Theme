@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import getApiRequest from '../utils/get_api_request';
-import getImgAsset from '../utils/get_img_asset';
+import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getFullUrl from '../utils/get_full_url';
 import Glyph from '../reusables/Glyph.jsx';
 
 function LandingInfo() {

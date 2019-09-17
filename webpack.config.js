@@ -1,13 +1,15 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   target: 'web',
   plugins: [
     new MinifyPlugin({}, {
       comments: false
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     minimizer: [new UglifyJsPlugin({

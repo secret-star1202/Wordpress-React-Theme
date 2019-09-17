@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PodcastItem from './PodcastItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getFullUrl from '../utils/get_full_url';
 
 export default function PodcastList() {
   let [state, setState] = useState({

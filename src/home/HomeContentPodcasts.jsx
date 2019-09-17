@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getFullUrl from '../utils/get_full_url';
 import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentPodcasts() {

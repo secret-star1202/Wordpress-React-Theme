@@ -1,5 +1,6 @@
 import React from 'react';
-import getImgAsset from '../utils/get_img_asset';
+import { getImgAsset } from '../utils/url_utils';
+import SocialLink from './SocialLink.jsx';
 
 function Footer() {
   return <div className='footer'>
@@ -38,24 +39,15 @@ function Footer() {
       <div className='footer__links footer__links__clear'>
         <h5 className='footer__subheading'>UHM Student Media</h5>
         <p><a href='http://hawaiireview.org/'>Hawaii Review</a></p>
-        <p><a href='http://kaleo.org/'>Ka Leo </a></p>
+        <p><a href='http://kaleo.org/'>Ka Leo</a></p>
         <p><a href='http://www.manoanow.org/'>Manoa Now</a></p>
         <p><a href='http://www.manoanow.org/uhpro/'>UH Productions</a></p>
       </div>
     </div>
     <div className='footer__social'>
-      <a href='http://instagram.com/ktuhfm' target="_blank" rel=
-        "noopener noreferrer">
-        <img src={getImgAsset('instagram-white.png')} />
-      </a>
-      <a href='https://www.facebook.com/ktuhfm' target="_blank" rel=
-        "noopener noreferrer">
-        <img src={getImgAsset('facebook-white.png')} />
-      </a>
-      <a href='http://twitter.com/ktuhfm' target="_blank" rel=
-        "noopener noreferrer">
-        <img src={getImgAsset('twitter-white.png')} />
-      </a>
+      <SocialLink url='http://instagram.com/ktuhfm' imgSrc='instagram-white.png' />
+      <SocialLink url='http://www.facebook.com/ktuhfm' imgSrc='facebook-white.png' />
+      <SocialLink url='http://twitter.com/ktuhfm' imgSrc='twitter-white.png' />
     </div>
     <p className='footer__copyright'>
       {`COPYRIGHT (c) ${new Date().getFullYear()} KTUH FM Honolulu`}</p></div>;

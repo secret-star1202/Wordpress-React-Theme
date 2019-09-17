@@ -1,7 +1,7 @@
 import React from 'react';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import IThing from '../reusables/IThing.jsx';
-import getFullUrl from '../utils/get_full_url';
+import { getFullUrl } from '../utils/url_utils';
 
 export default function HomeContentPodcastItem({
   item: {

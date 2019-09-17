@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Paginator } from 'react-everafter';
 import NewsItem from './NewsItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 
 function NewsListContent() {
   let [state, setState] = useState({

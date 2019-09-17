@@ -3,9 +3,7 @@ import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import StreamPlayer from './StreamPlayer.jsx';
-import getApiRequest from '../utils/get_api_request';
-import getImgAsset from '../utils/get_img_asset';
-import getFullUrl from '../utils/get_full_url';
+import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
 
 function HeaderMenu({ menuItems }) {
   const tree = groupBy(menuItems, 'menu_item_parent');
@@ -86,7 +84,7 @@ function Header() {
       </ul>
       <ul className='nav navbar-nav'>
         <li className='nav-item'>
-          <StreamPlayer src='http://stream.ktuh.org:8000/stream-mp3' />
+          <StreamPlayer />
         </li>
       </ul>
     </div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HomeContentNewsItem from './HomeContentNewsItem.jsx';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getApiRequest from '../utils/get_api_request';
-import getFullUrl from '../utils/get_full_url';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentNews() {

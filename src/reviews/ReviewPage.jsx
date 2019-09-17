@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import useSlug from '../hooks/useSlug';
-import getApiRequest from '../utils/get_api_request';
-import getFeaturedImg from '../utils/get_featured_img';
+import { useSlug } from '../hooks/useGeneralContext';
+import { getApiRequest, getFullUrl, getFeaturedImg } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
-import getFullUrl from '../utils/get_full_url';
 import ContentBox from '../reusables/ContentBox.jsx';
 
 function ReviewPage() {
@@ -36,8 +34,8 @@ function ReviewPage() {
     let featuredImage = getFeaturedImg(_embedded);
 
     return [
-      <HeadStuff title={`Review of "${title}" by ${artist}"`}
-        image={featuredImage} headerText={`${title}\n${artist}`}/>,
+      <HeadStuff title={`Review of "${title}" by ${artist}"`} image={featuredImage}
+        headerText={`${title}\n${artist}`}/>,
       <div className='review__link'>
         <SamePageAnchor href={getFullUrl('reviews')} className='back-to'>
           ← all reviews

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import QASection from './QASection.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
 

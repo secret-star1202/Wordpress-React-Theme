@@ -2,7 +2,7 @@ let crypto = require('crypto'),
   hashifyName = name => crypto.createHash('sha1').update(name).digest('base64')
     .replace(/^\d/g, '_')
     .replace(/[+/=]/g, '_')
-    .substring(0, 6),
+    .substring(0, 4),
   cap = str => str.replace(/^[a-z]/, match => match.toUpperCase()),
   renameToHash = (path, key, capit) => {
     let thing = path.node[key];

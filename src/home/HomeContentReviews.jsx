@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getApiRequest from '../utils/get_api_request';
-import getFullUrl from '../utils/get_full_url';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import Glyph from '../reusables/Glyph.jsx';
 
 function HomeContentReviews() {

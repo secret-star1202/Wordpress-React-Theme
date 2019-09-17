@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StaffItem from './StaffItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function StaffPage() {

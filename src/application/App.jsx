@@ -19,6 +19,7 @@ import Timeline from '../static_pages/Timeline.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
 import StaffPage from '../static_pages/StaffPage.jsx';
 import Donate from '../static_pages/Donate.jsx';
+import Schedule from '../static_pages/Schedule.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 
 let WrappedComponent = function ({ history, match, component: Component }) {
@@ -56,6 +57,7 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path={'/staff'} component={StaffPage} />
       <SeamlessRoute path="/faq" component={FAQ} />
       <SeamlessRoute path="/donate" component={Donate}/>
+      <SeamlessRoute path="/schedule" component={Schedule} />
       <SeamlessRoute path="/not-found" component={NotFound}/>
       <SeamlessRoute path='/:slug' component={PagesItem} />
       <SeamlessRoute path="/" component={Home}/>

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 export default function ContentBox({
   children, content, className = '', isP
@@ -8,7 +7,7 @@ export default function ContentBox({
       dangerouslySetInnerHTML: {
         __html: content
       }
-    }, Element = isP ? styled.p`` : styled.div;
+    }, Element = props => (isP ? <p {...props} /> : <div {...props} />);
 
   return children ? <Element {...{ className }}>{children}</Element>
     : <Element {...{ className }} {...obj} />;

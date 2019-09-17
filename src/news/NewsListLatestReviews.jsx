@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NewsListLatestReviewsItem from './NewsListLatestReviewsItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 
 function NewsListLatestReviews() {
   let [state, setState] = useState({

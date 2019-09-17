@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 import ContentBox from '../reusables/ContentBox.jsx';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 

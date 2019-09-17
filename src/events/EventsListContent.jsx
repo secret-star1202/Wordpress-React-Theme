@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MonthView } from 'react-cal-viz';
 import EventItem from './EventItem.jsx';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 
 function EventsListContent() {
   let [state, setState] = useState({

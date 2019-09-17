@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import renderSummary from '../utils/summary';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import useSlug from '../hooks/useSlug';
-import getApiRequest from '../utils/get_api_request';
-import getFullUrl from '../utils/get_full_url';
+import { useSlug } from '../hooks/useGeneralContext';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getApiRequest from '../utils/get_api_request';
+import { getApiRequest } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function TimelineNode({ title, body }) {

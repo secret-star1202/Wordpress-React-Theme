@@ -1,7 +1,6 @@
 import React from 'react';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import getFeaturedImg from '../utils/get_featured_img';
-import getFullUrl from '../utils/get_full_url';
+import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 function ReviewItem({
   item: {

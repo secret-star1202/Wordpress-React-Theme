@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import ChartTable from './ChartTable.jsx';
-import useSlug from '../hooks/useSlug';
-import getApiRequest from '../utils/get_api_request';
+import { useSlug } from '../hooks/useGeneralContext';
+import { getApiRequest, getFullUrl } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
-import getFullUrl from '../utils/get_full_url';
 
 export default function ChartPage() {
   let slug = useSlug(), [state, setState] = useState({
@@ -21,15 +20,14 @@ export default function ChartPage() {
   let { chart } = state;
 
   if (chart) {
-    let { chart_table: [chartData], title: { rendered: title } } = chart;
-    return [<HeadStuff title={title} />,
-      <div className='review__link'>
+    let { chart_table: [data], title: { rendered: title } } = chart;
+    return [<HeadStuff {...{ title }} />, <div className='review__link'>
         <SamePageAnchor href={getFullUrl('charts')} className='back-to'>
           ← all charts
         </SamePageAnchor>
       </div>,
       <div className="review__content">
-        <ChartTable data={chartData} />
+        <ChartTable {...{ data }} />
       </div>
     ];
   }
