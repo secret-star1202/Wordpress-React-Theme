@@ -32,11 +32,9 @@ function NewsPage() {
       </SamePageAnchor>
     </div>,
     <div className='news-item'>
-      <p className='news-item__author'>
-        <b>Posted by {author} at</b>
-        <br />
-        {`${dateObj.toDateString()} at ${dateObj.toLocaleTimeString()}`}
-      </p>
+      <div className='review-page__byline'>
+        {`Review by` + {author} + `• ${new Date(date).toDateString()}`}
+      </div>
       <ContentBox className='news-item__body' {...{ content }} />
     </div>];
   }
