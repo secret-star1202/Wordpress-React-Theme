@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Paginator } from 'react-everafter';
 import StaffMemberItem from './StaffMemberItem.jsx';
 import { getApiRequest } from '../utils/url_utils';
+import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function StaffMembersListContent() {
   let [state, setState] = useState({
@@ -18,12 +18,14 @@ function StaffMembersListContent() {
     }
   }, []);
 
-  return <div className='news-list__content'>
-    <div className='news-list'>
-      {staffmembers.length ? <Paginator wrapper={StaffMemberItem} perPage={4} items={staffmembers}
-        truncate={true} /> : <p>No results.</p>}
-    </div>
-  </div>;
+  return [<HeadStuff title="KTUH Staff" />,
+    <div className='news-list__content'>
+      <div className='news-list'>
+        {staffmembers.length ? staffmembers.map(
+          member => <StaffMemberItem item={member} />
+        ) : null}
+      </div>
+    </div>];
 }
 
 export default StaffMembersListContent;

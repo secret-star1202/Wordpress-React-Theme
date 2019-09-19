@@ -17,7 +17,7 @@ import PagesItem from '../pages/PagesItem.jsx';
 import FAQ from '../static_pages/FAQ.jsx';
 import Timeline from '../static_pages/Timeline.jsx';
 import MondayNightLive from '../static_pages/MondayNightLive.jsx';
-import StaffPage from '../static_pages/StaffPage.jsx';
+import StaffMembersListContent from '../staffmembers/StaffMembersListContent.jsx';
 import Donate from '../static_pages/Donate.jsx';
 import Schedule from '../static_pages/Schedule.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
@@ -54,7 +54,7 @@ const App = () => ([<div className='container'>
       <SeamlessRoute path={['/chart/:slug', '/charts/:slug']} component={ChartPage}/>
       <SeamlessRoute path={['/timeline', '/ktuh-timeline']} component={Timeline} />
       <SeamlessRoute path={['/events', '/event']} component={EventsList} />
-      <SeamlessRoute path={'/staff'} component={StaffPage} />
+      <SeamlessRoute path='/staff' component={StaffMembersListContent} />
       <SeamlessRoute path="/faq" component={FAQ} />
       <SeamlessRoute path="/donate" component={Donate}/>
       <SeamlessRoute path="/schedule" component={Schedule} />
