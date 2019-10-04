@@ -5,7 +5,7 @@ import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 function NewsItem({
   item: {
-    _embedded, slug, title: { rendered: title }, content: { rendered: content }, author, date
+    _embedded, slug, title: { rendered: title }, content: { rendered: content }, author
   }
 }) {
   let featuredImage = getFeaturedImg(_embedded),
@@ -13,8 +13,7 @@ function NewsItem({
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
-    <SamePageAnchor className="news-list__photo-link"
-      href={postUrl}>
+    <SamePageAnchor className="news-list__photo-link" href={postUrl}>
       <img className='news-list__photo' src={featuredImage} />
       </SamePageAnchor>
     </div>

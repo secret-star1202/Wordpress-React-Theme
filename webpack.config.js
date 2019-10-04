@@ -1,15 +1,13 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
-  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   target: 'web',
   plugins: [
     new MinifyPlugin({}, {
       comments: false
-    }),
-    new BundleAnalyzerPlugin()
+    })
   ],
   optimization: {
     minimizer: [new UglifyJsPlugin({
@@ -38,12 +36,8 @@ module.exports = {
         'react-dom.production.min.js'),
       react: path.resolve(__dirname, 'node_modules',
         'react', 'cjs', 'react.production.min.js'),
-      'prop-types': path.resolve(__dirname, 'node_modules', 'prop-types',
-        'prop-types.min.js'),
       history: path.resolve(__dirname, 'node_modules', 'history', 'cjs',
-        'history.min.js'),
-      mediaelement: path.resolve(__dirname, 'node_modules', 'mediaelement',
-        'build', 'mediaelement-and-player.min.js')
+        'history.min.js')
     }
   },
   module: {
@@ -55,9 +49,27 @@ module.exports = {
         options: {
           babelrc: true,
           comments: false,
-          plugins: ['./babel/hashify']
+          plugins: ['./babel/hashify', './babel/rightify']
         }
-      }
+      },
+      {
+        test: /\.jsx?$/,
+        include: /react/,
+        loader: 'babel-loader',
+        options: {
+          comments: false,
+          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify', './babel/rightify-react']
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        include: /styled-components/,
+        loader: 'babel-loader',
+        options: {
+          comments: false,
+          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
+        }
+      },
     ]
-  }
+  },
 };

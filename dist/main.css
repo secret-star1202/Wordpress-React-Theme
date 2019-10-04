@@ -2794,3 +2794,31 @@ input[placeholder=Search] {
 .show-item__genres {
   margin-left: 40px;
 }
+
+.mnl__container {
+  box-sizing: border-box;
+  max-width: 1920px;
+  color: rgb(51, 51, 51);
+}
+
+.mnl__main, .mnl__show__wrapper, .mnl__show__content, .mnl__show__body,
+.mnl__p1, .mnl__p2 {
+  box-sizing: border-box;
+}
+
+.mnl__show__info {
+  box-sizing: border-box;
+  width: 427.667px;
+}
+
+.mnl__nbsp {
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.mnl__desc {
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+}

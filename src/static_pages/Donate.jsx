@@ -16,9 +16,6 @@ export default function Donate() {
     }
   }, []);
 
-  return [
-    <HeadStuff title="Donate" />,
-    <ContentBox content={state.text} />,
-    <div id='donate'></div>
-  ];
+  return [<HeadStuff title="Donate" />, <ContentBox content={state.text} />,
+    <div id='donate'></div>];
 }

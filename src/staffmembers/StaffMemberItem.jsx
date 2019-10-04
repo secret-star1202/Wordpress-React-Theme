@@ -1,21 +1,22 @@
 import React from 'react';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 export default function StaffMemberItem({
   item: {
-    _embedded, member_name, member_photo, member_bio, member_role
+    member_name: memberName,
+    member_photo: memberPhoto,
+    member_bio: memberBio,
+    member_role: memberRole
   }
 }) {
   return <div className='news-list__post'><div className='news-list__post-image'>
       <div className="news-list__photo-link">
-      <img className='news-list__photo' src={member_photo} />
+      <img className='news-list__photo' src={memberPhoto} />
       </div>
     </div>
     <div className='news-list__info'>
-      <div className='news-list__title'><h3>{member_name}</h3></div>
-      <div className='news-list__excerpt'><h4>{member_role}</h4></div>
-      <div className='news-list__excerpt'><h5>{member_bio}</h5></div>
+      <div className='news-list__title'><h3>{memberName}</h3></div>
+      <div className='news-list__excerpt'><h4>{memberRole}</h4></div>
+      <div className='news-list__excerpt'><h5>{memberBio}</h5></div>
     </div>
   </div>;
 }

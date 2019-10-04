@@ -1,6 +1,6 @@
 node_modules/
 /**/.DS_Store
-dist/app.js
+dist/*.js
 .idea/
 src/utils/config.js
 token.json

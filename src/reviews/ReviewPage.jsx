@@ -57,9 +57,7 @@ function ReviewPage() {
   if (review === null) {
     return <Redirect to='/not-found' />;
   }
-  if (review === undefined) {
-    return null;
-  }
+  return null;
 }
 
 export default ReviewPage;

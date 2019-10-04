@@ -10,13 +10,12 @@ export default function NewsListSidebarSupport() {
     getApiRequest('support_text', ({ data }) => {
       setState({ text: data });
     });
-  });
+  }, []);
 
   return state.text.length ? <div className='news-list__support'>
     <p className="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
     <p>{state.text}</p>
     <div className='button__wrapper'><a className='color-button purple-button'
-      href={getFullUrl('donate')}>
-        Donate Today</a></div>
+      href={getFullUrl('donate')}>Donate Today</a></div>
   </div> : null;
 }

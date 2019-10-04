@@ -30,8 +30,7 @@ export default function Timeline() {
 
   let { timelineData } = state;
 
-  return [<HeadStuff title="KTUH Timeline" />,
-  <div className='timeline'>
+  return [<HeadStuff title="KTUH Timeline" />, <div className='timeline'>
     <div className='timeline__content'>
       {timelineData.map(([title, body]) => <TimelineNode {...{ title, body }} />)}
     </div>

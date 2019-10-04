@@ -22,8 +22,8 @@ function NewsPage() {
 
   if (post) {
     let {
-        content: { rendered: content }, title: { rendered: title }, author, date
-      } = post, dateObj = new Date(date);
+      content: { rendered: content }, title: { rendered: title }, author, date
+    } = post;
 
     return [<HeadStuff title={title} description={renderSummary(content, 50)} />,
     <div className='show__link'>
@@ -33,7 +33,7 @@ function NewsPage() {
     </div>,
     <div className='news-item'>
       <div className='review-page__byline'>
-        {`Review by` + {author} + `• ${new Date(date).toDateString()}`}
+        {`Review by ${author} • ${new Date(date).toDateString()}`}
       </div>
       <ContentBox className='news-item__body' {...{ content }} />
     </div>];
@@ -43,9 +43,7 @@ function NewsPage() {
     return <Redirect to='/not-found' />;
   }
 
-  if (post === undefined) {
-    return null;
-  }
+  return null;
 }
 
 export default NewsPage;

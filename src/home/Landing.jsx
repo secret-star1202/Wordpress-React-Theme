@@ -38,7 +38,7 @@ function LandingInfo() {
           song: songNow,
         },
         interval: setInterval(function () {
-          getApiRequest('/now_playing', ({
+          getApiRequest('now_playing', ({
             data: [{
               show: [showThen], artist: [artistThen], song: [songThen]
             }]
@@ -51,7 +51,7 @@ function LandingInfo() {
               }
             });
           });
-        }, 15000)
+        }, 30000)
       });
     });
   }, []);

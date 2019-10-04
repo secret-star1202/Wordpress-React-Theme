@@ -34,8 +34,6 @@ export default function FAQ() {
 
   return [<HeadStuff title='Frequently Asked Questions' />,
   <ContentBox className='faq__content'>
-    {faqData.map(({ title, pairs }) => (
-      <QASection {...{ title, pairs }} />
-    ))}
+    {faqData.map(({ title, pairs }) => <QASection {...{ title, pairs }} />)}
   </ContentBox>];
 }

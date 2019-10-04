@@ -3,6 +3,11 @@ import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import IThing from '../reusables/IThing.jsx';
 import { getFullUrl } from '../utils/url_utils';
 
+let scUrl = (type, src) => 'https://w.soundcloud.com/player/'
+  + `?url=https%3A//api.soundcloud.com/${type}s/${src}&color=%23ff5500`
+  + '&auto_play=false&hide_related=false&show_comments=true&visual=true'
+  + '&show_user=true&show_reposts=false&show_teaser=true';
+
 export default function HomeContentPodcastItem({
   item: {
     podcast_id: [src],
@@ -17,11 +22,7 @@ export default function HomeContentPodcastItem({
     <SamePageAnchor href={getFullUrl('podcasts')}>
       <p className='home__title'>{name}</p>
       <p className='home__subtitle'>{dateStr}</p>
-      <IThing height="250" src={'https://w.soundcloud.com/player/'
-        + `?url=https%3A//api.soundcloud.com/${type}s/${src}`
-        + '&color=%23ff5500&auto_play=false&hide_related=false'
-        + '&show_comments=true&show_user=true&show_reposts=false'
-        + '&show_teaser=true&visual=true'} />
+      <IThing height="250" src={scUrl(type, src)} />
     </SamePageAnchor>
   </div>;
 }

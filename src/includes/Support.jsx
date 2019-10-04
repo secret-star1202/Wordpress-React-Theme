@@ -10,7 +10,7 @@ export default function Support() {
     getApiRequest('support_text', ({ data }) => {
       setState({ text: data });
     });
-  });
+  }, []);
 
   return state.text.length ? <div className='support'>
     <h1 className='support__heading'>College Radio Needs Your Support!</h1>
