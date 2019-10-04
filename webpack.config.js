@@ -63,6 +63,15 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
+        include: /prop-types/,
+        loader: 'babel-loader',
+        options: {
+          comments: false,
+          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
+        }
+      },
+      {
+        test: /\.jsx?$/,
         include: /styled-components/,
         loader: 'babel-loader',
         options: {
