@@ -5,7 +5,8 @@ export function getFullUrl(path) {
 }
 
 export function getApiRequest(endpoint, callback) {
-  fetch(`${siteInfo.siteUrl}/wp-json/wp/v2/${endpoint}`).then(callback);
+  fetch(`${siteInfo.siteUrl}/wp-json/wp/v2/${endpoint}`)
+    .then(response => response.json()).then(callback);
 }
 
 export function getImgAsset(src) {

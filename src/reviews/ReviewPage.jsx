@@ -13,7 +13,7 @@ function ReviewPage() {
 
   useEffect(function () {
     getApiRequest(
-      `review?_embed&slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
+      `review?_embed&slug=${slug.replace(/\/$/, '')}`, (data) => {
         setState({ review: data.length > 0 ? data[0] : null });
       }
     );

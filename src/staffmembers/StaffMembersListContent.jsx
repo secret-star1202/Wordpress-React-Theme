@@ -12,7 +12,7 @@ function StaffMembersListContent() {
 
   useEffect(function () {
     if (!staffmembers.length) {
-      getApiRequest('staff', ({ data }) => {
+      getApiRequest('staff', (data) => {
         setState({ staffmembers: data.length ? data : [] });
       });
     }

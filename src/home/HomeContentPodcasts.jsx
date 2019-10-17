@@ -10,7 +10,7 @@ function HomeContentPodcasts() {
   });
 
   useEffect(function () {
-    getApiRequest('podcast?_embed&per_page=6', ({ data }) => {
+    getApiRequest('podcast?_embed&per_page=6', (data) => {
       setState({
         podcasts: data || []
       });

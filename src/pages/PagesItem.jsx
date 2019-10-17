@@ -11,7 +11,7 @@ function PagesItem() {
   });
 
   useEffect(function () {
-    getApiRequest(`pages?slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
+    getApiRequest(`pages?slug=${slug.replace(/\/$/, '')}`, (data) => {
       setState({ page: data.length > 0 ? data[0] : null });
     });
   }, []);

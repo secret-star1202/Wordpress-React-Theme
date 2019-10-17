@@ -10,7 +10,7 @@ export default function PodcastList() {
   });
 
   useEffect(function () {
-    getApiRequest('podcast_series', ({ data }) => {
+    getApiRequest('podcast_series', (data) => {
       setState({ podcasts: data.length > 0 ? data : [] });
     });
   });

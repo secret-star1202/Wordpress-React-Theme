@@ -7,8 +7,8 @@ export default function NewsListSidebarSupport() {
   });
 
   useEffect(function () {
-    getApiRequest('support_text', ({ data }) => {
-      setState({ text: data });
+    getApiRequest('support_text', (text) => {
+      setState({ text });
     });
   }, []);
 

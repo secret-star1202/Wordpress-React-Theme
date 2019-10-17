@@ -13,7 +13,7 @@ function NewsPage() {
   });
 
   useEffect(function () {
-    getApiRequest(`posts?_embed&slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
+    getApiRequest(`posts?_embed&slug=${slug.replace(/\/$/, '')}`, (data) => {
       setState({ post: data.length > 0 ? data[0] : null });
     });
   });

@@ -10,7 +10,7 @@ function HomeContentNews() {
   });
 
   useEffect(function () {
-    getApiRequest('posts?_embed&per_page=6', ({ data }) => {
+    getApiRequest('posts?_embed&per_page=6', (data) => {
       setState({ posts: data || [] });
     });
   }, []);

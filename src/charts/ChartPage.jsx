@@ -12,7 +12,7 @@ export default function ChartPage() {
   });
 
   useEffect(function () {
-    getApiRequest(`chart?slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
+    getApiRequest(`chart?slug=${slug.replace(/\/$/, '')}`, (data) => {
       setState({ chart: data.length > 0 ? data[0] : null });
     });
   }, []);

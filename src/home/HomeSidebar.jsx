@@ -7,7 +7,7 @@ export default function HomeSidebar() {
   });
 
   useEffect(function () {
-    getApiRequest('next_on_air', ({ data }) => {
+    getApiRequest('next_on_air', (data) => {
       setState({ nextOnAir: data && data.items[1] });
     });
   }, []);

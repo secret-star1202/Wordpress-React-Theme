@@ -14,7 +14,7 @@ export default function MondayNightLive() {
   });
 
   useEffect(function () {
-    getApiRequest('mnl_video', ({ data }) => {
+    getApiRequest('mnl_video', (data) => {
       setState({
         videos: data
       });

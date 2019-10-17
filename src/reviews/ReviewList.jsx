@@ -10,7 +10,7 @@ function ReviewList() {
   });
 
   useEffect(function () {
-    getApiRequest('review?_embed&per_page=42', ({ data }) => {
+    getApiRequest('review?_embed&per_page=42', (data) => {
       setState({ reviews: data.length > 0 ? data : [] });
     });
   });

@@ -8,7 +8,7 @@ function NewsListLatestReviews() {
   });
 
   useEffect(function () {
-    getApiRequest('review?_embed', ({ data }) => {
+    getApiRequest('review?_embed', (data) => {
       setState({ reviews: data.length ? data : [] });
     });
   }, []);
