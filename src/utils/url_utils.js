@@ -1,4 +1,3 @@
-import { get as axget } from 'axios';
 import { default as siteInfo } from './config';
 
 export function getFullUrl(path) {
@@ -6,7 +5,7 @@ export function getFullUrl(path) {
 }
 
 export function getApiRequest(endpoint, callback) {
-  axget(`${siteInfo.siteUrl}/wp-json/wp/v2/${endpoint}`).then(callback);
+  fetch(`${siteInfo.siteUrl}/wp-json/wp/v2/${endpoint}`).then(callback);
 }
 
 export function getImgAsset(src) {
