@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@babel/types": "^7.6.3",
-    "csv-parse": "^4.6.3",
     "react": "^16.10.2",
     "react-cal-viz": "^0.4.0",
     "react-dom": "^16.10.2",
