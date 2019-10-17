@@ -46,7 +46,7 @@ function Header() {
   });
 
   useEffect(function () {
-    getApiRequest('menus', ({ data: [data] }) => {
+    getApiRequest('menus', ([data]) => {
       setState({ menuItems: data.items });
     });
   }, []);
