@@ -14,7 +14,7 @@ function PagesItem() {
     getApiRequest(`pages?slug=${slug.replace(/\/$/, '')}`, ({ data }) => {
       setState({ page: data.length > 0 ? data[0] : null });
     });
-  });
+  }, []);
 
   let { page } = state;
 

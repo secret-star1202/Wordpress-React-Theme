@@ -11,7 +11,7 @@ export default function StreamPlayer() {
   }
 
   return <div className="player__container">
-    <audio ref={player} preload='none' src='https://128.171.43.149:8000/stream'></audio>
+    <audio ref={player} preload='none' src='http://128.171.43.149:8001/stream'></audio>
     <button type="button" onClick={() => handleClick()}>
       <Glyph symbol={pauseOrPlay} />
     </button>

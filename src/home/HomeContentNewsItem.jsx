@@ -5,8 +5,7 @@ import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
 
 export default function HomeContentNewsItem({
   item: {
-    _embedded, title: { rendered: title }, content: { rendered: content }, slug,
-    nickname, date
+    _embedded, title: { rendered: title }, content: { rendered: content }, slug, date
   }
 }) {
   let featuredImage = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
@@ -20,7 +19,7 @@ export default function HomeContentNewsItem({
       {renderSummary(content, 15)}
     </p>
     <p className='home__byline'>
-      by {nickname} | {new Date(date).toDateString()}
+      {new Date(date).toDateString()}
     </p>
   </div>;
 }

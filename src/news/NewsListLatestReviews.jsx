@@ -11,7 +11,7 @@ function NewsListLatestReviews() {
     getApiRequest('review?_embed', ({ data }) => {
       setState({ reviews: data.length ? data : [] });
     });
-  });
+  }, []);
 
   let { reviews } = state;
 

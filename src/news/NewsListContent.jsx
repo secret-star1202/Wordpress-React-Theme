@@ -12,7 +12,7 @@ function NewsListContent() {
 
   useEffect(function () {
     if (!posts.length) {
-      getApiRequest('all_posts', ({ data }) => {
+      getApiRequest('all_posts?_embed', ({ data }) => {
         setState({ posts: data.length ? data : [] });
       });
     }

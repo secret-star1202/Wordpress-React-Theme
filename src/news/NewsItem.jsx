@@ -5,7 +5,7 @@ import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 function NewsItem({
   item: {
-    _embedded, slug, title: { rendered: title }, content: { rendered: content }, author
+    _embedded, slug, title: { rendered: title }, content: { rendered: content }
   }
 }) {
   let featuredImage = getFeaturedImg(_embedded),
@@ -24,8 +24,6 @@ function NewsItem({
         {'  '}
         <SamePageAnchor className='purple-text' href={postUrl}><i>Read On</i></SamePageAnchor>
       </p>
-      <br />
-      <p className='news-list__byline'>by {author}</p>
     </div>
   </div>;
 }

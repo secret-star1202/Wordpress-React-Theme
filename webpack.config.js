@@ -49,7 +49,7 @@ module.exports = {
         options: {
           babelrc: true,
           comments: false,
-          plugins: ['./babel/hashify', './babel/rightify']
+          plugins: ['./babel/hashify']
         }
       },
       {
