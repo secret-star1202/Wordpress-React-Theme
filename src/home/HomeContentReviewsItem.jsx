@@ -7,11 +7,11 @@ export default function HomeContentReviewsItem({
     _embedded, slug, artist, title
   }
 }) {
-  let featuredImage = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
+  let src = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
 
   return <div className='home__reviews-item'>
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
-      <img className='home__reviews-img' src={featuredImage} />
+      <img className='home__reviews-img' src={src} />
       <p className='home__title'>{artist}</p>
       <p className='home__subtitle'>{title}</p>
     </SamePageAnchor>

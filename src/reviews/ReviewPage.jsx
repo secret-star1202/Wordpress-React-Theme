@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import React from 'react';
+import BackButton from '../reusables/BackButton.jsx';
 import { useSlug } from '../hooks/useGeneralContext';
-import { getApiRequest, getFullUrl, getFeaturedImg } from '../utils/url_utils';
+import { getFeaturedImg } from '../utils/url_utils';
+import NotFoundRedirect from '../utils/404_redirect';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
 function ReviewPage() {
-  let slug = useSlug(), [state, setState] = useState({
-    review: undefined
-  });
-
-  useEffect(function () {
-    getApiRequest(
-      `review?_embed&slug=${slug.replace(/\/$/, '')}`, (data) => {
-        setState({ review: data.length > 0 ? data[0] : null });
-      }
-    );
-  }, []);
-
   function formattedRating(rating) {
     return (rating % 1 !== 0.5) ? `${Number(rating).toString()}.0` : rating;
   }
 
-  let { review } = state;
+  let slug = useSlug(), { review } = useApiRequest({
+    review: undefined
+  }, `review?_embed&slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+    fxn({ review: data.length > 0 ? data[0] : null });
+  });
 
   if (review) {
     let {
@@ -31,18 +24,14 @@ function ReviewPage() {
       date_gmt: submitted, content: { rendered: content }
     } = review;
 
-    let featuredImage = getFeaturedImg(_embedded);
+    let src = getFeaturedImg(_embedded);
 
     return [
-      <HeadStuff title={`Review of "${title}" by ${artist}"`} image={featuredImage}
+      <HeadStuff title={`Review of "${title}" by ${artist}"`} image={src}
         headerText={`${title}\n${artist}`}/>,
-      <div className='review__link'>
-        <SamePageAnchor href={getFullUrl('reviews')} className='back-to'>
-          ← all reviews
-        </SamePageAnchor>
-      </div>,
+      <BackButton className='review__link' href='reviews' text='← all reviews' />,
       <div className="review__content">
-        <img className='review-page__image' src={featuredImage} />
+        <img className='review-page__image' {...{ src }} />
         <div className='review-page__copy'>
           <h4 className='review-page__rating'>
             {`${formattedRating(rating)} / 5.0`}</h4>
@@ -54,10 +43,7 @@ function ReviewPage() {
       </div>
     ];
   }
-  if (review === null) {
-    return <Redirect to='/not-found' />;
-  }
-  return null;
+  return <NotFoundRedirect check={review} />;
 }
 
 export default ReviewPage;

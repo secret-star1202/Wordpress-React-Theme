@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import renderSummary from '../utils/summary';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import BackButton from '../reusables/BackButton.jsx';
 import { useSlug } from '../hooks/useGeneralContext';
-import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
+import NotFoundRedirect from '../utils/404_redirect';
 
 function NewsPage() {
-  let slug = useSlug(), [state, setState] = useState({
-    post: undefined
-  });
-
-  useEffect(function () {
-    getApiRequest(`posts?_embed&slug=${slug.replace(/\/$/, '')}`, (data) => {
-      setState({ post: data.length > 0 ? data[0] : null });
-    });
-  });
-
-  let { post } = state;
+  let slug = useSlug(), state = useApiRequest({
+      post: undefined
+    }, `posts?_embed&slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+      fxn({ post: data.length > 0 ? data[0] : null });
+    }), { post } = state;
 
   if (post) {
     let {
       content: { rendered: content }, title: { rendered: title }, author, date
     } = post;
 
-    return [<HeadStuff title={title} description={renderSummary(content, 50)} />,
-    <div className='show__link'>
-      <SamePageAnchor href={getFullUrl('radioblog')} className='back-to'>
-        ← Back to Radioblog
-      </SamePageAnchor>
-    </div>,
+    return [<HeadStuff {...{ title }} description={renderSummary(content, 50)} />,
+    <BackButton href='radioblog' className='show__link' text="← Back to Radioblog" />,
     <div className='news-item'>
       <div className='review-page__byline'>
         {`Review by ${author} • ${new Date(date).toDateString()}`}
@@ -39,11 +29,7 @@ function NewsPage() {
     </div>];
   }
 
-  if (post === null) {
-    return <Redirect to='/not-found' />;
-  }
-
-  return null;
+  return <NotFoundRedirect check={post} />;
 }
 
 export default NewsPage;

@@ -9,9 +9,7 @@ function parse(data) {
 }
 
 export default function ChartTable({ data }) {
-  let tableVals = parse(data);
-
-  let [header, ...body] = tableVals;
+  let tableVals = parse(data), [header, ...body] = tableVals;
 
   return <table>
     <thead>

@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import StaffItem from './StaffItem.jsx';
-import { getApiRequest } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function StaffPage() {
-  let [state, setState] = useState({
+  let state = useApiRequest({
     staff: []
-  });
-
-  useEffect(function () {
-    getApiRequest('staff', ({ data: staff }) => {
-      setState({
-        staff
-      });
+  }, 'staff', (staff, fxn) => {
+    fxn({
+      staff
     });
   });
 
-
   let { staff } = state;
 
-  return [<HeadStuff title="Staff" />, <div>
-    {staff.map(({
-      member_bio: bio, member_name: name, member_role: role
-    }) => <StaffItem {...{ bio, name, role }} />)}
+  return [<HeadStuff title="Staff" />, <div>{staff.map(({
+    member_bio: bio, member_name: name, member_role: role
+  }) => <StaffItem {...{ bio, name, role }} />)}
   </div>];
 }

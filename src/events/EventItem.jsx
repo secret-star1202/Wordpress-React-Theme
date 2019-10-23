@@ -33,13 +33,13 @@ function EventItem({
     summary, start: { dateTime: start }, description, location, end: { dateTime: end }
   }
 }) {
-  let descUrl = parseUrl(description), descBody = description;
+  let href = parseUrl(description), descBody = description;
 
-  if (descUrl) descBody = description.replace(descUrl, '');
+  if (href) descBody = description.replace(href, '');
 
   return <div className='events-list__event-item'>
     <h3 className="home__section">{summary} | {printDate(new Date(start))}</h3>
-    {descUrl ? <a href={descUrl} className='home__more'>MORE INFO{'  '}</a> : null}
+    {href ? <a href={href} className='home__more'>MORE INFO{'  '}</a> : null}
     <div className='event_title'>
       {formatTimes(start, end)} | {parseAddress(location)}
     </div>

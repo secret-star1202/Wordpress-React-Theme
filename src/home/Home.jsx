@@ -4,6 +4,12 @@ import HomeContent from './HomeContent.jsx';
 import MetaThing from '../reusables/MetaThing.jsx';
 
 function Home() {
+  let theme = 'fixed-theme', addTheme = function (list, fxn, prm) {
+    for (let i = 0; i < list.length; i++) {
+      list[i][fxn](prm);
+    }
+  };
+
   useEffect(function () {
     /* This next section makes our sticky nav possible. */
     let myNavBar = {
@@ -11,31 +17,27 @@ function Home() {
       objs: [],
       init(objs) {
         this.objs = objs;
-        for (let i = 0; i < this.objs.length; i++) {
-          this.objs[i].addClass('fixed-theme');
-        }
+        addTheme(this.objs, 'addClass', theme);
       },
       add() {
         if (this.flagAdd) {
-          for (let i = 0; i < this.objs.length; i++) {
-            this.objs[i].addClass('fixed-theme');
-          }
+          addTheme(this.objs, 'addClass', theme);
           this.flagAdd = false;
         }
       },
       remove() {
         if (!this.flagAdd) {
-          for (let i = 0; i < this.objs.length; i++) {
-            this.objs[i].removeClass('fixed-theme');
-          }
+          addTheme(this.objs, 'removeClass', theme);
           this.flagAdd = true;
         }
       }
     };
 
+    const elArr = [$('.navbar'), $('.navbar-default'), $('.dropdown-menu')];
+
     /* Init the object. Pass the object the array of elements
      * that we want to change when the scroll goes down. */
-    myNavBar.init([$('.navbar'), $('.navbar-default'), $('.dropdown-menu')]);
+    myNavBar.init(elArr);
 
     /* Function that manages the direction of the scroll. */
     function offSetManager() {
@@ -56,10 +58,7 @@ function Home() {
     offSetManager();
 
     return function cleanup() {
-      let objs = [$('.navbar'), $('.navbar-default'), $('.dropdown-menu')];
-      for (let i = 0; i < objs.length; i++) {
-        objs[i].removeClass('fixed-theme');
-      }
+      addTheme(elArr, 'removeClass', theme);
       window.scroll(0, 0);
       window.onscroll = null;
     };

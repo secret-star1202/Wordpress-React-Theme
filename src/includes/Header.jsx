@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import StreamPlayer from './StreamPlayer.jsx';
-import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
+import { getFullUrl, getImgAsset } from '../utils/url_utils';
+import Navbar from './Navbar.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
-function HeaderMenu({ menuItems }) {
-  const tree = groupBy(menuItems, 'menu_item_parent');
+function HeaderMenu({ items }) {
+  const tree = groupBy(items, 'menu_item_parent');
 
   return <ul className='nav navbar-nav navbar-left'>
     {tree['0'].map(function ({
@@ -40,18 +42,14 @@ function HeaderMenu({ menuItems }) {
   </ul>;
 }
 
+function IconBar() {
+  return <span className='icon-bar'></span>;
+}
+
 function Header() {
-  let [state, setState] = useState({
-    menuItems: []
-  });
-
-  useEffect(function () {
-    getApiRequest('menus', ([data]) => {
-      setState({ menuItems: data.items });
-    });
-  }, []);
-
-  let { menuItems } = state, { siteUrl } = siteInfo, donateLink = getFullUrl('donate');
+  let state = useApiRequest({ items: [] }, 'menus', ([{ items }], fxn) => {
+      fxn({ items });
+    }), { items } = state, { siteUrl } = siteInfo, href = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
@@ -63,30 +61,24 @@ function Header() {
       <button type='button' className='navbar-toggle collapsed' data-toggle='collapse'
         data-target='#navigation'>
         <span className='sr-only'>Toggle navigation</span>
-        <span className='icon-bar'></span>
-        <span className='icon-bar'></span>
-        <span className='icon-bar'></span>
+        <IconBar />
+        <IconBar />
+        <IconBar />
       </button>
     </div>
     <div className='collapse navbar-collapse' id='navigation'>
-      {menuItems.length ? <HeaderMenu {...{ menuItems }} /> : null}
-      <ul className='nav navbar-nav navbar-right'>
-        <li className='nav-item'>
-          <SamePageAnchor className='header__support-link' href={donateLink}>
-            <button type='button' className='btn btn-md header__support-btn'>
-              <span>
-                <SamePageAnchor className='header__support-link' href={donateLink}>
-                  DONATE</SamePageAnchor>
-              </span>
-            </button>
-          </SamePageAnchor>
-        </li>
-      </ul>
-      <ul className='nav navbar-nav'>
-        <li className='nav-item'>
-          <StreamPlayer />
-        </li>
-      </ul>
+      {items.length ? <HeaderMenu {...{ items }} /> : null}
+      <Navbar addClassName='navbar-right' nodes={[
+        <SamePageAnchor className='header__support-link' {...{ href }} >
+          <button type='button' className='btn btn-md header__support-btn'>
+            <span>
+              <SamePageAnchor className='header__support-link' {...{ href }}>
+                DONATE</SamePageAnchor>
+            </span>
+          </button>
+        </SamePageAnchor>]}>
+      </Navbar>
+      <Navbar nodes={[<StreamPlayer />]}></Navbar>
     </div>
   </nav>;
 }

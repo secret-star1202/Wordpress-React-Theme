@@ -1,40 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import React from 'react';
 import ChartTable from './ChartTable.jsx';
 import { useSlug } from '../hooks/useGeneralContext';
-import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import BackButton from '../reusables/BackButton.jsx';
+import NotFoundRedirect from '../utils/404_redirect';
 
 export default function ChartPage() {
-  let slug = useSlug(), [state, setState] = useState({
-    chart: undefined
-  });
-
-  useEffect(function () {
-    getApiRequest(`chart?slug=${slug.replace(/\/$/, '')}`, (data) => {
-      setState({ chart: data.length > 0 ? data[0] : null });
-    });
-  }, []);
-
-  let { chart } = state;
+  let slug = useSlug(), state = useApiRequest({
+      chart: undefined
+    }, `chart?slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+      fxn({ chart: data.length > 0 ? data[0] : null });
+    }), { chart } = state;
 
   if (chart) {
     let { chart_table: [data], title: { rendered: title } } = chart;
-    return [<HeadStuff {...{ title }} />, <div className='review__link'>
-        <SamePageAnchor href={getFullUrl('charts')} className='back-to'>
-          ← all charts
-        </SamePageAnchor>
-      </div>,
+    return [<HeadStuff {...{ title }} />,
+      <BackButton className='review__link' href='charts' text="← all charts" />,
       <div className="review__content">
         <ChartTable {...{ data }} />
       </div>
     ];
   }
-  if (chart === null) {
-    return <Redirect to='/not-found' />;
-  }
-  if (chart === undefined) {
-    return null;
-  }
+  return <NotFoundRedirect check={chart} />;
 }

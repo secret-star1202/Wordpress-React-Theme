@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { getApiRequest } from '../utils/url_utils';
+import React from 'react';
+import useApiRequest from '../hooks/useApiRequest';
 
 export default function HomeSidebar() {
-  let [state, setState] = useState({
+  let state = useApiRequest({
     nextOnAir: null
+  }, 'next_on_air', ({ items: [, nextOnAir] }, fxn) => {
+    fxn({ nextOnAir });
   });
-
-  useEffect(function () {
-    getApiRequest('next_on_air', (data) => {
-      setState({ nextOnAir: data && data.items[1] });
-    });
-  }, []);
 
   let { nextOnAir } = state;
 

@@ -3,14 +3,14 @@ import React from 'react';
 export default function StaffMemberItem({
   item: {
     member_name: memberName,
-    member_photo: memberPhoto,
+    member_photo: src,
     member_bio: memberBio,
     member_role: memberRole
   }
 }) {
   return <div className='news-list__post'><div className='news-list__post-image'>
       <div className="news-list__photo-link">
-      <img className='news-list__photo' src={memberPhoto} />
+      <img className='news-list__photo' {...{ src }} />
       </div>
     </div>
     <div className='news-list__info'>

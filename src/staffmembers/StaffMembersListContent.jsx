@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import StaffMemberItem from './StaffMemberItem.jsx';
-import { getApiRequest } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function StaffMembersListContent() {
-  let [state, setState] = useState({
-    staffmembers: []
-  });
-
-  let { staffmembers } = state;
-
-  useEffect(function () {
-    if (!staffmembers.length) {
-      getApiRequest('staff', (data) => {
-        setState({ staffmembers: data.length ? data : [] });
-      });
-    }
-  }, []);
+  let state = useApiRequest({ staffmembers: [] }, 'staff', (staffmembers, fxn) => {
+      fxn({ staffmembers });
+    }), { staffmembers } = state;
 
   return [<HeadStuff title="KTUH Staff" />,
     <div className='news-list__content'>
       <div className='news-list'>
         {staffmembers.length ? staffmembers.map(
-          member => <StaffMemberItem item={member} />
+          item => <StaffMemberItem {...{ item }} />
         ) : null}
       </div>
     </div>];

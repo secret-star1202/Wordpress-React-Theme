@@ -1,20 +1,22 @@
 import { default as siteInfo } from './config';
 
+let { siteUrl } = siteInfo;
+
 export function getFullUrl(path) {
-  return `${siteInfo.siteUrl}/${path}`;
+  return `${siteUrl}/${path}`;
 }
 
 export function getApiRequest(endpoint, callback) {
-  fetch(`${siteInfo.siteUrl}/wp-json/wp/v2/${endpoint}`)
+  fetch(`${siteUrl}/wp-json/wp/v2/${endpoint}`)
     .then(response => response.json()).then(callback);
 }
 
 export function getImgAsset(src) {
-  return `${siteInfo.siteUrl}/wp-content/themes/custom-react-theme/dist/images/${src}`;
+  return `${siteUrl}/wp-content/themes/custom-react-theme/dist/images/${src}`;
 }
 
 export function getUploadedImage(src) {
-  return `${siteInfo.siteUrl}/wp-content/uploads/${src}`;
+  return `${siteUrl}/wp-content/uploads/${src}`;
 }
 
 export function getFeaturedImg(_embedded,

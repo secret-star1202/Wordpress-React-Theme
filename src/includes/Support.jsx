@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import React from 'react';
+import { getFullUrl } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
+import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 
 export default function Support() {
-  let [state, setState] = useState({
-    text: ''
-  });
+  let state = useApiRequest({
+      text: ''
+    }, 'support_text', (text, fxn) => {
+      fxn({ text });
+    }), { text } = state;
 
-  useEffect(function () {
-    getApiRequest('support_text', (text) => {
-      setState({ text });
-    });
-  }, []);
-
-  return state.text.length ? <div className='support'>
+  return text.length ? <div className='support'>
     <h1 className='support__heading'>College Radio Needs Your Support!</h1>
-    <p className='support__about'>{state.text}</p>
-    <a href={getFullUrl('donate')} className='color-button purple-button'>Donate Now</a>
+    <p className='support__about'>{text}</p>
+    <SamePageAnchor href={getFullUrl('donate')} className='color-button purple-button'>Donate Now</SamePageAnchor>
   </div> : null;
 }

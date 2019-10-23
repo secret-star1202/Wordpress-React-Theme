@@ -1,7 +1,7 @@
 export default function groupBy(items, key) {
   let result = {};
   items.forEach((item) => {
-    if (item.hasOwnProperty(key)) {
+    if (item[key]) {
       let val = item[key];
       if (!result[val]) {
         result[val] = [];

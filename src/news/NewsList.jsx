@@ -6,10 +6,8 @@ import HeadStuff from '../reusables/HeadStuff.jsx';
 
 export default function NewsList() {
   return [<HeadStuff title="Radioblog" />, <div className='news-list__wrapper'>
-    <NewsListContent />
-    <div className='news-list__sidebar'>
+    <NewsListContent /><div className='news-list__sidebar'>
       <NewsListSidebarSupport />
       <NewsListLatestReviews />
-    </div>
-  </div>];
+    </div></div>];
 }

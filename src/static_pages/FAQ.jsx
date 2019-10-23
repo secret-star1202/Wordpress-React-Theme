@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import QASection from './QASection.jsx';
-import { getApiRequest } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import ContentBox from '../reusables/ContentBox.jsx';
 
 export default function FAQ() {
-  let [state, setState] = useState({
+  let state = useApiRequest({
     faqData: []
-  });
-  useEffect(function () {
-    getApiRequest('frequently_asked', ({
-      data: [{
-        data: {
-          category_title: categoryTitle, qa_pair_category: qaPairCategory,
-          qa_pair_answer: qaPairAnswer, qa_pair_question: qaPairQuestion
-        }
-      }]
-    }) => {
-      setState({
-        faqData: categoryTitle.map(function (cat) {
-          let indices = qaPairCategory.map((c, i) => (
-            { category: c, i })).filter(({ category }) => category === cat);
-          return {
-            title: cat,
-            pairs: indices.map(({ i }) => [qaPairQuestion[i], qaPairAnswer[i]])
-          };
-        })
-      });
+  }, 'frequently_asked', ([{
+    data: {
+      category_title: categoryTitle, qa_pair_category: qaPairCategory,
+      qa_pair_answer: qaPairAnswer, qa_pair_question: qaPairQuestion
+    }
+  }], fxn) => {
+    fxn({
+      faqData: categoryTitle.map(function (title) {
+        let indices = qaPairCategory.map((c, i) => (
+          { category: c, i })).filter(({ category }) => category === title);
+        return {
+          title,
+          pairs: indices.map(({ i }) => [qaPairQuestion[i], qaPairAnswer[i]])
+        };
+      })
     });
-  }, []);
+  });
 
   let { faqData } = state;
 

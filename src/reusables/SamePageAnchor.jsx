@@ -7,7 +7,7 @@ function SamePageAnchor({
 }) {
   let { generalState, setGeneralState } = useGeneralContext();
 
-  function handleClick(event) {
+  function onClick(event) {
     let { siteUrl } = siteInfo;
 
     if (href.startsWith(siteUrl)) {
@@ -19,8 +19,8 @@ function SamePageAnchor({
   }
 
   return <a {...{
-    href, target, className, id, style
-  }} onClick={handleClick}>{children}</a>;
+    href, target, className, id, style, onClick
+  }}>{children}</a>;
 }
 
 export default SamePageAnchor;

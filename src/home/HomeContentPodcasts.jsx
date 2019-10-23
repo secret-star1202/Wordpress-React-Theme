@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import HomeContentPodcastItem from './HomeContentPodcastItem.jsx';
-import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import { getFullUrl } from '../utils/url_utils';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import Glyph from '../reusables/Glyph.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
 function HomeContentPodcasts() {
-  let [state, setState] = useState({
-    podcasts: []
-  });
-
-  useEffect(function () {
-    getApiRequest('podcast?_embed&per_page=6', (data) => {
-      setState({
-        podcasts: data || []
+  let state = useApiRequest({
+      podcasts: []
+    }, 'podcast?_embed&per_page=3', (podcasts, fxn) => {
+      fxn({
+        podcasts
       });
-    });
-  }, []);
+    }), { podcasts } = state, href = getFullUrl('podcasts');
 
-  let { podcasts } = state, link = getFullUrl('podcasts');
   return podcasts.length ? <div className='home__podcast'>
-    <SamePageAnchor href={link}>
+    <SamePageAnchor {...{ href }}>
       <h3 className="home__section">Podcasts</h3>
     </SamePageAnchor>
-    <SamePageAnchor href={link} className='home__more'>
+    <SamePageAnchor {...{ href }} className='home__more'>
       MORE PODCASTS{'  '}
       <Glyph symbol='arrow-right' />
     </SamePageAnchor>
     <div className='home__podcast-content'>
-      {podcasts.slice(0, 3).map(item => (
-        <HomeContentPodcastItem {...{ item }} />)) }
+      {podcasts.map(item => (<HomeContentPodcastItem {...{ item }} />)) }
     </div>
   </div> : null;
 }

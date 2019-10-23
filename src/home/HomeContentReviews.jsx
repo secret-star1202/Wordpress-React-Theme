@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import { getApiRequest, getFullUrl } from '../utils/url_utils';
+import { getFullUrl } from '../utils/url_utils';
 import Glyph from '../reusables/Glyph.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
 function HomeContentReviews() {
-  let [state, setState] = useState({
-    reviews: []
-  });
-
-  useEffect(function () {
-    getApiRequest('review?_embed&per_page=6', (data) => {
-      setState({ reviews: data || [] });
-    });
-  }, []);
-
-  let { reviews } = state, link = getFullUrl('reviews');
+  let state = useApiRequest({
+      reviews: []
+    }, 'review?_embed&per_page=5', (data, fxn) => {
+      fxn({ reviews: data || [] });
+    }), { reviews } = state, link = getFullUrl('reviews');
 
   return reviews.length ? <div className='home__reviews'>
     <SamePageAnchor href={link}>
@@ -26,8 +21,7 @@ function HomeContentReviews() {
       <Glyph symbol='arrow-right' />
     </SamePageAnchor>
     <div className='home__reviews-content'>
-      {reviews.slice(0, 5).map(item => (
-        <HomeContentReviewsItem {...{ item }} />))}
+      {reviews.map(item => (<HomeContentReviewsItem {...{ item }} />))}
     </div>
   </div> : null;
 }

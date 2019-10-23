@@ -1,27 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MNLItem from './MNLItem.jsx';
-import { getApiRequest, getUploadedImage } from '../utils/url_utils';
+import { getUploadedImage } from '../utils/url_utils';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 import Glyph from '../reusables/Glyph.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {
     return url.replace('watch?v=', 'embed/');
   }
 
-  let [state, setState] = useState({
-    videos: []
-  });
-
-  useEffect(function () {
-    getApiRequest('mnl_video', (data) => {
-      setState({
-        videos: data
+  let state = useApiRequest({
+      videos: []
+    }, 'mnl_video', (videos, fxn) => {
+      fxn({
+        videos
       });
-    });
-  });
-
-  let { videos } = state;
+    }), { videos } = state;
 
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">
@@ -47,7 +42,7 @@ export default function MondayNightLive() {
                 <span className="mnl__nbsp">&nbsp;</span>
                 <h5 className="show__time">Past Shows</h5>
                 <div className="grid__container__mnl">{
-                  videos.map(({ video_url: [videoUrl] }) => <MNLItem url={watchToEmbed(videoUrl)} />)
+                  videos.map(({ video_url: [videoUrl] }) => <MNLItem src={watchToEmbed(videoUrl)} />)
                 }
                     <div className="grid__item__submit"><div className="submit__podcast1">
                       <div className="submit__podcast"><h3><a href=

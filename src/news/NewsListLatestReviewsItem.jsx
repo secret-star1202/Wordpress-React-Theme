@@ -7,11 +7,11 @@ export default function NewsListLatestReviewsItem({
     slug, artist: [artist], title: [title], _embedded
   }
 }) {
-  let featuredImage = getFeaturedImg(_embedded);
+  let src = getFeaturedImg(_embedded);
 
   return <div className='news-list__latest-review'>
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
-      <img src={featuredImage} />
+      <img {...{ src }} />
       <p><b>{artist}</b></p><p>{title}</p>
     </SamePageAnchor>
   </div>;

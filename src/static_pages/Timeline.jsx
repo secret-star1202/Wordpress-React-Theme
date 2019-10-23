@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getApiRequest } from '../utils/url_utils';
+import React from 'react';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function TimelineNode({ title, body }) {
@@ -10,25 +10,17 @@ function TimelineNode({ title, body }) {
 }
 
 export default function Timeline() {
-  let [state, setState] = useState({
+  let { timelineData } = useApiRequest({
     timelineData: []
-  });
-
-  useEffect(function () {
-    getApiRequest('timeline', ({
-      data: [{
-        nodes: {
-          nodes_date_string: nodesDateString, nodes_body: nodesBody
-        }
-      }]
-    }) => {
-      setState({
-        timelineData: nodesDateString.map((str, i) => ([str, nodesBody[i]]))
-      });
+  }, 'timeline', ([{
+    nodes: {
+      nodes_date_string: nodesDateString, nodes_body: nodesBody
+    }
+  }], fxn) => {
+    fxn({
+      timelineData: nodesDateString.map((str, i) => ([str, nodesBody[i]]))
     });
-  }, []);
-
-  let { timelineData } = state;
+  });
 
   return [<HeadStuff title="KTUH Timeline" />, <div className='timeline'>
     <div className='timeline__content'>

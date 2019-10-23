@@ -7,11 +7,11 @@ function ReviewItem({
     _embedded, slug, title: [title], artist: [artist]
   }
 }) {
-  let featuredImage = getFeaturedImg(_embedded);
+  let src = getFeaturedImg(_embedded);
 
   return <div className='review-item'>
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
-      <img className='review-item__image' src={featuredImage} />
+      <img className='review-item__image' {...{ src }} />
       <div className='review-item__release'>{title}</div>
       <div className='review-item__artist'>{artist}</div>
     </SamePageAnchor>

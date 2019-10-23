@@ -8,21 +8,20 @@ function NewsItem({
     _embedded, slug, title: { rendered: title }, content: { rendered: content }
   }
 }) {
-  let featuredImage = getFeaturedImg(_embedded),
-    postUrl = getFullUrl(`radioblog/${slug}`);
+  let src = getFeaturedImg(_embedded), href = getFullUrl(`radioblog/${slug}`);
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
-    <SamePageAnchor className="news-list__photo-link" href={postUrl}>
-      <img className='news-list__photo' src={featuredImage} />
+    <SamePageAnchor className="news-list__photo-link" {...{ href }}>
+      <img className='news-list__photo' {...{ src }} />
       </SamePageAnchor>
     </div>
     <div className='news-list__info'>
-      <SamePageAnchor className='news-list__title' href={postUrl}><h3>{title}</h3>
+      <SamePageAnchor className='news-list__title' {...{ href }}><h3>{title}</h3>
       </SamePageAnchor>
       <p className='news-list__excerpt'>{renderSummary(content, 50)}
         {'  '}
-        <SamePageAnchor className='purple-text' href={postUrl}><i>Read On</i></SamePageAnchor>
+        <SamePageAnchor className='purple-text' {...{ href }}><i>Read On</i></SamePageAnchor>
       </p>
     </div>
   </div>;

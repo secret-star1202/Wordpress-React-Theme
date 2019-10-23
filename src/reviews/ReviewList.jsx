@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Paginator } from 'react-everafter';
 import ReviewItem from './ReviewItem.jsx';
-import { getApiRequest } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
 
 function ReviewList() {
-  let [state, setState] = useState({
-    reviews: []
-  });
+  let state = useApiRequest({
+      reviews: []
+    }, 'review?_embed&per_page=42', (data, fxn) => {
+      fxn({ reviews: data.length > 0 ? data : [] });
+    }), { reviews: items } = state;
 
-  useEffect(function () {
-    getApiRequest('review?_embed&per_page=42', (data) => {
-      setState({ reviews: data.length > 0 ? data : [] });
-    });
-  });
-
-  let { reviews } = state;
-
-  if (reviews.length) {
+  if (items.length) {
     return [<HeadStuff title="Reviews" headerText="Music Reviews" />,
     <div className="reviews__content">
-      <Paginator wrapper={ReviewItem} truncate={true} perPage={8} items={reviews} />
+      <Paginator wrapper={ReviewItem} truncate perPage={8} {...{ items }} />
     </div>];
   }
   return null;

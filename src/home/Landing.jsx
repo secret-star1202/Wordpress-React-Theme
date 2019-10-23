@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { getApiRequest, getFullUrl, getImgAsset } from '../utils/url_utils';
+import React from 'react';
+import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import Glyph from '../reusables/Glyph.jsx';
+import useApiRequest from '../hooks/useApiRequest';
 
 function LandingInfo() {
-  let [state, setState] = useState({
+  let state = useApiRequest({
     currentShow: null,
-    nowPlaying: null,
-    interval: -1
-  });
+    nowPlaying: null
+  }, 'now_playing', function ([{
+    show: [showNow], artist: [artistNow], song: [songNow]
+  }], fxn) {
+    fxn({
+      currentShow: showNow,
+      nowPlaying: {
+        artist: artistNow,
+        song: songNow,
+      }
+    });
+  }, 30000);
 
   function currentShowName() {
     return <p className='landing__show-name caps'>
@@ -17,44 +27,14 @@ function LandingInfo() {
   }
 
   function renderNowPlaying() {
-    let { nowPlaying } = state, { artist, song: title } = nowPlaying;
-
+    let { nowPlaying } = state;
+    if (!nowPlaying) return null;
+    let { artist, song: title } = nowPlaying;
     return [
       <p className="landing__song-title caps">{title} </p>,
       <p className="landing__song-artist caps">{` by ${artist}`}</p>
     ];
   }
-
-  useEffect(function () {
-    getApiRequest('now_playing', function ({
-      data: [{
-        show: [showNow], artist: [artistNow], song: [songNow]
-      }]
-    }) {
-      setState({
-        currentShow: showNow,
-        nowPlaying: {
-          artist: artistNow,
-          song: songNow,
-        },
-        interval: setInterval(function () {
-          getApiRequest('now_playing', ({
-            data: [{
-              show: [showThen], artist: [artistThen], song: [songThen]
-            }]
-          }) => {
-            setState({
-              currentShow: showThen,
-              nowPlaying: {
-                artist: artistThen,
-                song: songThen
-              }
-            });
-          });
-        }, 30000)
-      });
-    });
-  }, []);
 
   let { currentShow, nowPlaying } = state;
 
@@ -78,8 +58,7 @@ function Landing() {
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  return (
-    <div className='landing' style={{ backgroundImage: background() }}>
+  return <div className='landing' style={{ backgroundImage: background() }}>
       <div className='landing__box'><LandingInfo /></div>
       <SamePageAnchor href={getFullUrl('playlist')}>
         <h6 className='landing__current-playlist'>
@@ -90,8 +69,7 @@ function Landing() {
         </h6>
       </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
-    </div>
-  );
+    </div>;
 }
 
 export default Landing;
