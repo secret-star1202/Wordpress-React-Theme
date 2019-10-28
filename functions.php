@@ -27,6 +27,12 @@ function my_settings_init(){
         'my_settings_sanitize' // Sanitize callback function
     );
 
+    register_setting(
+        'general',             // Options group
+        'stream_url',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
     add_settings_section('api-credentials', 'API Credentials',
       'station_credentials_fxn', 'general');
 
@@ -64,6 +70,14 @@ function my_settings_init(){
         'general',
         'misc-settings'
     );
+
+    add_settings_field(
+        'stream_url',
+        'Stream URL',
+        'stream_url_callback',
+        'general',
+        'misc-settings'
+    );
 }
 
 function spinitron_callback(){
@@ -92,10 +106,16 @@ function calendar_key_callback(){
 
 function support_text_callback(){
     ?>
-    <label for="calendar_key">
-      <textarea id="calendar_key" name="support_text"><?php echo get_option( 'support_text' ); ?></textarea>
+    <label for="support_text">
+      <textarea id="support_text" name="support_text"><?php echo get_option( 'support_text' ); ?></textarea>
     </label>
     <?php
+}
+
+function stream_url_callback(){
+  ?><label for="stream_url">
+    <input id="stream_url" name="stream_url" type="url" value="<?php echo get_option( 'stream_url' ); ?>" />
+  </label><?php
 }
 
 function my_settings_sanitize( $input ){
@@ -469,6 +489,14 @@ add_action('rest_api_init', function() {
         'methods' => 'GET',
         'callback' => function(WP_REST_Request $request) {
             $str = get_option('support_text');
+            return new \WP_REST_Response($str, 200);
+          }
+    ));
+
+    register_rest_route( 'wp/v2', '/stream_url', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $str = get_option('stream_url');
             return new \WP_REST_Response($str, 200);
           }
     ));
