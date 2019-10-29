@@ -47,9 +47,7 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    let h = new Date().getHours();
-    return `url(${getImgAsset(`tantalus-${
-      ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) ? 'evening' : 'morning'}`)}.jpg`;
+    return `url(${getImgAsset(`KTUH_FrontGraphic_5`)}.m2v`;
   }
 
   function handleClickDownArrow() {
