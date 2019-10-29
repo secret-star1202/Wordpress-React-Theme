@@ -378,7 +378,8 @@ add_action('rest_api_init', function() {
         				'post_title' => $request['title'],
         				'post_content' => $request['content'],
         				'post_excerpt' => $request['excerpt'],
-        				'post_status' => 'publish'
+        				'post_status' => 'publish',
+                'post_date' => $request['date']
 			       ));
           }
         )

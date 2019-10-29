@@ -22,8 +22,6 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center;
-  transition: background-color 1s;
-  background-color: rgb(255,255,255,0);
 }
 .container:nth-child(2) .landing{top:32px;}
 .landing__box {
