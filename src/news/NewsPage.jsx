@@ -16,14 +16,14 @@ function NewsPage() {
 
   if (post) {
     let {
-      content: { rendered: content }, title: { rendered: title }, author, date
+      content: { rendered: content }, title: { rendered: title }, date
     } = post;
 
     return [<HeadStuff {...{ title }} description={renderSummary(content, 50)} />,
     <BackButton href='radioblog' className='show__link' text="← Back to Radioblog" />,
     <div className='news-item'>
       <div className='review-page__byline'>
-        {`Review by ${author} • ${new Date(date).toDateString()}`}
+        {new Date(date).toDateString()}
       </div>
       <ContentBox className='news-item__body' {...{ content }} />
     </div>];

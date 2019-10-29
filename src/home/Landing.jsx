@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
 import Glyph from '../reusables/Glyph.jsx';
@@ -46,9 +46,26 @@ function LandingInfo() {
 }
 
 function Landing() {
+  let [state, setState] = useState({
+      n: Math.ceil(Math.random() * 8)
+    }), int = null;
+
+  useEffect(function () {
+    for (let p = 1; p < 9; p++) {
+      fetch(getImgAsset(`Carousel_0${p}.jpg`));
+    }
+    int = setInterval(function () {
+      $('.landing').css('background-color', 'rgb(255,255,255,1)');
+      setState({ n: Math.ceil(Math.random() * 8) });
+      $('.landing').css('background-color', 'rgb(255,255,255,0)');
+    }, 12000);
+    return function cleanup() {
+      clearInterval(int);
+    };
+  }, []);
+
   function background() {
-    let n = Math.ceil(Math.random() * 9);
-    return `url(${getImgAsset(`KTUH_FrontGraphic_5.${n < 10 ? `0${n}` : n}.gif`)}`;
+    return `url(${getImgAsset(`Carousel_0${state.n}.jpg`)}`;
   }
 
   function handleClickDownArrow() {

@@ -11,7 +11,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .spacer-lg{height:100vh;max-height:1080px;width:0;}.footer,#main{z-index:10;}
 #main{position:relative;min-height:80vh;padding:0;background:#fff;}
 .content,.reviews__content{padding:20px 60px 30px;}
-.landing{
+.landing {
   display:flex;
   position:absolute;
   top:0; left:0;
@@ -22,6 +22,8 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center;
+  transition: background-color 1s;
+  background-color: rgb(255,255,255,0);
 }
 .container:nth-child(2) .landing{top:32px;}
 .landing__box {

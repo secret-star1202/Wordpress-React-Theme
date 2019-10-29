@@ -19,6 +19,10 @@ export function getUploadedImage(src) {
   return `${siteUrl}/wp-content/uploads/${src}`;
 }
 
+export function getMagicFieldsImg(src) {
+  return `${siteUrl}/wp-content/files_mf/${src}`;
+}
+
 export function getFeaturedImg(_embedded,
   defo = getImgAsset('ktuh-logo.png')) {
   return _embedded && _embedded['wp:featuredmedia']

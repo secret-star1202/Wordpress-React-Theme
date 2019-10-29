@@ -1,4 +1,5 @@
 import React from 'react';
+import { getMagicFieldsImg } from '../utils/url_utils';
 
 export default function StaffMemberItem({
   item: {
@@ -10,7 +11,7 @@ export default function StaffMemberItem({
 }) {
   return <div className='news-list__post'><div className='news-list__post-image'>
       <div className="news-list__photo-link">
-      <img className='news-list__photo' {...{ src }} />
+      <img className='news-list__photo' src={getMagicFieldsImg(src)} />
       </div>
     </div>
     <div className='news-list__info'>
