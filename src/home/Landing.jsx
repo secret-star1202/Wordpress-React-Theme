@@ -47,7 +47,8 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    return `url(${getImgAsset(`KTUH_FrontGraphic_5`)}.m2v`;
+    let n = Math.ceil(Math.random() * 11);
+    return `url(${getImgAsset(`KTUH_FrontGraphic_5.${n < 10 ? `0${n}` : n}.gif`)}`;
   }
 
   function handleClickDownArrow() {
