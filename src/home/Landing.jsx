@@ -47,7 +47,7 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    let n = Math.ceil(Math.random() * 11);
+    let n = Math.ceil(Math.random() * 9);
     return `url(${getImgAsset(`KTUH_FrontGraphic_5.${n < 10 ? `0${n}` : n}.gif`)}`;
   }
 
