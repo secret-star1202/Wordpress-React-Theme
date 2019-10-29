@@ -255,7 +255,8 @@ h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: transparent;
+  background-color: #333333;
+  opacity: 85%;
   color: #fff;
   transition: .3s;
 }
@@ -2793,4 +2794,10 @@ input[placeholder=Search] {
 }
 .show-item__genres {
   margin-left: 40px;
+}
+.staff-list {
+  padding-left: 65px;
+}
+.staff-list__excerpt {
+  font weigh
 }

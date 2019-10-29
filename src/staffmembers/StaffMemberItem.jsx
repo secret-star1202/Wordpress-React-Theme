@@ -15,7 +15,7 @@ export default function StaffMemberItem({
     <div className='news-list__info'>
       <div className='news-list__title'><h3>{member_name}</h3></div>
       <div className='news-list__excerpt'><h4>{member_role}</h4></div>
-      <div className='news-list__excerpt'><h5>{member_bio}</h5></div>
+      <div className='staff-list__excerpt'><h5>{member_bio}</h5></div>
     </div>
   </div>;
 }

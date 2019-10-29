@@ -20,7 +20,7 @@ function StaffMembersListContent() {
 
   return [<HeadStuff title="KTUH Staff" />,
     <div className='news-list__content'>
-      <div className='news-list'>
+      <div className='staff-list'>
         {staffmembers.length ? staffmembers.map(
           member => <StaffMemberItem item={member} />
         ) : null}
