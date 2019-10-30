@@ -18,7 +18,7 @@ module.exports = {
       },
     })]
   },
-  mode: 'production',
+  mode: process.env.DEV_MODE ? 'development' : 'production',
   entry: {
     app: './src/index.jsx'
   },
@@ -49,7 +49,7 @@ module.exports = {
         options: {
           babelrc: true,
           comments: false,
-          plugins: ['./babel/hashify']
+          plugins: process.env.DEV_MODE ? [] : ['./babel/hashify']
         }
       },
       {
@@ -58,7 +58,9 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           comments: false,
-          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify', './babel/rightify-react']
+          plugins: process.env.DEV_MODE ? [] :
+            ['@babel/plugin-proposal-throw-expressions',
+              './babel/rightify', './babel/rightify-react']
         }
       },
       {
@@ -67,7 +69,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           comments: false,
-          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
+          plugins: process.env.DEV_MODE ? [] : ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
         }
       },
       {
@@ -76,7 +78,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           comments: false,
-          plugins: ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
+          plugins: process.env.DEV_MODE ? [] : ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
         }
       },
     ]

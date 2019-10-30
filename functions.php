@@ -470,6 +470,20 @@ add_action('rest_api_init', function() {
           }
     ));
 
+    register_rest_route( 'wp/v2', '/schedule', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+            $url = "https://spinitron.com/api/shows?access-token=" . $key . "&count=100&perPage=100";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $str = curl_exec($ch);
+            curl_close($ch);
+            return new \WP_REST_Response(json_decode($str), 200);
+          }
+    ));
+
     register_rest_route( 'wp/v2', '/g_cal', array(
         'methods' => 'GET',
         'callback' => function(WP_REST_Request $request) {

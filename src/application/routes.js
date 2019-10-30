@@ -15,6 +15,7 @@ import MondayNightLive from '../static_pages/MondayNightLive.jsx';
 import StaffMembersListContent from '../staffmembers/StaffMembersListContent.jsx';
 import Donate from '../static_pages/Donate.jsx';
 import Schedule from '../static_pages/Schedule.jsx';
+import ShowSchedule from '../shows/ShowSchedule.jsx';
 
 export default [
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },
@@ -30,6 +31,7 @@ export default [
   { path: '/staff', component: StaffMembersListContent },
   { path: '/faq', component: FAQ },
   { path: '/donate', component: Donate },
+  { path: ['/shows', 'show-schedule'], component: ShowSchedule },
   { path: '/schedule', component: Schedule },
   { path: '/not-found', component: NotFound },
   { path: '/:slug', component: PagesItem },
