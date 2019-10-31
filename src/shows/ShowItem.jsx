@@ -1,24 +1,13 @@
 import React from 'react';
+import parseDate from '../utils/date_funcs';
 
 export default function ShowItem({
   show: {
     start, end, image, title, description
   }
 }) {
-  function formattedTime(startHour, startMinute, endHour, endMinute) {
-    if (startMinute === 1) {
-      startMinute--;
-    }
-    if (endMinute === 59) {
-      endHour = (endHour + 1) % 24;
-      endMinute = 0;
-    }
-    return `${startHour}:${
-      (startMinute < 10 ? '0' : '') + startMinute}-${endHour}:${endMinute}`;
-  }
-
-  let startDate = new Date(start).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
-    endDate = new Date(end).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
+  let startDate = parseDate(start).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
+    endDate = parseDate(end).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
     fmtStr = `${startDate}-${endDate}`;
 
   return <div className='show-item'><h4 className='show-item__time'>

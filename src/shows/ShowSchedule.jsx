@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ShowItem from './ShowItem.jsx';
 import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff.jsx';
+import parseDate from '../utils/date_funcs';
 
 export default function ShowSchedule() {
   const dows = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
@@ -36,9 +37,9 @@ export default function ShowSchedule() {
 
   function daysShows() {
     let retval =
-      schedule.filter(show => new Date(show.start).getDay() === state.day);
+      schedule.filter(show => parseDate(show.start).getDay() === state.day);
     retval.sort(function (a, b) {
-      let aDate = new Date(a.start), bDate = new Date(b.start),
+      let aDate = parseDate(a.start), bDate = parseDate(b.start),
         [aTime, aAp] =
           aDate.toLocaleTimeString('en-US', { timeZone: 'Pacific/Honolulu' }).split(' '),
         [bTime, bAp] =

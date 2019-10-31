@@ -1254,3 +1254,410 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   font-weight: bold;
   color: #AF96FF;
 }
+@media (max-width: 768px) {
+  .general__header {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .show__link, .event__link, .review__link, .chart__link, .playlist__link {
+    left: 25px;
+    width: calc(100% - 40px);
+    top: 45px;
+  }
+  .landing__info {
+    max-width: calc(100% - 40px);
+    min-width: 280px;
+  }
+  .landing__show-name,
+  .landing__show-host,
+  .landing__song-title,
+  .landing__host-name,
+  .landing__song-artist {
+    font-size: 1.75em;
+    line-height: 32px;
+  }
+  .landing__box {
+    max-width: 37em;
+    justify-content: center;
+  }
+  .about__desc, .about__content, .alumni__content,
+  .about__help, .join__desc, .join__content,
+  .faq__content, .contact__content, .playlist__content, .content, .reviews__content
+  .show__wrapper, .news-list__wrapper, .page__content {
+    padding: 20px 40px;
+  }
+  .about__desc p, .about__content p, .alumni__img, .alumni__content p,
+  .join__desc p, .join__content p,
+  .faq__content p, .contact__content p, .page__content p, .contact__content h4,
+  .contact__content ul {
+    padding: 0;
+  }
+  .music__content {
+    display: block;
+    margin: 0px 40px;
+  }
+  .music__content h2 {
+    width: 100%;
+  }
+  .music__playlist {
+    width: 100%;
+  }
+  .home__featured-content, .news-item {
+    padding: 0 40px;
+  }
+  .at-form {
+    margin: 0 40px;
+  }
+  .home__main, .playlist__content {
+    width: 100%;
+    padding-right: 0;
+  }
+  .home__sidebar {
+    width: 100%;
+    padding-right: 0;
+  }
+  .playlist__sidebar  {
+   width: calc(100% - 80px);
+   margin: 0 40px 10px;
+  }
+  .playlist-list__latest {
+    width: 100%;
+  }
+  .home__next-show {
+    margin: 15px 0;
+  }
+  .about__desc {
+    background-image: none;
+  }
+  .support__about {
+    padding: 20px 10%;
+  }
+  .header__submenu-support button {
+    margin-left: 20px;
+  }
+  .footer__mission-wrapper {
+    width: 30%;
+  }
+  .footer__contact {
+    width: 70%;
+  }
+  .spacer-sm {
+    height: 50px;
+    width: 0;
+  }
+  .footer {
+    padding: 30px 40px 25px;
+    font-size: 12px;
+  }
+  .dropdown-menu.fixed-theme > li > a,
+  .dropdown-menu.fixed-theme > li > a:hover,
+  .dropdown-menu.fixed-theme > li > a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .fixed-theme,
+  .fixed-theme {
+    color: #fff;
+    background-color: #333 !important;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:focus,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:active {
+    border-top: 2px solid transparent;
+    font-style: italic;
+  }
+  .flyer-div {
+    width: 100%;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .flyer-div__front,
+  .flyer-div__back {
+    margin: 0 0 20px 0;
+  }
+  .navbar {
+    padding: 0 40px;
+  }
+  .news-list__sidebar,
+  .news-list__content {
+    width: 100%;
+  }
+  .navbar-default .navbar-toggle {
+    margin-right: 0;
+  }
+  .nav__search {
+    margin: 5px 0 10px 10px;
+  }
+  .shows {
+    padding: 20px 40px 40px;
+   }
+  .show__info {
+    float: none;
+    max-width: 100%;
+  }
+  .show__image-div {
+    float: none;
+    padding-right: 20px;
+    max-width: 100%;
+  }
+  .show-item__time {
+    padding-right: 30px;
+  }
+  .shows__day {
+    font-size: .875em;
+  }
+  .dropdown-toggle {
+    width: 112px;
+    margin: 0 10px 0 16px;
+    padding: 13px 0 8px 0;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    padding: 8px 15px 8px 20px;
+  }
+  .home__reviews-item {
+    width: 30%;
+    float: left;
+  }
+  .home__news-item, .news-list__post {
+    width: 100%;
+    float: left;
+  }
+  .profile {
+    margin: 10px 40px;
+  }
+  .profile__left {
+    width: 100%;
+    margin: 0 0 30px 0;
+  }
+  .profile__info {
+    max-width: none;
+    margin: 25px 0 0 0;
+  }
+  .resend__content {
+    margin: 10px 40px;
+  }
+  .party-header__button {
+    position: unset;
+  }
+  .profile__social-icons,
+  .profile__show-link {
+    margin-left: 0;
+    width: 100%;
+  }
+  .home__featured-photo {
+    width: 97%;
+    margin-bottom: 25px;
+  }
+  .home__featured-item {
+    width: 100%;
+    padding: 2px 0px;
+  }
+  .home__reviews-item img {
+    width: 100%;
+    height: auto;
+  }
+  .navbar-right {
+    display: none;
+  }
+  .staff__content {
+    padding: 10px 40px;
+  }
+  .review__content {
+    margin: 0px 25px;
+  }
+  .review-item {
+    width: 50%;
+  }
+  .review-item:nth-child(2n + 1) {
+    clear: both;
+  }
+  .events-item {
+    width: 100%;
+  }
+}
+@media (max-width: 666px) {
+  .party {
+    width: 100%;
+  }
+  .party-info {
+    margin-top: 20px;
+  }
+  .header__support-btn {
+    display: block;
+  }
+  .header__submenu-support {
+    display: none;
+  }
+  .landing__box {
+    flex-direction: column;
+  }
+  .landing__info,
+  .landing__play-btn-outer {
+    margin: 0 auto 15px;
+  }
+  .landing__now-playing {
+    text-align: center;
+  }
+  .landing__show-name,
+  .landing__show-host,
+  .landing__song-title,
+  .landing__host-name,
+  .landing__song-artist {
+    text-align: center;
+    font-size: 1.125em;
+    line-height: 25px;
+  }
+  .news-list__post {
+    float: none;
+    width: 100%;
+    padding: 0 0 20px 0;
+  }
+  .news-list__post:last-of-type {
+    margin-bottom: 0;
+  }
+  .footer__links__clear {
+    clear: both;
+  }
+  .review-page__image,
+  .review-page h3 {
+    float: none;
+    width: 100%;
+  }
+  .review-page__copy {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+  }
+  .profile__pic {
+    float: none;
+  }
+  .profile__header-separator { display: none; }
+  .profile__social { margin-bottom: 15px; }
+  .profile__social-icons {
+    float: none;
+    width: 100%;
+  }
+  .profile__left {
+    width: 100%;
+    margin: 0 0 30px 0;
+    margin: 0;
+    padding: 0;
+  }
+  .profile__info {
+    width: 100%;
+  }
+  .staff__item {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0;
+  }
+}
+@media (max-width: 600px) {
+  .home__main, .playlist__content { width: 100%; }
+  .home__more { display: none; }
+  .footer__mission-wrapper {
+    width: 30%;
+    margin-right: 15px;
+  }
+  .footer__contact {
+    width: calc(70% - 15px);
+  }
+  .general__header {
+    padding-top: 60px;
+  }
+  .landing__view-current { display: none; }
+  .news-list {
+    padding: 0;
+  }
+  .shows__days__narrow {
+    display: inherit;
+  }
+  .shows__days__wide {
+    display: none;
+  }
+  .news-list__post:last-of-type { padding-bottom: 0; }
+  .shows__day {
+    font-size: .875em;
+  }
+  .show-item__image-div {
+    width: 130px;
+    margin-right: 5px;
+  }
+  .show-item__time,
+  .show-item__info p {
+    display: none;
+  }
+  .show-item__info-time {
+    display: initial;
+  }
+  .timeline__content:before {
+    content: '';
+    position: absolute;
+    top: 168px;
+    left: 50%;
+    height: 95.75%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    background-color: #000;
+  }
+  .timeline__node {
+    width: 66%;
+    margin-left: 20%;
+  }
+  .timeline__node:nth-child(even) .timeline__node-body,
+  .timeline__node:nth-child(odd) .timeline__node-title,
+  .timeline__node:nth-child(odd) .timeline__node-body,
+  .timeline__node:nth-child(even) .timeline__node-title {
+    padding-left: 8px;
+    padding-right: 0;
+    padding-bottom: 0;
+    display: block;
+    width: 51%;
+    text-align: left;
+    float: right;
+  }
+  .timeline__node:nth-child(even) .timeline__node-title:before
+  {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 4px solid #5947db;
+    background-color: #5947db;
+    border-radius: 100%;
+    left: calc(50% - 8px);
+    margin-top: 4px;
+  }
+  .timeline__node:nth-child(even) .timeline__node-body:before
+  {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    background-color: #5947db;
+    border-radius: 100%;
+    left: calc(50% - 8px);
+    margin-top: 4px;
+  }
+  .shows__day {
+    font-size: .875em;
+  }
+  .show__content {
+    width: 100%;
+    display: block;
+    text-align: left;
+  }
+  .show__image-div {
+    padding-right: 0;
+    width: 100%;
+  }
+  .show__image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .show__info {
+    width: 100%;
+    margin: 0;
+  }
+}

@@ -32,6 +32,7 @@
     "$": true,
     "document": true,
     "window": true,
-    "fetch": true
+    "fetch": true,
+    "navigator": true
   }
 }

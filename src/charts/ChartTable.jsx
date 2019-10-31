@@ -3,7 +3,11 @@ import React from 'react';
 function parse(data) {
   let retval = [], lines = data.split('\n');
   for (let l = 0; l < lines.length; l++) {
-    if (lines[l].length) retval.push(lines[l].split(/(?<!\\),/));
+    if (lines[l].length) {
+      retval.push(lines[l].replace(/\\,/g, '，').split(',').map(
+        line => line.replace(/，/g, ',')
+      ));
+    }
   }
   return retval;
 }
