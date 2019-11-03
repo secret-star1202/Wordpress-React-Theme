@@ -1,7 +1,6 @@
 import React from 'react';
-import useApiRequest from '../hooks/useApiRequest';
-import ContentBox from '../reusables/ContentBox.jsx';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { useApiRequest } from '../hooks';
+import { ContentBox, HeadStuff } from '../reusables';
 
 export default function Donate() {
   let state = useApiRequest({

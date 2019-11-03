@@ -1,8 +1,7 @@
 import React from 'react';
 import QASection from './QASection.jsx';
 import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import ContentBox from '../reusables/ContentBox.jsx';
+import { HeadStuff, ContentBox } from '../reusables';
 
 export default function FAQ() {
   let state = useApiRequest({

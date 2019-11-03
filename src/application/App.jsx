@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from '../includes/Header.jsx';
-import Footer from '../includes/Footer.jsx';
+import { Header, Footer } from '../includes';
 import Landing from '../home/Landing.jsx';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 import { default as routes } from './routes';

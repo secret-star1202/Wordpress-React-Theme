@@ -1,9 +1,8 @@
 import React from 'react';
 import PodcastItem from './PodcastItem.jsx';
-import { getFullUrl } from '../utils/url_utils';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { getFullUrl } from '../utils';
+import { useApiRequest } from '../hooks';
+import { HeadStuff, SamePageAnchor } from '../reusables';
 
 export default function PodcastList() {
   let state = useApiRequest({

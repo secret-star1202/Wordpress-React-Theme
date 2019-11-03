@@ -484,6 +484,35 @@ add_action('rest_api_init', function() {
           }
     ));
 
+    register_rest_route( 'wp/v2', '/show', array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+            $id = $request['id'];
+            $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key;
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $str = curl_exec($ch);
+            curl_close($ch);
+            return new \WP_REST_Response(json_decode($str), 200);
+          }
+    ));
+
+    register_rest_route( 'wp/v2', '/num_posts', array(
+        'methods' => 'GET',
+        'callback' => function() {
+            return new \WP_REST_Response(wp_count_posts()->publish, 200);
+          }
+    ));
+
+    register_rest_route( 'wp/v2', '/num_reviews', array(
+        'methods' => 'GET',
+        'callback' => function() {
+            return new \WP_REST_Response(wp_count_posts('review')->publish, 200);
+          }
+    ));
+
     register_rest_route( 'wp/v2', '/g_cal', array(
         'methods' => 'GET',
         'callback' => function(WP_REST_Request $request) {

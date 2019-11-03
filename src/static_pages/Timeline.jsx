@@ -1,6 +1,6 @@
 import React from 'react';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { useApiRequest } from '../hooks';
+import { HeadStuff } from '../reusables';
 
 function TimelineNode({ title, body }) {
   return <div className='timeline__node'>

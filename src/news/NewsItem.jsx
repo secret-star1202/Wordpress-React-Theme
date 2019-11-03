@@ -1,7 +1,8 @@
 import React from 'react';
-import renderSummary from '../utils/summary';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
+import { SamePageAnchor } from '../reusables';
+import {
+  getFullUrl, getFeaturedImg, entitiesToText, renderSummary
+} from '../utils';
 
 function NewsItem({
   item: {
@@ -17,7 +18,8 @@ function NewsItem({
       </SamePageAnchor>
     </div>
     <div className='news-list__info'>
-      <SamePageAnchor className='news-list__title' {...{ href }}><h3>{title}</h3>
+      <SamePageAnchor className='news-list__title' {...{ href }}>
+        <h3>{entitiesToText(title)}</h3>
       </SamePageAnchor>
       <p className='news-list__excerpt'>{renderSummary(content, 50)}
         {'  '}

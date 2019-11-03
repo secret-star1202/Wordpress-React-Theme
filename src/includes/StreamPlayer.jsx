@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import Glyph from '../reusables/Glyph.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { Glyph } from '../reusables';
+import { useApiRequest } from '../hooks';
 
 export default function StreamPlayer() {
   let [playing, setPlaying] = useState(false), state = useApiRequest({

@@ -9,14 +9,12 @@
   },
   "dependencies": {
     "@babel/types": "^7.6.3",
-    "react": "^16.10.2",
+    "react": "^16.11.0",
     "react-cal-viz": "^0.4.0",
-    "react-dom": "^16.10.2",
-    "react-everafter": "^1.1.0",
+    "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
     "react-router-dom": "^5.1.2",
-    "styled-components": "^4.4.0",
     "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "devDependencies": {
@@ -33,12 +31,12 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-minify-webpack-plugin": "^0.3.1",
-    "eslint": "^6.5.1",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.16.0",
     "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.10"
   }
 }

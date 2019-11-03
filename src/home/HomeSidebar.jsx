@@ -1,5 +1,5 @@
 import React from 'react';
-import useApiRequest from '../hooks/useApiRequest';
+import { useApiRequest } from '../hooks';
 
 export default function HomeSidebar() {
   let state = useApiRequest({
@@ -12,7 +12,8 @@ export default function HomeSidebar() {
 
   if (!nextOnAir) return null;
 
-  let { title, start, end } = nextOnAir, startStr = new Date(start).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }),
+  let { title, start, end } = nextOnAir,
+    startStr = new Date(start).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }),
     endStr = new Date(end).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' });
 
   return <div className='home__sidebar'>

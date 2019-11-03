@@ -1,11 +1,7 @@
 import React from 'react';
-import BackButton from '../reusables/BackButton.jsx';
-import { useSlug } from '../hooks/useGeneralContext';
-import { getFeaturedImg } from '../utils/url_utils';
-import NotFoundRedirect from '../utils/404_redirect';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import ContentBox from '../reusables/ContentBox.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { useSlug, useApiRequest } from '../hooks';
+import { getFeaturedImg, NotFoundRedirect } from '../utils';
+import { HeadStuff, ContentBox, BackButton } from '../reusables';
 
 function ReviewPage() {
   function formattedRating(rating) {

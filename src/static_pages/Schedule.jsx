@@ -1,6 +1,5 @@
 import React from 'react';
-import IThing from '../reusables/IThing.jsx';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { IThing, HeadStuff } from '../reusables';
 
 export default function Schedule() {
   return [<HeadStuff title="Show Schedule" />,

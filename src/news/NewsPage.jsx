@@ -1,11 +1,7 @@
 import React from 'react';
-import renderSummary from '../utils/summary';
-import BackButton from '../reusables/BackButton.jsx';
-import { useSlug } from '../hooks/useGeneralContext';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import ContentBox from '../reusables/ContentBox.jsx';
-import NotFoundRedirect from '../utils/404_redirect';
+import { useSlug, useApiRequest } from '../hooks';
+import { HeadStuff, ContentBox, BackButton } from '../reusables';
+import { NotFoundRedirect, entitiesToText, renderSummary } from '../utils';
 
 function NewsPage() {
   let slug = useSlug(), state = useApiRequest({
@@ -19,7 +15,8 @@ function NewsPage() {
       content: { rendered: content }, title: { rendered: title }, date
     } = post;
 
-    return [<HeadStuff {...{ title }} description={renderSummary(content, 50)} />,
+    return [<HeadStuff title={entitiesToText(title)}
+      description={renderSummary(content, 50)} />,
     <BackButton href='radioblog' className='show__link' text="← Back to Radioblog" />,
     <div className='news-item'>
       <div className='review-page__byline'>

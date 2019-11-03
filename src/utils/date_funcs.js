@@ -9,3 +9,12 @@ export default function parseDate(str) {
   }
   return new Date(str);
 }
+
+export const daysOfWeek = [
+  'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+  'Friday', 'Saturday'
+];
+
+export function toLocalStr(date) {
+  return date.toLocaleTimeString({ timeZone: 'Pacific/Honolulu' });
+}

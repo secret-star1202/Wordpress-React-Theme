@@ -1,10 +1,8 @@
 import React from 'react';
 import ChartTable from './ChartTable.jsx';
-import { useSlug } from '../hooks/useGeneralContext';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import BackButton from '../reusables/BackButton.jsx';
-import NotFoundRedirect from '../utils/404_redirect';
+import { useSlug, useApiRequest } from '../hooks';
+import { HeadStuff, BackButton } from '../reusables';
+import { NotFoundRedirect } from '../utils';
 
 export default function ChartPage() {
   let slug = useSlug(), state = useApiRequest({

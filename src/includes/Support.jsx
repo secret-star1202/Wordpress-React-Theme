@@ -1,7 +1,7 @@
 import React from 'react';
-import { getFullUrl } from '../utils/url_utils';
-import useApiRequest from '../hooks/useApiRequest';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { getFullUrl } from '../utils';
+import { useApiRequest } from '../hooks';
+import { SamePageAnchor } from '../reusables';
 
 export default function Support() {
   let state = useApiRequest({

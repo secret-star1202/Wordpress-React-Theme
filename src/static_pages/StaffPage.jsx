@@ -1,7 +1,7 @@
 import React from 'react';
 import StaffItem from './StaffItem.jsx';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { useApiRequest } from '../hooks';
+import { HeadStuff } from '../reusables';
 
 export default function StaffPage() {
   let state = useApiRequest({

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getApiRequest } from '../utils/url_utils';
+import { getApiRequest } from '../utils';
 
 export default function useApiRequest(initialState, endpoint, callback, interval) {
   let [state, setState] = useState(initialState), int = null;

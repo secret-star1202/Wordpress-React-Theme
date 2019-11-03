@@ -1,9 +1,8 @@
 import React from 'react';
 import MNLItem from './MNLItem.jsx';
 import { getUploadedImage } from '../utils/url_utils';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import Glyph from '../reusables/Glyph.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { HeadStuff, Glyph } from '../reusables';
+import { useApiRequest } from '../hooks';
 
 export default function MondayNightLive() {
   function watchToEmbed(url) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import NewsListLatestReviewsItem from './NewsListLatestReviewsItem.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { useApiRequest } from '../hooks';
 
 function NewsListLatestReviews() {
   let state = useApiRequest({

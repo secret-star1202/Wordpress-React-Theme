@@ -1,5 +1,5 @@
 import React from 'react';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { HeadStuff } from '../reusables';
 import { EmailLink } from '../includes/Footer.jsx';
 
 export default function SubmitPodcast() {

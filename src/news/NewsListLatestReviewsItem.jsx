@@ -1,5 +1,5 @@
 import React from 'react';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { SamePageAnchor } from '../reusables';
 import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 export default function NewsListLatestReviewsItem({

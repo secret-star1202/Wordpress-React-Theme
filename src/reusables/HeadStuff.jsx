@@ -1,6 +1,6 @@
 import React from 'react';
 import MetaThing from './MetaThing.jsx';
-import { getImgAsset } from '../utils/url_utils';
+import { getImgAsset } from '../utils';
 
 export default function HeadStuff({
   title, description, headerText, image = getImgAsset('ktuh-logo.jpg')

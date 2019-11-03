@@ -1,21 +1,22 @@
 import React from 'react';
-import { Paginator } from 'react-everafter';
+import Paginator from '../reusables/Paginator.jsx';
 import NewsItem from './NewsItem.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { useApiRequest } from '../hooks';
 
 function NewsListContent() {
-  let state = useApiRequest({
-      posts: []
-    }, 'all_posts?_embed', (data, fxn) => {
-      fxn({ posts: data.length ? data : [] });
-    }), { posts: items } = state;
+  let { numPages } = useApiRequest({
+    numPages: undefined
+  }, 'num_posts', (data, fxn) => {
+    fxn({ numPages: Math.ceil(parseInt(data, 10) / 10) });
+  });
 
-  return <div className='news-list__content'>
+  return numPages ? <div className='news-list__content'>
     <div className='news-list'>
-      {items.length ? <Paginator wrapper={NewsItem} perPage={4} {...{ items }}
-        truncate /> : <p>No results.</p>}
+      <Paginator wrapper={NewsItem} perPage={10} truncate={true}
+        maxPages={numPages}
+        apiUrl={num => `posts?_embed&page=${num}`} />
     </div>
-  </div>;
+  </div> : null;
 }
 
 export default NewsListContent;

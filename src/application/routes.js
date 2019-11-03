@@ -1,21 +1,16 @@
 import Home from '../home/Home.jsx';
-import ReviewPage from '../reviews/ReviewPage.jsx';
-import ReviewList from '../reviews/ReviewList.jsx';
-import NewsPage from '../news/NewsPage.jsx';
-import NewsList from '../news/NewsList.jsx';
+import { ReviewPage, ReviewList } from '../reviews';
+import { NewsPage, NewsList } from '../news';
 import ChartPage from '../charts/ChartPage.jsx';
 import EventsList from '../events/EventsList.jsx';
-import PodcastList from '../podcasts/PodcastList.jsx';
-import SubmitPodcast from '../podcasts/SubmitPodcast.jsx';
+import { PodcastList, SubmitPodcast } from '../podcasts';
 import NotFound from './NotFound.jsx';
 import PagesItem from '../pages/PagesItem.jsx';
-import FAQ from '../static_pages/FAQ.jsx';
-import Timeline from '../static_pages/Timeline.jsx';
-import MondayNightLive from '../static_pages/MondayNightLive.jsx';
+import {
+  FAQ, Timeline, MondayNightLive, Donate
+} from '../static_pages';
 import StaffMembersListContent from '../staffmembers/StaffMembersListContent.jsx';
-import Donate from '../static_pages/Donate.jsx';
-import Schedule from '../static_pages/Schedule.jsx';
-import ShowSchedule from '../shows/ShowSchedule.jsx';
+import { ShowSchedule, ShowPage } from '../shows';
 
 export default [
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },
@@ -28,11 +23,11 @@ export default [
   { path: ['/chart/:slug', '/charts/:slug'], component: ChartPage },
   { path: ['/timeline', '/ktuh-timeline'], component: Timeline },
   { path: ['/events', '/event'], component: EventsList },
-  { path: ['/shows', '/show-schedule'], component: ShowSchedule },
+  { path: ['/shows/:slug', '/show/:slug'], component: ShowPage },
+  { path: ['/shows', '/show-schedule', '/schedule'], component: ShowSchedule },
   { path: '/staff', component: StaffMembersListContent },
   { path: '/faq', component: FAQ },
   { path: '/donate', component: Donate },
-  { path: '/schedule', component: Schedule },
   { path: '/not-found', component: NotFound },
   { path: '/:slug', component: PagesItem },
   { path: '/', component: Home }

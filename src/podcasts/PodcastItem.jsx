@@ -1,5 +1,5 @@
 import React from 'react';
-import IThing from '../reusables/IThing.jsx';
+import { IThing } from '../reusables';
 
 export default function PodcastItem({ playlistId }) {
   let src =

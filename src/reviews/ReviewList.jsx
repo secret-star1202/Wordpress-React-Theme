@@ -1,23 +1,21 @@
 import React from 'react';
-import { Paginator } from 'react-everafter';
+import Paginator from '../reusables/Paginator.jsx';
 import ReviewItem from './ReviewItem.jsx';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import { HeadStuff } from '../reusables';
+import { useApiRequest } from '../hooks';
 
 function ReviewList() {
-  let state = useApiRequest({
-      reviews: []
-    }, 'review?_embed&per_page=42', (data, fxn) => {
-      fxn({ reviews: data.length > 0 ? data : [] });
-    }), { reviews: items } = state;
+  let { numPages } = useApiRequest({
+    numPages: undefined
+  }, 'num_reviews', (data, fxn) => {
+    fxn({ numPages: Math.ceil(parseInt(data, 10) / 8) });
+  });
 
-  if (items.length) {
-    return [<HeadStuff title="Reviews" headerText="Music Reviews" />,
+  return numPages ? [<HeadStuff title="Reviews" headerText="Music Reviews" />,
     <div className="reviews__content">
-      <Paginator wrapper={ReviewItem} truncate perPage={8} {...{ items }} />
-    </div>];
-  }
-  return null;
+      <Paginator wrapper={ReviewItem} truncate={true} perPage={8} maxPages={numPages}
+        apiUrl={(num, per) => `review?_embed&page=${num}&perPage=${per}`} />
+    </div>] : null;
 }
 
 export default ReviewList;
