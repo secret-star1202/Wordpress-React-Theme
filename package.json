@@ -10,7 +10,6 @@
   "dependencies": {
     "@babel/types": "^7.6.3",
     "react": "^16.11.0",
-    "react-cal-viz": "^0.4.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
