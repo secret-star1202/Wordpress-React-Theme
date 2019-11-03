@@ -1,5 +1,5 @@
 import React from 'react';
-import { MonthView } from 'react-cal-viz';
+import MonthView from './Calendar.jsx';
 import EventItem from './EventItem.jsx';
 import { useApiRequest } from '../hooks';
 import { HeadStuff } from '../reusables';

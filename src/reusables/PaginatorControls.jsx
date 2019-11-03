@@ -47,8 +47,7 @@ const PaginatorContainer = ({ children, ...rest }) => <div {...rest} style={{
   PaginatorButton = ({
     num, order, children, active, activeTabColor, ...rest
   }) => {
-    let [hover, setHover] = useState(false);
-    let style = {
+    let [hover, setHover] = useState(false), style = {
       textAlign: 'center',
       border: 'thin grey solid',
       padding: '5px',
@@ -101,8 +100,8 @@ export default function PaginatorControls() {
         onClick={(n !== null && !!n) ? () => dispatch({ type: 'page', val: n })
           : null} num={(n !== null && !!n) ? n : '⋯'}
             order={(o === 0 && currentPage > 1)
-            ? 'first' : (o === truncated.length - 1
-            && currentPage < maxPages) ? 'last' : ''}
+              ? 'first' : (o === truncated.length - 1
+              && currentPage < maxPages) ? 'last' : ''}
           active={(n !== null && !!n) ? isActive(n) : false} />))
         : generateArray(maxPages).map(i => (
         <PaginatorButton {...{ activeTabColor }} num={i + 1} order='last'

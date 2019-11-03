@@ -1,0 +1,172 @@
+import React, { useState, useEffect } from 'react';
+import Dow from './Dow.jsx';
+import VanishingSpan from './VanishingSpan.jsx';
+import Frame from './Frame.jsx';
+import Day from './Day.jsx';
+import HoverLink from './HoverLink.jsx';
+
+function dateMatch(stateObj, day) {
+  let today = new Date();
+  return today.getFullYear() === stateObj.year
+    && today.getMonth() === stateObj.month
+    && day === today.getDate();
+}
+
+function MonthView({ events }) {
+  let today = new Date(), [state, setState] = useState({
+    current: {
+      year: today.getFullYear(),
+      month: today.getMonth()
+    }
+  });
+
+  useEffect(function () {
+    if (events.length) {
+      let nextEvent = events.filter(function (event) {
+        return +event.start > new Date();
+      })[0];
+      setState({
+        current: {
+          year: nextEvent ? nextEvent.start.getFullYear() : today.getFullYear(),
+          month: nextEvent ? nextEvent.start.getMonth() : today.getMonth(),
+        }
+      });
+    }
+  }, []);
+
+  function outputRows(year, month, evts) {
+    let filteredEvents = evts.filter(function (event) {
+        return event.start.getFullYear() === year
+        && event.start.getMonth() === month;
+      }), dpm = [
+        31,
+        year % 4 === 0 && year % 100 !== 0 ? 29 : 28,
+        31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+      ],
+      dow = new Date(year, month, 1).getDay(), rows = [];
+    rows.push([]);
+    for (let g = 0; g < dow; g++) {
+      rows[0].push(null);
+    }
+    for (let d = 0; d < dpm[month]; d++) {
+      if (dow === 0 && rows.length > 0) rows.push([]);
+      rows.slice(-1)[0][dow] = [(d + 1), filteredEvents.filter(function (event) {
+        return event.start.getDate() === (d + 1);
+      })];
+      dow = (dow + 1) % 7;
+    }
+    if (dow > 0) {
+      for (let m = dow; m < 7; m++) {
+        rows[rows.length - 1][m] = null;
+      }
+    }
+    if (dow === 0 && rows.length === 4) {
+      rows.push([null, null, null, null, null, null, null]);
+      rows.push([null, null, null, null, null, null, null]);
+    }
+    return rows;
+  }
+
+  function lastMonth() {
+    if (state.current.month === 0) {
+      setState({
+        current: { month: 11, year: state.current.year - 1 }
+      });
+    } else {
+      setState({
+        current: {
+          month: state.current.month - 1,
+          year: state.current.year
+        }
+      });
+    }
+  }
+
+  function nextMonth() {
+    if (state.current.month === 11) {
+      setState({ current: { month: 0, year: state.current.year + 1 } });
+    } else {
+      setState({
+        current: {
+          month: state.current.month + 1,
+          year: state.current.year
+        }
+      });
+    }
+  }
+
+  let { current } = state;
+
+  return <Frame>
+        <table style={{ minWidth: '100%', maxWidth: '100%' }}>
+          <thead>
+            <tr style={{ height: '50px' }}>
+              <td>
+                <button style={{ width: '100%' }} onClick={lastMonth}>
+                  &lt;&lt; <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
+                </button>
+              </td>
+              <td style={{ textAlign: 'center' }}
+                className="month__name" colSpan='5'>
+                {`${['January', 'February', 'March', 'April', 'May', 'June',
+                  'July', 'August', 'September', 'October', 'November',
+                  'December'][current.month]} ${current.year}`}
+              </td>
+              <td>
+                <button button style={{ width: '100%' }}
+                  onClick={nextMonth}>
+                  &gt;&gt; <VanishingSpan>NEXT MONTH</VanishingSpan>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {
+                ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(
+                  dow => <Dow key={dow}>{dow}</Dow>
+                )
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {outputRows(current.year, current.month, events)
+              .map(function (week) {
+                return <tr className='week'>
+                  {week.map(function (day) {
+                    if (day !== null) {
+                      return <Day className='day'>
+                        <div>
+                          <p style={{
+                            textAlign: 'right',
+                            margin: 0,
+                            backgroundColor: dateMatch(current, day[0])
+                              ? 'black' : 'white',
+                            color: dateMatch(current, day[0])
+                              ? 'white' : 'black',
+                          }}>
+                            {day[0].toString()}
+                          </p>
+                          {(day[1].length) ? <ul style={{ paddingLeft: 0 }}>
+                            {day[1].map(function ({
+                              link, title, location, start
+                            }) {
+                              return <li style={{ listStyle: 'none' }}>
+                                <HoverLink href={link}
+                                  title={`${title} @ ${location}`}>
+                                  {start.getMinutes()
+                                    ? start.toLocaleTimeString()
+                                      .replace(/:\d\d /, ' ') : start.toLocaleTimeString()
+                                      .replace(/:\d\d/g, '')}
+                                </HoverLink></li>;
+                            })}</ul> : ''}
+                        </div>
+                      </Day>;
+                    }
+                    return <Day className='day'>{''}</Day>;
+                  })}</tr>;
+              })}
+          </tbody>
+        </table>
+      </Frame>;
+}
+
+export default MonthView;

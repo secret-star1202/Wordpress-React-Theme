@@ -23,6 +23,6 @@ export default function PaginatorDisplay() {
     }
   }, [currentPage]);
 
-  return data[currentPage] ?
-    data[currentPage].map(item => <Container {...{ item }} />) : <p>Loading...</p>;
+  return data[currentPage]
+    ? data[currentPage].map(item => <Container {...{ item }} />) : <p>Loading...</p>;
 }
