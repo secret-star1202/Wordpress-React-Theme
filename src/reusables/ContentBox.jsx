@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ContentBox({
+export default function ({
   children, content, className = '', isP
 }) {
   let obj = {

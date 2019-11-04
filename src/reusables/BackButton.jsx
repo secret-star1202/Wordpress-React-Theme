@@ -3,8 +3,8 @@ import SamePageAnchor from './SamePageAnchor.jsx';
 import { getFullUrl } from '../utils/url_utils';
 
 export default function BackButton({ className, href, text }) {
-  return <div className={className}>
+  return <div {...{ className }}>
     <SamePageAnchor href={getFullUrl(href)} className='back-to'>
-      {text}
+      {`← ${text}`}
     </SamePageAnchor></div>;
 }

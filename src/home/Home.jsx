@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Support from '../includes/Support.jsx';
-import HomeContent from './HomeContent.jsx';
-import MetaThing from '../reusables/MetaThing.jsx';
+import { default as Support } from '../includes/Support';
+import { default as HomeContent } from './HomeContent';
+import { default as MetaThing } from '../reusables/MetaThing';
 
-function Home() {
+export default function Home() {
   let theme = 'fixed-theme', addTheme = function (list, fxn, prm) {
     for (let i = 0; i < list.length; i++) {
       list[i][fxn](prm);
@@ -11,29 +11,29 @@ function Home() {
   };
 
   useEffect(function () {
-    /* This next section makes our sticky nav possible. */
-    let myNavBar = {
-      flagAdd: true,
-      objs: [],
-      init(objs) {
-        this.objs = objs;
-        addTheme(this.objs, 'addClass', theme);
-      },
-      add() {
-        if (this.flagAdd) {
-          addTheme(this.objs, 'addClass', theme);
-          this.flagAdd = false;
+    let rem = 'removeClass', adc = 'addClass', navSel = '.navbar',
+      myNavBar = {
+        flagAdd: true,
+        objs: [],
+        init(objs) {
+          this.objs = objs;
+          addTheme(this.objs, adc, theme);
+        },
+        add() {
+          if (this.flagAdd) {
+            addTheme(this.objs, adc, theme);
+            this.flagAdd = false;
+          }
+        },
+        remove() {
+          if (!this.flagAdd) {
+            addTheme(this.objs, rem, theme);
+            this.flagAdd = true;
+          }
         }
-      },
-      remove() {
-        if (!this.flagAdd) {
-          addTheme(this.objs, 'removeClass', theme);
-          this.flagAdd = true;
-        }
-      }
-    };
+      };
 
-    const elArr = [$('.navbar'), $('.navbar-default'), $('.dropdown-menu')];
+    const elArr = [$(navSel), $(`${navSel}-default`), $('.dropdown-menu')];
 
     /* Init the object. Pass the object the array of elements
      * that we want to change when the scroll goes down. */
@@ -41,7 +41,7 @@ function Home() {
 
     /* Function that manages the direction of the scroll. */
     function offSetManager() {
-      let offset = window.pageYOffset + $('.navbar').height(),
+      let offset = window.pageYOffset + $(navSel).height(),
         height = $('.landing').height();
 
       if (height < offset) myNavBar.remove();
@@ -58,7 +58,7 @@ function Home() {
     offSetManager();
 
     return function cleanup() {
-      addTheme(elArr, 'removeClass', theme);
+      addTheme(elArr, rem, theme);
       window.scroll(0, 0);
       window.onscroll = null;
     };
@@ -66,4 +66,3 @@ function Home() {
 
   return [<MetaThing title='Home' description="KTUH Homepage" />, <HomeContent />, <Support />];
 }
-export default Home;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { getFullUrl, getImgAsset } from '../utils';
+import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { SamePageAnchor, Glyph } from '../reusables';
-import useApiRequest from '../hooks/useApiRequest';
+import { useApiRequest } from '../hooks';
 
 function LandingInfo() {
-  let state = useApiRequest({
+  let { currentShow, nowPlaying } = useApiRequest({
     currentShow: null,
     nowPlaying: null
   }, 'now_playing', function ([{
@@ -21,12 +21,11 @@ function LandingInfo() {
 
   function currentShowName() {
     return <p className='landing__show-name caps'>
-      {state.currentShow.title}
+      {currentShow.title}
     </p>;
   }
 
   function renderNowPlaying() {
-    let { nowPlaying } = state;
     if (!nowPlaying) return null;
     let { artist, song: title } = nowPlaying;
     return [
@@ -34,8 +33,6 @@ function LandingInfo() {
       <p className="landing__song-artist caps">{` by ${artist}`}</p>
     ];
   }
-
-  let { currentShow, nowPlaying } = state;
 
   return <div className='landing__info'>{currentShow && currentShowName()
     || (nowPlaying ? <p className='landing__now-playing'>On Air Now:</p> : null)}

@@ -1,55 +1,17 @@
 import React from 'react';
-import groupBy from '../utils/group_by';
 import { default as siteInfo } from '../utils/config';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import StreamPlayer from './StreamPlayer.jsx';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
+import { default as StreamPlayer } from './StreamPlayer';
 import { getFullUrl, getImgAsset } from '../utils/url_utils';
-import Navbar from './Navbar.jsx';
-import useApiRequest from '../hooks/useApiRequest';
+import { default as Navbar } from './Navbar';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as HeaderMenu } from './HeaderMenu';
+import { default as IconBar } from './IconBar';
 
-function HeaderMenu({ items }) {
-  const tree = groupBy(items, 'menu_item_parent');
-
-  return <ul className='nav navbar-nav navbar-left'>
-    {tree['0'].map(function ({
-      ID, url, target, title
-    }) {
-      return <li className= 'dropdown'>
-        <a href={tree[ID] ? '#' : url}
-          {...(tree[ID] ? {
-            className: 'dropdown-toggle',
-            'data-toggle': 'dropdown',
-            role: 'button',
-            'aria-haspopup': 'true',
-            'aria-expanded': 'false'
-          } : {
-            target: target !== '' ? target : '_self'
-          })}>
-          {title}
-          {tree[ID] ? <span className='caret'></span> : null}
-        </a>
-        {tree[ID] ? <ul className='dropdown-menu'>
-          {tree[ID].map(function ({
-            url: treeUrl, target: treeTarget, title: treeTitle
-          }) {
-            return <li>
-              <SamePageAnchor href={treeUrl} target={treeTarget || '_self'}>
-                {treeTitle}</SamePageAnchor></li>;
-          })}
-        </ul> : null}
-      </li>;
-    })}
-  </ul>;
-}
-
-function IconBar() {
-  return <span className='icon-bar'></span>;
-}
-
-function Header() {
-  let state = useApiRequest({ items: [] }, 'menus', ([{ items }], fxn) => {
-      fxn({ items });
-    }), { items } = state, { siteUrl } = siteInfo, href = getFullUrl('donate');
+export default function () {
+  let items = useApiRequest([], 'menus', ([{ items: data }], fxn) => {
+      if (data) fxn(data);
+    }), { siteUrl } = siteInfo, href = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
@@ -67,7 +29,7 @@ function Header() {
       </button>
     </div>
     <div className='collapse navbar-collapse' id='navigation'>
-      {items.length ? <HeaderMenu {...{ items }} /> : null}
+      {items.length ? <HeaderMenu {...{ items }} /> : null }
       <Navbar addClassName='navbar-right' nodes={[
         <SamePageAnchor className='header__support-link' {...{ href }} >
           <button type='button' className='btn btn-md header__support-btn'>
@@ -82,5 +44,3 @@ function Header() {
     </div>
   </nav>;
 }
-
-export default Header;

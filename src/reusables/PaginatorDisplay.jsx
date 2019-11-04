@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
-import PaginatorControlContext from './PaginatorControlContext.jsx';
-import { getApiRequest } from '../utils';
+import { default as PaginatorControlContext } from './PaginatorControlContext';
+import { getApiRequest } from '../utils/url_utils';
 
 export default function PaginatorDisplay() {
   let {

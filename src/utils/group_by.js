@@ -1,4 +1,4 @@
-export default function groupBy(items, key) {
+export default function (items, key) {
   let result = {};
   items.forEach((item) => {
     if (item[key]) {

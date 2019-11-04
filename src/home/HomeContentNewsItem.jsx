@@ -1,6 +1,6 @@
 import React from 'react';
-import renderSummary from '../utils/summary';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { default as renderSummary } from '../utils/summary';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
 
 export default function HomeContentNewsItem({

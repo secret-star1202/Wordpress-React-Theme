@@ -3,11 +3,9 @@ import NewsListLatestReviewsItem from './NewsListLatestReviewsItem.jsx';
 import { useApiRequest } from '../hooks';
 
 function NewsListLatestReviews() {
-  let state = useApiRequest({
-      reviews: []
-    }, 'review?_embed', (reviews, fxn) => {
-      fxn({ reviews });
-    }), { reviews } = state;
+  let reviews = useApiRequest([], 'review?_embed', (data, fxn) => {
+      if (data) fxn(data);
+    });
 
   if (reviews.length) {
     return <div className='news-list__latest-reviews'>

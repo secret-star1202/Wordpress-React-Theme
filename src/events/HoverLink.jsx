@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HoverLink({ children, title, ...rest }) {
+export default function ({ children, title, ...rest }) {
   let style = {};
 
   if (window.innerWidth <= 800) {

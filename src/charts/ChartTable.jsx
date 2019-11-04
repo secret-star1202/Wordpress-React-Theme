@@ -12,7 +12,7 @@ function parse(data) {
   return retval;
 }
 
-export default function ChartTable({ data }) {
+export default function ({ data }) {
   let tableVals = parse(data), [header, ...body] = tableVals;
 
   return <table>

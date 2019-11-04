@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import PaginatorControlContext from './PaginatorControlContext.jsx';
-import PaginatorView from './PaginatorView.jsx';
-import { getApiRequest } from '../utils';
+import { default as PaginatorControlContext } from './PaginatorControlContext';
+import { default as PaginatorView } from './PaginatorView';
+import { getApiRequest } from '../utils/url_utils';
 
 export default function PaginatorTop() {
   let {

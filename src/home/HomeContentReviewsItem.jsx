@@ -1,5 +1,5 @@
 import React from 'react';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
 
 export default function HomeContentReviewsItem({

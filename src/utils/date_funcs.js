@@ -1,10 +1,10 @@
-export default function parseDate(str) {
+export default function parseDate (str) {
   if (navigator.userAgent.indexOf('Safari') > -1) {
     let [date, time] = str.split('T'),
       [year, mo, dom] = date.split('-');
-    return new Date(`${['',
+    return new Date(`${[
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][parseInt(mo, 10)]
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][parseInt(mo, 10) - 1]
     } ${dom} ${year} ${time}`);
   }
   return new Date(str);
@@ -16,5 +16,5 @@ export const daysOfWeek = [
 ];
 
 export function toLocalStr(date) {
-  return date.toLocaleTimeString({ timeZone: 'Pacific/Honolulu' });
+  return date.toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' ');
 }

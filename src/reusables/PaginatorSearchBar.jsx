@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PaginatorControlContext from './PaginatorControlContext.jsx';
+import { default as PaginatorControlContext } from './PaginatorControlContext';
 
 export default function PaginatorSearchBar() {
   let { state: { searchQuery }, dispatch } = useContext(PaginatorControlContext);

@@ -1,13 +1,11 @@
 import React from 'react';
-import Paginator from '../reusables/Paginator.jsx';
-import NewsItem from './NewsItem.jsx';
-import { useApiRequest } from '../hooks';
+import Paginator from '../reusables/Paginator';
+import NewsItem from './NewsItem';
+import useApiRequest from '../hooks/useApiRequest';
 
 function NewsListContent() {
-  let { numPages } = useApiRequest({
-    numPages: undefined
-  }, 'num_posts', (data, fxn) => {
-    fxn({ numPages: Math.ceil(parseInt(data, 10) / 10) });
+  let numPages = useApiRequest(undefined, 'num_posts', (data, fxn) => {
+    if (data) fxn(Math.ceil(parseInt(data, 10) / 10));
   });
 
   return numPages ? <div className='news-list__content'>

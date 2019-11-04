@@ -28,7 +28,7 @@ function printDate(date) {
   return date.toDateString().split(' ').slice(1, 3).join(' ');
 }
 
-function EventItem({
+export default function ({
   item: {
     summary, start: { dateTime: start }, description, location, end: { dateTime: end }
   }
@@ -48,5 +48,3 @@ function EventItem({
     </div>
   </div>;
 }
-
-export default EventItem;

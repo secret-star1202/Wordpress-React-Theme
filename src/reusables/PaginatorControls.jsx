@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import PaginatorControlContext from './PaginatorControlContext.jsx';
+import { default as PaginatorControlContext } from './PaginatorControlContext';
 
-let generateArray = function (n, k) {
+function generateArray(n, k) {
   let retval = [];
 
   for (let i = (k !== undefined ? n : 1); i <= (k !== undefined ? k : n); i++) {
@@ -9,7 +9,7 @@ let generateArray = function (n, k) {
   }
 
   return retval;
-};
+}
 
 function truncatePageList(
   numberOfPages, maxPageTabs, currentPage

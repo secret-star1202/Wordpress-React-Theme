@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import PaginatorControlContext from './PaginatorControlContext.jsx';
-import PaginatorDisplay from './PaginatorDisplay.jsx';
-import PaginatorControls from './PaginatorControls.jsx';
+import { default as PaginatorControlContext } from './PaginatorControlContext';
+import { default as PaginatorDisplay } from './PaginatorDisplay';
+import { default as PaginatorControls } from './PaginatorControls';
 
 export default function PaginatorView() {
   let { state: { className, id } } = useContext(PaginatorControlContext),

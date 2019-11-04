@@ -10,6 +10,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-param-reassign": "off",
     "max-len": ["error", 120],
     "no-console": "off",
     "prefer-arrow-callback": "off",
@@ -25,7 +26,9 @@
     "prefer-const": "off",
     "import/no-named-default": "off",
     "no-underscore-dangle": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "no-nested-ternary": "off"
   },
   "globals": {
     "_": true,
@@ -34,5 +37,12 @@
     "window": true,
     "fetch": true,
     "navigator": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js",".jsx"]
+      }
+    }
   }
 }

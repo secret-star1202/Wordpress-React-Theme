@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Dow from './Dow.jsx';
-import VanishingSpan from './VanishingSpan.jsx';
-import Frame from './Frame.jsx';
-import Day from './Day.jsx';
-import HoverLink from './HoverLink.jsx';
+import { default as Dow } from './Dow';
+import { default as VanishingSpan } from './VanishingSpan';
+import { default as Frame } from './Frame';
+import { default as Day } from './Day';
+import { default as HoverLink } from './HoverLink';
+import { daysOfWeek, toLocalStr } from '../utils/date_funcs';
 
 function dateMatch(stateObj, day) {
   let today = new Date();
@@ -12,7 +13,7 @@ function dateMatch(stateObj, day) {
     && day === today.getDate();
 }
 
-function MonthView({ events }) {
+export default function ({ events }) {
   let today = new Date(), [state, setState] = useState({
     current: {
       year: today.getFullYear(),
@@ -121,8 +122,8 @@ function MonthView({ events }) {
             </tr>
             <tr>
               {
-                ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(
-                  dow => <Dow key={dow}>{dow}</Dow>
+                daysOfWeek.map(
+                  dow => <Dow>{dow.substring(0, 3).toUpperCase()}</Dow>
                 )
               }
             </tr>
@@ -150,12 +151,8 @@ function MonthView({ events }) {
                               link, title, location, start
                             }) {
                               return <li style={{ listStyle: 'none' }}>
-                                <HoverLink href={link}
-                                  title={`${title} @ ${location}`}>
-                                  {start.getMinutes()
-                                    ? start.toLocaleTimeString()
-                                      .replace(/:\d\d /, ' ') : start.toLocaleTimeString()
-                                      .replace(/:\d\d/g, '')}
+                                <HoverLink href={link} title={`${title} @ ${location}`}>
+                                  {toLocalStr(start)}
                                 </HoverLink></li>;
                             })}</ul> : ''}
                         </div>
@@ -168,5 +165,3 @@ function MonthView({ events }) {
         </table>
       </Frame>;
 }
-
-export default MonthView;

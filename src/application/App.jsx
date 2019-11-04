@@ -1,22 +1,19 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Header, Footer } from '../includes';
-import Landing from '../home/Landing.jsx';
+import { default as Landing } from '../home/Landing';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 import { default as routes } from './routes';
 
 let WrappedComponent = function ({ component: Component, ...rest }) {
-  return <GeneralContextProvider initialVals={rest}>
+    return <GeneralContextProvider initialVals={rest}>
     <Component />
   </GeneralContextProvider>;
-};
-
-let SeamlessRoute = ({ component, ...rest }) => (
+  }, SeamlessRoute = ({ component, ...rest }) => (
     <Route exact {...rest} component={props => (
-      <WrappedComponent {...props} {...{ component }} />)} />
-);
+      <WrappedComponent {...props} {...{ component }} />)} />);
 
-const App = () => ([<div className='container'><Switch>
+export default () => ([<div className='container'><Switch>
     <SeamlessRoute exact path="/" component={() => [<Landing />,
     <div className='spacer-lg' />]} /></Switch>
   <Switch>
@@ -28,5 +25,3 @@ const App = () => ([<div className='container'><Switch>
   </div>
 </div>,
 <Footer />]);
-
-export default App;

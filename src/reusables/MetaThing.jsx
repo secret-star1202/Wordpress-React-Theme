@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metamorph } from 'react-metamorph';
-import { getImgAsset } from '../utils';
+import { getImgAsset } from '../utils/url_utils';
 
 export default function MetaThing(
   { description, title, image = getImgAsset('ktuh-logo.jpg') }
