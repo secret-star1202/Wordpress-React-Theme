@@ -56,31 +56,7 @@ export default function ShowSchedule() {
   }
 
   function daysShows() {
-    let retval = schedule.filter(show => parseDate(show.start).getDay() === day);
-    retval.sort(function (a, b) {
-      let aDate = parseDate(a.start), bDate = parseDate(b.start),
-        [aTime, aAp] = toLocalStr(aDate).split(' '),
-        [bTime, bAp] = toLocalStr(bDate).split(' '),
-        [
-          ah, am,
-        ] = aTime.split(':'), [
-          bh, bm,
-        ] = bTime.split(':');
-
-      if (toHours(parseInt(ah, 10), aAp === 'PM') < toHours(parseInt(bh, 10), bAp === 'PM')) {
-        return -1;
-      }
-      if (toHours(parseInt(ah, 10), aAp === 'PM') > toHours(parseInt(bh, 10), bAp === 'PM')) {
-        return 1;
-      }
-      if (parseInt(am, 10) < parseInt(bm, 10)) {
-        return -1;
-      }
-      if (parseInt(am, 10) < parseInt(bm, 10)) {
-        return 1;
-      }
-      return 0;
-    });
+    let retval = schedule[day];
     return retval;
   }
 
@@ -108,7 +84,7 @@ export default function ShowSchedule() {
       <div className='shows'>
         {dowButtons('wide')}
         {dowButtons('narrow')}
-        {daysShows().map(show => <ShowItem {...{ show }} />)}
+        {schedule.length ? daysShows().map(show => <ShowItem {...{ show }} />) : null}
       </div>
   ];
 }
