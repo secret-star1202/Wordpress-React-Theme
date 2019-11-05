@@ -20,7 +20,7 @@ export default function ShowSchedule() {
     schedule = useApiRequest([], 'schedule', ({ items }, fxn) => {
       let sched = [];
       for (let d = 0; d < 7; d++) {
-        let dw = items.filter(show => parseDate(show.start).getDay() === day);
+        let dw = items.filter(show => parseDate(show.start).getDay() === d);
         dw.sort(function (a, b) {
           let aDate = parseDate(a.start), bDate = parseDate(b.start),
             [aTime, aAp] = toLocalStr(aDate).split(' '),
@@ -56,6 +56,7 @@ export default function ShowSchedule() {
   }
 
   function daysShows() {
+    console.log(schedule);
     let retval = schedule[day];
     return retval;
   }

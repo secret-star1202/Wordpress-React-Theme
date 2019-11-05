@@ -8,9 +8,7 @@ import { default as entitiesToText } from '../utils/html_entities';
 import { default as parseDate, daysOfWeek, toLocalStr } from '../utils/date_funcs';
 
 export default function ShowPage() {
-  let slug = useSlug(), show = useApiRequest(undefined, `show?id=${slug}`, (data, fxn) => {
-    if (data) { fxn(show); }
-  });
+  let slug = useSlug(), show = useApiRequest(undefined, `show?id=${slug}`);
 
   if (show) {
     let {
