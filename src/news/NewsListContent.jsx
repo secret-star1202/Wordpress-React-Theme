@@ -1,7 +1,7 @@
 import React from 'react';
-import Paginator from '../reusables/Paginator';
-import NewsItem from './NewsItem';
-import useApiRequest from '../hooks/useApiRequest';
+import { default as Paginator } from '../reusables/Paginator';
+import { default as NewsItem } from './NewsItem';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
 function NewsListContent() {
   let numPages = useApiRequest(undefined, 'num_posts', (data, fxn) => {

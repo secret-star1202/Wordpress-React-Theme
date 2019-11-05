@@ -6,7 +6,7 @@ import { default as NotFoundRedirect } from '../utils/404_redirect';
 
 export default function () {
   let slug = useSlug(), chart = useApiRequest(undefined,
-    `chart?slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+    `chart?slug=${slug}`, (data, fxn) => {
       if (data) fxn(data[0]);
     });
 

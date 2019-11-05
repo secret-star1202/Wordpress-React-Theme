@@ -1,7 +1,8 @@
 import React from 'react';
 import { default as MNLItem } from './MNLItem';
 import { getUploadedImage } from '../utils/url_utils';
-import { HeadStuff, Glyph } from '../reusables';
+import { default as HeadStuff } from '../reusables/HeadStuff';
+import { default as Glyph } from '../reusables/Glyph';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 
 export default function () {

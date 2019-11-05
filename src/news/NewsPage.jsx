@@ -5,7 +5,7 @@ import { NotFoundRedirect, entitiesToText, renderSummary } from '../utils';
 
 export default function NewsPage() {
   let slug = useSlug(), post = useApiRequest(undefined,
-    `posts?_embed&slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+    `posts?_embed&slug=${slug}`, (data, fxn) => {
       if (data) fxn(data.length > 0 ? data[0] : null);
     });
 

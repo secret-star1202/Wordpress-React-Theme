@@ -3,9 +3,7 @@ import { getFullUrl } from '../utils';
 import { useApiRequest } from '../hooks';
 
 export default function NewsListSidebarSupport() {
-  let text = useApiRequest('', 'support_text', (data, fxn) => {
-      fxn(data);
-    });
+  let text = useApiRequest('', 'support_text');
 
   return <div className='news-list__support'>
     <p className="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>

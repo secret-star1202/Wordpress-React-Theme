@@ -1,4 +1,4 @@
-export { default as FAQ } from './FAQ.jsx';
-export { default as Timeline } from './Timeline.jsx';
-export { default as MondayNightLive } from './MondayNightLive.jsx';
-export { default as Donate } from './Donate.jsx';
+export { default as FAQ } from './FAQ';
+export { default as Timeline } from './Timeline';
+export { default as MondayNightLive } from './MondayNightLive';
+export { default as Donate } from './Donate';

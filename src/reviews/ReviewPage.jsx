@@ -1,7 +1,11 @@
 import React from 'react';
-import { useSlug, useApiRequest } from '../hooks';
-import { getFeaturedImg, NotFoundRedirect } from '../utils';
-import { HeadStuff, ContentBox, BackButton } from '../reusables';
+import { useSlug } from '../hooks/useGeneralContext';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { getFeaturedImg } from '../utils/url_utils';
+import { default as NotFoundRedirect } from '../utils/404_redirect';
+import { default as HeadStuff } from '../reusables/HeadStuff';
+import { default as ContentBox } from '../reusables/ContentBox';
+import { default as BackButton } from '../reusables/BackButton';
 
 function ReviewPage() {
   function formattedRating(rating) {
@@ -9,7 +13,7 @@ function ReviewPage() {
   }
 
   let slug = useSlug(), review = useApiRequest(undefined,
-    `review?_embed&slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
+    `review?_embed&slug=${slug}`, (data, fxn) => {
       if (data) { fxn(data.length > 0 ? data[0] : null); }
     });
 

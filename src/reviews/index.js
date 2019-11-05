@@ -1,2 +1,2 @@
-export { default as ReviewList } from './ReviewList.jsx';
-export { default as ReviewPage } from './ReviewPage.jsx';
+export { default as ReviewList } from './ReviewList';
+export { default as ReviewPage } from './ReviewPage';

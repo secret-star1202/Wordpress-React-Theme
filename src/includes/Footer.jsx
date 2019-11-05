@@ -1,6 +1,10 @@
 import React from 'react';
 import { getImgAsset } from '../utils/url_utils';
-import { SocialLink, Subheading, TitledLink, EmailLink, TelLink } from './FooterComponents';
+import { default as SocialLink } from './SocialLink';
+import { default as Subheading } from './Subheading';
+import { default as TitledLink } from './TitledLink';
+import { default as EmailLink } from './EmailLink';
+import { default as TelLink } from './TelLink';
 
 function Footer() {
   return <div className='footer'>

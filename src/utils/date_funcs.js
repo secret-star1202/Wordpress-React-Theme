@@ -1,4 +1,4 @@
-export default function parseDate (str) {
+export default function parseDate(str) {
   if (navigator.userAgent.indexOf('Safari') > -1) {
     let [date, time] = str.split('T'),
       [year, mo, dom] = date.split('-');

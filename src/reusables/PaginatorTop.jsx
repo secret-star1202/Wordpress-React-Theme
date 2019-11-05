@@ -3,7 +3,7 @@ import { default as PaginatorControlContext } from './PaginatorControlContext';
 import { default as PaginatorView } from './PaginatorView';
 import { getApiRequest } from '../utils/url_utils';
 
-export default function PaginatorTop() {
+export default function () {
   let {
     dispatch, state: {
       currentPage, perPage,
