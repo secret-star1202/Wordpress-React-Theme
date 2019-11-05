@@ -1113,7 +1113,7 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   border-bottom: none;
 }
 .show-item__time {
-  padding: 0 60px 0 0;
+  padding: 0 25px 0 0;
   font-size: 1.4375em;
   font-family: 'nimbus-sans', sans-serif;
   font-weight: bold;
@@ -1197,8 +1197,11 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
 .show__image {
   position: relative;
   float: left;
-  width: 100%;
-  margin: 0;
+  width: 120px;
+  height: 120px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .show__host {
   font-family: 'nimbus-sans', sans-serif;
@@ -1398,8 +1401,15 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
     padding-right: 20px;
     max-width: 100%;
   }
-  .show-item__time {
+  .show-item__start-time {
     padding-right: 30px;
+    position: absolute;
+    z-index: 1;
+  }
+  .show-item__end-time {
+    padding-right: 30px;
+    position: relative;
+    z-index: 2;
   }
   .shows__day {
     font-size: .875em;
