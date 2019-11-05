@@ -9,15 +9,15 @@ export default function StaffMemberItem({
     member_role: memberRole
   }
 }) {
-  return <div className='news-list__post'><div className='news-list__post-image'>
+  return <div className='show-item'><div className='news-list__post-image'>
       <div className="news-list__photo-link">
-      <img className='news-list__photo' src={getMagicFieldsImg(src)} />
+      <img className='show-item__image' src={getMagicFieldsImg(src)} />
       </div>
     </div>
-    <div className='news-list__info'>
-      <div className='news-list__title'><h3>{memberName}</h3></div>
-      <div className='news-list__excerpt'><h4>{memberRole}</h4></div>
-      <div className='news-list__excerpt'><h5>{memberBio}</h5></div>
+    <div className='show-item__info-container'>
+      <h3>{memberName}</h3>
+      <h4>{memberRole}</h4>
+      <p>{memberBio}</p>
     </div>
   </div>;
 }
