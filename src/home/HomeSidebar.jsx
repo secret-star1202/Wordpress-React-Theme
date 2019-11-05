@@ -1,6 +1,6 @@
 import React from 'react';
 import { default as useApiRequest } from '../hooks/useApiRequest';
-import { toLocalStr } from '../utils';
+import { default as parseDate, toLocalStr } from '../utils/date_funcs';
 
 export default function () {
   let nextOnAir = useApiRequest(null, 'next_on_air', ({ items }, fxn) => {
@@ -10,8 +10,8 @@ export default function () {
   if (!nextOnAir) return null;
 
   let { title, start, end } = nextOnAir,
-    startStr = toLocalStr(new Date(start)),
-    endStr = toLocalStr(new Date(end));
+    startStr = toLocalStr(parseDate(start)),
+    endStr = toLocalStr(parseDate(end));
 
   return <div className='home__sidebar'>
     <div className='home__next-show'>
