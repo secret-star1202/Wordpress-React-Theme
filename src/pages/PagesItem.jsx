@@ -8,7 +8,9 @@ import NotFoundRedirect from '../utils/404_redirect';
 export default function PagesItem() {
   let slug = useSlug(), page = useApiRequest(undefined,
     `pages?slug=${slug}`, (data, fxn) => {
-      fxn({ page: data.length > 0 ? data[0] : null });
+      if (data && data.length) {
+        fxn(data[0]);
+      } else fxn(null);
     });
 
   if (page) {

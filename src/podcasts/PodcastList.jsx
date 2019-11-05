@@ -5,9 +5,7 @@ import useApiRequest from '../hooks/useApiRequest';
 import { HeadStuff, SamePageAnchor } from '../reusables';
 
 export default function PodcastList() {
-  let podcasts = useApiRequest([], 'podcast_series', (data, fxn) => {
-    if (data) fxn({ data });
-  });
+  let podcasts = useApiRequest([], 'podcast_series');
 
   return [<HeadStuff title="KTUH Podcasts" />,
     <div className='grid__container'>
