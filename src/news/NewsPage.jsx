@@ -3,12 +3,11 @@ import { useSlug, useApiRequest } from '../hooks';
 import { HeadStuff, ContentBox, BackButton } from '../reusables';
 import { NotFoundRedirect, entitiesToText, renderSummary } from '../utils';
 
-function NewsPage() {
-  let slug = useSlug(), state = useApiRequest({
-      post: undefined
-    }, `posts?_embed&slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
-      fxn({ post: data.length > 0 ? data[0] : null });
-    }), { post } = state;
+export default function NewsPage() {
+  let slug = useSlug(), post = useApiRequest(undefined,
+    `posts?_embed&slug=${slug}`, (data, fxn) => {
+      if (data) fxn(data.length > 0 ? data[0] : null);
+    });
 
   if (post) {
     let {
@@ -17,7 +16,7 @@ function NewsPage() {
 
     return [<HeadStuff title={entitiesToText(title)}
       description={renderSummary(content, 50)} />,
-    <BackButton href='radioblog' className='show__link' text="← Back to Radioblog" />,
+    <BackButton href='radioblog' className='show__link' text="Back to Radioblog" />,
     <div className='news-item'>
       <div className='review-page__byline'>
         {new Date(date).toDateString()}
@@ -28,5 +27,3 @@ function NewsPage() {
 
   return <NotFoundRedirect check={post} />;
 }
-
-export default NewsPage;

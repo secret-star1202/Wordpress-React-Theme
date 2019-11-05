@@ -1,16 +1,21 @@
-import Home from '../home/Home.jsx';
-import { ReviewPage, ReviewList } from '../reviews';
-import { NewsPage, NewsList } from '../news';
-import ChartPage from '../charts/ChartPage.jsx';
-import EventsList from '../events/EventsList.jsx';
-import { PodcastList, SubmitPodcast } from '../podcasts';
-import NotFound from './NotFound.jsx';
-import PagesItem from '../pages/PagesItem.jsx';
-import {
-  FAQ, Timeline, MondayNightLive, Donate
-} from '../static_pages';
-import StaffMembersListContent from '../staffmembers/StaffMembersListContent.jsx';
-import { ShowSchedule, ShowPage } from '../shows';
+import { default as Home } from '../home/Home';
+import { default as ReviewPage } from '../reviews/ReviewPage';
+import { default as ReviewList } from '../reviews/ReviewList';
+import { default as NewsPage } from '../news/NewsPage';
+import { default as NewsList } from '../news/NewsList';
+import { default as ChartPage } from '../charts/ChartPage';
+import { default as EventsList } from '../events/EventsList';
+import { default as PodcastList } from '../podcasts/PodcastList';
+import { default as SubmitPodcast } from '../podcasts/SubmitPodcast';
+import { default as NotFound } from './NotFound';
+import { default as PagesItem } from '../pages/PagesItem';
+import { default as FAQ } from '../static_pages/FAQ';
+import { default as Timeline } from '../static_pages/Timeline';
+import { default as MondayNightLive } from '../static_pages/MondayNightLive';
+import { default as Donate } from '../static_pages/Donate';
+import { default as StaffMembersListContent } from '../staffmembers/StaffMembersListContent';
+import { default as ShowSchedule } from '../shows/ShowSchedule';
+import { default as ShowPage } from '../shows/ShowPage';
 
 export default [
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },

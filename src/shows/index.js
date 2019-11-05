@@ -1,2 +1,2 @@
-export { default as ShowSchedule } from './ShowSchedule.jsx';
-export { default as ShowPage } from './ShowPage.jsx';
+export { default as ShowSchedule } from './ShowSchedule';
+export { default as ShowPage } from './ShowPage';

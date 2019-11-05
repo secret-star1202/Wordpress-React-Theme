@@ -27,6 +27,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     alias: {
       'react-router-dom': path.resolve(__dirname, 'node_modules',
         'react-router-dom', 'cjs', 'react-router-dom.min.js'),
@@ -58,8 +59,8 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           comments: false,
-          plugins: process.env.DEV_MODE ? [] :
-            ['@babel/plugin-proposal-throw-expressions',
+          plugins: process.env.DEV_MODE ? []
+            : ['@babel/plugin-proposal-throw-expressions',
               './babel/rightify', './babel/rightify-react']
         }
       },

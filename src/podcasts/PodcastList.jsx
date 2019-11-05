@@ -1,15 +1,13 @@
 import React from 'react';
-import PodcastItem from './PodcastItem.jsx';
-import { getFullUrl } from '../utils';
-import { useApiRequest } from '../hooks';
+import PodcastItem from './PodcastItem';
+import { getFullUrl } from '../utils/url_utils';
+import useApiRequest from '../hooks/useApiRequest';
 import { HeadStuff, SamePageAnchor } from '../reusables';
 
 export default function PodcastList() {
-  let state = useApiRequest({
-      podcasts: []
-    }, 'podcast_series', (podcasts, fxn) => {
-      fxn({ podcasts });
-    }), { podcasts } = state;
+  let podcasts = useApiRequest([], 'podcast_series', (data, fxn) => {
+    if (data) fxn({ data });
+  });
 
   return [<HeadStuff title="KTUH Podcasts" />,
     <div className='grid__container'>

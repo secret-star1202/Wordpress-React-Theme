@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { Glyph } from '../reusables';
-import { useApiRequest } from '../hooks';
+import { default as Glyph } from '../reusables/Glyph';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
-export default function StreamPlayer() {
-  let [playing, setPlaying] = useState(false), state = useApiRequest({
-      streamUrl: null
-    }, 'stream_url', (streamUrl, fxn) => fxn({ streamUrl })),
+export default function () {
+  let [playing, setPlaying] = useState(false), streamUrl = useApiRequest(null,
+      'stream_url', (data, fxn) => { if (data) fxn(data); }),
     ref = useRef(null), pauseOrPlay = playing ? 'pause' : 'play';
 
   function handleClick() {
@@ -13,8 +12,8 @@ export default function StreamPlayer() {
     setPlaying(!playing);
   }
 
-  return state.streamUrl ? <div className="player__container">
-    <audio {...{ ref }} preload='none' src={state.streamUrl}></audio>
+  return streamUrl ? <div className="player__container">
+    <audio {...{ ref }} preload='none' src={streamUrl}></audio>
     <button type="button" onClick={() => handleClick()}>
       <Glyph symbol={pauseOrPlay} />
     </button>

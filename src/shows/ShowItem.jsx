@@ -1,15 +1,14 @@
 import React from 'react';
-import { parseDate } from '../utils';
-import { default as siteInfo } from '../utils/config';
-import { SamePageAnchor } from '../reusables';
+import { default as parseDate, toLocalStr } from '../utils/date_funcs';
+import { getFullUrl } from '../utils/url_utils';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function ShowItem({
   show: {
     start, end, image, title, description, id
   }
 }) {
-  let startDate = parseDate(start).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
-    endDate = parseDate(end).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
+  let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
     fmtStr = `${startDate}-${endDate}`;
 
   return <div className='show-item'><h4 className='show-item__time'>
@@ -22,7 +21,7 @@ export default function ShowItem({
       <h5 className='show-item__info-time'>
         {fmtStr}
       </h5>
-      <h4><SamePageAnchor href={`${siteInfo.siteUrl}/shows/${id}`}>
+      <h4><SamePageAnchor href={getFullUrl(`shows/${id}`)}>
         {title}</SamePageAnchor></h4>
       <p>{description}</p>
     </div>

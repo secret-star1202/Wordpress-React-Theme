@@ -1,22 +1,10 @@
 import React from 'react';
 import { getImgAsset } from '../utils/url_utils';
-import SocialLink from './SocialLink.jsx';
-
-function Subheading({ title }) {
-  return <h5 className='footer__subheading'>{title}</h5>;
-}
-
-function TitledLink({ href, text }) {
-  return <p><a {...{ href }}>{text}</a></p>;
-}
-
-export function EmailLink({ to }) {
-  return <p><a href={`mailto:${to}`}>{to}</a></p>;
-}
-
-function TelLink({ num, label }) {
-  return <p><a href={`tel:${num}`}>{label}</a></p>;
-}
+import { default as SocialLink } from './SocialLink';
+import { default as Subheading } from './Subheading';
+import { default as TitledLink } from './TitledLink';
+import { default as EmailLink } from './EmailLink';
+import { default as TelLink } from './TelLink';
 
 function Footer() {
   return <div className='footer'>

@@ -1,32 +1,31 @@
 import React from 'react';
-import MonthView from './Calendar.jsx';
-import EventItem from './EventItem.jsx';
-import { useApiRequest } from '../hooks';
-import { HeadStuff } from '../reusables';
+import { default as Calendar } from './Calendar';
+import { default as EventItem } from './EventItem';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as HeadStuff } from '../reusables/HeadStuff';
 
-export default function EventsList() {
-  let state = useApiRequest({ events: [] }, 'g_cal', ({ items }, fxn) => {
-      if (items && items.length) {
-        items.sort(function ({ start: { dateTime: a } }, { start: { dateTime: b } }) {
-          let aTime = +new Date(a), bTime = +new Date(b);
-          return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
-        });
-        let events = items.filter((
-          { start: { dateTime } }
-        ) => +new Date(dateTime) > +new Date()).slice(0, 6);
-        fxn({ events });
-      }
-    }), { events } = state;
+export default function () {
+  let events = useApiRequest([], 'g_cal', ({ items }, fxn) => {
+    if (items && items.length) {
+      items.sort(function ({ start: { dateTime: a } }, { start: { dateTime: b } }) {
+        let aTime = +new Date(a), bTime = +new Date(b);
+        return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
+      });
+      let evts = items.filter((
+        { start: { dateTime } }
+      ) => +new Date(dateTime) > +new Date()).slice(0, 6);
+      fxn(evts);
+    }
+  });
 
-  if (events.length) {
-    return [<HeadStuff title="Community Events & Calendar" />,
+  return [<HeadStuff title="Community Events & Calendar" />,
       <div className='news-list__wrapper'>
       <div className='events-list__content'>
       <div className="events-list__over">
         {events.map(item => <EventItem {...{ item }} />)}
       </div>
       <div className='events-list__calendar'>
-        <MonthView events={events.map(
+        <Calendar events={events.map(
           function ({
             summary: title, location, description, htmlLink: link, start:
             { dateTime: start }, end: { dateTime: end }
@@ -43,6 +42,4 @@ export default function EventsList() {
         )} />
       </div>
     </div></div>];
-  }
-  return null;
 }

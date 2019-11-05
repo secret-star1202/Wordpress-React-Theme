@@ -1,20 +1,25 @@
 import React from 'react';
-import Paginator from '../reusables/Paginator.jsx';
-import ReviewItem from './ReviewItem.jsx';
-import { HeadStuff } from '../reusables';
-import { useApiRequest } from '../hooks';
+import { Paginator, HeadStuff } from '../reusables';
+import { default as ReviewItem } from './ReviewItem';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
 function ReviewList() {
-  let { numPages } = useApiRequest({
-    numPages: undefined
-  }, 'num_reviews', (data, fxn) => {
-    fxn({ numPages: Math.ceil(parseInt(data, 10) / 8) });
+  let maxPages = useApiRequest(undefined, 'num_reviews', (data, fxn) => {
+    if (data) fxn(Math.ceil(parseInt(data, 10) / 8));
   });
 
-  return numPages ? [<HeadStuff title="Reviews" headerText="Music Reviews" />,
+  return maxPages ? [<HeadStuff title="Reviews" headerText="Music Reviews" />,
     <div className="reviews__content">
-      <Paginator wrapper={ReviewItem} truncate={true} perPage={8} maxPages={numPages}
-        apiUrl={(num, per) => `review?_embed&page=${num}&perPage=${per}`} />
+      <Paginator {...{
+        maxPages,
+        perPage: 8,
+        truncate: true,
+        wrapper: ReviewItem,
+        apiUrl: (num, per) => `review?_embed&page=${num}&perPage=${per}`,
+        searchMaxPages: query => `review_search_count?s=${query}`,
+        maxPagesUrl: 'num_reviews',
+        searchUrl: query => (num, perPage) => `search?_embed&s=${query}&type=review&page=${num}&per_page=${perPage}`
+      }} />
     </div>] : null;
 }
 

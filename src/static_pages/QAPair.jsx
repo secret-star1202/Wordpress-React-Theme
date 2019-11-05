@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import ContentBox from '../reusables/ContentBox.jsx';
+import { default as ContentBox } from '../reusables/ContentBox';
 
-export default function QAPair({ question, content }) {
-  let [state, setState] = useState({
-    expanded: false
-  });
+export default function ({ question, content }) {
+  let [expanded, setExpanded] = useState(false);
 
   function onClick() {
-    setState({ expanded: !state.expanded });
+    setExpanded(!expanded);
   }
 
   function isExpanded() {
-    return (state.expanded) ? ' expanded' : '';
+    return expanded ? ' expanded' : '';
   }
-
-  let { expanded } = state;
 
   return <div className='faq__section-qna-pair'>
     <span className='toggle' {...{ onClick }}>{expanded ? '-' : '+' }</span>

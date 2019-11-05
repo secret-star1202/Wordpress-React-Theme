@@ -1,25 +1,15 @@
 import React from 'react';
-import { useApiRequest } from '../hooks';
-import { HeadStuff } from '../reusables';
-
-function TimelineNode({ title, body }) {
-  return <div className='timeline__node'>
-    <div className='timeline__node-title'>{title}</div>
-    <div className='timeline__node-body'>{body}</div>
-  </div>;
-}
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as HeadStuff } from '../reusables/HeadStuff';
+import { default as TimelineNode } from './TimelineNode';
 
 export default function Timeline() {
-  let { timelineData } = useApiRequest({
-    timelineData: []
-  }, 'timeline', ([{
+  let timelineData = useApiRequest([], 'timeline', ([{
     nodes: {
       nodes_date_string: nodesDateString, nodes_body: nodesBody
     }
   }], fxn) => {
-    fxn({
-      timelineData: nodesDateString.map((str, i) => ([str, nodesBody[i]]))
-    });
+    fxn(nodesDateString.map((str, i) => ([str, nodesBody[i]])));
   });
 
   return [<HeadStuff title="KTUH Timeline" />, <div className='timeline'>

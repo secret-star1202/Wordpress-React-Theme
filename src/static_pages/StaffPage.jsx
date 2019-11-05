@@ -1,18 +1,12 @@
 import React from 'react';
-import StaffItem from './StaffItem.jsx';
-import { useApiRequest } from '../hooks';
-import { HeadStuff } from '../reusables';
+import { default as StaffItem } from './StaffItem';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as HeadStuff } from '../reusables/HeadStuff';
 
-export default function StaffPage() {
-  let state = useApiRequest({
-    staff: []
-  }, 'staff', (staff, fxn) => {
-    fxn({
-      staff
-    });
+export default function () {
+  let staff = useApiRequest([], 'staff', (data, fxn) => {
+    if (data) fxn(data);
   });
-
-  let { staff } = state;
 
   return [<HeadStuff title="Staff" />, <div>{staff.map(({
     member_bio: bio, member_name: name, member_role: role
