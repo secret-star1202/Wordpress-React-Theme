@@ -1,7 +1,7 @@
 import React from 'react';
 import { SamePageAnchor } from '../reusables';
 import {
-  getFullUrl, getFeaturedImg, entitiesToText, renderSummary
+  getFullUrl, getFeaturedImg, getImgAsset, entitiesToText, renderSummary,
 } from '../utils';
 
 function NewsItem({
@@ -13,9 +13,9 @@ function NewsItem({
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
-    <SamePageAnchor className="news-list__photo-link" {...{ href }}>
-      <img className='news-list__photo' {...{ src }} />
-      </SamePageAnchor>
+    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
+      className='home__news-img' src={src} />
+    </SamePageAnchor>
     </div>
     <div className='news-list__info'>
       <SamePageAnchor className='news-list__title' {...{ href }}>
