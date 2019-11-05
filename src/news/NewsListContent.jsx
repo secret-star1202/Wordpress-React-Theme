@@ -11,8 +11,9 @@ function NewsListContent() {
   return numPages ? <div className='news-list__content'>
     <div className='news-list'>
       <Paginator wrapper={NewsItem} perPage={10} truncate={true}
-        maxPages={numPages}
-        apiUrl={num => `posts?_embed&page=${num}`} />
+        maxPages={numPages} apiUrl={(num, per) => `posts?_embed&page=${num}&per_page=${per}`}
+        searchMaxPages={query => `post_search_count?s=${query}`} maxPagesUrl='num_posts'
+        searchUrl={query => (num, perPage) => `search?_embed&s=${query}&type=post&page=${num}&per_page=${perPage}`} />
     </div>
   </div> : null;
 }

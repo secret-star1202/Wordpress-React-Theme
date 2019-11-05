@@ -15,7 +15,10 @@ function ReviewList() {
         perPage: 8,
         truncate: true,
         wrapper: ReviewItem,
-        apiUrl: (num, per) => `review?_embed&page=${num}&perPage=${per}`
+        apiUrl: (num, per) => `review?_embed&page=${num}&perPage=${per}`,
+        searchMaxPages: query => `review_search_count?s=${query}`,
+        maxPagesUrl: 'num_reviews',
+        searchUrl: query => (num, perPage) => `search?_embed&s=${query}&type=review&page=${num}&per_page=${perPage}`
       }} />
     </div>] : null;
 }
