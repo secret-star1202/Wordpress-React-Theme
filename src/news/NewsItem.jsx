@@ -13,8 +13,8 @@ function NewsItem({
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
-    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
-      className='home__news-img' src={src} />
+    <SamePageAnchor href={href}>
+      <img className='home__news-img' src={src} />
     </SamePageAnchor>
     </div>
     <div className='news-list__info'>

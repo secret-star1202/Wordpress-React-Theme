@@ -24,7 +24,7 @@ export function getMagicFieldsImg(src) {
 }
 
 export function getFeaturedImg(_embedded,
-  defo = getImgAsset('ktuh-logo.png')) {
+  defo = getImgAsset('ktuh-logo.jpg')) {
   let fld = 'wp:featuredmedia';
 
   return _embedded && _embedded[fld]
