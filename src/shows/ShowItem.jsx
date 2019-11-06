@@ -16,7 +16,7 @@ export default function ShowItem({
       <h4 className='show-item__start-time'>
       {startDate} -</h4>
     </td>
-    <td rowSpan={2} style={{ width: '125px', height: 'auto' }}>
+    <td rowSpan={2} className="show-item__image-div">
       <img className='show-item__image' src={image} />
     </td>
     <td rowSpan={2} className='show-item__info-container'>
@@ -29,9 +29,6 @@ export default function ShowItem({
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </td>
-  </tr>, <tr style={{
-    borderLeft: 'thin black solid',
-    borderBottom: 'thin black solid'
-  }}><td><h4 className='show-item__end-time'>
+  </tr>, <tr className='show-item__end-time-div'><td><h4 className='show-item__end-time'>
     {endDate}</h4></td></tr>];
 }

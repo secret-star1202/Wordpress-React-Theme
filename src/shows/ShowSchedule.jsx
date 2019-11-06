@@ -81,7 +81,7 @@ export default function ShowSchedule() {
   }
 
   return [
-      <HeadStuff title={'Show schedule'} />,
+      <HeadStuff title='Show Schedule' />,
       <div className='shows'>
         {dowButtons('wide')}
         {dowButtons('narrow')}
