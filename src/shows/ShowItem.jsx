@@ -26,7 +26,6 @@ export default function ShowItem({
       </h5>
       <h4><SamePageAnchor href={getFullUrl(`shows/${id}`)}>
         {title}</SamePageAnchor></h4>
-      <div dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   </div></div>;
 }
