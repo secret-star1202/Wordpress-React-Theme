@@ -1123,9 +1123,17 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   display: none;
 }
 .show-item__image-div {
+  width: 150px;
   float: left;
-  width: 180px;
-  margin-right: 5px;
+  margin: 35px 65px 65px 35px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.show-item__image{
+  width: 125px;
+  height: 125px;
+  min-width: 100px;
+  min-height: 100px;
 }
 .show-item__info-container {
   display: flex;
@@ -1399,6 +1407,7 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   .show__image-div {
     float: none;
     padding-right: 20px;
+    padding-left: 20px;
     max-width: 100%;
   }
   .show-item__start-time {
@@ -1410,6 +1419,10 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
     padding-right: 30px;
     position: relative;
     z-index: 2;
+  }
+  .show-item__time-div {
+    padding-right: 40px;
+    width: 50px;
   }
   .shows__day {
     font-size: .875em;
@@ -1588,8 +1601,14 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
     font-size: .875em;
   }
   .show-item__image-div {
-    width: 130px;
-    margin-right: 5px;
+    width: 150px;
+    margin: 35px 65px 65px 35px;
+  }
+  .show-item__image{
+    width: 125px;
+    height: 125px;
+    min-width: 100px;
+    min-height: 100px;
   }
   .show-item__time,
   .show-item__info p {

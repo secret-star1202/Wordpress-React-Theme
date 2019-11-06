@@ -12,10 +12,11 @@ export default function ShowItem({
     endDate = parseDate(end).toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' '),
     fmtStr = `${startDate}-${endDate}`;
 
-  return <div className='show-item'><h4 className='show-item__start-time'>
-    {startDate}</h4>
+  return <div className='show-item'><div className='show-item__time-div'>
+    <h4 className='show-item__start-time'>
+    {startDate} -</h4>
     <h4 className='show-item__end-time'>
-     - {endDate}</h4>
+      {endDate}</h4></div>
   <div className='show-item__image-div'>
     <img className='show-item__image' src={image} />
   </div>
