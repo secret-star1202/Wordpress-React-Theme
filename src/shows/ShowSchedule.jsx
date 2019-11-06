@@ -85,7 +85,11 @@ export default function ShowSchedule() {
       <div className='shows'>
         {dowButtons('wide')}
         {dowButtons('narrow')}
-        {schedule.length ? daysShows().map(show => <ShowItem {...{ show }} />) : null}
+        {schedule.length ? <table>
+          <tbody>
+            {daysShows().map(show => <ShowItem {...{ show }} />)}
+          </tbody>
+        </table> : null}
       </div>
   ];
 }

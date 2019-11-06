@@ -1103,14 +1103,12 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   padding: 25px 60px;
 }
 .show-item {
-  display: inline-flex;
   align-items: center;
   width: 100%;
   padding: 20px 0;
-  border-bottom: 1px solid #ddd;
-}
-.show-item:last-of-type {
-  border-bottom: none;
+  border-top: thin black solid;
+  border-left: thin black solid;
+  border-right: thin black solid;
 }
 .show-item__time {
   padding: 0 25px 0 0;
@@ -1123,20 +1121,15 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   display: none;
 }
 .show-item__image-div {
-  width: 150px;
+  width: 100%;
+  height: auto;
   float: left;
-  margin: 35px 65px 65px 35px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
-.show-item__image{
-  width: 125px;
-  height: 125px;
-  min-width: 100px;
-  min-height: 100px;
+.show-item__image {
+  width: 100%;
+  height: auto;
 }
 .show-item__info-container {
-  display: flex;
   text-align: left;
 }
 .show-item__info {
