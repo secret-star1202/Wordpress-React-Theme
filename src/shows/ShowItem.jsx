@@ -5,7 +5,7 @@ import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function ShowItem({
   show: {
-    start, end, image, title, id
+    start, end, image, title, id, description
   }
 }) {
   let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
@@ -26,7 +26,7 @@ export default function ShowItem({
       </h5>
       <h4><SamePageAnchor href={getFullUrl(`shows/${id}`)}>
         {title}</SamePageAnchor></h4>
-      <div dangerouslySetInnerHTML={{ __html: description}} />
+      <div dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   </div></div>;
 }
