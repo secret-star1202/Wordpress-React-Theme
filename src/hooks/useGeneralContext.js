@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import GeneralContext from '../contexts/GeneralContext';
+import { default as GeneralContext } from '../contexts/GeneralContext';
 
 export default function useGeneralContext() {
   let { generalState, setGeneralState } = useContext(GeneralContext);
@@ -9,5 +9,5 @@ export default function useGeneralContext() {
 
 export function useSlug() {
   let { generalState: { match: { params: { slug } } } } = useGeneralContext();
-  return slug;
+  return slug.replace(/\/$/, '');
 }

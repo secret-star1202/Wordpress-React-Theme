@@ -1,21 +1,20 @@
 import React from 'react';
-import MNLItem from './MNLItem.jsx';
+import { default as MNLItem } from './MNLItem';
 import { getUploadedImage } from '../utils/url_utils';
-import { HeadStuff, Glyph } from '../reusables';
-import { useApiRequest } from '../hooks';
+import { default as HeadStuff } from '../reusables/HeadStuff';
+import { default as Glyph } from '../reusables/Glyph';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
-export default function MondayNightLive() {
+export default function () {
   function watchToEmbed(url) {
     return url.replace('watch?v=', 'embed/');
   }
 
-  let state = useApiRequest({
-      videos: []
-    }, 'mnl_video', (videos, fxn) => {
-      fxn({
-        videos
-      });
-    }), { videos } = state;
+  let videos = useApiRequest([], 'mnl_video', (data, fxn) => {
+    if (data) {
+      fxn(data);
+    }
+  });
 
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">

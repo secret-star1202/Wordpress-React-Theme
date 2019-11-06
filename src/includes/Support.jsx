@@ -1,18 +1,15 @@
 import React from 'react';
-import { getFullUrl } from '../utils';
-import { useApiRequest } from '../hooks';
-import { SamePageAnchor } from '../reusables';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as DonateButton } from './DonateButton';
 
-export default function Support() {
-  let state = useApiRequest({
-      text: ''
-    }, 'support_text', (text, fxn) => {
-      fxn({ text });
-    }), { text } = state;
+export default function () {
+  let text = useApiRequest('', 'support_text', (data, fxn) => {
+    if (data) fxn(data);
+  });
 
-  return text.length ? <div className='support'>
+  return <div className='support'>
     <h1 className='support__heading'>College Radio Needs Your Support!</h1>
     <p className='support__about'>{text}</p>
-    <SamePageAnchor href={getFullUrl('donate')} className='color-button purple-button'>Donate Now</SamePageAnchor>
-  </div> : null;
+    <DonateButton />
+  </div>;
 }

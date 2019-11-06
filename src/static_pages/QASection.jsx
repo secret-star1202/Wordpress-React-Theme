@@ -1,7 +1,7 @@
 import React from 'react';
-import QAPair from './QAPair.jsx';
+import { default as QAPair } from './QAPair';
 
-export default function QASection({ title, pairs }) {
+export default function ({ title, pairs }) {
   return <div className='faq__section'>
     <div className='faq__section-header'><h4>{title}</h4></div>
     <div className='faq__section-qna'>

@@ -442,11 +442,13 @@ add_action('rest_api_init', function() {
           if(isset($request['s'])) {
             $ps = get_posts(array(
               's' => $request['s'],
-              'posts_per_page' => '-1',
+              'posts_per_page' => $request['per_page'],
+              'page' => $request['page'],
+              'post_type' => $request['type'],
               'post_status' => 'publish')
             );
             $array = [];
-            $controller = new \WP_REST_Posts_Controller('post');
+            $controller = new \WP_REST_Posts_Controller($request['type']);
             foreach($ps as $p) {
               $data = $controller->prepare_item_for_response($p, $request);
               $array[] = $controller->prepare_response_for_collection($data);
@@ -543,6 +545,24 @@ add_action('rest_api_init', function() {
             $str = get_option('stream_url');
             return new \WP_REST_Response($str, 200);
           }
+    ));
+
+    register_rest_route('wp/v2', 'post_search_count', array(
+      'methods' => 'GET',
+      'callback' => function(WP_REST_Request $request) {
+          $allsearch = new WP_Query('post_type=post&s=' . $request['s'] . '&showposts=-1');
+          $count = $allsearch->found_posts;
+          return new \WP_REST_Response(strval($count), 200);
+        }
+    ));
+
+    register_rest_route('wp/v2', 'review_search_count', array(
+      'methods' => 'GET',
+      'callback' => function(WP_REST_Request $request) {
+          $allsearch = new WP_Query('post_type=review&s=' . $request['s'] . '&showposts=-1');
+          $count = $allsearch->found_posts;
+          return new \WP_REST_Response(strval($count), 200);
+        }
     ));
 
     register_rest_field('review', 'img_url', array(

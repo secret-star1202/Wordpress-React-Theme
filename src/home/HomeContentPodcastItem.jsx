@@ -1,6 +1,6 @@
 import React from 'react';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
-import IThing from '../reusables/IThing.jsx';
+import SamePageAnchor from '../reusables/SamePageAnchor';
+import IThing from '../reusables/IThing';
 import { getFullUrl } from '../utils/url_utils';
 
 let scUrl = (type, id) => 'https://w.soundcloud.com/player/'
@@ -8,7 +8,7 @@ let scUrl = (type, id) => 'https://w.soundcloud.com/player/'
   + '&auto_play=false&hide_related=false&show_comments=true&visual=true'
   + '&show_user=true&show_reposts=false&show_teaser=true';
 
-export default function HomeContentPodcastItem({
+export default function ({
   item: {
     podcast_id: [id],
     podcast_type: [type],

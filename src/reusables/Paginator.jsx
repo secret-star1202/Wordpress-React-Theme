@@ -1,8 +1,8 @@
 import React from 'react';
-import { PaginatorControlProvider } from './PaginatorControlContext.jsx';
-import PaginatorTop from './PaginatorTop.jsx';
+import { PaginatorControlProvider } from './PaginatorControlContext';
+import { default as PaginatorTop } from './PaginatorTop';
 
-export default function Paginator(props) {
+export default function (props) {
   return <PaginatorControlProvider initialVals={{ ...props }}>
     <PaginatorTop />
   </PaginatorControlProvider>;

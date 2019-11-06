@@ -1,7 +1,8 @@
 import React from 'react';
-import renderSummary from '../utils/summary';
-import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
-import SamePageAnchor from '../reusables/SamePageAnchor.jsx';
+import {
+  renderSummary, getFullUrl, getFeaturedImg, getImgAsset
+} from '../utils';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function HomeContentEventItem({
   item: {

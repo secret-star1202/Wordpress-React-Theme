@@ -1,16 +1,17 @@
 import React from 'react';
 import { useSlug } from '../hooks/useGeneralContext';
 import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
-import ContentBox from '../reusables/ContentBox.jsx';
+import HeadStuff from '../reusables/HeadStuff';
+import ContentBox from '../reusables/ContentBox';
 import NotFoundRedirect from '../utils/404_redirect';
 
-function PagesItem() {
-  let slug = useSlug(), state = useApiRequest({
-      page: undefined
-    }, `pages?slug=${slug.replace(/\/$/, '')}`, (data, fxn) => {
-      fxn({ page: data.length > 0 ? data[0] : null });
-    }), { page } = state;
+export default function PagesItem() {
+  let slug = useSlug(), page = useApiRequest(undefined,
+    `pages?slug=${slug}`, (data, fxn) => {
+      if (data && data.length) {
+        fxn(data[0]);
+      } else fxn(null);
+    });
 
   if (page) {
     let { title: { rendered: title }, content: { rendered: content } } = page;
@@ -20,5 +21,3 @@ function PagesItem() {
   }
   return <NotFoundRedirect check={page} />;
 }
-
-export default PagesItem;

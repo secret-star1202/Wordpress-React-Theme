@@ -1,32 +1,33 @@
 import { default as siteInfo } from './config';
 
-let { siteUrl } = siteInfo;
+let { siteUrl } = siteInfo, ctt = 'wp-content/';
 
 export function getFullUrl(path) {
   return `${siteUrl}/${path}`;
 }
 
 export function getApiRequest(endpoint, callback) {
-  fetch(`${siteUrl}/wp-json/wp/v2/${endpoint}`)
+  fetch(getFullUrl(`wp-json/wp/v2/${endpoint}`))
     .then(response => response.json()).then(callback);
 }
 
 export function getImgAsset(src) {
-  return `${siteUrl}/wp-content/themes/custom-react-theme/dist/images/${src}`;
+  return getFullUrl(`${ctt}themes/custom-react-theme/dist/images/${src}`);
 }
 
 export function getUploadedImage(src) {
-  return `${siteUrl}/wp-content/uploads/${src}`;
+  return getFullUrl(`${ctt}uploads/${src}`);
 }
 
 export function getMagicFieldsImg(src) {
-  return `${siteUrl}/wp-content/files_mf/${src}`;
+  return getFullUrl(`${ctt}files_mf/${src}`);
 }
 
 export function getFeaturedImg(_embedded,
-  defo = getImgAsset('ktuh-logo.png')) {
-  return _embedded && _embedded['wp:featuredmedia']
-    && _embedded['wp:featuredmedia']['0']
-    && _embedded['wp:featuredmedia']['0'].source_url
+  defo = getImgAsset('ktuh-logo.jpg')) {
+  let fld = 'wp:featuredmedia';
+
+  return _embedded && _embedded[fld]
+    && _embedded[fld]['0'] && _embedded[fld]['0'].source_url
     || defo;
 }

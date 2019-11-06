@@ -1,7 +1,8 @@
 import React from 'react';
-import { IThing, HeadStuff } from '../reusables';
+import { default as IThing } from '../reusables/IThing';
+import { default as HeadStuff } from '../reusables/HeadStuff';
 
-export default function Schedule() {
+export default function () {
   return [<HeadStuff title="Show Schedule" />,
     <IThing src="https://spinitron.com/KTUH/calendar?layout=1" height="1000" scrolling="auto" />,
     <div className="wp-block-button aligncenter is-style-squared">

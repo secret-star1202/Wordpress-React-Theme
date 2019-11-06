@@ -1,10 +1,11 @@
 import React from 'react';
-import { getFullUrl, getImgAsset } from '../utils';
+import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { SamePageAnchor, Glyph } from '../reusables';
-import useApiRequest from '../hooks/useApiRequest';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as LandingPlayButton } from './LandingPlayButton';
 
 function LandingInfo() {
-  let state = useApiRequest({
+  let { currentShow, nowPlaying } = useApiRequest({
     currentShow: null,
     nowPlaying: null
   }, 'now_playing', function ([{
@@ -21,12 +22,11 @@ function LandingInfo() {
 
   function currentShowName() {
     return <p className='landing__show-name caps'>
-      {state.currentShow.title}
+      {currentShow.title}
     </p>;
   }
 
   function renderNowPlaying() {
-    let { nowPlaying } = state;
     if (!nowPlaying) return null;
     let { artist, song: title } = nowPlaying;
     return [
@@ -34,8 +34,6 @@ function LandingInfo() {
       <p className="landing__song-artist caps">{` by ${artist}`}</p>
     ];
   }
-
-  let { currentShow, nowPlaying } = state;
 
   return <div className='landing__info'>{currentShow && currentShowName()
     || (nowPlaying ? <p className='landing__now-playing'>On Air Now:</p> : null)}
@@ -46,8 +44,7 @@ function LandingInfo() {
 
 function Landing() {
   function background() {
-    return `url(${
-      getImgAsset(`ktuhvideo${Math.ceil(Math.random() * 12)}.gif`)}`;
+    return `url(${getImgAsset(`ktuhvideo${Math.ceil(Math.random() * 12)}.gif`)}`;
   }
 
   function handleClickDownArrow() {
@@ -56,8 +53,11 @@ function Landing() {
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  return <div className='landing' style={{ backgroundImage: background() }}>
-      <div className='landing__box'><LandingInfo /></div>
+  return [<div className='landing' style={{ backgroundImage: background() }}>
+      <div className='landing__box'>
+        <LandingPlayButton />
+        <LandingInfo />
+      </div>
       <SamePageAnchor href={getFullUrl('playlist')}>
         <h6 className='landing__current-playlist'>
           <span className='landing__view-current'>
@@ -67,7 +67,7 @@ function Landing() {
         </h6>
       </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
-    </div>;
+  </div>, <div className='spacer-lg' />];
 }
 
 export default Landing;

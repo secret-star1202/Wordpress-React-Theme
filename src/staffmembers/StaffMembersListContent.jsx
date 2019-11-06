@@ -1,21 +1,19 @@
 import React from 'react';
-import StaffMemberItem from './StaffMemberItem.jsx';
+import StaffMemberItem from './StaffMemberItem';
 import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff.jsx';
+import HeadStuff from '../reusables/HeadStuff';
 
-function StaffMembersListContent() {
-  let state = useApiRequest({ staffmembers: [] }, 'staff', (staffmembers, fxn) => {
-      fxn({ staffmembers });
-    }), { staffmembers } = state;
+export default function StaffMembersListContent() {
+  let staffmembers = useApiRequest([], 'staff', (data, fxn) => {
+    if (data) fxn(data);
+  });
 
   return [<HeadStuff title="KTUH Staff" />,
     <div className='news-list__content'>
       <div className='staff-list'>
-        {staffmembers.length ? staffmembers.map(
+        {staffmembers.map(
           item => <StaffMemberItem {...{ item }} />
-        ) : null}
+        )}
       </div>
     </div>];
 }
-
-export default StaffMembersListContent;

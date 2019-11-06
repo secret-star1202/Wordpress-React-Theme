@@ -1,8 +1,8 @@
 import React from 'react';
 import { SamePageAnchor } from '../reusables';
-import {
-  getFullUrl, getFeaturedImg, getImgAsset, entitiesToText, renderSummary,
-} from '../utils';
+import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
+import { default as entitiesToText } from '../utils/html_entities';
+import { default as renderSummary } from '../utils/summary';
 
 function NewsItem({
   item: {
@@ -13,8 +13,8 @@ function NewsItem({
 
   return <div className='news-list__post'><div className='news-list__post-image'>
     <span className='purple-tag'>Radioblog</span>
-    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
-      className='home__news-img' src={src} />
+    <SamePageAnchor href={href}>
+      <img className='home__news-img' src={src} />
     </SamePageAnchor>
     </div>
     <div className='news-list__info'>

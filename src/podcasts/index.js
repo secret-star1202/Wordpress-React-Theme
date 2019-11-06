@@ -1,2 +1,2 @@
-export { default as PodcastList } from './PodcastList.jsx';
-export { default as SubmitPodcast } from './SubmitPodcast.jsx';
+export { default as PodcastList } from './PodcastList';
+export { default as SubmitPodcast } from './SubmitPodcast';
