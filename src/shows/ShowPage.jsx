@@ -25,7 +25,7 @@ export default function ShowPage() {
               <img className='show__image' src={image} />
             </div>
             <div className='show__info'>
-              <h5 className='show__time'>
+              <h5 className='show__page-time'>
                 {daysOfWeek[startDate.getDay()]}{'s '}
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
               </h5>

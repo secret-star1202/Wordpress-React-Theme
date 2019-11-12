@@ -11,11 +11,13 @@ export default function ShowItem({
   let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
     fmtStr = `${startDate}-${endDate}`;
 
-  return <div className='show-item'><div className='show-item__time-div'>
+  return <div className='show-item'>
+    <div className='show-item__time-div'>
     <h4 className='show-item__start-time'>
     {startDate} -</h4>
     <h4 className='show-item__end-time'>
-      {endDate}</h4></div>
+      {endDate} </h4>
+    </div>
   <div className='show-item__image-div'>
     <img className='show-item__image' src={image} />
   </div>
