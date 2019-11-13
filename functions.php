@@ -468,7 +468,7 @@ add_action('rest_api_init', function() {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $str = curl_exec($ch);
             curl_close($ch);
-            return new \WP_REST_Response(json_decode($str), 200);
+            return new \WP_REST_Response(json_decode($str, true)['items'][1], 200);
           }
     ));
 
@@ -547,9 +547,36 @@ add_action('rest_api_init', function() {
             $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key;
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $str = curl_exec($ch);
+            $strd = curl_exec($ch);
             curl_close($ch);
-            return new \WP_REST_Response(json_decode($str), 200);
+            $show = json_decode($strd, true);
+
+            $cc = curl_init();
+            curl_setopt($cc, CURLOPT_URL, $show["_links"]["personas"][0]["href"]);
+            curl_setopt($cc, CURLOPT_RETURNTRANSFER, true);
+            $strc = curl_exec($cc);
+            curl_close($cc);
+            $persona = json_decode($strc, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, "https://spinitron.com" . $show["_links"]["playlists"]["href"] . "&count=1");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $playlist_data = json_decode($stre, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, $playlist_data['items'][0]["_links"]["spins"]["href"] . "&count=200");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $spins = json_decode($stre, true)['items'];
+
+            return new \WP_REST_Response(array(
+              'show' => $show,
+              'persona' => $persona,
+              'playlist' => $spins
+            ), 200);
           }
     ));
 

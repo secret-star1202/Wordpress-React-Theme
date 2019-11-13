@@ -16,5 +16,5 @@ export const daysOfWeek = [
 ];
 
 export function toLocalStr(date) {
-  return date.toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(':00 ', ' ');
+  return date.toLocaleTimeString({ timeZone: 'Pacific/Honolulu' }).replace(/:\d\d /, ' ');
 }

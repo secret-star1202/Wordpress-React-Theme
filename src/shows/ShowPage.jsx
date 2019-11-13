@@ -1,26 +1,21 @@
 import React from 'react';
 import { useApiRequest, useSlug } from '../hooks';
 import { HeadStuff, BackButton } from '../reusables';
+import PlaylistTable from './PlaylistTable';
 import {
   NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
 } from '../utils';
 
 export default function ShowPage() {
-  let slug = useSlug(), show = useApiRequest({
-    showInfo: null,
-    persona: null
-  }, `show?id=${slug}`, function (showInfo, fxn) {
-    if (showInfo) {
-      fetch(showInfo._links.personas[0].href, (persona) => {
-        fxn({ showInfo, persona });
-      });
-    }
-  });
+  let slug = useSlug(), showInfo = useApiRequest(undefined, `show?id=${slug}`,
+    function (data, fxn) {
+      fxn(data.show.status !== 404 ? data : null);
+    });
 
-  if (show) {
-    let {
+  if (showInfo) {
+    let { show, persona, playlist } = showInfo, {
         title, description, image, start, end
-      } = show.showInfo, { name } = show.persona,
+      } = show, { name } = persona,
       startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
@@ -40,9 +35,12 @@ export default function ShowPage() {
               <p className='show__body' dangerouslySetInnerHTML=
                 {{ __html: description }} />
             </div>
+            <div>
+              <PlaylistTable tracks={playlist} />
+            </div>
           </div>
         </div>];
   }
 
-  return <NotFoundRedirect check={show} />;
+  return <NotFoundRedirect check={showInfo} />;
 }
