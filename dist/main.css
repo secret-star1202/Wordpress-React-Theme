@@ -25,10 +25,15 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   background-position:center;
 }
 .play-bar {
+  margin-top: 710px;
   background-color: #5940de;
+}
+.play-bar__item {
+  width: 550px;
 }
 .play-bar__now-playing {
   float: left;
+  width: 1200px;
 }
 .play-bar__show {
   float: right;
@@ -1071,11 +1076,13 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   width: 14.285%;
   padding: 8px 0;
   font-size: 14px;
+  text-align: center;
 }
 .shows__days {
   margin: 10px 0 10px;
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
+  font-weight: 800;
 }
 .shows__days__narrow {
   display: none;

@@ -1,5 +1,7 @@
 import React from 'react';
 import { default as useApiRequest } from '../hooks/useApiRequest';
+import LandingPlayButton from './LandingPlayButton';
+
 
 export default function LandingPlayBar() {
   let { currentShow, nowPlaying } = useApiRequest({
@@ -27,8 +29,10 @@ export default function LandingPlayBar() {
     if (!nowPlaying) return null;
     let { artist, song: title } = nowPlaying;
     return [
+      <div className="play-bar__item">
       <p className="landing__song-title caps">{title} </p>,
       <p className="landing__song-artist caps">{` by ${artist}`}</p>
+      </div>
     ];
   }
 
@@ -39,5 +43,6 @@ export default function LandingPlayBar() {
     <div className='play-bar__show'>
       {currentShowName()}
     </div>
+    <LandingPlayButton/>
   </div>;
 }
