@@ -1,16 +1,16 @@
 import React from 'react';
-import { getImgAsset } from '../utils/url_utils';
+import { getImgAsset as getImg } from '../utils/url_utils';
 import { default as SocialLink } from './SocialLink';
 import { default as Subheading } from './Subheading';
 import { default as TitledLink } from './TitledLink';
 import { default as EmailLink } from './EmailLink';
 import { default as TelLink } from './TelLink';
 
-function Footer() {
+export default function Footer() {
   return <div className='footer'>
     <div className='footer__mission-wrapper'>
       <div className='footer__logo-wrapper'>
-        <img src={getImgAsset('ktuh-logo-white-alpha.png')} />
+        <img src={getImg('ktuh-logo-white-alpha.png')} />
       </div>
       <div className='footer__mission'>
         <Subheading title="Our Mission" />
@@ -48,12 +48,10 @@ function Footer() {
       </div>
     </div>
     <div className='footer__social'>
-      <SocialLink href='http://instagram.com/ktuhfm' src={getImgAsset('instagram-white.png')} />
-      <SocialLink href='http://www.facebook.com/ktuhfm' src={getImgAsset('facebook-white.png')} />
-      <SocialLink href='http://twitter.com/ktuhfm' src={getImgAsset('twitter-white.png')} />
+      <SocialLink href='http://instagram.com/ktuhfm' src='instagram-white.png' />
+      <SocialLink href='http://www.facebook.com/ktuhfm' src='facebook-white.png' />
+      <SocialLink href='http://twitter.com/ktuhfm' src='twitter-white.png' />
     </div>
     <p className='footer__copyright'>
       {`COPYRIGHT (c) ${new Date().getFullYear()} KTUH FM Honolulu`}</p></div>;
 }
-
-export default Footer;

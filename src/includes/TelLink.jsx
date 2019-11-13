@@ -1,5 +1,6 @@
 import React from 'react';
+import TitledLink from './TitledLink';
 
 export default function ({ num, label }) {
-  return <p><a href={`tel:${num}`}>{label}</a></p>;
+  return <TitledLink href={`tel:${num}`} text={label} />;
 }

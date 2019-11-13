@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSlug } from '../hooks/useGeneralContext';
-import useApiRequest from '../hooks/useApiRequest';
-import HeadStuff from '../reusables/HeadStuff';
-import ContentBox from '../reusables/ContentBox';
+import { default as useApiRequest } from '../hooks/useApiRequest';
+import { HeadStuff, ContentBox } from '../reusables';
 import NotFoundRedirect from '../utils/404_redirect';
 
 export default function PagesItem() {

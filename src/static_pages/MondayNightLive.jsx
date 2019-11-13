@@ -10,11 +10,7 @@ export default function () {
     return url.replace('watch?v=', 'embed/');
   }
 
-  let videos = useApiRequest([], 'mnl_video', (data, fxn) => {
-    if (data) {
-      fxn(data);
-    }
-  });
+  let videos = useApiRequest([], 'mnl_video');
 
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">

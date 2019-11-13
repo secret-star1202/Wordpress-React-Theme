@@ -1,8 +1,8 @@
 import React from 'react';
-import { SamePageAnchor } from '../reusables';
-import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
-import { default as entitiesToText } from '../utils/html_entities';
-import { default as renderSummary } from '../utils/summary';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
+import {
+  getFullUrl, getFeaturedImg, entitiesToText, renderSummary
+} from '../utils';
 
 function NewsItem({
   item: {

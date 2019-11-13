@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getApiRequest } from '../utils/url_utils';
 
-export default function (initialState, endpoint, callback, interval) {
+export default function (initialState, endpoint, callback, interval, watch) {
   let [state, setState] = useState(initialState), int = null,
     theFunc = function () {
       getApiRequest(endpoint, (data) => {
@@ -19,7 +19,7 @@ export default function (initialState, endpoint, callback, interval) {
     return function cleanup() {
       if (interval) clearInterval(int);
     };
-  }, []);
+  }, watch || []);
 
   return state;
 }

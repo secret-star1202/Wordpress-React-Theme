@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { default as PaginatorControlContext } from './PaginatorControlContext';
 import { default as PaginatorView } from './PaginatorView';
 import { default as PaginatorSearchBar } from './PaginatorSearchBar';
-import { getApiRequest } from '../utils/url_utils';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
 export default function () {
   let {
@@ -11,17 +11,17 @@ export default function () {
       apiUrl, query, searchUrl
     }
   } = useContext(PaginatorControlContext);
-  useEffect(function () {
-    getApiRequest(query.length ? searchUrl(query)(currentPage, perPage) : apiUrl(currentPage, perPage), (data) => {
-      dispatch({
-        type: 'data',
-        val: {
-          pageNum: currentPage,
-          data
-        }
-      });
+
+  useApiRequest(query.length ? searchUrl(query)(currentPage, perPage)
+    : apiUrl(currentPage, perPage), (data) => {
+    dispatch({
+      type: 'data',
+      val: {
+        pageNum: currentPage,
+        data
+      }
     });
-  }, [query, currentPage]);
+  }, null, [query, currentPage]);
 
   return <div><PaginatorSearchBar /><PaginatorView /></div>;
 }

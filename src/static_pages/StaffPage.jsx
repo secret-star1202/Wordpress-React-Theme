@@ -4,9 +4,7 @@ import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 
 export default function () {
-  let staff = useApiRequest([], 'staff', (data, fxn) => {
-    if (data) fxn(data);
-  });
+  let staff = useApiRequest([], 'staff');
 
   return [<HeadStuff title="Staff" />, <div>{staff.map(({
     member_bio: bio, member_name: name, member_role: role

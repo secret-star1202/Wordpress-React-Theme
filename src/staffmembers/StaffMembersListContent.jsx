@@ -4,9 +4,7 @@ import useApiRequest from '../hooks/useApiRequest';
 import HeadStuff from '../reusables/HeadStuff';
 
 export default function StaffMembersListContent() {
-  let staffmembers = useApiRequest([], 'staff', (data, fxn) => {
-    if (data) fxn(data);
-  });
+  let staffmembers = useApiRequest([], 'staff');
 
   return [<HeadStuff title="KTUH Staff" />,
     <div className='news-list__content'>

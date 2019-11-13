@@ -1,6 +1,6 @@
 import React from 'react';
 import { default as siteInfo } from '../utils/config';
-import useGeneralContext from '../hooks/useGeneralContext';
+import { default as useGeneralContext } from '../hooks/useGeneralContext';
 
 function SamePageAnchor({
   children, href, target, className, id, style

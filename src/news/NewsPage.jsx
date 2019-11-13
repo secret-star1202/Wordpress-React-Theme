@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSlug, useApiRequest } from '../hooks';
-import { HeadStuff, ContentBox, BackButton } from '../reusables';
+import { default as HeadStuff } from '../reusables/HeadStuff';
+import { default as ContentBox } from '../reusables/ContentBox';
+import { default as BackButton } from '../reusables/BackButton';
 import { NotFoundRedirect, entitiesToText, renderSummary } from '../utils';
 
 export default function NewsPage() {

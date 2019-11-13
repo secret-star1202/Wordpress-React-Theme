@@ -8,9 +8,7 @@ export default function ({
   apiUrl, perPage, href, headText, moreText, outerDivClass, innerDivClass,
   itemComp: ItemComp
 }) {
-  let items = useApiRequest([], `${apiUrl}?_embed&per_page=${perPage}`, (data, fxn) => {
-    if (data) fxn(data);
-  });
+  let items = useApiRequest([], `${apiUrl}?_embed&per_page=${perPage}`);
 
   return <div className={outerDivClass}>
     <HomeSection {...{ href: getFullUrl(href), text: headText }} />

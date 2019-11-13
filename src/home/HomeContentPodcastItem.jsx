@@ -1,6 +1,5 @@
 import React from 'react';
-import SamePageAnchor from '../reusables/SamePageAnchor';
-import IThing from '../reusables/IThing';
+import { SamePageAnchor, IThing } from '../reusables';
 import { getFullUrl } from '../utils/url_utils';
 
 let scUrl = (type, id) => 'https://w.soundcloud.com/player/'

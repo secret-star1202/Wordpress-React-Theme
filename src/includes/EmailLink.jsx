@@ -1,5 +1,6 @@
 import React from 'react';
+import TitledLink from './TitledLink';
 
 export default function ({ to }) {
-  return <p><a href={`mailto:${to}`}>{to}</a></p>;
+  return <TitledLink href={`mailto:${to}`} text={to} />;
 }

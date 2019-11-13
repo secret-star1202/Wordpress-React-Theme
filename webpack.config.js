@@ -1,10 +1,16 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   target: 'web',
-  plugins: [
+  plugins: process.env.ANALYZE ? [
+    new MinifyPlugin({}, {
+      comments: false
+    }),
+    new BundleAnalyzerPlugin()
+  ] : [
     new MinifyPlugin({}, {
       comments: false
     })
@@ -45,7 +51,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|src\/utils/,
         loader: 'babel-loader',
         options: {
           babelrc: true,
@@ -72,16 +78,7 @@ module.exports = {
           comments: false,
           plugins: process.env.DEV_MODE ? [] : ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
         }
-      },
-      {
-        test: /\.jsx?$/,
-        include: /styled-components/,
-        loader: 'babel-loader',
-        options: {
-          comments: false,
-          plugins: process.env.DEV_MODE ? [] : ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
-        }
-      },
+      }
     ]
   },
 };

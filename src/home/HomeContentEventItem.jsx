@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  renderSummary, getFullUrl, getFeaturedImg, getImgAsset
+  renderSummary, getFullUrl, getFeaturedImg, getImgAsset as getImg
 } from '../utils';
 import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
@@ -10,7 +10,7 @@ export default function HomeContentEventItem({
     content: { rendered: content },
   }
 }) {
-  let featuredImage = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
+  let featuredImage = getFeaturedImg(_embedded, getImg('mstile-310x310.png'));
 
   return <div className='home__event-item'>
     <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}>

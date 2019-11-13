@@ -1,19 +1,26 @@
 import React from 'react';
 import { useApiRequest, useSlug } from '../hooks';
-import { default as HeadStuff } from '../reusables/HeadStuff';
-import { default as BackButton } from '../reusables/BackButton';
-import { default as NotFoundRedirect } from '../utils/404_redirect';
-import { default as renderSummary } from '../utils/summary';
-import { default as entitiesToText } from '../utils/html_entities';
-import { default as parseDate, daysOfWeek, toLocalStr } from '../utils/date_funcs';
+import { HeadStuff, BackButton } from '../reusables';
+import {
+  NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
+} from '../utils';
 
 export default function ShowPage() {
-  let slug = useSlug(), show = useApiRequest(undefined, `show?id=${slug}`);
+  let slug = useSlug(), show = useApiRequest({
+    showInfo: null,
+    persona: null
+  }, `show?id=${slug}`, function (showInfo, fxn) {
+    if (showInfo) {
+      fetch(showInfo._links.personas[0].href, (persona) => {
+        fxn({ showInfo, persona });
+      });
+    }
+  });
 
   if (show) {
     let {
         title, description, image, start, end
-      } = show,
+      } = show.showInfo, { name } = show.persona,
       startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
@@ -25,6 +32,7 @@ export default function ShowPage() {
               <img className='show__image' src={image} />
             </div>
             <div className='show__info'>
+              <h5>Hosted by {name}</h5>
               <h5 className='show__time'>
                 {daysOfWeek[startDate.getDay()]}{'s '}
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
