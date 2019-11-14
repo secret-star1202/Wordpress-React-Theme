@@ -13,9 +13,9 @@ export default function ShowPage() {
     });
 
   if (showInfo) {
-    let { show, persona, playlist } = showInfo, {
+    let { show, personas, playlist } = showInfo, {
         title, description, image, start, end
-      } = show, { name } = persona,
+      } = show, names = personas.map(({ name }) => name).join(', '),
       startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
@@ -27,7 +27,7 @@ export default function ShowPage() {
               <img className='show__image' src={image} />
             </div>
             <div className='show__info'>
-              <h5>Hosted by {name}</h5>
+              <h5>Hosted by {names}</h5>
               <h5 className='show__time'>
                 {daysOfWeek[startDate.getDay()]}{'s '}
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}

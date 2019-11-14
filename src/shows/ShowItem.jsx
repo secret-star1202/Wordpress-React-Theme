@@ -5,11 +5,12 @@ import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function ShowItem({
   show: {
-    start, end, image, title, id, description
+    start, end, image, title, id, description, personas
   }
 }) {
   let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
-    fmtStr = `${startDate}-${endDate}`;
+    fmtStr = `${startDate}-${endDate}`,
+    djs = personas.map(({ name }) => name).join(', ');
 
   return [<tr className='show-item'>
     <td className='show-item__time-div'>
@@ -25,7 +26,7 @@ export default function ShowItem({
           {fmtStr}
         </h5>
         <h4><SamePageAnchor href={getFullUrl(`shows/${id}`)}>
-        {title}</SamePageAnchor></h4>
+        {title}</SamePageAnchor>{` with ${djs}`}</h4>
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </td>

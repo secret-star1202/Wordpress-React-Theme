@@ -463,7 +463,7 @@ add_action('rest_api_init', function() {
         'callback' => function(WP_REST_Request $request) {
             $key = get_option('spinitron_key');
             $ch = curl_init();
-            $url = "https://spinitron.com/api/shows?access-token=" . $key;
+            $url = "https://spinitron.com/api/shows?access-token=" . $key . '&count=2';
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $str = curl_exec($ch);
@@ -483,7 +483,7 @@ add_action('rest_api_init', function() {
 
             $key = get_option('spinitron_key');
             $ch = curl_init();
-            $url = "https://spinitron.com/api/shows?access-token=" . $key . "&count=100&perPage=100";
+            $url = "https://spinitron.com/api/shows?access-token=" . $key . "&count=100&perPage=100&expand=personas";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $str = curl_exec($ch);
@@ -544,19 +544,13 @@ add_action('rest_api_init', function() {
             $key = get_option('spinitron_key');
             $ch = curl_init();
             $id = $request['id'];
-            $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key;
+            $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key . "&expand=personas";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $strd = curl_exec($ch);
             curl_close($ch);
             $show = json_decode($strd, true);
-
-            $cc = curl_init();
-            curl_setopt($cc, CURLOPT_URL, $show["_links"]["personas"][0]["href"]);
-            curl_setopt($cc, CURLOPT_RETURNTRANSFER, true);
-            $strc = curl_exec($cc);
-            curl_close($cc);
-            $persona = json_decode($strc, true);
+            $personas = $show['personas'];
 
             $cd = curl_init();
             curl_setopt($cd, CURLOPT_URL, "https://spinitron.com" . $show["_links"]["playlists"]["href"] . "&count=1");
@@ -574,7 +568,7 @@ add_action('rest_api_init', function() {
 
             return new \WP_REST_Response(array(
               'show' => $show,
-              'persona' => $persona,
+              'personas' => $personas,
               'playlist' => $spins
             ), 200);
           }
