@@ -569,7 +569,8 @@ add_action('rest_api_init', function() {
             return new \WP_REST_Response(array(
               'show' => $show,
               'personas' => $personas,
-              'playlist' => $spins
+              'playlist' => $spins,
+              'latestEpisode' => $playlist_data['items'][0]
             ), 200);
           }
     ));

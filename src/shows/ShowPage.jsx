@@ -2,6 +2,7 @@ import React from 'react';
 import { useApiRequest, useSlug } from '../hooks';
 import { HeadStuff, BackButton } from '../reusables';
 import PlaylistTable from './PlaylistTable';
+import AboutTheDJ from './AboutTheDJ';
 import {
   NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
 } from '../utils';
@@ -13,7 +14,7 @@ export default function ShowPage() {
     });
 
   if (showInfo) {
-    let { show, personas, playlist } = showInfo, {
+    let { show, personas, playlist, latestEpisode } = showInfo, {
         title, description, image, start, end
       } = show, names = personas.map(({ name }) => name).join(', '),
       startDate = parseDate(start), endDate = parseDate(end);
@@ -32,10 +33,16 @@ export default function ShowPage() {
                 {daysOfWeek[startDate.getDay()]}{'s '}
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
               </h5>
-              <p className='show__body' dangerouslySetInnerHTML=
-                {{ __html: description }} />
+              <div>
+                <h5>Show Description</h5>
+                <div className='show__body' dangerouslySetInnerHTML=
+                  {{ __html: description }} />
+              </div>
+              <AboutTheDJ {...personas[0]} />
             </div>
             <div>
+              <h4>Latest Playlist - {
+                parseDate(latestEpisode.start).toLocaleDateString()}</h4>
               <PlaylistTable tracks={playlist} />
             </div>
           </div>
