@@ -30,7 +30,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: process.env.EXP ? '[name]_exp.js' : '[name].js'
   },
   resolve: {
     extensions: ['.js', '.jsx'],

@@ -1,16 +1,16 @@
 import React, { createContext, useState } from 'react';
 
-let initialState = ({ history, match }) => ({
-  history, match
-});
-const GeneralContext = createContext(initialState);
+const GeneralContext = createContext();
 
 export default GeneralContext;
 
 const { Provider } = GeneralContext;
-export const GeneralContextProvider = ({ children, initialVals }) => {
-  let iState = Object.assign({}, initialState(initialVals)),
-    [generalState, setGeneralState] = useState(iState);
+export const GeneralContextProvider = ({
+  children, history, location, match
+}) => {
+  let [generalState, setGeneralState] = useState({
+    history, location, match
+  });
 
   return <Provider value={{
     generalState,
