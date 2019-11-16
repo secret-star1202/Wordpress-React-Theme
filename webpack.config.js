@@ -35,8 +35,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      'react-router-dom': path.resolve(__dirname, 'node_modules',
-        'react-router-dom', 'cjs', 'react-router-dom.min.js'),
       'react-dom/server': path.resolve(__dirname, 'node_modules', 'react-dom',
         'cjs', 'react-dom-server.browser.production.min.js'),
       'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom', 'cjs',

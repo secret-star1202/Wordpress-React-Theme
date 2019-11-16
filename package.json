@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@babel/types": "^7.7.1",
+    "history": "^4.10.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
-    "react-router-dom": "^5.1.2",
     "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "devDependencies": {
