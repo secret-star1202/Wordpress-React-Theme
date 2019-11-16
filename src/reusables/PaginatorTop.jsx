@@ -12,7 +12,7 @@ export default function () {
     }
   } = useContext(PaginatorControlContext);
 
-  useApiRequest(query.length ? searchUrl(query)(currentPage, perPage)
+  useApiRequest(null, query.length ? searchUrl(query)(currentPage, perPage)
     : apiUrl(currentPage, perPage), (data) => {
     dispatch({
       type: 'data',
