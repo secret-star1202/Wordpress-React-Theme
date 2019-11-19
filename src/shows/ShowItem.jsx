@@ -30,6 +30,6 @@ export default function ShowItem({
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </td>
-  </tr>, <tr className='show-item__end-time-div'><td><h4 className='show-item__end-time'>
+  </tr>, <tr><td className='show-item__end-time-div'><h4 className='show-item__end-time'>
     {endDate}</h4></td></tr>];
 }

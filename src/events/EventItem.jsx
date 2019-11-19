@@ -17,7 +17,7 @@ function parseAddress(location) {
 }
 
 function printTime(date) {
-  return `${date.getHours()}:${date.getMinutes()}`;
+  return `${date.toLocaleTimeString('en-US', { hour12: true, timeStyle: 'short' })}`;
 }
 
 function formatTimes(start, end) {

@@ -3,6 +3,7 @@ import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { SamePageAnchor, Glyph } from '../reusables';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as LandingPlayButton } from './LandingPlayButton';
+import LandingPlayBar from './LandingPlayBar';
 
 function LandingInfo() {
   let { currentShow, nowPlaying } = useApiRequest({
@@ -55,7 +56,7 @@ function Landing() {
 
   return [<div className='landing' style={{ backgroundImage: background() }}>
       <div className='landing__box'>
-        <LandingPlayButton />
+        <LandingPlayBar />
         <LandingInfo />
       </div>
       <SamePageAnchor href={getFullUrl('playlist')}>
