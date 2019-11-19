@@ -1138,13 +1138,11 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
   display: none;
 }
 .show-item__image-div {
-  width: 100%;
+  width: 150px;
   height: auto;
-  float: left;
 }
 .show-item__image {
   width: 100%;
-  height: auto;
 }
 .show-item__info-container {
   text-align: left;
@@ -1617,8 +1615,7 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
     font-size: .875em;
   }
   .show-item__image-div {
-    width: '100px';
-    height: 'auto';
+    width: 150px;
   }
   .show-item__image{
     width: 100%;
@@ -1714,4 +1711,10 @@ input[placeholder=Search]{padding:8px;font-size:16px;}
 .show-item__start-time {
   position: relative;
   z-index: 2;
+}
+table {
+  width: 100%;
+}
+.show-item__time-div, .show-item__end-time-div {
+  text-align: center;
 }
