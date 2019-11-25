@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TheRouteContextProvider } from '../contexts/TheRouterContext';
+import { TheRouterContextProvider } from '../contexts/TheRouterContext';
 
 export default function TheRouter({
   children, history, staticContext, basename
@@ -12,7 +12,7 @@ export default function TheRouter({
     }
   }, []);
 
-  return <TheRouteContextProvider value={{
+  return <TheRouterContextProvider value={{
     history,
     location,
     basename,
@@ -23,5 +23,5 @@ export default function TheRouter({
       isExact: location.pathname === '/'
     },
     staticContext
-  }}>{children || null}</TheRouteContextProvider>;
+  }}>{children || null}</TheRouterContextProvider>;
 }

@@ -1,5 +1,5 @@
 import React, { useContext, createElement } from 'react';
-import TheRouterContext, { TheRouteContextProvider } from '../contexts/TheRouterContext';
+import TheRouterContext, { TheRouterContextProvider } from '../contexts/TheRouterContext';
 import matchThePath from '../utils/match_the_path';
 
 export default function TheRoute(props) {
@@ -10,11 +10,11 @@ export default function TheRoute(props) {
       exact: props.exact
     });
 
-  return <TheRouteContextProvider value={{ ...context, location, match }}>
+  return <TheRouterContextProvider value={{ ...context, location, match }}>
     {createElement(props.component, {
       history,
       location,
       match
     })}
-  </TheRouteContextProvider>;
+  </TheRouterContextProvider>;
 }

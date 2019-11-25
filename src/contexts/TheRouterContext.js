@@ -1,11 +1,11 @@
 import React, { createContext } from 'react';
 
-const TheRouteContext = createContext();
+const TheRouterContext = createContext();
 
-export default TheRouteContext;
+export default TheRouterContext;
 
-const { Provider } = TheRouteContext;
+const { Provider } = TheRouterContext;
 
-export const TheRouteContextProvider = ({ value, children }) => {
+export const TheRouterContextProvider = ({ value, children }) => {
   return <Provider value={value}>{children}</Provider>;
 };
