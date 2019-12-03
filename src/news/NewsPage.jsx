@@ -13,7 +13,7 @@ export default function NewsPage() {
 
   if (post) {
     let {
-      content: { rendered: content }, title: { rendered: title }, date
+      content: { rendered: content }, title: { rendered: title }, date, author
     } = post;
 
     return [<HeadStuff title={entitiesToText(title)}
@@ -21,6 +21,7 @@ export default function NewsPage() {
     <BackButton href='radioblog' className='show__link' text="Back to Radioblog" />,
     <div className='news-item'>
       <div className='review-page__byline'>
+        By {author}
         {new Date(date).toDateString()}
       </div>
       <ContentBox className='news-item__body' {...{ content }} />
