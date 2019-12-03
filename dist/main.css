@@ -812,9 +812,13 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   left:calc(50% - 8px);
   z-index: 10;
 }
-@media (min-width: 700px) {
-  .timeline__node-title, .timeline__node-body{
-    width: 45% !important;
+@media (min-width: 1000px) {
+  .timeline__node:nth-child(odd) .timeline__node-body,
+  .timeline__node:nth-child(even) .timeline__node-title,
+  .timeline__node:nth-child(even) .timeline__node-body,
+  .timeline__node:nth-child(odd) .timeline__node-title
+  {
+    width: 43%;
   }
 }
 .day{min-height:80px;}
@@ -1040,7 +1044,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
 .event_title{margin-bottom:-1px;margin-top:-12px;font-weight:600;font-size:18px;}
 .day{height:70px !important;}thead tr{height:auto !important;}
 .month__name{font-size:22px;font-weight:700;}
-input[placeholder=Search]{padding:8px;font-size:16px;}
+input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .player__container,.player__container button,.player__span{
   display:inline;
   font-family:'nimbus-sans', sans-serif;
