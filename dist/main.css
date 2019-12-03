@@ -550,6 +550,15 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   text-align:left;
   margin-left:25px;
 }
+@media (max-width: 1000px) {
+  .review-page__image {
+    width:100%;
+  }
+  .review-page__copy {
+    width:100%;
+    margin-right: 25px;
+  }
+}
 .review-page__byline{color:#999;font-style:italic;}
 .review-page__byline{margin-bottom:8px;}
 .pagination{list-style-type:none;text-align:center;}
