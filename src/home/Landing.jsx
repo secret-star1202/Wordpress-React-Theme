@@ -51,6 +51,7 @@ function Landing() {
     }, 9000);
 
     return function cleanup() {
+      clearInterval(int);
       int = null;
     };
   }, []);

@@ -10,7 +10,8 @@ const { Provider } = PlayingContext;
 export const PlayingContextProvider = ({ children }) => {
   let [playing, setPlaying] = useState(false),
     [url, setUrl] = useState(null), [loaded, setLoaded] = useState(false),
-    mainUrl = useApiRequest(null, 'stream_url');
+    mainUrl = useApiRequest(null, 'stream_url'),
+    [isInitial, setInitial] = useState(true), [jumpStart, setJumpStart] = useState(false);
 
   function setToMainUrl() {
     if (mainUrl) {
@@ -18,8 +19,9 @@ export const PlayingContextProvider = ({ children }) => {
     }
   }
 
-  function switchUrl(theUrl) {
+  function switchUrl(theUrl, immediateStart) {
     setUrl(theUrl);
+    setJumpStart(immediateStart);
   }
 
   useEffect(function () {
@@ -35,6 +37,10 @@ export const PlayingContextProvider = ({ children }) => {
     mainUrl,
     switchUrl,
     loaded,
-    setLoaded
+    setLoaded,
+    isInitial,
+    setInitial,
+    jumpStart,
+    setJumpStart
   }}>{children}</Provider>;
 };

@@ -4,7 +4,7 @@ import { default as PlayingContext } from '../contexts/PlayingContext';
 
 export default function () {
   let {
-      playing, setPlaying, url, mainUrl, setLoaded, loaded
+      playing, setPlaying, url, mainUrl, setLoaded, loaded, jumpStart
     } = useContext(PlayingContext),
     ref = useRef(null), pauseOrPlay = loaded ? (playing
       ? 'pause' : 'play') : 'hourglass';
@@ -13,19 +13,23 @@ export default function () {
     if (ref && ref.current) {
       ref.current.oncanplay = () => {
         setLoaded(true);
+        if (jumpStart) {
+          ref.current.play();
+          setPlaying(true);
+        }
       };
       ref.current.onloadstart = () => {
         setPlaying(false);
         setLoaded(false);
       };
     }
-  }, []);
+  }, [url]);
 
   useEffect(function () {
     if (ref && ref.current) {
       if (playing && ref.current.paused) {
         ref.current.play();
-      } else if (!ref.current.paused) ref.current.pause();
+      } else if (!playing && !ref.current.paused) ref.current.pause();
     }
   }, [playing]);
 
