@@ -15,7 +15,7 @@ export default function () {
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">
         <div className="show__image-div"><img className="show__image" src=
-        {getUploadedImage('2019/06/Moday-Night-Live-ad.jpg')}/>
+        {getUploadedImage('2019/06/MNL-ad.png')}/>
       </div><div className="show__info__head"><h5 className="show__time">
         Mondays from 9:00PM-12:00AM</h5><div className="show-item__genres">
         <Glyph symbol="music" />{' '}Live Music, Local Music
