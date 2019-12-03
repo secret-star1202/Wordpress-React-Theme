@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import TheRoute from '../the_router/TheRoute';
+import TheSwitch from '../the_router/TheSwitch';
 import { Header, Footer } from '../includes';
 import { default as Landing } from '../home/Landing';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
@@ -7,23 +8,25 @@ import { PlayingContextProvider } from '../contexts/PlayingContext';
 import { default as routes } from './routes';
 
 let WrappedComponent = function ({ component: Component, ...rest }) {
-    return <GeneralContextProvider initialVals={rest}>
+    return <GeneralContextProvider {...rest}>
     <Component />
   </GeneralContextProvider>;
-  }, SeamlessRoute = ({ component, ...rest }) => (
-    <Route exact {...rest} component={props => (
-      <WrappedComponent {...props} {...{ component }} />)} />);
+  }, SeamlessRoute = ({ component, ...theRest }) => (
+    <TheRoute exact {...theRest} component={props => (
+      <WrappedComponent {...props} {...{ component }} />)
+    } />);
 
 export default () => <PlayingContextProvider>
   <div className='container'>
-    <Switch>
-      <SeamlessRoute exact path="/" component={Landing} /></Switch>
-    <Switch>
-      <Route path="*" component={props => (
+    <TheSwitch>
+      <SeamlessRoute exact path="/" component={Landing} />
+    </TheSwitch>
+    <TheSwitch>
+      <TheRoute path="*" component={props => (
         <WrappedComponent {...props} component={Header} />)} />
-    </Switch>
+    </TheSwitch>
     <div id="main">
-      <Switch>{routes.map(route => <SeamlessRoute {...route} />)}</Switch>
+      <TheSwitch>{routes.map(route => <SeamlessRoute {...route} />)}</TheSwitch>
     </div>
   </div>
   <Footer />
