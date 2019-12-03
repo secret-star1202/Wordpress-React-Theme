@@ -1629,3 +1629,118 @@ table {
 .show-item__time-div, .show-item__end-time-div {
   text-align: center;
 }
+.landing__play-btn-outer {
+  flex: none;
+  width: 10em;
+  height: 10em;
+  border: 2px solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.landing__play-btn {
+  position: relative;
+  top: 2.67em;
+  left: 1.3em;
+  margin: auto;
+  width: 4em;
+  height: 4.5em;
+  border-left: 2px solid #fff;
+}
+.landing__play-btn-triangle {
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  height: 3.45em;
+  width: 3.45em;
+  position: relative;
+  left: -1.8em;
+  top: 0.5em;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+}
+.landing__pause-btn-r {
+  margin: 0 8px;
+  top: 30%;
+  position: relative;
+  width: 1.5em;
+  height: 4em;
+  border: solid 2px #fff;
+  float: left;
+}
+.landing__pause-btn-l {
+  margin: 0 8px 0 2.75em;
+  top: 30%;
+  position: relative;
+  width: 1.5em;
+  height: 4em;
+  border: solid 2px #fff;
+  float: left;
+}
+.landing__down-arrow {
+  position: absolute;
+  right: calc(50% + -0.5em);
+  top: 80%;
+  height: 30px;
+  width: 30px;
+  font-size: 3em;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+
+.landing__play-btn-outer {
+  flex: none;
+  width: 10em;
+  height: 10em;
+  border: 2px solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.landing__play-btn {
+  position: relative;
+  top: 2.67em;
+  left: 1.3em;
+  margin: auto;
+  width: 4em;
+  height: 4.5em;
+  border-left: 2px solid #fff;
+}
+.landing__play-btn-triangle {
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  height: 3.45em;
+  width: 3.45em;
+  position: relative;
+  left: -1.8em;
+  top: 0.5em;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+}
+.landing__pause-btn-r {
+  margin: 0 8px;
+  top: 30%;
+  position: relative;
+  width: 1.5em;
+  height: 4em;
+  border: solid 2px #fff;
+  float: left;
+}
+.landing__pause-btn-l {
+  margin: 0 8px 0 2.75em;
+  top: 30%;
+  position: relative;
+  width: 1.5em;
+  height: 4em;
+  border: solid 2px #fff;
+  float: left;
+}

@@ -21,7 +21,7 @@ export default function LandingPlayBar() {
 
   function currentShowName() {
     return currentShow ? <p className='landing__show-name caps'>
-      {currentShow.title}
+      {currentShow}
     </p> : null;
   }
 
