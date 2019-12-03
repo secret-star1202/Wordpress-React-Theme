@@ -4,14 +4,14 @@ import { default as Glyph } from '../reusables/Glyph';
 
 export default function LandingPlayButton() {
   let {
-    playing, setPlaying
+    playing, url, mainUrl, setToMainUrl
   } = useContext(PlayingContext);
 
   function handleClick() {
-    setPlaying(!playing);
+    setToMainUrl();
   }
 
   return <button type="button" onClick={() => handleClick()}>
-    <Glyph symbol={playing ? 'pause' : 'play'} />
+    <Glyph symbol={playing && url === mainUrl ? 'pause' : 'play'} />
   </button>;
 }

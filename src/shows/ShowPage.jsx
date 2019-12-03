@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useApiRequest, useSlug } from '../hooks';
 import { HeadStuff, BackButton } from '../reusables';
 import PlaylistTable from './PlaylistTable';
@@ -6,15 +6,18 @@ import AboutTheDJ from './AboutTheDJ';
 import {
   NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
 } from '../utils';
+import PlayingContext from '../contexts/PlayingContext';
 
 export default function ShowPage() {
   let slug = useSlug(), showInfo = useApiRequest(undefined, `show?id=${slug}`,
-    function (data, fxn) {
-      fxn(data.show.status !== 404 ? data : null);
-    });
+      function (data, fxn) {
+        fxn(data.show.status !== 404 ? data : null);
+      }), { switchUrl } = useContext(PlayingContext);
 
   if (showInfo) {
-    let { show, personas, playlist, latestEpisode } = showInfo, {
+    let {
+        show, personas, playlist, latestEpisode, latestEpisodeLink
+      } = showInfo, {
         title, description, image, start, end
       } = show, names = personas.map(({ name }) => name).join(', '),
       startDate = parseDate(start), endDate = parseDate(end);
@@ -43,6 +46,9 @@ export default function ShowPage() {
             <div>
               <h4>Latest Playlist - {
                 parseDate(latestEpisode.start).toLocaleDateString()}</h4>
+              {latestEpisodeLink ? <button onClick={function () {
+                switchUrl(latestEpisodeLink.data.ktuh_latest_show_archive[0]);
+              }}>Play Latest Episode</button> : null}
               <PlaylistTable tracks={playlist} />
             </div>
           </div>

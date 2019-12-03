@@ -3,16 +3,18 @@ import { default as PlayingContext } from '../contexts/PlayingContext';
 
 export default function EyesorePlayButton() {
   let {
-    playing, setPlaying
+    playing, setPlaying, url, mainUrl, setToMainUrl
   } = useContext(PlayingContext);
 
   function handleClick() {
-    setPlaying(!playing);
+    if (url !== mainUrl) {
+      setToMainUrl();
+    } else setPlaying(!playing);
   }
 
   return <div className='landing__play-btn-outer'
       onClick={handleClick}>
-      {playing ? [
+      {playing && (url === mainUrl || !url) ? [
         <div className='landing__pause-btn-l'
           key='pause-button-left'></div>,
         <div className='landing__pause-btn-r'

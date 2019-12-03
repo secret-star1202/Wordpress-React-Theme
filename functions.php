@@ -174,6 +174,19 @@ function chart_meta($post) {
 function create_posttype() {
     add_theme_support( 'post-thumbnails' );
 
+    register_post_type( 'latest_epi',
+        array(
+            'labels' => array(
+                'name' => __( 'Latest Episodes' ),
+                'singular_name' => __( 'Latest Episode' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'page-attributes')
+        )
+    );
+
     register_post_type( 'review',
         array(
             'labels' => array(
@@ -566,10 +579,29 @@ add_action('rest_api_init', function() {
             curl_close($cd);
             $spins = json_decode($stre, true)['items'];
 
+            $controller = new \WP_REST_Posts_Controller('latest_epi');
+
+            $latest = $controller->prepare_item_for_response(
+              get_posts(
+                array(
+                  'post_type' => 'latest_epi',
+                  'posts_per_page' => '-1',
+                  'meta_query' => array(
+                    array(
+                      'key' => 'show_id',
+                      'value' => $request['id'],
+                      'compare' => '='
+                    )
+                  ),
+                  'post_status' => 'publish'
+                )
+            )[0], $request);
+
             return new \WP_REST_Response(array(
               'show' => $show,
               'personas' => $personas,
               'playlist' => $spins,
+              'latestEpisodeLink' => $latest,
               'latestEpisode' => $playlist_data['items'][0]
             ), 200);
           }
@@ -636,6 +668,29 @@ add_action('rest_api_init', function() {
           $allsearch = new WP_Query('post_type=review&s=' . $request['s'] . '&showposts=-1');
           $count = $allsearch->found_posts;
           return new \WP_REST_Response(strval($count), 200);
+        }
+    ));
+
+    register_rest_route('wp/v2', 'showlink_for', array(
+      'methods' => 'GET',
+      'callback' => function(WP_REST_Request $request) {
+          $ps = get_posts(array(
+            'post_type' => 'latest_epi',
+            'posts_per_page' => '-1',
+            'meta_query' => array(array(
+              'key' => 'show_id',
+              'value' => $request['show_id'],
+              'compare' => '='
+            )),
+            'post_status' => 'publish')
+          );
+          $array = [];
+          $controller = new \WP_REST_Posts_Controller('latest_epi');
+          foreach($ps as $p) {
+            $data = $controller->prepare_item_for_response($p, $request);
+            $array[] = $controller->prepare_response_for_collection($data);
+          }
+          return new \WP_REST_Response($array, 200);
         }
     ));
 
@@ -855,6 +910,16 @@ add_action('rest_api_init', function() {
     register_rest_field('staff', 'member_photo', array(
         'get_callback' => function($obj) {
           return get_post_meta($obj['id'], 'member_photo' );
+        }
+    ));
+    register_rest_field('latest_epi', 'show_id', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'show_id' );
+        }
+    ));
+    register_rest_field('latest_epi', 'ktuh_latest_show_archive', array(
+        'get_callback' => function($obj) {
+          return get_post_meta($obj['id'], 'ktuh_latest_show_archive' );
         }
     ));
 });
