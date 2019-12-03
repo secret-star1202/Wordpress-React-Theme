@@ -498,7 +498,7 @@ add_action('rest_api_init', function() {
             }
 
             foreach($original_data as $show) {
-              $ts = strtotime($show['start']) - 36000;
+              $ts = strtotime($show['start']);
               $wdat = getdate(date_timestamp_get(new DateTime("@$ts")))['wday'];
               $schedule[$wdat][] = $show;
             }
@@ -507,8 +507,8 @@ add_action('rest_api_init', function() {
               $arr = $schedule[$d];
 
               usort($arr, function ($a, $b) {
-                $a_ts = strtotime($a['start']) - 36000;
-                $b_ts = strtotime($b['start']) - 36000;
+                $a_ts = strtotime($a['start']);
+                $b_ts = strtotime($b['start']);
                 $a_date = getdate(date_timestamp_get(new DateTime("@$a_ts")));
                 $b_date = getdate(date_timestamp_get(new DateTime("@$b_ts")));
                 $a_hour = $a_date['hours'];
