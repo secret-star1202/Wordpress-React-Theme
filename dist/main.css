@@ -10,7 +10,10 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .caps{text-transform:uppercase;}.container{width:100%;max-width:1920px;padding:0;}
 .spacer-lg{height:100vh;max-height:1080px;width:0;}.footer,#main{z-index:10;}
 #main{position:relative;min-height:80vh;padding:0;background:#fff;}
-.content,.reviews__content{padding:20px 60px 30px;}
+.content,.reviews__content{
+  padding:20px 60px 30px;
+  margin-top: -130px;
+}
 .landing {
   display:flex;
   position:absolute;
