@@ -53,7 +53,11 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   text-overflow:ellipsis;
 }
 .landing__info{margin-left:20px;font-family:'nimbus-sans-extended','alda',sans-serif;overflow-y:hidden;}
-.landing__info .landing__now-playing{margin-bottom:8px}.landing__info p{margin:0;}
+.landing__info .landing__now-playing{margin-bottom:8px}
+.landing__info p{
+  margin:0;
+  color: floralwhite;
+}
 .landing__show-name,.landing__show-host,.landing__host-name,.landing__song-title,
 .landing__song-artist{font-size:2.25em;}.landing__show-name,.landing__song-title{font-weight:900;}
 .landing__show-name,.landing__song-title,.landing__song-artist{font-family:'nimbus-sans-extended',sans-serif;text-transform:uppercase;}
@@ -923,7 +927,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 @media (max-width:666px) {
   .header__support-btn{display:block;}.header__submenu-support{display:none;}
   .landing__box{flex-direction:column;}.landing__now-playing{text-align:center;}
-  .landing__info,.landing__play-btn-outer{margin:0 auto 15px;}
+  .landing__info,.landing__play-btn-outer{margin:0 auto 15px; color: floralwhite;}
   .landing__show-name,.landing__show-host,.landing__song-title,.landing__host-name,
   .landing__song-artist{text-align:center;font-size:1.125em;line-height:25px;}
   .news-list__post{float:none;width:100%;padding:0 0 20px 0;}
@@ -1639,6 +1643,7 @@ table {
   border: 2px solid;
   border-radius: 50%;
   cursor: pointer;
+  color: floralwhite;
 }
 .landing__play-btn {
   position: relative;
@@ -1647,11 +1652,11 @@ table {
   margin: auto;
   width: 4em;
   height: 4.5em;
-  border-left: 2px solid #fff;
+  border-left: 2px solid floralwhite;
 }
 .landing__play-btn-triangle {
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-right: 2px solid floralwhite;
+  border-bottom: 2px solid floralwhite;
   height: 3.45em;
   width: 3.45em;
   position: relative;
