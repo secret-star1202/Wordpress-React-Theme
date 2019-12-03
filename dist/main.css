@@ -1786,3 +1786,6 @@ table {
 .show-item__summary{
   max-width: 35%;
 }
+input[type=range] {
+  margin-left: 7px;
+}
