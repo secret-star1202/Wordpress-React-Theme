@@ -46,9 +46,12 @@ export default function ShowPage() {
             <div>
               <h4>Latest Playlist - {
                 parseDate(latestEpisode.start).toLocaleDateString()}</h4>
-              {latestEpisodeLink ? <button onClick={function () {
-                switchUrl(latestEpisodeLink.data.ktuh_latest_show_archive[0], true);
-              }}>Play Latest Episode</button> : null}
+              {latestEpisodeLink
+                && latestEpisodeLink.data.ktuh_latest_show_archive !== false
+                && latestEpisodeLink.data.ktuh_latest_show_archive[0]
+                ? <button onClick={function () {
+                  switchUrl(latestEpisodeLink.data.ktuh_latest_show_archive[0], true);
+                }}>Play Latest Episode</button> : null}
               <PlaylistTable tracks={playlist} />
             </div>
           </div>

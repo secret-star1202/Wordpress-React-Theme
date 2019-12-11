@@ -12,12 +12,13 @@ export default function ShowItem({
   let showSummary = (function () {
     let theDiv = document.createElement('div');
     theDiv.innerHTML = description;
-    return renderSummary(theDiv.innerText, 25);
+    return renderSummary(theDiv.innerText, 8);
   }());
 
   let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
     fmtStr = `${startDate}-${endDate}`,
-    djs = personas.map(({ name }) => name).join(', ');
+    djs = personas.length > 2 ? [personas[0].name, personas[1].name,
+      'and others'].join(', ') : personas.map(({ name }) => name).join(', ');
 
   return [<tr className='show-item'>
     <td className='show-item__time-div'>
