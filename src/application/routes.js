@@ -2,6 +2,7 @@ import { default as Home } from '../home/Home';
 import { ReviewPage, ReviewList } from '../reviews';
 import { NewsPage, NewsList } from '../news';
 import { default as ChartPage } from '../charts/ChartPage';
+import { default as ChartList } from '../charts/ChartList';
 import { default as EventsList } from '../events/EventsList';
 import { PodcastList, SubmitPodcast } from '../podcasts';
 import { default as NotFound } from './NotFound';
@@ -25,6 +26,7 @@ export default [
   { path: ['/events', '/event'], component: EventsList },
   { path: ['/shows/:slug', '/show/:slug'], component: ShowPage },
   { path: ['/shows', '/show-schedule', '/schedule'], component: ShowSchedule },
+  { path: ['/chart', '/charts'], component: ChartList },
   { path: '/staff', component: StaffMembersListContent },
   { path: '/faq', component: FAQ },
   { path: '/donate', component: Donate },

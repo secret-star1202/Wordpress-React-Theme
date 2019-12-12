@@ -15,12 +15,12 @@ function parse(data) {
 export default function ({ data }) {
   let tableVals = parse(data), [header, ...body] = tableVals;
 
-  return <table>
+  return <table className="playlist">
     <thead>
-      <tr>{header.map(col => <td>{col}</td>)}</tr>
+      <tr className="playlist__info-row">{header.map(col => <td>{col}</td>)}</tr>
     </thead>
     <tbody>
-      {body.map(row => <tr>{row.map(col => <td>{col}</td>)}</tr>)}
+      {body.map(row => <tr>{row.map(col => <td>{col.replace(/"/g, '')}</td>)}</tr>)}
     </tbody>
   </table>;
 }
