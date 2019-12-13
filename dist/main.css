@@ -865,7 +865,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
     transform:translate(-50%, -50%);
   }
 }
-@media (min-width:980px) and (max-width:1019px) {
+@media (min-width:980px) and (max-width:1029px) {
   .dropdown-menu{left:-72px;}.header__support-btn{display:none;}
 }
 @media (max-width:979px) {
