@@ -739,7 +739,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .alumni__img img{display:block;margin:0 auto;}
 .about__desc p,.about__content p,.alumni__img,.alumni__content p,.join__desc p,
-.page__content p,.about__help,.join__content p,.contact__content p,
+.page__content p {padding: 5px 1px;}.about__help,.join__content p,.contact__content p,
 .contact__content h4,.contact__content form,.contact__content ul{padding:5px 192px;}
 .about__youtube{
   position:absolute;
