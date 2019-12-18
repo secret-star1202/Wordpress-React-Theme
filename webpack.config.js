@@ -1,6 +1,6 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
@@ -16,12 +16,13 @@ module.exports = {
     })
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin({
-      uglifyOptions: {
+    minimizer: [new TerserPlugin({
+      terserOptions: {
         output: {
           comments: false,
         },
       },
+      extractComments: false,
     })]
   },
   mode: process.env.DEV_MODE ? 'development' : 'production',
