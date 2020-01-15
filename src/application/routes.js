@@ -21,7 +21,7 @@ export default [
   { path: ['/radioblog/:slug', '/news/:slug'], component: NewsPage },
   { path: ['/radioblog', '/news'], component: NewsList },
   { path: ['/chart/:slug', '/charts/:slug'], component: ChartPage },
-  { path: ['/timeline', '/ktuh-timeline'], component: Timeline },
+  { path: ['/timeline', '/ktuh/timeline'], component: Timeline },
   { path: ['/events', '/event'], component: EventsList },
   { path: ['/shows/:slug', '/show/:slug'], component: ShowPage },
   { path: ['/shows', '/show-schedule', '/schedule'], component: ShowSchedule },

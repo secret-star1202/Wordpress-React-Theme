@@ -11,3 +11,4 @@ export default function () {
   }) => <StaffItem {...{ bio, name, role }} />)}
   </div>];
 }
+
