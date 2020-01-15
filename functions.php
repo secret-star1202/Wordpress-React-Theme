@@ -33,6 +33,60 @@ function my_settings_init(){
         'my_settings_sanitize' // Sanitize callback function
     );
 
+    register_setting(
+        'general',             // Options group
+        'smtp_host',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_auth',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_port',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_secure',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_username',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_password',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_from',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'smtp_fromname',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'email_to',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
     add_settings_section('api-credentials', 'API Credentials',
       'station_credentials_fxn', 'general');
 
@@ -78,6 +132,78 @@ function my_settings_init(){
         'general',
         'misc-settings'
     );
+
+    add_settings_field(
+        'smtp_host',
+        'SMTP Host',
+        'smtp_host_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_auth',
+        'SMTP Auth',
+        'smtp_auth_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_port',
+        'SMTP Port',
+        'smtp_port_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_secure',
+        'SMTP Secure',
+        'smtp_secure_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_username',
+        'SMTP Username',
+        'smtp_username_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_password',
+        'SMTP Password',
+        'smtp_password_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_from',
+        'SMTP From',
+        'smtp_from_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+        'smtp_fromname',
+        'SMTP From Name',
+        'smtp_fromname_callback',
+        'general',
+        'misc-settings'
+    );
+
+    add_settings_field(
+      'email_to',
+      'Email To',
+      'email_to_callback',
+      'general',
+      'misc-settings'
+    );
 }
 
 function spinitron_callback(){
@@ -115,6 +241,60 @@ function support_text_callback(){
 function stream_url_callback(){
   ?><label for="stream_url">
     <input id="stream_url" name="stream_url" type="url" value="<?php echo get_option( 'stream_url' ); ?>" />
+  </label><?php
+}
+
+function smtp_host_callback(){
+  ?><label for="smtp_host">
+    <input id="smtp_host" name="smtp_host" type="text" value="<?php echo get_option( 'smtp_host' ); ?>" />
+  </label><?php
+}
+
+function smtp_auth_callback() {
+  ?><label for="smtp_auth">
+    <input id="smtp_auth" name="smtp_auth" type="text" value="<?php echo get_option( 'smtp_auth' ); ?>" />
+  </label><?php
+}
+
+function smtp_port_callback() {
+  ?><label for="smtp_port">
+    <input id="smtp_port" name="smtp_port" type="text" value="<?php echo get_option( 'smtp_port' ); ?>" />
+  </label><?php
+}
+
+function smtp_secure_callback() {
+  ?><label for="smtp_secure">
+    <input id="smtp_secure" name="smtp_secure" type="text" value="<?php echo get_option( 'smtp_secure' ); ?>" />
+  </label><?php
+}
+
+function smtp_username_callback() {
+  ?><label for="smtp_username">
+    <input id="smtp_username" name="smtp_username" type="text" value="<?php echo get_option( 'smtp_username' ); ?>" />
+  </label><?php
+}
+
+function smtp_password_callback() {
+  ?><label for="smtp_password">
+    <input id="smtp_password" name="smtp_password" type="password" value="<?php echo get_option( 'smtp_password' ); ?>" />
+  </label><?php
+}
+
+function smtp_from_callback() {
+  ?><label for="smtp_from">
+    <input id="smtp_from" name="smtp_from" type="text" value="<?php echo get_option( 'smtp_from' ); ?>" />
+  </label><?php
+}
+
+function smtp_fromname_callback() {
+  ?><label for="smtp_fromname">
+    <input id="smtp_fromname" name="smtp_fromname" type="text" value="<?php echo get_option( 'smtp_fromname' ); ?>" />
+  </label><?php
+}
+
+function email_to_callback() {
+  ?><label for="email_to">
+    <input id="email_to" name="email_to" type="text" value="<?php echo get_option( 'email_to' ); ?>" />
   </label><?php
 }
 
@@ -924,3 +1104,32 @@ add_action('rest_api_init', function() {
     ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');
+apply_filters('wp_mail_content_type', 'text/html');
+
+add_action( 'phpmailer_init', 'send_smtp_email' );
+function send_smtp_email( $phpmailer ) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host       = get_option('smtp_host');
+    $phpmailer->SMTPAuth   = true;
+    $phpmailer->Port       = get_option('smtp_port');
+    $phpmailer->SMTPSecure = get_option('smtp_secure');
+    $phpmailer->Username   = get_option('smtp_username');
+    $phpmailer->Password   = get_option('smtp_password');
+    $phpmailer->From       = get_option('smtp_from');
+    $phpmailer->FromName   = get_option('smtp_fromname');
+}
+
+add_action('wp_mail_failed', function($wp_error) {
+  echo "<pre>";
+    print_r($wp_error);
+    echo "</pre>";
+}, 10, 1);
+
+function email_ting($ID, $p) {
+  $url = get_option('siteurl') . '/wp-admin/post.php?post=' . $ID . '&action=edit';
+
+  wp_mail(get_option('email_to'), 'New Post for Review', '<a href="' . $url . '">' . $url . '</a>');
+}
+
+add_action('pending_post', 'email_ting', 10, 2);
+add_action('pending_review', 'email_ting', 10, 2);
