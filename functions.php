@@ -874,6 +874,29 @@ add_action('rest_api_init', function() {
         }
     ));
 
+    register_rest_route('wp/v2', 'approve_post', array(
+      'methods' => 'GET',
+      'callback' => function(WP_REST_Request $request) {
+        if (get_post_status($request['id']) == 'pending') {
+          $code = wp_update_post(array(
+            'ID' =>  $request['id'],
+            'post_status' => 'publish'
+          ), true);
+          if ($code == $request['id']) {
+            return new \WP_REST_Response('Post approved', 200);
+          }
+          else {
+            return new \WP_REST_Response('There was an error trying to approve the post.', 200);
+          }
+        }
+        else if (get_post_status($request['id']) == 'publish') {
+          return new \WP_REST_Response("Post already approved.", 200);
+        }
+
+        return new \WP_REST_Response(get_post_status($request['id']), 200);
+      }
+));
+
     register_rest_field('review', 'img_url', array(
             'get_callback' => 'get_rest_featured_image'
         )
@@ -1104,7 +1127,9 @@ add_action('rest_api_init', function() {
     ));
 });
 add_action('wp_enqueue_scripts', 'init_scripts');
-apply_filters('wp_mail_content_type', 'text/html');
+add_filter('wp_mail_content_type', function() {
+  return 'text/html';
+});
 
 add_action( 'phpmailer_init', 'send_smtp_email' );
 function send_smtp_email( $phpmailer ) {
@@ -1128,7 +1153,10 @@ add_action('wp_mail_failed', function($wp_error) {
 function email_ting($ID, $p) {
   $url = get_option('siteurl') . '/wp-admin/post.php?post=' . $ID . '&action=edit';
 
-  wp_mail(get_option('email_to'), 'New Post for Review', '<a href="' . $url . '">' . $url . '</a>');
+  wp_mail(get_option('email_to'), 'New Post for Review', '<a href="' . $url . '">' . $url . '</a>' .
+    '<div><h1>' . $p->post_title . '</h1><h3>Submitted at ' . $p->post_date . '</h3>' . $p->post_content . '</div>' .
+    '<a href="' . get_option('siteurl') . '/wp-json/wp/v2/approve_post?id=' . $ID . '">Approve Post</a>',
+    'Content-type: text/html;charset=utf-8');
 }
 
 add_action('pending_post', 'email_ting', 10, 2);
