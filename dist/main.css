@@ -565,7 +565,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   text-align:left;
   margin-left:25px;
 }
-.show__info__head{margin:0;width:20%;vertical-align:top;display:inline-block;}
+.show__info__head{margin:0;vertical-align:text-top;display:block;}
 @media (max-width: 1000px) {
   .review-page__image {
     width:100%;

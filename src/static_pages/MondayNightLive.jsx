@@ -30,7 +30,7 @@ export default function () {
             <div className="mnl__show__wrapper">
               <div className="mnl__show__content">
                 <div className="mnl__show__info">
-                  <p className="mnl__show__body"></p>
+                  <p className="mnl__show__body"/>
                   <p className="mnl__p1">
                   <span className="mnl__desc">60 minutes of live music by local artists on Monday nights!</span></p>
                   <p className="mnl__p2"></p>
