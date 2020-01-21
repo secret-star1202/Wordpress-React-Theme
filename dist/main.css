@@ -1215,12 +1215,11 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
   margin-top: 0;
 }
 .show__image-div {
-  display: inline-block;
+  float: left;
   width: fit-content;
 }
 .show__image {
   position: relative;
-  float: left;
   width: 250px;
   height: 200px;
   background-position: 50% 50%;
