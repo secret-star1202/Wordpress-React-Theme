@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { default as siteInfo } from '../utils/config';
-import { default as useGeneralContext } from '../hooks/useGeneralContext';
+import { default as TheRouterContext } from '../contexts/TheRouterContext';
 
 function SamePageAnchor({
   children, href, target, className, id, style
 }) {
-  let { generalState, setGeneralState } = useGeneralContext();
+  let { history } = useContext(TheRouterContext);
 
   function onClick(event) {
     let { siteUrl } = siteInfo;
 
     if (href.startsWith(siteUrl)) {
       event.preventDefault();
-      let newState = Object.assign({}, generalState);
-      newState.history.push(href.replace(siteUrl, ''));
-      setGeneralState(newState);
+      history.push(href.replace(siteUrl, ''));
     }
   }
 

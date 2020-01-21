@@ -1,6 +1,6 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
@@ -16,12 +16,13 @@ module.exports = {
     })
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin({
-      uglifyOptions: {
+    minimizer: [new TerserPlugin({
+      terserOptions: {
         output: {
           comments: false,
         },
       },
+      extractComments: false,
     })]
   },
   mode: process.env.DEV_MODE ? 'development' : 'production',
@@ -30,13 +31,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: process.env.EXP ? '[name]_exp.js' : '[name].js'
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      'react-router-dom': path.resolve(__dirname, 'node_modules',
-        'react-router-dom', 'cjs', 'react-router-dom.min.js'),
       'react-dom/server': path.resolve(__dirname, 'node_modules', 'react-dom',
         'cjs', 'react-dom-server.browser.production.min.js'),
       'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom', 'cjs',

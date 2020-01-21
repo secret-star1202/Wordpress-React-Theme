@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { SamePageAnchor, Glyph } from '../reusables';
 import { default as useApiRequest } from '../hooks/useApiRequest';
-import { default as LandingPlayButton } from './LandingPlayButton';
-import LandingPlayBar from './LandingPlayBar';
+import { default as EyesorePlayButton } from './EyesorePlayButton';
 
 function LandingInfo() {
   let { currentShow, nowPlaying } = useApiRequest({
@@ -23,7 +22,7 @@ function LandingInfo() {
 
   function currentShowName() {
     return <p className='landing__show-name caps'>
-      {currentShow.title}
+      {currentShow}
     </p>;
   }
 
@@ -44,8 +43,21 @@ function LandingInfo() {
 }
 
 function Landing() {
+  let int = useRef(), [bg, setBg] = useState(Math.ceil(Math.random() * 12));
+
+  useEffect(function () {
+    int = setInterval(function () {
+      setBg(Math.ceil(Math.random() * 12));
+    }, 9000);
+
+    return function cleanup() {
+      clearInterval(int);
+      int = null;
+    };
+  }, []);
+
   function background() {
-    return `url(${getImgAsset(`ktuhvideo${Math.ceil(Math.random() * 12)}.gif`)}`;
+    return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
   }
 
   function handleClickDownArrow() {
@@ -56,7 +68,7 @@ function Landing() {
 
   return [<div className='landing' style={{ backgroundImage: background() }}>
       <div className='landing__box'>
-        <LandingPlayBar />
+        <EyesorePlayButton />
         <LandingInfo />
       </div>
       <SamePageAnchor href={getFullUrl('playlist')}>

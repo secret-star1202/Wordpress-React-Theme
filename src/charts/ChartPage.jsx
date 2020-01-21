@@ -13,11 +13,11 @@ export default function () {
     });
 
   if (chart) {
-    let { chart_table: [data], title: { rendered: title } } = chart;
+    let { chart_table, title: { rendered: title } } = chart;
     return [<HeadStuff {...{ title }} />,
       <BackButton className='review__link' href='charts' text="all charts" />,
       <div className="review__content">
-        <ChartTable {...{ data }} />
+        <ChartTable data={chart_table[0]} />
       </div>
     ];
   }

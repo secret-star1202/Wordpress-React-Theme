@@ -15,6 +15,6 @@ export default function () {
       headText='MUSIC REVIEWS' moreText='REVIEWS' itemComp={HomeContentReviewsItem} />
     <HomeContentSection outerDivClass='home__podcast' href='podcasts'
       apiUrl='podcast' perPage={3} innerDivClass='home__podcast-content'
-      headText='MUSIC REVIEWS' moreText='REVIEWS' itemComp={HomeContentPodcastItem} /></div>
+      headText='PODCASTS' moreText='PODCASTS' itemComp={HomeContentPodcastItem} /></div>
     <HomeSidebar /></div>;
 }

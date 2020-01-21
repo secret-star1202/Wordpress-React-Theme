@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import TheRedirect from '../the_router/TheRedirect';
 
 export default function ({ check }) {
-  return (check === null) ? <Redirect to='/not-found' /> : null;
+  return (check === null) ? <TheRedirect to='/not-found' /> : null;
 }
