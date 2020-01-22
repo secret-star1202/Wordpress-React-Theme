@@ -9,15 +9,27 @@ import {
 import PlayingContext from '../contexts/PlayingContext';
 
 export default function ShowPage() {
-  let slug = useSlug(), showInfo = useApiRequest(undefined, `show?id=${slug}`,
+  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles/id=${slug}`), showInfo = useApiRequest(undefined, `show?id=${slug}`,function (data, fxn) {
+    fxn(data.show.status !== 404 ? data : null);
+  },
       function (data, fxn) {
         fxn(data.show.status !== 404 ? data : null);
       }), { switchUrl } = useContext(PlayingContext);
+
+
 
   if (showInfo) {
     let {
         show, personas, playlist, latestEpisode, latestEpisodeLink
       } = showInfo, {
+        title, description, image, start, end
+      } = show, names = personas.map(({ name }) => name).join(', '),
+      startDate = parseDate(start), endDate = parseDate(end);
+
+    if (wpspin_profiles) {
+    let {
+        mixcloud_link, soundcloud, instagram_link, facebook_link
+      } = wpspin_profiles, {
         title, description, image, start, end
       } = show, names = personas.map(({ name }) => name).join(', '),
       startDate = parseDate(start), endDate = parseDate(end);
