@@ -895,7 +895,29 @@ add_action('rest_api_init', function() {
 
         return new \WP_REST_Response(get_post_status($request['id']), 200);
       }
-));
+    ));
+
+    register_rest_route('wp/v2', '/feed', array(
+      array(
+        'methods' => 'GET',
+        'callback' => function(WP_REST_Request $request) {
+          $ch = curl_init();
+          $url = "http://feeds.soundcloud.com/users/soundcloud:users:573293379/sounds.rss";
+          curl_setopt($ch, CURLOPT_URL, $url);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+          $str = curl_exec($ch);
+          if (curl_error($ch)) {
+            $e = curl_error($ch);
+            curl_close($ch);
+            return \WP_REST_Response($e, 200);
+          }
+          curl_close($ch);
+          header('Content-Type: application/rss+xml');
+          echo $str;
+          exit();
+        }
+      )
+    ));
 
     register_rest_field('review', 'img_url', array(
             'get_callback' => 'get_rest_featured_image'
