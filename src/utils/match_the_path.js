@@ -15,7 +15,7 @@ export function returnPathKeys(path) {
 
 export default function matchThePath(pathname, { path, exact }) {
   if (typeof path !== 'string') {
-    return path.map(p => matchThePath(pathname, { path: p, exact })).find(t => t != null);
+    return path.map(p => matchThePath(pathname.replace(/\/$/, ''), { path: p, exact })).find(t => t != null);
   }
   if (path === '*') {
     return {
