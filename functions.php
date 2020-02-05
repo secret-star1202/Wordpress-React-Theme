@@ -87,6 +87,12 @@ function my_settings_init(){
         'my_settings_sanitize' // Sanitize callback function
     );
 
+    register_setting(
+        'general',             // Options group
+        'rss_feed_url',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
     add_settings_section('api-credentials', 'API Credentials',
       'station_credentials_fxn', 'general');
 
@@ -204,6 +210,14 @@ function my_settings_init(){
       'general',
       'misc-settings'
     );
+
+    add_settings_field(
+      'rss_feed_url',
+      'RSS Feed URL',
+      'rss_feed_url_callback',
+      'general',
+      'misc-settings'
+    );
 }
 
 function spinitron_callback(){
@@ -297,6 +311,13 @@ function email_to_callback() {
     <input id="email_to" name="email_to" type="text" value="<?php echo get_option( 'email_to' ); ?>" />
   </label><?php
 }
+
+function rss_feed_url_callback() {
+  ?><label for="rss_feed_url">
+    <input id="rss_feed_url" name="rss_feed_url" type="text" value="<?php echo get_option( 'rss_feed_url' ); ?>" />
+  </label><?php
+}
+
 
 function my_settings_sanitize( $input ){
     return $input ;
@@ -902,7 +923,7 @@ add_action('rest_api_init', function() {
         'methods' => 'GET',
         'callback' => function(WP_REST_Request $request) {
           $ch = curl_init();
-          $url = "http://feeds.soundcloud.com/users/soundcloud:users:573293379/sounds.rss";
+          $url = get_option('rss_feed_url');
           curl_setopt($ch, CURLOPT_URL, $url);
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           $str = curl_exec($ch);
