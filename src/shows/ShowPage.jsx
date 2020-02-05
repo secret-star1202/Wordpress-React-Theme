@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useApiRequest, useSlug } from '../hooks';
 import { HeadStuff, BackButton } from '../reusables';
 import PlaylistTable from './PlaylistTable';
-import AboutTheDJ from './AboutTheDJ';
+import AboutTheDJ, { AboutMultipleDJs } from './AboutTheDJ';
 import {
   NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
 } from '../utils';
@@ -41,7 +41,7 @@ export default function ShowPage() {
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
-              <AboutTheDJ {...personas[0]} />
+              {personas.length > 1 ? <AboutMultipleDJs {...{ personas }} /> : <AboutTheDJ {...personas[0]} />}
             </div>
             <div>
               <h4>Latest Playlist - {
