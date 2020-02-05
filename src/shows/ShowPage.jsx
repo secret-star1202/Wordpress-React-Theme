@@ -41,19 +41,19 @@ export default function ShowPage() {
           <div className="show__content">
             <div className='show__image-div'>
               <img className='show__image' src={image} />
-            </div>
-            <div className='show__info'>
-              <h5>Hosted by {names}</h5>
-              <h5 className='show__time'>
-                {daysOfWeek[startDate.getDay()]}{'s '}
-                {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
-              </h5>
-              <div>
-                <h5>Show Description</h5>
-                <div className='show__body' dangerouslySetInnerHTML=
-                  {{ __html: description }} />
+              <div className='show__info'>
+                <h5>Hosted by {names}</h5>
+                <h5 className='show__time'>
+                  {daysOfWeek[startDate.getDay()]}{'s '}
+                  {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
+                </h5>
+                <div>
+                  <h5>Show Description</h5>
+                  <div className='show__body' dangerouslySetInnerHTML=
+                    {{ __html: description }} />
+                </div>
+                <AboutTheDJ {...personas[0]} />
               </div>
-              <AboutTheDJ {...personas[0]} />
             </div>
             <div>
               <h4>Latest Playlist - {
