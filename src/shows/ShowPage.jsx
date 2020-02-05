@@ -9,7 +9,7 @@ import {
 import PlayingContext from '../contexts/PlayingContext';
 
 export default function ShowPage() {
-  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles/id=${slug}`), showInfo = useApiRequest(undefined, `show?id=${slug}`,function (data, fxn) {
+  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles/?id=${slug}`), showInfo = useApiRequest(undefined, `show?id=${slug}`,function (data, fxn) {
     fxn(data.show.status !== 404 ? data : null);
   },
       function (data, fxn) {
@@ -53,6 +53,12 @@ export default function ShowPage() {
                     {{ __html: description }} />
                 </div>
                 <AboutTheDJ {...personas[0]} />
+              </div>
+              <div className="show-links">
+                <img className="show-facebook-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/facebook_black.png" href={facebook_link}/>
+                <img className="show-instagram-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/transparent-instagram.png" href={instagram_link}/>
+                <img className="show-soundcloud-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/soundcloud_logo.png" href={soundcloud}/>
+                <img className="show-mixcloud-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/mixcloud-trans.png" href={mixcloud_link}/>
               </div>
             </div>
             <div>
