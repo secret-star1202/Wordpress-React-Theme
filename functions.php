@@ -346,6 +346,8 @@ function init_scripts()
     wp_enqueue_style('twbs-css', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
     wp_enqueue_script('twbs-js', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array('jquery-js'), '1.0', true);
 
+    wp_enqueue_style('fa-css', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
     wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/main.css');
 
 

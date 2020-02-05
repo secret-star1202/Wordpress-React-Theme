@@ -28,7 +28,8 @@
     "no-underscore-dangle": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "camelcase": "off"
   },
   "globals": {
     "_": true,
