@@ -807,6 +807,26 @@ add_action('rest_api_init', function() {
             return get_post_meta($obj['id'], 'date' );
         }
     ));
+    register_rest_field('wpspin_profiles', 'facebook_link', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'facebook_link' );
+        }
+    ));
+    register_rest_field('wpspin_profiles', 'instagram_link', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'instagram_link' );
+        }
+    ));
+    register_rest_field('wpspin_profiles', 'soundcloud', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'soundcloud' );
+        }
+    ));
+    register_rest_field('wpspin_profiles', 'mixcloud_link', array(
+        'get_callback' => function($obj) {
+            return get_post_meta($obj['id'], 'mixcloud_link' );
+        }
+    ));
     register_rest_field('event', 'event_name', array(
         'get_callback' => function($obj) {
             return get_post_meta($obj['id'], 'event_name' );

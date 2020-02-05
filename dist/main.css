@@ -321,7 +321,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .general__header {
   margin:0;
-  padding:180px 0 20px 60px;
+  padding: 80px 0 50px 60px;
   font-weight:900;
   background-color:#262626;
   color:white;
@@ -737,9 +737,12 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   font-family:'nimbus-sans-extended', sans-serif;
   font-weight:900;
 }
+.page__content p {
+  padding: 5px 140px 0 60px;
+}
 .alumni__img img{display:block;margin:0 auto;}
 .about__desc p,.about__content p,.alumni__img,.alumni__content p,.join__desc p,
-.page__content p {padding: 5px 1px;}.about__help,.join__content p,.contact__content p,
+.about__help,.join__content p,.contact__content p,
 .contact__content h4,.contact__content form,.contact__content ul{padding:5px 192px;}
 .about__youtube{
   position:absolute;
@@ -1010,16 +1013,21 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .playlist + .playlist__show-name{margin-top:25px;}
 .grid__container {
-  margin-left: 30px;
-  display:inline-grid;
-  grid-template-columns:33% 33% 33%;
-  grid-template-rows:repeat(2, 1fr);
+  margin-left: 35px;
+  display: inline-grid;
+  padding: 25px;
+  grid-gap: 35px;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(2, 1fr);
 }
 .submit__podcast {
-  overflow:auto;
-  background-color:#5940DE;
-  color:white;
-  height:100%;
+  overflow: auto;
+  text-align: center;
+  border-radius: 4px;
+  margin-left: 270px;
+  background-color: #5940DE;
+  color: white;
+  height: 100%;
 }
 .submit__podcast a,.about__help a,.faq__section-qna a,.general__header a,
 .about__help a,.faq__section-qna a,.home__next-show-deets a{color:white;}
@@ -1144,6 +1152,7 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show-item__image {
   width: 100%;
   height: 100%;
+  padding: 25px;
 }
 .show-item__info-container {
   text-align: left;
@@ -1200,9 +1209,21 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
   margin: 10px 0;
   width: 500px;
 }
-.show__link, .event__link, .chart__link, .playlist__link, .review__link {
+.join__content p {
+  padding: 5px 280px;
+}
+.review__link {
   position: absolute;
-  top: 100px;
+  top: 140px;
+  left: 60px;
+  margin: 0;
+  background-color: #262626;
+  color: white;
+  width: calc(100% - 60px);
+}
+.show__link, .event__link, .chart__link, .playlist__link {
+  position: absolute;
+  top: 160px;
   left: 60px;
   margin: 0;
   background-color: #262626;
