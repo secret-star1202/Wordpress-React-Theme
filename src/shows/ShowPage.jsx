@@ -35,7 +35,7 @@ export default function ShowPage() {
       startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
-      description={renderSummary(description, 50)} />,
+      description={renderSummary(description || 'This is a good show.', 50)} />,
         <BackButton href='shows' className='show__link' text="Show Schedule" />,
         <div className="show__wrapper">
           <div className="show__content">
