@@ -9,10 +9,11 @@ import {
 import PlayingContext from '../contexts/PlayingContext';
 
 export default function ShowPage() {
-  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles?id=${slug}`,
+  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined,
+      `wpspin_profiles?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
       function (data, fxn) {
         fxn(data ? data[0] : null);
-      }), showInfo = useApiRequest(undefined, `show?id=${slug}`, function (data, fxn) {
+      }), showInfo = useApiRequest(undefined, `show?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`, function (data, fxn) {
       fxn(data || null);
     }), { switchUrl } = useContext(PlayingContext);
 

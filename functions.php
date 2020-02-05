@@ -786,9 +786,28 @@ add_action('rest_api_init', function () {
     register_rest_route('wp/v2', '/show', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
+            $id = '';
+
+            if (isset($request['id'])) {
+              $id = $request['id'];
+            }
+            else {
+              $ps = get_posts(
+                array(
+                  'posts_per_page' => -1,
+                  'post_type' => 'wpspin_profiles',
+                  'post_status' => 'publish',
+                  'name' => $request['slug']
+                )
+              );
+              foreach($ps as $p) {
+                $id = get_post_meta($p->ID, 'show_page_id')[0];
+              }
+            }
+
             $key = get_option('spinitron_key');
             $ch = curl_init();
-            $id = $request['id'];
+
             $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key . "&expand=personas";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -856,18 +875,23 @@ add_action('rest_api_init', function () {
     register_rest_route('wp/v2', '/wpspin_profiles', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
-            $id = $request['id'];
+            $s = isset($request['slug']) ? $request['slug'] : $request['id'];
             $ps = get_posts(
-                  array(
+                  isset($request['id']) ? array(
                     'posts_per_page' => -1,
                     'post_type' => 'wpspin_profiles',
                     'post_status' => 'publish',
                     'meta_query' => array(
                       array(
                          'key'     => 'show_page_id',
-                         'value'   => array($id)
+                         'value'   => array($s)
                       )
                     )
+                  ) : array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'wpspin_profiles',
+                    'post_status' => 'publish',
+                    'name' => $s
                   )
                 );
             $array = [];
