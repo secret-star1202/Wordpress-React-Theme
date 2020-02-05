@@ -240,7 +240,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .tags__tag{padding:5px;margin-top:3px;border:1px solid #ddd;border-radius:3px;background:none;}
 .playlist{clear:both;width:100%;text-align:left;}.faq__answer{margin-top:0;}
 .playlist tr:nth-child(2n){background-color:#f6f6f6;}
-.playlist__show-name,.review-page__rating,.playlist-list__header,
+.playlist__show-name,.playlist-list__header,
 .playlist__show-image{float:left;margin:0 15px 15px 0;}
 .playlist__info-row{
   border-left:0;
@@ -251,6 +251,9 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   font-family:'nimbus-sans-extended', sans-serif;
   text-transform:uppercase;
   border-style:solid;
+}
+.review-page__rating {
+  float:left;margin:0 15px 10px 0;
 }
 .playlist td{padding:10px;}.playlist td:nth-child(1){padding:10px 0 10px 15px;}
 .playlist__artist,.playlist__title,.playlist__timestamp{font-size:.875em;}
