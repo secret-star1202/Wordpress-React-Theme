@@ -4,7 +4,7 @@ import { HeadStuff, BackButton } from '../reusables';
 import PlaylistTable from './PlaylistTable';
 import AboutTheDJ from './AboutTheDJ';
 import {
-  NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
+  NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr, getUploadedImage
 } from '../utils';
 import PlayingContext from '../contexts/PlayingContext';
 
@@ -27,12 +27,12 @@ export default function ShowPage() {
       startDate = parseDate(start), endDate = parseDate(end);
 
     if (wpspin_profiles) {
-    let {
-        mixcloud_link, soundcloud, instagram_link, facebook_link
-      } = wpspin_profiles, {
-        title, description, image, start, end
-      } = show, names = personas.map(({ name }) => name).join(', '),
-      startDate = parseDate(start), endDate = parseDate(end);
+      let {
+          mixcloud_link, soundcloud, instagram_link, facebook_link
+        } = wpspin_profiles, {
+          title, description, image, start, end
+        } = show, names = personas.map(({ name }) => name).join(', '),
+        startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
       description={renderSummary(description, 50)} />,
@@ -55,10 +55,10 @@ export default function ShowPage() {
                 <AboutTheDJ {...personas[0]} />
               </div>
               <div className="show-links">
-                <img className="show-facebook-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/facebook_black.png" href={facebook_link}/>
-                <img className="show-instagram-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/transparent-instagram.png" href={instagram_link}/>
-                <img className="show-soundcloud-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/soundcloud_logo.png" href={soundcloud}/>
-                <img className="show-mixcloud-img" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/02/mixcloud-trans.png" href={mixcloud_link}/>
+                <img className="show-facebook-img" src={getUploadedImage('2020/02/facebook_black.png')} href={facebook_link}/>
+                <img className="show-instagram-img" src={getUploadedImage('2020/02/transparent-instagram.png')} href={instagram_link}/>
+                <img className="show-soundcloud-img" src={getUploadedImage('2020/02/soundcloud_logo.png')} href={soundcloud}/>
+                <img className="show-mixcloud-img" src={getUploadedImage('2020/02/mixcloud-trans.png')} href={mixcloud_link}/>
               </div>
             </div>
             <div>
@@ -74,7 +74,8 @@ export default function ShowPage() {
             </div>
           </div>
         </div>];
-  }
+    }
 
-  return <NotFoundRedirect check={showInfo} />;
+    return <NotFoundRedirect check={showInfo} />;
+  }
 }

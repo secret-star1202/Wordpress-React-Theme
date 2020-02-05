@@ -340,6 +340,18 @@ function create_posttype()
     register_meta('chart', 'chart_table', array(
         'show_in_rest' => true
     ));
+
+    register_post_type('wpspin_profiles',
+        array(
+            'labels' => array(
+                'name' => __('DJ Profiles'),
+                'singular_name' => __('DJ Profile')
+            ),
+            'public' => true,
+            'has_archive' => false,
+            'show_in_rest' => true,
+        )
+    );
 }
 
 function save_custom_meta_data($id)
@@ -643,6 +655,26 @@ add_action('rest_api_init', function () {
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
             $id = $request['id'];
+            $ps = get_posts(
+                  array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'wpspin_profiles',
+                    'post_status' => 'publish',
+                    'meta_query' => array(
+                      array(
+                         'key'     => 'show_page_id',
+                         'value'   => array($id)
+                      )
+                    )
+                  )
+                );
+            $array = [];
+            $controller = new \WP_REST_Posts_Controller('wpspin_profiles');
+            foreach ($ps as $p) {
+                $data = $controller->prepare_item_for_response($p, $request);
+                $array[] = $controller->prepare_response_for_collection($data);
+            }
+            return new \WP_REST_Response($array, 200);
         }
     ));
 
@@ -850,6 +882,11 @@ add_action('rest_api_init', function () {
     register_rest_field('wpspin_profiles', 'mixcloud_link', array(
         'get_callback' => function ($obj) {
             return get_post_meta($obj['id'], 'mixcloud_link');
+        }
+    ));
+    register_rest_field('wpspin_profiles', 'show_page_id', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'show_page_id');
         }
     ));
     register_rest_field('event', 'event_name', array(
