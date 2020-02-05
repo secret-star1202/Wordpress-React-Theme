@@ -745,7 +745,24 @@ add_action('rest_api_init', function () {
             foreach ($original_data as $show) {
                 $ts = strtotime($show['start']);
                 $wdat = getdate(date_timestamp_get(new DateTime("@$ts")))['wday'];
-                $schedule[$wdat][] = $show;
+                $show_temp = $show;
+                $ps = get_posts(array(
+                  'posts_per_page' => -1,
+                  'post_type' => 'wpspin_profiles',
+                  'post_status' => 'publish',
+                  'meta_query' => array(
+                    array(
+                       'key'     => 'show_page_id',
+                       'value'   => array($show['id'])
+                    )
+                  )
+                ));
+                if ($ps) {
+                  foreach($ps as $p) {
+                    $show_temp['slug'] = $p->post_name;
+                  }
+                }
+                $schedule[$wdat][] = $show_temp;
             }
 
             for ($d = 0; $d < 7; $d++) {
