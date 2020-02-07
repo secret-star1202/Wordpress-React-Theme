@@ -13,9 +13,11 @@ export default function ShowPage() {
       `wpspin_profiles?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
       function (data, fxn) {
         fxn(data ? data[0] : null);
-      }), showInfo = useApiRequest(undefined, `show?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`, function (data, fxn) {
-      fxn(data || null);
-    }), { switchUrl } = useContext(PlayingContext);
+      }), showInfo = useApiRequest(undefined,
+      `show?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
+      function (data, fxn) {
+        fxn(data || null);
+      }), { switchUrl } = useContext(PlayingContext);
 
   if (showInfo) {
     let {

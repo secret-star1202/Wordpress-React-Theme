@@ -14,32 +14,34 @@ export function returnPathKeys(path) {
 }
 
 export default function matchThePath(pathname, { path, exact }) {
+  let pathActual = pathname !== '/' ? pathname.replace(/\/$/, '') : pathname;
   if (typeof path !== 'string') {
-    return path.map(p => matchThePath(pathname.replace(/\/$/, ''), { path: p, exact })).find(t => t != null);
+    return path.map((p) => matchThePath(pathActual, { path: p, exact })).find((t) => t != null);
   }
   if (path === '*') {
     return {
       path,
-      url: pathname,
+      url: pathActual,
       params: {}
     };
   }
   if (path === '/') {
-    if (pathname === '/') {
+    if (pathActual === '/') {
       return {
         path: '/',
-        url: pathname,
+        url: pathActual,
         params: {}
       };
-    } else if (pathname.length) {
+    }
+    if (pathActual.length) {
       return null;
     }
   }
   let { regex, keys } = returnPathKeys(path);
-  if (!keys.length && pathname !== path) {
+  if (!keys.length && pathActual !== path) {
     return null;
   }
-  let params = {}, res = pathname.match(regex)
+  let params = {}, res = pathActual.match(regex);
 
   if (!res) return null;
 
@@ -49,7 +51,7 @@ export default function matchThePath(pathname, { path, exact }) {
 
   return {
     path,
-    url: pathname,
+    url: pathActual,
     params
   };
 }

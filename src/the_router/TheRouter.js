@@ -8,7 +8,7 @@ export default function TheRouter({
 
   useEffect(function () {
     if (!staticContext) {
-      history.listen(loc => setLocation(loc));
+      history.listen((loc) => setLocation(loc));
     }
   }, []);
 
