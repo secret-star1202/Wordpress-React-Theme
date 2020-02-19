@@ -1,6 +1,8 @@
 import { default as Home } from '../home/Home';
 import { ReviewPage, ReviewList } from '../reviews';
 import { NewsPage, NewsList } from '../news';
+import PlaylistList from '../playlists/PlaylistList';
+import PlaylistPage from '../playlists/PlaylistPage';
 import { default as ChartPage } from '../charts/ChartPage';
 import { default as ChartList } from '../charts/ChartList';
 import { default as EventsList } from '../events/EventsList';
@@ -14,6 +16,8 @@ import { default as StaffMembersListContent } from '../staffmembers/StaffMembers
 import { ShowSchedule, ShowPage } from '../shows';
 
 export default [
+  { path: ['/playlists/:slug', '/playlist/:slug'], component: PlaylistPage },
+  { path: ['/playlists', '/playlist'], component: PlaylistList },
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },
   { path: ['/reviews', '/review'], component: ReviewList },
   { path: ['/podcasts', '/podcast'], component: PodcastList },

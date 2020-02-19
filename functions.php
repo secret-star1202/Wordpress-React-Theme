@@ -716,6 +716,110 @@ add_action('rest_api_init', function () {
         }
     ));
 
+    register_rest_route('wp/v2', '/latest_playlist', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/shows?access-token=" . $key . "&count=1&expand=personas";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $show = json_decode($strd, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, "https://spinitron.com" . $show['items'][0]["_links"]["playlists"]["href"] . "&count=1");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $playlist_data = json_decode($stre, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, $playlist_data['items']['0']["_links"]["spins"]["href"] . "&count=200");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $spins = json_decode($stre, true)['items'];
+            $slug = '';
+            $ps = get_posts(array(
+              'posts_per_page' => -1,
+              'post_type' => 'wpspin_profiles',
+              'post_status' => 'publish',
+              'meta_query' => array(
+                array(
+                   'key'     => 'show_page_id',
+                   'value'   => array($show['items'][0]['id'])
+                )
+              )
+            ));
+            if ($ps) {
+              foreach($ps as $p) {
+                $slug = $p->post_name;
+              }
+            }
+
+            return new \WP_REST_Response(array(
+                'show' => $show['items'][0],
+                'slug' => $slug,
+                'playlist' => $spins
+            ), 200);
+        }
+    ));
+
+    register_rest_route('wp/v2', '/playlist', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/playlists/" . $request['id'] . "?access-token=" . $key . "&count=1";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $playlist = json_decode($strd, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, $playlist["_links"]["show"]["href"]);
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $show = json_decode($stre, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, "https://spinitron.com/api/spins?playlist_id=" . $request['id']  . "&access-token=" . $key . "&count=200");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $spins = json_decode($stre, true);
+            $slug = '';
+            $ps = get_posts(array(
+              'posts_per_page' => -1,
+              'post_type' => 'wpspin_profiles',
+              'post_status' => 'publish',
+              'meta_query' => array(
+                array(
+                   'key'     => 'show_page_id',
+                   'value'   => array($show['items'][0]['id'])
+                )
+              )
+            ));
+            if ($ps) {
+              foreach($ps as $p) {
+                $slug = $p->post_name;
+              }
+            }
+
+            return new \WP_REST_Response(array(
+                'show' => $show,
+                'slug' => $slug,
+                'playlist' => $spins['items']
+            ), 200);
+        }
+    ));
+
     register_rest_route('wp/v2', '/schedule', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
