@@ -4,12 +4,12 @@ import { HeadStuff, BackButton } from '../reusables';
 import PlaylistTable from './PlaylistTable';
 import AboutTheDJ from './AboutTheDJ';
 import {
-  NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
+  NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr, getUploadedImage
 } from '../utils';
 import PlayingContext from '../contexts/PlayingContext';
 
 export default function ShowPage() {
-  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles/id=${slug}`), showInfo = useApiRequest(undefined, `show?id=${slug}`,function (data, fxn) {
+  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined, `wpspin_profiles/?id=${slug}`), showInfo = useApiRequest(undefined, `show?id=${slug}`,function (data, fxn) {
     fxn(data.show.status !== 404 ? data : null);
   },
       function (data, fxn) {
@@ -27,12 +27,12 @@ export default function ShowPage() {
       startDate = parseDate(start), endDate = parseDate(end);
 
     if (wpspin_profiles) {
-    let {
-        mixcloud_link, soundcloud, instagram_link, facebook_link
-      } = wpspin_profiles, {
-        title, description, image, start, end
-      } = show, names = personas.map(({ name }) => name).join(', '),
-      startDate = parseDate(start), endDate = parseDate(end);
+      let {
+          mixcloud_link, soundcloud, instagram_link, facebook_link
+        } = wpspin_profiles, {
+          title, description, image, start, end
+        } = show, names = personas.map(({ name }) => name).join(', '),
+        startDate = parseDate(start), endDate = parseDate(end);
 
     return [<HeadStuff title={entitiesToText(title)}
       description={renderSummary(description || 'This is a good show.', 50)} />,
@@ -54,6 +54,12 @@ export default function ShowPage() {
                 </div>
                 <AboutTheDJ {...personas[0]} />
               </div>
+              <div className="show-links">
+                <img className="show-facebook-img" src={getUploadedImage('2020/02/facebook_black.png')} href={facebook_link}/>
+                <img className="show-instagram-img" src={getUploadedImage('2020/02/transparent-instagram.png')} href={instagram_link}/>
+                <img className="show-soundcloud-img" src={getUploadedImage('2020/02/soundcloud_logo.png')} href={soundcloud}/>
+                <img className="show-mixcloud-img" src={getUploadedImage('2020/02/mixcloud-trans.png')} href={mixcloud_link}/>
+              </div>
             </div>
             <div>
               <h4>Latest Playlist - {
@@ -68,7 +74,8 @@ export default function ShowPage() {
             </div>
           </div>
         </div>];
-  }
+    }
 
-  return <NotFoundRedirect check={showInfo} />;
+    return <NotFoundRedirect check={showInfo} />;
+  }
 }

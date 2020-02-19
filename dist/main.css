@@ -324,7 +324,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .general__header {
   margin:0;
-  padding: 80px 0 50px 60px;
+  padding: 80px 0 40px 60px;
   font-weight:900;
   background-color:#262626;
   color:white;
@@ -1016,23 +1016,34 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .playlist + .playlist__show-name{margin-top:25px;}
 .grid__container {
-  margin-left: 35px;
+  margin-left: 60px;
+  margin-top: 35px;
   display: inline-grid;
-  padding: 25px;
-  grid-gap: 35px;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 .submit__podcast {
   overflow: auto;
-  text-align: center;
-  border-radius: 4px;
-  margin-left: 270px;
   background-color: #5940DE;
   color: white;
   height: 100%;
+  margin: 20px 231px 60px 60px;
+  border-radius: 3px;
 }
-.submit__podcast a,.about__help a,.faq__section-qna a,.general__header a,
+
+
+.submit__podcast a {
+  color: white;
+  margin-left: 325px;
+}
+
+@media (max-width: 1050px) {
+  div.submit__podcast{ display: none; }
+}
+
+.about__help a,.faq__section-qna a,.general__header a,
 .about__help a,.faq__section-qna a,.home__next-show-deets a{color:white;}
 .submit__podcast div{float:left;padding-right:25px;}
 .event__title{font-weight:bold;color:#5940de;}.event__image{float:right;}
@@ -1226,7 +1237,7 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 }
 .show__link, .event__link, .chart__link, .playlist__link {
   position: absolute;
-  top: 160px;
+  top: 190px;
   left: 60px;
   margin: 0;
   background-color: #262626;
