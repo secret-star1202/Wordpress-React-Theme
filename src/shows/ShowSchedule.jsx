@@ -28,7 +28,7 @@ export default function ShowSchedule() {
   function dowButtons(width) {
     return <div className={`shows__days shows__days__${width}`}>
       {daysOfWeek.map(function (di, i) {
-        return (<a onClick={e => handleClick(e)(i)}>
+        return (<a onClick={(e) => handleClick(e)(i)}>
             <span className={`shows__day ${active(di)}`}>
               {width === 'narrow' ? di.substring(0, 3) : di}</span>
           </a>
@@ -44,7 +44,7 @@ export default function ShowSchedule() {
         {dowButtons('narrow')}
         {schedule.length ? <table>
           <tbody>
-            {daysShows().map(show => <ShowItem {...{ show }} />)}
+            {daysShows().map((show) => <ShowItem {...{ show }} />)}
           </tbody>
         </table> : null}
       </div>

@@ -346,6 +346,8 @@ function init_scripts()
     wp_enqueue_style('twbs-css', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
     wp_enqueue_script('twbs-js', 'https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', array('jquery-js'), '1.0', true);
 
+    wp_enqueue_style('fa-css', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
     wp_enqueue_style('main-style', get_template_directory_uri() . '/dist/main.css');
 
 
@@ -743,7 +745,24 @@ add_action('rest_api_init', function () {
             foreach ($original_data as $show) {
                 $ts = strtotime($show['start']);
                 $wdat = getdate(date_timestamp_get(new DateTime("@$ts")))['wday'];
-                $schedule[$wdat][] = $show;
+                $show_temp = $show;
+                $ps = get_posts(array(
+                  'posts_per_page' => -1,
+                  'post_type' => 'wpspin_profiles',
+                  'post_status' => 'publish',
+                  'meta_query' => array(
+                    array(
+                       'key'     => 'show_page_id',
+                       'value'   => array($show['id'])
+                    )
+                  )
+                ));
+                if ($ps) {
+                  foreach($ps as $p) {
+                    $show_temp['slug'] = $p->post_name;
+                  }
+                }
+                $schedule[$wdat][] = $show_temp;
             }
 
             for ($d = 0; $d < 7; $d++) {
@@ -784,9 +803,28 @@ add_action('rest_api_init', function () {
     register_rest_route('wp/v2', '/show', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
+            $id = '';
+
+            if (isset($request['id'])) {
+              $id = $request['id'];
+            }
+            else {
+              $ps = get_posts(
+                array(
+                  'posts_per_page' => -1,
+                  'post_type' => 'wpspin_profiles',
+                  'post_status' => 'publish',
+                  'name' => $request['slug']
+                )
+              );
+              foreach($ps as $p) {
+                $id = get_post_meta($p->ID, 'show_page_id')[0];
+              }
+            }
+
             $key = get_option('spinitron_key');
             $ch = curl_init();
-            $id = $request['id'];
+
             $url = "https://spinitron.com/api/shows/" . $id . "?access-token=" . $key . "&expand=personas";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -854,18 +892,23 @@ add_action('rest_api_init', function () {
     register_rest_route('wp/v2', '/wpspin_profiles', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
-            $id = $request['id'];
+            $s = isset($request['slug']) ? $request['slug'] : $request['id'];
             $ps = get_posts(
-                  array(
+                  isset($request['id']) ? array(
                     'posts_per_page' => -1,
                     'post_type' => 'wpspin_profiles',
                     'post_status' => 'publish',
                     'meta_query' => array(
                       array(
                          'key'     => 'show_page_id',
-                         'value'   => array($id)
+                         'value'   => array($s)
                       )
                     )
+                  ) : array(
+                    'posts_per_page' => -1,
+                    'post_type' => 'wpspin_profiles',
+                    'post_status' => 'publish',
+                    'name' => $s
                   )
                 );
             $array = [];

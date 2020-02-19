@@ -6,7 +6,7 @@ function NewsListLatestReviews() {
   let reviews = useApiRequest([], 'review?_embed');
   return <div className='news-list__latest-reviews'>
       <h4>LATEST REVIEWS</h4>
-      {reviews.map(review => <NewsListLatestReviewsItem {...{ review }} />)}
+      {reviews.map((review) => <NewsListLatestReviewsItem {...{ review }} />)}
     </div>;
 }
 

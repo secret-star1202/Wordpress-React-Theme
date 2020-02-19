@@ -8,7 +8,7 @@ export function getFullUrl(path) {
 
 export function getApiRequest(endpoint, callback) {
   fetch(getFullUrl(`wp-json/wp/v2/${endpoint}`))
-    .then(response => response.json()).then(callback);
+    .then((response) => response.json()).then(callback);
 }
 
 export function getImgAsset(src) {

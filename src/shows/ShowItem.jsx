@@ -6,7 +6,7 @@ import { default as renderSummary } from '../utils/summary';
 
 export default function ShowItem({
   show: {
-    start, end, image, title, id, description, personas
+    start, end, image, title, slug, id, description, personas
   }
 }) {
   let showSummary = (function () {
@@ -33,7 +33,7 @@ export default function ShowItem({
         <h5 className='show-item__info-time'>
           {fmtStr}
         </h5>
-        <h4><SamePageAnchor href={getFullUrl(`shows/${id}`)}>{title}</SamePageAnchor></h4>
+        <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4>
         <h6>Hosted by {djs}</h6>
         <div className="show-item__summary">{showSummary}</div>
       </div>

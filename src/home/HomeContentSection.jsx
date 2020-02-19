@@ -14,7 +14,7 @@ export default function ({
     <HomeSection {...{ href: getFullUrl(href), text: headText }} />
     <MoreButton {...{ href: getFullUrl(href), type: moreText }} />
     <div className={innerDivClass}>
-      {items.map(item => (<ItemComp {...{ item }} />))}
+      {items.map((item) => (<ItemComp {...{ item }} />))}
     </div>
   </div>;
 }

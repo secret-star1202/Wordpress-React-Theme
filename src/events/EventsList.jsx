@@ -22,7 +22,7 @@ export default function () {
       <div className='news-list__wrapper'>
       <div className='events-list__content'>
       <div className="events-list__over">
-        {events.map(item => <EventItem {...{ item }} />)}
+        {events.map((item) => <EventItem {...{ item }} />)}
       </div>
       <div className='events-list__calendar'>
         <Calendar events={events.map(

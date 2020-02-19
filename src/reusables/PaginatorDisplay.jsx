@@ -18,5 +18,5 @@ export default function PaginatorDisplay() {
   }, null, [query]);
 
   return data[currentPage]
-    ? data[currentPage].map(item => <Container {...{ item }} />) : <p>Loading...</p>;
+    ? data[currentPage].map((item) => <Container {...{ item }} />) : <p>Loading...</p>;
 }

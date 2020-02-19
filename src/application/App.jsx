@@ -12,7 +12,7 @@ let WrappedComponent = function ({ component: Component, ...rest }) {
     <Component />
   </GeneralContextProvider>;
   }, SeamlessRoute = ({ component, ...theRest }) => (
-    <TheRoute exact {...theRest} component={props => (
+    <TheRoute exact {...theRest} component={(props) => (
       <WrappedComponent {...props} {...{ component }} />)
     } />);
 
@@ -22,11 +22,11 @@ export default () => <PlayingContextProvider>
       <SeamlessRoute exact path="/" component={Landing} />
     </TheSwitch>
     <TheSwitch>
-      <TheRoute path="*" component={props => (
+      <TheRoute path="*" component={(props) => (
         <WrappedComponent {...props} component={Header} />)} />
     </TheSwitch>
     <div id="main">
-      <TheSwitch>{routes.map(route => <SeamlessRoute {...route} />)}</TheSwitch>
+      <TheSwitch>{routes.map((route) => <SeamlessRoute {...route} />)}</TheSwitch>
     </div>
   </div>
   <Footer />
