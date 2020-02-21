@@ -30,6 +30,18 @@ function my_settings_init()
 
     register_setting(
         'general',             // Options group
+        'banner_enabled',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'banner_text',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
         'stream_url',      // Option name/database
         'my_settings_sanitize' // Sanitize callback function
     );
@@ -130,6 +142,22 @@ function my_settings_init()
         'support_text_callback',
         'general',
         'misc-settings'
+    );
+
+    add_settings_field(
+      'banner_enabled',
+      'Enable Banner',
+      'banner_enabled_callback',
+      'general',
+      'misc-settings'
+    );
+
+    add_settings_field(
+      'banner_text',
+      'Banner Text',
+      'banner_text_callback',
+      'general',
+      'misc-settings'
     );
 
     add_settings_field(
@@ -255,6 +283,18 @@ function support_text_callback()
     <textarea id="support_text" name="support_text"><?php echo get_option('support_text'); ?></textarea>
   </label>
     <?php
+}
+
+function banner_enabled_callback() {
+    ?><label for="banner_enabled">
+  <input id="banner_enabled" name="banner_enabled" type="checkbox" value="1" <?php checked(1, get_option('banner_enabled'), true); ?> />
+  </label><?php
+}
+
+function banner_text_callback() {
+    ?><label for="banner_text">
+  <input id="banner_text" name="banner_text" type="text" value="<?php echo get_option('banner_text'); ?>"/>
+  </label><?php
 }
 
 function stream_url_callback()
@@ -1139,6 +1179,16 @@ add_action('rest_api_init', function () {
           header('Content-Type: application/rss+xml');
           echo $str;
           exit();
+        }
+      )
+    ));
+
+    register_rest_route('wp/v2', '/banner_text', array(
+      array(
+        'methods' => 'GET',
+        'callback' => function() {
+          $str = get_option('banner_enabled') ? get_option('banner_text') : '';
+          return new \WP_REST_Response($str, 200);
         }
       )
     ));

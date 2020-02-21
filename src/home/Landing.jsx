@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { getFullUrl, getImgAsset } from '../utils/url_utils';
-import { SamePageAnchor, Glyph } from '../reusables';
+import { getImgAsset } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as EyesorePlayButton } from './EyesorePlayButton';
 
@@ -71,14 +70,6 @@ function Landing() {
         <EyesorePlayButton />
         <LandingInfo />
       </div>
-      <SamePageAnchor href={getFullUrl('playlist')}>
-        <h6 className='landing__current-playlist'>
-          <span className='landing__view-current'>
-            View Current{' '}
-          </span>Playlist{'  '}
-          <Glyph symbol='eye-open' />
-        </h6>
-      </SamePageAnchor>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
   </div>, <div className='spacer-lg' />];
 }
