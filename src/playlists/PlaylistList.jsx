@@ -1,5 +1,6 @@
 import React from 'react';
 import PlaylistTable from '../shows/PlaylistTable';
+import PlaylistSidebar from './PlaylistSidebar';
 import MetaThing from '../reusables/MetaThing';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 
@@ -28,7 +29,8 @@ function PlaylistList() {
           {renderHost(show)}
         </h5>
         <PlaylistTable tracks={playlist} onPage={false}/>
-      </div>
+      </div>,
+      <PlaylistSidebar />
     ];
   }
   return null;

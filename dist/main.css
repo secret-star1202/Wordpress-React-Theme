@@ -787,7 +787,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   background-color:#000;
 }
 .timeline__node{width:100%;margin:0;display:inline-block;text-align:right;position:relative;}
-.timeline__node:nth-child(odd) .timeline__node-body,
+.timeline__node:nth-child(even) .timeline__node-body,
 .timeline__node:nth-child(even) .timeline__node-title{
   text-align:left;
   float:right;
@@ -796,10 +796,9 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   padding-bottom:0;
   display:inline-block;
   width:35%;
-  float:right;
   margin-right:60px;
 }
-.timeline__node:nth-child(even) .timeline__node-body,
+.timeline__node:nth-child(odd) .timeline__node-body,
 .timeline__node:nth-child(odd) .timeline__node-title{
   padding-left:0;
   padding-right:8px;
@@ -809,8 +808,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   float:left;
   margin-left:60px;
 }
-.timeline__node:nth-child(odd) .timeline__node-title:before,
-.timeline__node:nth-child(even) .timeline__node-body:before{
+.timeline__node-title:before {
   content:'';
   position:absolute;
   width:16px;
@@ -828,7 +826,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   .timeline__node:nth-child(even) .timeline__node-body,
   .timeline__node:nth-child(odd) .timeline__node-title
   {
-    width: 43%;
+    width: 45%;
   }
 }
 .day{min-height:80px;min-width:75px;}

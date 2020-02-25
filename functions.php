@@ -756,6 +756,23 @@ add_action('rest_api_init', function () {
         }
     ));
 
+    register_rest_route('wp/v2', '/last_playlists', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/playlists?access-token=" . $key . "&count=8&expand=personas";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $playlists = json_decode($strd, true);
+
+            return new \WP_REST_Response($playlists, 200);
+        }
+    ));
+
     register_rest_route('wp/v2', '/latest_playlist', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
