@@ -11,7 +11,7 @@ export default function PodcastList() {
     <div className='grid__container'>
       <h4>Student run podcasts from the only station that loves you. Streaming all the time on Apple Podcasts, Spotify, Soundcloud, Google Play and everywhere podcasts are heard.</h4>
       {podcasts.map(({ playlist_id: playlistId }) => <PodcastItem {...{ playlistId }} />)}
-      </div>, <div className='grid__item__submit'><div className='submit__podcast'>
+      </div>, <div className='grid__item__submit'>
       <div className='submit__podcast'><h3><SamePageAnchor href={getFullUrl('submit-podcasts')}>
-  Submit a podcast</SamePageAnchor></h3></div></div></div>];
+  Submit a podcast</SamePageAnchor></h3></div></div>];
 }
