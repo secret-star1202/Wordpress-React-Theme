@@ -30,6 +30,18 @@ function my_settings_init()
 
     register_setting(
         'general',             // Options group
+        'banner_enabled',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
+        'banner_text',      // Option name/database
+        'my_settings_sanitize' // Sanitize callback function
+    );
+
+    register_setting(
+        'general',             // Options group
         'stream_url',      // Option name/database
         'my_settings_sanitize' // Sanitize callback function
     );
@@ -130,6 +142,22 @@ function my_settings_init()
         'support_text_callback',
         'general',
         'misc-settings'
+    );
+
+    add_settings_field(
+      'banner_enabled',
+      'Enable Banner',
+      'banner_enabled_callback',
+      'general',
+      'misc-settings'
+    );
+
+    add_settings_field(
+      'banner_text',
+      'Banner Text',
+      'banner_text_callback',
+      'general',
+      'misc-settings'
     );
 
     add_settings_field(
@@ -255,6 +283,18 @@ function support_text_callback()
     <textarea id="support_text" name="support_text"><?php echo get_option('support_text'); ?></textarea>
   </label>
     <?php
+}
+
+function banner_enabled_callback() {
+    ?><label for="banner_enabled">
+  <input id="banner_enabled" name="banner_enabled" type="checkbox" value="1" <?php checked(1, get_option('banner_enabled'), true); ?> />
+  </label><?php
+}
+
+function banner_text_callback() {
+    ?><label for="banner_text">
+  <input id="banner_text" name="banner_text" type="text" value="<?php echo get_option('banner_text'); ?>"/>
+  </label><?php
 }
 
 function stream_url_callback()
@@ -716,6 +756,127 @@ add_action('rest_api_init', function () {
         }
     ));
 
+    register_rest_route('wp/v2', '/last_playlists', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/playlists?access-token=" . $key . "&count=8&expand=personas";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $playlists = json_decode($strd, true);
+
+            return new \WP_REST_Response($playlists, 200);
+        }
+    ));
+
+    register_rest_route('wp/v2', '/latest_playlist', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/shows?access-token=" . $key . "&count=1&expand=personas";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $show = json_decode($strd, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, "https://spinitron.com" . $show['items'][0]["_links"]["playlists"]["href"] . "&count=1");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $playlist_data = json_decode($stre, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, $playlist_data['items']['0']["_links"]["spins"]["href"] . "&count=200");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $spins = json_decode($stre, true)['items'];
+            $slug = '';
+            $ps = get_posts(array(
+              'posts_per_page' => -1,
+              'post_type' => 'wpspin_profiles',
+              'post_status' => 'publish',
+              'meta_query' => array(
+                array(
+                   'key'     => 'show_page_id',
+                   'value'   => array($show['items'][0]['id'])
+                )
+              )
+            ));
+            if ($ps) {
+              foreach($ps as $p) {
+                $slug = $p->post_name;
+              }
+            }
+
+            return new \WP_REST_Response(array(
+                'show' => $show['items'][0],
+                'slug' => $slug,
+                'playlist' => $spins
+            ), 200);
+        }
+    ));
+
+    register_rest_route('wp/v2', '/playlist', array(
+        'methods' => 'GET',
+        'callback' => function (WP_REST_Request $request) {
+            $key = get_option('spinitron_key');
+            $ch = curl_init();
+
+            $url = "https://spinitron.com/api/playlists/" . $request['id'] . "?access-token=" . $key . "&count=1";
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $strd = curl_exec($ch);
+            curl_close($ch);
+            $playlist = json_decode($strd, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, $playlist["_links"]["show"]["href"]);
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $show = json_decode($stre, true);
+
+            $cd = curl_init();
+            curl_setopt($cd, CURLOPT_URL, "https://spinitron.com/api/spins?playlist_id=" . $request['id']  . "&access-token=" . $key . "&count=200");
+            curl_setopt($cd, CURLOPT_RETURNTRANSFER, true);
+            $stre = curl_exec($cd);
+            curl_close($cd);
+            $spins = json_decode($stre, true);
+            $slug = '';
+            $ps = get_posts(array(
+              'posts_per_page' => -1,
+              'post_type' => 'wpspin_profiles',
+              'post_status' => 'publish',
+              'meta_query' => array(
+                array(
+                   'key'     => 'show_page_id',
+                   'value'   => array($show['items'][0]['id'])
+                )
+              )
+            ));
+            if ($ps) {
+              foreach($ps as $p) {
+                $slug = $p->post_name;
+              }
+            }
+
+            return new \WP_REST_Response(array(
+                'show' => $show,
+                'slug' => $slug,
+                'playlist' => $spins['items']
+            ), 200);
+        }
+    ));
+
     register_rest_route('wp/v2', '/schedule', array(
         'methods' => 'GET',
         'callback' => function (WP_REST_Request $request) {
@@ -1035,6 +1196,16 @@ add_action('rest_api_init', function () {
           header('Content-Type: application/rss+xml');
           echo $str;
           exit();
+        }
+      )
+    ));
+
+    register_rest_route('wp/v2', '/banner_text', array(
+      array(
+        'methods' => 'GET',
+        'callback' => function() {
+          $str = get_option('banner_enabled') ? get_option('banner_text') : '';
+          return new \WP_REST_Response($str, 200);
         }
       )
     ));

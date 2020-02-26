@@ -3,6 +3,7 @@ import TheRoute from '../the_router/TheRoute';
 import TheSwitch from '../the_router/TheSwitch';
 import { Header, Footer } from '../includes';
 import { default as Landing } from '../home/Landing';
+import { default as NotificationBanner } from '../home/NotificationBanner';
 import { GeneralContextProvider } from '../contexts/GeneralContext';
 import { PlayingContextProvider } from '../contexts/PlayingContext';
 import { default as routes } from './routes';
@@ -17,6 +18,9 @@ let WrappedComponent = function ({ component: Component, ...rest }) {
     } />);
 
 export default () => <PlayingContextProvider>
+  <TheSwitch>
+    <SeamlessRoute exact path="/" component={NotificationBanner} />
+  </TheSwitch>
   <div className='container'>
     <TheSwitch>
       <SeamlessRoute exact path="/" component={Landing} />
