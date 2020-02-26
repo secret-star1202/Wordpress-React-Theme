@@ -24,6 +24,8 @@ export default function ShowItem({
     <td className='show-item__time-div'>
       <h4 className='show-item__start-time'>
       {startDate} -</h4>
+      <h4 className='show-item__end-time'>
+        {endDate}</h4>
     </td>
     <td rowSpan={2} className="show-item__image-div">
       <img className='show-item__image' src={image} />
@@ -38,6 +40,5 @@ export default function ShowItem({
         <div className="show-item__summary">{showSummary}</div>
       </div>
     </td>
-  </tr>, <tr><td className='show-item__end-time-div'><h4 className='show-item__end-time'>
-    {endDate}</h4></td></tr>];
+  </tr>];
 }
