@@ -1,6 +1,7 @@
 import React from 'react';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { getFullUrl } from '../utils/url_utils';
+import { SamePageAnchor } from '../reusables';
 
 function PlaylistSidebar() {
   let playlists = useApiRequest(undefined, 'last_playlists', (data, fxn) => {
@@ -16,9 +17,9 @@ function PlaylistSidebar() {
           }) {
             return <div>
               <p className='playlist__sidebar-link'>
-                <a href={getFullUrl(`/playlists/${id}`)}>
+                <SamePageAnchor href={getFullUrl(`playlists/${id}`)}>
                   {title}
-                </a>
+                </SamePageAnchor>
               </p>
             </div>;
           })}
