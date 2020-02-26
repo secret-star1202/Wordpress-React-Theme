@@ -1865,3 +1865,8 @@ input[type=range] {
 .join__content p a[href="mailto:pd@ktuh.org"], .join__content p a[target="_blank"] {
   font-weight: 900;
 }
+.banner.light {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 4px;
+}
