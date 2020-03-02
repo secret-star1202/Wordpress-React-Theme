@@ -5,10 +5,11 @@ import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 import { default as BackButton } from '../reusables/BackButton';
 import { default as NotFoundRedirect } from '../utils/404_redirect';
+import { queryToUrl } from '../utils/url_utils';
 
 export default function () {
   let slug = useSlug(), chart = useApiRequest(undefined,
-    `chart?slug=${slug}`, (data, fxn) => {
+    `chart?${queryToUrl({ slug })}`, (data, fxn) => {
       if (data) fxn(data[0]);
     });
 

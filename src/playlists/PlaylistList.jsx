@@ -17,7 +17,7 @@ function PlaylistList() {
     return [<HeadStuff title="Show Playlists"
         description="KTUH Show Playlists"
         image='https://ktuh.org/img/ktuh-logo.jpg'/>,
-      <div className='playlist-list__latest' key='playlist-content'>
+      <div className='playlist-list__latest'>
           <SamePageAnchor href={getFullUrl(`shows/${slug.length ? slug : show.id}`)}>
             <img className='playlist__show-image' src={show.image}/>
           </SamePageAnchor>

@@ -1,11 +1,19 @@
 import React from 'react';
 import { SamePageAnchor, IThing } from '../reusables';
-import { getFullUrl } from '../utils/url_utils';
+import { getFullUrl, queryToUrl } from '../utils/url_utils';
 
-let scUrl = (type, id) => 'https://w.soundcloud.com/player/'
-  + `?url=https%3A//api.soundcloud.com/${type}s/${id}&color=%23ff5500`
-  + '&auto_play=false&hide_related=false&show_comments=true&visual=true'
-  + '&show_user=true&show_reposts=false&show_teaser=true';
+let scUrl = (type, id) => 'https://w.soundcloud.com/player/?'
+  + queryToUrl({
+      url: `https://api.soundcloud.com/${type}s/${id}`,
+      color: "#ff5500",
+      auto_play: false,
+      hide_related: false,
+      show_comments: true,
+      visual: true,
+      show_user: true,
+      show_reposts: false,
+      show_teaser: true
+  });
 
 export default function ({
   item: {

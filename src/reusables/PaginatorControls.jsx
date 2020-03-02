@@ -103,7 +103,7 @@ export default function PaginatorControls() {
               ? 'first' : (o === truncated.length - 1
               && currentPage < maxPages) ? 'last' : ''}
           active={(n !== null && !!n) ? isActive(n) : false} />))
-        : generateArray(maxPages).map(i => (
+        : generateArray(maxPages).map((i) => (
         <PaginatorButton {...{ activeTabColor }} num={i + 1} order='last'
           onClick={() => dispatch({ type: 'page', val: i + 1 })}
           active={isActive(i + 1)} />))}
