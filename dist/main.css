@@ -1268,18 +1268,22 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .fa-facebook {
   height: 10px;
   width: 10px;
+  padding-right: 15px;
 }
 .fa-instagram {
   height: 10px;
   width: 10px;
+  padding-right: 15px;
 }
 .fa-soundcloud{
   height: 10px;
   width: 10px;
+  padding-right: 15px;
 }
 .fa-mixcloud{
   height: 10px;
   width: 10px;
+  padding-right: 15px;
 }
 .show__host {
   font-family: 'nimbus-sans', sans-serif;
