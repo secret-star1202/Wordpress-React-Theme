@@ -324,7 +324,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .general__header {
   margin:0;
-  padding: 90px 0 50px 60px;
+  padding: 90px 0 40px 60px;
   font-weight:900;
   background-color:#262626;
   color:white;
@@ -1049,9 +1049,6 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .event__title{font-weight:bold;color:#5940de;}.event__image{float:right;}
 p.p1, p.show__tag, p.show__host{padding:0;}
 div.show__info{padding:10px 0;margin:0;}
-img.show__image {
-  height:auto;
-}
 div.grid__item__mnl1{margin-top:40px; margin-left:20px;width:350px;}
 div.grid__item__mnl2{margin-top:20px; margin-left:20px; width:350px;}
 div.submit__podcast1{height:100%;padding:5px 30px;overflow:auto;background-color:#5940DE;color:white;}
@@ -1238,7 +1235,16 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
   color: white;
   width: calc(100% - 60px);
 }
-.show__link, .event__link, .chart__link, .playlist__link {
+.show__link {
+  position: absolute;
+  top: 120px;
+  left: 60px;
+  margin: 0;
+  background-color: #262626;
+  color: white;
+  width: calc(100% - 60px);
+}
+.event__link, .chart__link, .playlist__link {
   position: absolute;
   top: 190px;
   left: 60px;
