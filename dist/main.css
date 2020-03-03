@@ -1265,6 +1265,22 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
   background-repeat: no-repeat;
   background-size: cover;
 }
+.fa-facebook {
+  height: 10px;
+  width: 10px;
+}
+.fa-instagram {
+  height: 10px;
+  width: 10px;
+}
+.fa-soundcloud{
+  height: 10px;
+  width: 10px;
+}
+.fa-mixcloud{
+  height: 10px;
+  width: 10px;
+}
 .show__host {
   font-family: 'nimbus-sans', sans-serif;
   margin-bottom: 0;
