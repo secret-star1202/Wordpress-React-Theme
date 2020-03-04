@@ -1346,7 +1346,7 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show__time {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
-  font-size: xx-large;
+  font-size: large;
 }
 .show__playlists ul {
   padding: 0;
