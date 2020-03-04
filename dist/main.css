@@ -1693,6 +1693,7 @@ table {
   text-align: center;
   min-width: 150px;
   max-width: 150px;
+  border-left: thin black solid;
 }
 .show-item__time-div h4, .show-item__end-time-div h4 {
   width: 100%;
