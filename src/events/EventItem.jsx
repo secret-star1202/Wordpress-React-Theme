@@ -43,8 +43,7 @@ export default function ({
     <div className='event_title'>
       {formatTimes(start, end)} | {parseAddress(location)}
     </div>
-    <div className='event_title_description'>
-      {descBody}
-    </div>
+    <div className='event_title_description'
+      dangerouslySetInnerHTML={{ __html: descBody }} />
   </div>;
 }

@@ -1923,3 +1923,9 @@ input[type=range] {
   height: 320px;
   width: 400px;
 }
+.event_title_description a {
+  color: blue;
+}
+.event_title_description a:hover {
+  text-decoration: underline;
+}
