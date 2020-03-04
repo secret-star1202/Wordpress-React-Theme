@@ -905,7 +905,9 @@ add_action('rest_api_init', function () {
 
             foreach ($original_data as $show) {
                 $ts = strtotime($show['start']);
-                $wdat = getdate(date_timestamp_get(new DateTime("@$ts")))['wday'];
+                $wdat = getdate(date_timestamp_get(
+                  date_sub(new DateTime("@$ts"), date_interval_create_from_date_string('10 hours'))
+                ))['wday'];
                 $show_temp = $show;
                 $ps = get_posts(array(
                   'posts_per_page' => -1,
@@ -932,8 +934,12 @@ add_action('rest_api_init', function () {
                 usort($arr, function ($a, $b) {
                     $a_ts = strtotime($a['start']);
                     $b_ts = strtotime($b['start']);
-                    $a_date = getdate(date_timestamp_get(new DateTime("@$a_ts")));
-                    $b_date = getdate(date_timestamp_get(new DateTime("@$b_ts")));
+                    $a_date = getdate(date_timestamp_get(
+                      date_sub(new DateTime("@$a_ts"), date_interval_create_from_date_string('10 hours'))
+                    ));
+                    $b_date = getdate(date_timestamp_get(
+                      date_sub(new DateTime("@$b_ts"), date_interval_create_from_date_string('10 hours'))
+                    ));
                     $a_hour = $a_date['hours'];
                     $b_hour = $b_date['hours'];
                     $a_min = $a_date['minutes'];
