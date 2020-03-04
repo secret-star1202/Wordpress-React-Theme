@@ -12,7 +12,7 @@ export default function PodcastItem() {
     });
 
   if (podcast) {
-    let { playlist_id: playlistId, title, description, time, photo } = podcast,
+    let { playlist_id: playlistId, title, description, time, photo, host } = podcast,
       src = 'https://w.soundcloud.com/player/?' + queryToUrl({
       url: `https://api.soundcloud.com/playlists/${playlistId}`,
       color: '#ff5500',
@@ -28,9 +28,10 @@ export default function PodcastItem() {
     return [<HeadStuff title={title} />, <img className="podcast-page__photo"
       src= {photo || 'https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/ktuh-logo.jpg'} />,
       <h4>{title}</h4>,
+      <h4>Hosted by {host}</h4>,
       <h5>{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>,
       <h5>{time || new Date().toString()}</h5>,
-      <a><IThing height="400" {...{ src }} /></a>
+      <a><IThing height="600" width="800" {...{ src }} /></a>
     ];
   }
   return null;
