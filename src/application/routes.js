@@ -6,7 +6,7 @@ import PlaylistPage from '../playlists/PlaylistPage';
 import { default as ChartPage } from '../charts/ChartPage';
 import { default as ChartList } from '../charts/ChartList';
 import { default as EventsList } from '../events/EventsList';
-import { PodcastList, SubmitPodcast } from '../podcasts';
+import { PodcastList, PodcastItem, SubmitPodcast } from '../podcasts';
 import { default as NotFound } from './NotFound';
 import { default as PagesItem } from '../pages/PagesItem';
 import {
@@ -20,6 +20,7 @@ export default [
   { path: ['/playlists', '/playlist'], component: PlaylistList },
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },
   { path: ['/reviews', '/review'], component: ReviewList },
+  { path: ['/podcasts/:slug', '/podcast/:slug'], component: PodcastItem },
   { path: ['/podcasts', '/podcast'], component: PodcastList },
   { path: ['/submit-podcasts', '/submit-podcast'], component: SubmitPodcast },
   { path: ['/monday-night-live', '/mondaynightlive'], component: MNL },
