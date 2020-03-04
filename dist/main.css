@@ -1058,7 +1058,19 @@ div.submit__podcast{text-align:center;}
 .show__time{margin-top:0;}
 audio,td button span,.faq__answer:not(.expanded){display:none;}
 .events-list__content{width:100%;display:block;}
-.events-list__over{width:50%;display:inline-block;}
+.events-list__over {
+  width:50%;
+  padding-right: 15px;
+  display:inline-block;
+}
+.event__name {
+  margin-top: 0;
+  font-size: large;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  border-bottom: thin black solid;
+  text-align: left;
+  font-weight: 900;
+}
 .events-list__calendar{display:inline-block;vertical-align:top;margin-bottom:50px;}
 .events-list__event-item{padding-bottom:30px;}
 @media (max-width:867px){
@@ -1067,7 +1079,12 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   .events-list__event-item,.events-list__over{width:100%;}
 }
 .events-list__calendar > div{height:fit-content;}
-.event_title{margin-bottom:-1px;margin-top:-12px;font-weight:600;font-size:18px;}
+.event_title {
+  margin-bottom:-1px;
+  margin-top:-12px;
+  font-weight:600;
+  font-size:16px;
+}
 thead tr{height:auto !important;}
 .month__name{font-size:22px;font-weight:700;}
 input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}

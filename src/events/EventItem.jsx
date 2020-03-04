@@ -38,7 +38,7 @@ export default function ({
   if (href) descBody = description.replace(href, '');
 
   return <div className='events-list__event-item'>
-    <h3 className="home__section">{summary} | {printDate(new Date(start))}</h3>
+    <h3 className="event__name">{summary} | {printDate(new Date(start))}</h3>
     {href ? <a href={href} className='home__more'>MORE INFO{'  '}</a> : null}
     <div className='event_title'>
       {formatTimes(start, end)} | {parseAddress(location)}
