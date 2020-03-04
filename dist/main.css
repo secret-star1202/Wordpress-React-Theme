@@ -1028,7 +1028,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   background-color: #5940DE;
   color: white;
   height: 100%;
-  margin: 20px 231px 60px 60px;
+  margin: 20px 21px 60px 60px;
   border-radius: 3px;
 }
 
@@ -1917,4 +1917,8 @@ input[type=range] {
   text-align: center;
   font-weight: bold;
   margin-top: 4px;
+}
+.podcast__image {
+  height: 320px;
+  width: 400px;
 }
