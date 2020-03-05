@@ -1324,6 +1324,26 @@ add_action('rest_api_init', function () {
             return get_post_meta($obj['id'], 'title');
         }
     ));
+    register_rest_field('podcast_series', 'description', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'description');
+        }
+    ));
+    register_rest_field('podcast_series', 'photo', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'photo');
+        }
+    ));
+    register_rest_field('podcast_series', 'time', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'time');
+        }
+    ));
+    register_rest_field('podcast_series', 'host', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'host');
+        }
+    ));
     register_rest_field('review', 'date', array(
         'get_callback' => function ($obj) {
             return get_post_meta($obj['id'], 'date');
