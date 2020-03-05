@@ -44,6 +44,6 @@ export default function ({
     </div>
     <div className='event_title_description'
       dangerouslySetInnerHTML={{ __html: descBody }} />
-    {href ? <a href={href} className='home__more'>MORE INFO{'  '}</a> : null}
+    {href ? <a href={href} className='events__more'>MORE INFO{'  '}</a> : null}
   </div>;
 }
