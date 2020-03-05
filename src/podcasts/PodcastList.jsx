@@ -4,7 +4,7 @@ import { HeadStuff, SamePageAnchor } from '../reusables';
 
 export default function PodcastList() {
   return [<HeadStuff title="KTUH Podcasts" />,
-    <h4>Student run podcasts from the only station that loves you. Streaming all the time on Apple Podcasts, Spotify, Soundcloud, Google Play and everywhere podcasts are heard.</h4>,
+    <h4 className="podcast-page__desc">Student run podcasts from the only station that loves you. Streaming all the time on Apple Podcasts, Spotify, Soundcloud, Google Play and everywhere podcasts are heard.</h4>,
     <div className='grid__container'>
       <SamePageAnchor href={getFullUrl('podcasts/the-future-accords')}><div className="grid__item"><img className="podcast__image" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2020/03/The-Future-Accords.jpg" href={getFullUrl('podcasts/the-future-accords')}/><SamePageAnchor href={getFullUrl('podcasts/the-future-accords')}><h4>The Future Accords</h4></SamePageAnchor></div></SamePageAnchor>
       <SamePageAnchor href={getFullUrl('podcasts/kwok-talk')}><div className="grid__item"><img className="podcast__image" src="https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/ktuh-logo.jpg" href={getFullUrl('podcasts/kwok-talk')}/><SamePageAnchor href={getFullUrl('podcasts/kwok-talk')}><h4>Kwok Talk</h4></SamePageAnchor></div></SamePageAnchor>
