@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { useApiRequest, useSlug } from '../hooks';
 import { HeadStuff, BackButton, Glyph } from '../reusables';
 import PlaylistTable from './PlaylistTable';
-import AboutTheDJ from './AboutTheDJ';
 import {
   NotFoundRedirect, renderSummary, entitiesToText, parseDate, daysOfWeek, toLocalStr
 } from '../utils';
 import PlayingContext from '../contexts/PlayingContext';
+import { getFullUrl } from '../utils/url_utils';
+import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function ShowPage() {
   let slug = useSlug(), wpspin_profiles = useApiRequest(undefined,
@@ -21,7 +22,7 @@ export default function ShowPage() {
 
   if (showInfo) {
     let {
-        show, personas, playlist, latestEpisode, latestEpisodeLink
+        show, personas, playlist, latestEpisode, latestEpisodeLink, personaInfo
       } = showInfo, {
         title, description, image, start, end
       } = show, names = personas.map(({ name }) => name).join(', '),
@@ -45,7 +46,10 @@ export default function ShowPage() {
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
-              {personas.map((p) => <AboutTheDJ {...p} />)}
+              {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
+                <SamePageAnchor href={getFullUrl(`profile/${profileSlug}`)}>
+                  {`${rendered}'s Profile`}
+              </SamePageAnchor>))}
             </div>
             {wpspin_profiles ? <div className="show-links">
               <a href={wpspin_profiles.facebook_link[0]}><Glyph symbol="facebook" type='fa' /></a>

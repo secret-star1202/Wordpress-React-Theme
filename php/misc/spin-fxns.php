@@ -214,6 +214,10 @@ register_rest_route('wp/v2', '/g_cal', array(
 
             $show = curl_ting("https://spinitron.com/api/shows/" . $id . "?access-token=" . $key . "&expand=personas", true);
             $personas = $show['personas'];
+            $p_ids = [];
+            foreach($personas as $psa) {
+              $p_ids[] = $psa['id'];
+            }
             $playlist_data = curl_ting("https://spinitron.com" . $show["_links"]["playlists"]["href"] . "&count=1", true);
             $spins = curl_ting($playlist_data['items'][0]["_links"]["spins"]["href"] . "&count=200", true)['items'];
             $controller = new \WP_REST_Posts_Controller('latest_epi');
@@ -234,15 +238,63 @@ register_rest_route('wp/v2', '/g_cal', array(
                     )
                 )[0], $request);
 
+            $persona_stuff = [];
+            $controller = new \WP_REST_Posts_Controller('dj_bios');
+            $ps = get_posts(
+                array(
+                    'post_type' => 'dj_bios',
+                    'posts_per_page' => '-1',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'persona_id',
+                            'value' => $p_ids,
+                            'compare' => 'IN'
+                        )
+                    ),
+                    'post_status' => 'publish'
+                )
+            );
+
+            foreach ($ps as $p) {
+                $data = $controller->prepare_item_for_response($p, $request);
+                $persona_stuff[] = $controller->prepare_response_for_collection($data);
+            }
+
             return new \WP_REST_Response(array(
                 'show' => $show,
                 'personas' => $personas,
+                'personaInfo' => $persona_stuff,
                 'playlist' => $spins,
                 'latestEpisodeLink' => $latest,
                 'latestEpisode' => $playlist_data['items'][0]
             ), 200);
         }
     ));
+
+register_rest_route('wp/v2', '/persona_by_dj_slug', array(
+    'methods' => 'GET',
+    'callback' => function (WP_REST_Request $request) {
+        $id = '';
+
+        $ps = get_posts(
+          array(
+            'posts_per_page' => -1,
+            'post_type' => 'dj_bios',
+            'post_status' => 'publish',
+            'name' => $request['slug']
+          )
+        );
+        foreach($ps as $p) {
+          $id = get_post_meta($p->ID, 'persona_id')[0];
+        }
+
+        $key = get_option('spinitron_key');
+
+        $persona = curl_ting("https://spinitron.com/api/personas/" . $id . "?access-token=" . $key, true);
+
+        return new \WP_REST_Response($persona, 200);
+    }
+));
 
 register_rest_route('wp/v2', '/feed', array(
   array(

@@ -4,3 +4,35 @@ register_rest_field('dj_bios', 'persona_id', array(
         return get_post_meta($obj['id'], 'persona_id');
     }
 ));
+
+register_rest_route('wp/v2', 'dj_bio_by_id', array(
+    'methods' => 'GET',
+    'callback' => function (WP_REST_Request $request) {
+        $s = isset($request['slug']) ? $request['slug'] : $request['id'];
+        $ps = get_posts(
+              isset($request['id']) ? array(
+                'posts_per_page' => -1,
+                'post_type' => 'dj_bios',
+                'post_status' => 'publish',
+                'meta_query' => array(
+                  array(
+                     'key'     => 'persona_id',
+                     'value'   => array($s)
+                  )
+                )
+              ) : array(
+                'posts_per_page' => -1,
+                'post_type' => 'dj_bios',
+                'post_status' => 'publish',
+                'name' => $s
+              )
+            );
+        $array = [];
+        $controller = new \WP_REST_Posts_Controller('dj_bios');
+        foreach ($ps as $p) {
+            $data = $controller->prepare_item_for_response($p, $request);
+            $array[] = $controller->prepare_response_for_collection($data);
+        }
+        return new \WP_REST_Response($array, 200);
+    }
+));
