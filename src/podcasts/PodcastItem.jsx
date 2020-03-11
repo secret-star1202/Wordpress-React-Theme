@@ -27,10 +27,10 @@ export default function PodcastItem() {
 
     return [<HeadStuff title={title} />, <img className="podcast-page__photo"
       src= {photo || 'https://manoa.hawaii.edu/ktuh/wp-content/uploads/2019/06/ktuh-logo.jpg'} />,
-      <h4>{title}</h4>,
-      <h4>Hosted by {host}</h4>,
-      <h5>{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>,
-      <h5>{time || new Date().toString()}</h5>,
+      <h4 className="podcast__title">{title}</h4>,
+      <h4 className="podcast__title">Hosted by {host}</h4>,
+      <h5 className="podcast__title">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>,
+      <h5 className="podcast__title">{time || new Date().toString()}</h5>,
       <a><IThing height="600" width="800" {...{ src }} /></a>
     ];
   }

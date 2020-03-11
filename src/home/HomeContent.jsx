@@ -14,7 +14,7 @@ export default function () {
       apiUrl='review' perPage={5} innerDivClass='home__reviews-content'
       headText='MUSIC REVIEWS' moreText='REVIEWS' itemComp={HomeContentReviewsItem} />
     <HomeContentSection outerDivClass='home__podcast' href='podcasts'
-      apiUrl='podcast' perPage={3} innerDivClass='home__podcast-content'
+      apiUrl='podcast' perPage={1} innerDivClass='home__podcast-content'
       headText='PODCASTS' moreText='PODCASTS' itemComp={HomeContentPodcastItem} /></div>
     <HomeSidebar /></div>;
 }
