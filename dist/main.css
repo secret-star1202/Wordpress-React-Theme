@@ -1018,14 +1018,10 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 }
 .playlist + .playlist__show-name{margin-top:25px;}
 .grid__container {
-  margin-left: 60px;
-  margin-top: 35px;
   margin: 35px 60px 50px 60px;
   display: inline-grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
   grid-column-gap: 30px;
   grid-row-gap: 30px;
 }
