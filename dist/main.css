@@ -1861,7 +1861,7 @@ input[type=range] {
   .show-item__image{
     width: 100%;
     height: 100%;
-    padding: 20px;
+    height: 100%;
   }
   .show-item__time,
   .show-item__info p {
@@ -1935,3 +1935,7 @@ input[type=range] {
   width: 100%;
   text-decoration: underline;
 }
+.podcast-page__photo {
+  float: left;
+}
+
