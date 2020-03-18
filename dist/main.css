@@ -1024,6 +1024,10 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
 }
 .submit__podcast {
   overflow: auto;
@@ -1178,7 +1182,6 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show-item__image-div {
   width: 150px;
   height: 150px;
-  padding: 20px;
   max-width: 150px;
   max-height: 150px;
   min-width: 150px;
@@ -1921,8 +1924,8 @@ input[type=range] {
   margin-top: 4px;
 }
 .podcast__image {
-  height: 320px;
-  width: 400px;
+  height: 250px;
+  width: 300px;
 }
 .event_title_description a {
   color: blue;
@@ -1963,4 +1966,10 @@ input[type=range] {
 .ig_action_bar.ig_hello.ig_container {
   border-bottom: none;
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,.4);
+}
+.podcast-page__desc {
+  padding-left: 55px;
+}
+.podcast-grid__cover {
+  background-color: #262626;
 }
