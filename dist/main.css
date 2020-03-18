@@ -1021,8 +1021,13 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   display: inline-grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: repeat(2, 1fr);
+<<<<<<< Updated upstream
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+=======
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+>>>>>>> Stashed changes
 }
 .submit__podcast {
   overflow: auto;
@@ -1157,7 +1162,6 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show-item__image-div {
   width: 150px;
   height: 150px;
-  padding: 20px;
   max-width: 150px;
   max-height: 150px;
   min-width: 150px;
@@ -1872,6 +1876,45 @@ input[type=range] {
 .join__content p a[href="mailto:pd@ktuh.org"], .join__content p a[target="_blank"] {
   font-weight: 900;
 }
+<<<<<<< Updated upstream
+=======
+.banner.light {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 4px;
+}
+.podcast__image {
+  height: 250px;
+  width: 300px;
+}
+.event_title_description a {
+  color: blue;
+}
+.event_title_description a:hover {
+  text-decoration: underline;
+}
+.event__name {
+  width: 100%;
+  text-decoration: underline;
+}
+.podcast-page__photo {
+  float: left;
+}
+
+.podcast__image {
+  height: 250px;
+  width: 250px;
+}
+.podcast-page__desc {
+  margin-left: 58px;
+}
+.podcast-page__photo {
+  height: 250px;
+}
+.podcast__title {
+  float: right;
+}
+>>>>>>> Stashed changes
 .ig_action_bar .ig_headline {
   display: inline-block;
   font-size: 18px;
@@ -1884,4 +1927,14 @@ input[type=range] {
 .ig_action_bar.ig_hello.ig_container {
   border-bottom: none;
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,.4);
+<<<<<<< Updated upstream
 }
+=======
+}
+.podcast-page__desc {
+  padding-left: 55px;
+}
+.podcast-grid__cover {
+  background-color: #262626;
+}
+>>>>>>> Stashed changes
