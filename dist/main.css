@@ -1914,7 +1914,6 @@ input[type=range] {
 .podcast__title {
   float: right;
 }
->>>>>>> Stashed changes
 .ig_action_bar .ig_headline {
   display: inline-block;
   font-size: 18px;
@@ -1927,9 +1926,6 @@ input[type=range] {
 .ig_action_bar.ig_hello.ig_container {
   border-bottom: none;
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,.4);
-<<<<<<< Updated upstream
-}
-=======
 }
 .podcast-page__desc {
   padding-left: 55px;
@@ -1937,4 +1933,3 @@ input[type=range] {
 .podcast-grid__cover {
   background-color: #262626;
 }
->>>>>>> Stashed changes
