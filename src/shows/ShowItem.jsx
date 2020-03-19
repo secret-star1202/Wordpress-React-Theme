@@ -12,8 +12,20 @@ export default function ShowItem({
   let startDate = toLocalStr(parseDate(start)),
     endDate = toLocalStr(parseDate(end)),
     fmtStr = `${startDate} - ${endDate}`,
-    djs = personas.length > 2 ? [personas[0].name, personas[1].name,
-      'and others'].join(', ') : personas.map(({ name }) => name).join(', ');
+    djs = personas.length > 2 ? [
+      personas[0].slug
+        ? <SamePageAnchor href={getFullUrl(`profile/${personas[0].slug}`)}>{personas[0].name}</SamePageAnchor>
+        : personas[0].name, ' and ',
+      personas[1].slug
+        ? <SamePageAnchor href={getFullUrl(`profile/${personas[1].slug}`)}>{personas[1].name}</SamePageAnchor>
+        : personas[1].name,
+      'and others'] : personas.map(({
+      name, slug: djSlug
+    }) => (djSlug ? <SamePageAnchor href={getFullUrl(`profile/${djSlug}`)}>{name}</SamePageAnchor> : name));
+
+  if (djs.length === 2) {
+    djs = [djs[0], ' and ', djs[1]];
+  }
 
   return <tr className='show-item'>
     <td className='show-item__time-div'>

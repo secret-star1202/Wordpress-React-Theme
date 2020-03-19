@@ -1961,3 +1961,16 @@ input[type=range] {
 .podcast__title {
   float: right;
 }
+.show-page__profile-link {
+  font-family: 'nimbus-sans',sans-serif;
+  text-transform: uppercase;
+  background-color: #5940de;
+  color: white;
+  font-weight: 700;
+  border: thin #5940de solid;
+  padding: 10px;
+}
+.show-page__profile-link:hover {
+  background-color: white;
+  color: #5940de;
+}

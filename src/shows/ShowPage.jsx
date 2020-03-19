@@ -47,8 +47,8 @@ export default function ShowPage() {
                   {{ __html: description }} />
               </div>
               {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
-                <SamePageAnchor href={getFullUrl(`profile/${profileSlug}`)}>
-                  {`${rendered}'s Profile`}
+                <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
+                  {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} Profile`}
               </SamePageAnchor>))}
             </div>
             {wpspin_profiles ? <div className="show-links">

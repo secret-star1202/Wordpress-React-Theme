@@ -142,8 +142,24 @@ register_rest_route('wp/v2', '/g_cal', array(
                   )
                 ));
                 if ($ps) {
-                  foreach($ps as $p) {
-                    $show_temp['slug'] = $p->post_name;
+                  $k = 0;
+                  $persas = $show_temp['personas'];
+                  foreach ($persas as $persona) {
+                    $ls = get_posts(array(
+                      'posts_per_page' => -1,
+                      'post_type' => 'dj_bios',
+                      'post_status' => 'publish',
+                      'meta_query' => array(
+                        array(
+                           'key' => 'persona_id',
+                           'value' => $persona['id']
+                        )
+                      )
+                    ));
+                    foreach($ls as $l) {
+                      $show_temp['personas'][$k]['slug'] = $l->post_name;
+                    }
+                    $k++;
                   }
                 }
                 $schedule[$wdat][] = $show_temp;
