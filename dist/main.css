@@ -1876,8 +1876,6 @@ input[type=range] {
 .join__content p a[href="mailto:pd@ktuh.org"], .join__content p a[target="_blank"] {
   font-weight: 900;
 }
-<<<<<<< Updated upstream
-=======
 .banner.light {
   text-align: center;
   font-weight: bold;
@@ -1899,11 +1897,6 @@ input[type=range] {
 }
 .podcast-page__photo {
   float: left;
-}
-
-.podcast__image {
-  height: 250px;
-  width: 250px;
 }
 .podcast-page__desc {
   margin-left: 58px;
