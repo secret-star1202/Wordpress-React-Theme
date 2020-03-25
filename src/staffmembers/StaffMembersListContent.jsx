@@ -10,7 +10,7 @@ export default function StaffMembersListContent() {
     <div className='news-list__content'>
       <div className='staff-list'>
         {staffmembers.map(
-          item => <StaffMemberItem {...{ item }} />
+          (item) => <StaffMemberItem {...{ item }} />
         )}
       </div>
     </div>];

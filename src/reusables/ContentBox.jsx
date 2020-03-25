@@ -7,7 +7,7 @@ export default function ({
       dangerouslySetInnerHTML: {
         __html: content
       }
-    }, Element = props => (isP ? <p {...props} /> : <div {...props} />);
+    }, Element = (props) => (isP ? <p {...props} /> : <div {...props} />);
 
   return children ? <Element {...{ className }}>{children}</Element>
     : <Element {...{ className }} {...obj} />;

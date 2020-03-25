@@ -4,6 +4,6 @@ export default function (summary, numWords) {
   if (summary.indexOf('<') > -1) {
     newSum = $.parseHTML(summary).map(({ innerText }) => innerText).join(' ');
   }
-  match = regex.exec(newSum);
-  return `${match && match[1] || newSum}…`;
+  match = newSum.match(regex);
+  return `${match ? match[1] : newSum}…`;
 }

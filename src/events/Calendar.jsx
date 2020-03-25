@@ -123,7 +123,7 @@ export default function ({ events }) {
             <tr>
               {
                 daysOfWeek.map(
-                  dow => <Dow>{dow.substring(0, 3).toUpperCase()}</Dow>
+                  (dow) => <Dow>{dow.substring(0, 3).toUpperCase()}</Dow>
                 )
               }
             </tr>

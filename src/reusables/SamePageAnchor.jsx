@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { default as siteInfo } from '../utils/config';
 import { default as TheRouterContext } from '../contexts/TheRouterContext';
 
-function SamePageAnchor({
-  children, href, target, className, id, style
+export default function SamePageAnchor({
+  children, href, ...rest
 }) {
   let { history } = useContext(TheRouterContext);
 
@@ -16,9 +16,5 @@ function SamePageAnchor({
     }
   }
 
-  return <a {...{
-    href, target, className, id, style, onClick
-  }}>{children}</a>;
+  return <a href={href} onClick={onClick} {...rest}>{children}</a>;
 }
-
-export default SamePageAnchor;

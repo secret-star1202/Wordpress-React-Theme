@@ -2,7 +2,7 @@ import React from 'react';
 
 function parseUrl(description) {
   if (description) {
-    let reg = /https?:\/\/[A-Za-z0-9.]+(\/[^\s\t\n]*)?/;
+    let reg = /https?:\/\/[A-Za-z0-9.]+(\/[^\s\t\n"']*)?/;
     let url = description.match(reg);
     if (url) {
       return url[0];
@@ -35,16 +35,15 @@ export default function ({
 }) {
   let href = parseUrl(description), descBody = description;
 
-  if (href) descBody = description.replace(href, '');
+  if (href) descBody = description.replace(href, '').replace(href, '');
 
   return <div className='events-list__event-item'>
-    <h3 className="home__section">{summary} | {printDate(new Date(start))}</h3>
-    {href ? <a href={href} className='home__more'>MORE INFO{'  '}</a> : null}
+    <h3 className="event__name">{summary} | {printDate(new Date(start))}</h3>
     <div className='event_title'>
       {formatTimes(start, end)} | {parseAddress(location)}
     </div>
-    <div className='event_title_description'>
-      {descBody}
-    </div>
+    <div className='event_title_description'
+      dangerouslySetInnerHTML={{ __html: descBody }} />
+    {href ? <a href={href} className='events__more'>MORE INFO{'  '}</a> : null}
   </div>;
 }

@@ -30,7 +30,7 @@ export default function PlaylistTable({ tracks }) {
     <tbody>
       {songsSorted().map(({
         start, artist, song
-      }) => <tr key={`${start} | ${artist} - ${artist}`}>
+      }) => <tr>
           <td className='playlist__timestamp'>{toLocalStr(parseDate(start))}</td>
           <td className='playlist__artist'>{artist}</td>
           <td className='playlist__title'>{song}</td>

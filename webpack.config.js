@@ -55,7 +55,7 @@ module.exports = {
         options: {
           babelrc: true,
           comments: false,
-          plugins: process.env.DEV_MODE ? [] : ['./babel/hashify']
+          plugins: process.env.DEV_MODE ? [] : ['./babel/hashify', './babel/unconcatify']
         }
       },
       {
@@ -63,19 +63,11 @@ module.exports = {
         include: /react/,
         loader: 'babel-loader',
         options: {
+          babelrc: true,
           comments: false,
           plugins: process.env.DEV_MODE ? []
             : ['@babel/plugin-proposal-throw-expressions',
-              './babel/rightify', './babel/rightify-react']
-        }
-      },
-      {
-        test: /\.jsx?$/,
-        include: /prop-types/,
-        loader: 'babel-loader',
-        options: {
-          comments: false,
-          plugins: process.env.DEV_MODE ? [] : ['@babel/plugin-proposal-throw-expressions', './babel/rightify']
+              './babel/rightify', './babel/rightify-react', './babel/unconcatify']
         }
       }
     ]

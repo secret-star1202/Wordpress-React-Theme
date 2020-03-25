@@ -15,12 +15,10 @@ export default function EyesorePlayButton() {
   return <div className='landing__play-btn-outer'
       onClick={handleClick}>
       {playing && (url === mainUrl || !url) ? [
-        <div className='landing__pause-btn-l'
-          key='pause-button-left'></div>,
-        <div className='landing__pause-btn-r'
-          key='pause-button-right'></div>
+        <div className='landing__pause-btn-l' />,
+        <div className='landing__pause-btn-r' />
       ] : (
-        <div className='landing__play-btn' key='play-button'>
+        <div className='landing__play-btn'>
           <div className='landing__play-btn-triangle'></div>
         </div>
       )}

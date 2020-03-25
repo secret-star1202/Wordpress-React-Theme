@@ -18,9 +18,8 @@ export default function () {
           <h3>Other Charts</h3>
           <div>
             <ul>
-              {charts.slice(1).map(chart => (
-                <SamePageAnchor href={getFullUrl(`charts/${chart.slug}`)}>{
-                  chart.title.rendered}</SamePageAnchor>
+              {charts.slice(1).map(({ slug, title: { rendered: title } }) => (
+                <SamePageAnchor href={getFullUrl(`charts/${slug}`)}>{title}</SamePageAnchor>
               ))}
             </ul>
           </div>

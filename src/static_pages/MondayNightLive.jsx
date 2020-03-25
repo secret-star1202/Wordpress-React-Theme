@@ -15,10 +15,10 @@ export default function () {
   return [<HeadStuff title="Monday Night Live" />,
       <div className="show__wrapper"><div className="show__content">
         <div className="show__image-div"><img className="show__image" src=
-        {getUploadedImage('2019/06/Moday-Night-Live-ad.jpg')}/>
+        {getUploadedImage('MNL-ad.png')}/>
       </div><div className="show__info__head"><h5 className="show__time">
         Mondays from 9:00PM-12:00AM</h5><div className="show-item__genres">
-        <Glyph symbol="music" />{' '}Live Music, Local Music
+        <Glyph symbol="music" />{' '}Live, Local Music
         </div><div className="show__buttons"><div className="button__wrapper">
           <p className="show__tag"><button type="button" data-path=
             "https://stream.ktuh.org/archives/1.monday/9-12am.mp3" className=
@@ -30,7 +30,7 @@ export default function () {
             <div className="mnl__show__wrapper">
               <div className="mnl__show__content">
                 <div className="mnl__show__info">
-                  <p className="mnl__show__body"></p>
+                  <p className="mnl__show__body"/>
                   <p className="mnl__p1">
                   <span className="mnl__desc">60 minutes of live music by local artists on Monday nights!</span></p>
                   <p className="mnl__p2"></p>
