@@ -1019,15 +1019,10 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   margin-left: 60px;
   margin-top: 35px;
   display: inline-grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 35% 35% 35%;
   grid-template-rows: repeat(2, 1fr);
-<<<<<<< Updated upstream
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-=======
   grid-column-gap: 40px;
   grid-row-gap: 40px;
->>>>>>> Stashed changes
 }
 .submit__podcast {
   overflow: auto;
@@ -1900,6 +1895,7 @@ input[type=range] {
 }
 .podcast-page__desc {
   margin-left: 58px;
+  padding-right: 70px;
 }
 .podcast-page__photo {
   height: 250px;
@@ -1926,3 +1922,15 @@ input[type=range] {
 .podcast-grid__cover {
   background-color: #262626;
 }
+.podcast__page-image {
+  height: 375px;
+  width: 400px;
+}
+.show__page-playlist {
+
+}
+.show-page__profile-link {
+  padding-top: 15px;
+}
+
+

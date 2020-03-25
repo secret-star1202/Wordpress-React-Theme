@@ -52,25 +52,21 @@ export default function ShowPage() {
                   <div className='show__body' dangerouslySetInnerHTML=
                     {{ __html: description }} />
                 </div>
-                <AboutTheDJ {...personas[0]} />
               </div>
+              <h5>Find {title} on social media</h5>
               <div className="show-links">
                 <img className="show-facebook-img" src={getUploadedImage('2020/02/facebook_black.png')} href={facebook_link}/>
                 <img className="show-instagram-img" src={getUploadedImage('2020/02/transparent-instagram.png')} href={instagram_link}/>
                 <img className="show-soundcloud-img" src={getUploadedImage('2020/02/soundcloud_logo.png')} href={soundcloud}/>
                 <img className="show-mixcloud-img" src={getUploadedImage('2020/02/mixcloud-trans.png')} href={mixcloud_link}/>
               </div>
+              <div className='show-page__profile-link'>
+                <AboutTheDJ {...personas[0]} />
+              </div>
             </div>
-            <div>
-              <h4>Latest Playlist - {
-                parseDate(latestEpisode.start).toLocaleDateString()}</h4>
-              {latestEpisodeLink
-                && latestEpisodeLink.data.ktuh_latest_show_archive !== false
-                && latestEpisodeLink.data.ktuh_latest_show_archive[0]
-                ? <button onClick={function () {
-                  switchUrl(latestEpisodeLink.data.ktuh_latest_show_archive[0], true);
-                }}>Play Latest Episode</button> : null}
-              <PlaylistTable tracks={playlist} />
+            <h4>Latest Playlist - {parseDate(latestEpisode.start).toLocaleDateString()}</h4>
+            <div className='show__page-playlist'>
+            <PlaylistTable tracks={playlist} />
             </div>
           </div>
         </div>];
