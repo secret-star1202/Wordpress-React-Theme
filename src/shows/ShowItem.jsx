@@ -9,39 +9,39 @@ export default function ShowItem({
     start, end, image, title, slug, id, description, personas
   }
 }) {
-  let showSummary = (function () {
-    let theDiv = document.createElement('div');
-    theDiv.innerHTML = description;
-    return renderSummary(theDiv.innerText, 8);
-  }());
+  let startDate = toLocalStr(parseDate(start)),
+    endDate = toLocalStr(parseDate(end)),
+    fmtStr = `${startDate} - ${endDate}`,
+    djs = personas.length > 2 ? [
+      personas[0].slug
+        ? <SamePageAnchor href={getFullUrl(`profile/${personas[0].slug}`)}>{personas[0].name}</SamePageAnchor>
+        : personas[0].name, ' and ',
+      personas[1].slug
+        ? <SamePageAnchor href={getFullUrl(`profile/${personas[1].slug}`)}>{personas[1].name}</SamePageAnchor>
+        : personas[1].name,
+      'and others'] : personas.map(({
+      name, slug: djSlug
+    }) => (djSlug ? <SamePageAnchor href={getFullUrl(`profile/${djSlug}`)}>{name}</SamePageAnchor> : name));
 
-  let startDate = toLocalStr(parseDate(start)), endDate = toLocalStr(parseDate(end)),
-    fmtStr = `${startDate}-${endDate}`,
-    djs = personas.length > 2 ? [personas[0].name, personas[1].name,
-      'and others'].join(', ') : personas.map(({ name }) => name).join(', ');
+  if (djs.length === 2) {
+    djs = [djs[0], ' and ', djs[1]];
+  }
 
-  return [<tr className='show-item'>
+  return <tr className='show-item'>
     <td className='show-item__time-div'>
-      <h4 className='show-item__start-time'>
-      {startDate} -</h4>
+      <h4 className='show-item__start-time'>{fmtStr}</h4>
     </td>
-    <td rowSpan={2} className="show-item__image-div">
+    <td className="show-item__image-div">
       <img className='show-item__image' src={image} />
     </td>
-    <td rowSpan={2} className='show-item__info-container'>
+    <td className='show-item__info-container'>
       <div className='show-item__info'>
-        <h5 className='show-item__info-time'>
-          {fmtStr}
-        </h5>
+        <h5 className='show-item__info-time'>{fmtStr}</h5>
         <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4>
         <h6>Hosted by {djs}</h6>
-        <div className="show-item__summary">{showSummary}</div>
+        {description ? <div className="show-item__summary">
+            {renderSummary(description, 15)}</div> : null}
       </div>
     </td>
-  </tr>, <tr>
-    <td className='show-item__time-div'>
-      <h4 className='show-item__end-time'>
-        {endDate}</h4>
-    </td>
-  </tr>];
+  </tr>;
 }

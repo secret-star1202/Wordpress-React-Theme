@@ -1,4 +1,5 @@
 import { default as Home } from '../home/Home';
+import { default as ProfilePage } from '../dj_bios/ProfilePage';
 import { ReviewPage, ReviewList } from '../reviews';
 import { NewsPage, NewsList } from '../news';
 import PlaylistList from '../playlists/PlaylistList';
@@ -16,6 +17,7 @@ import { default as StaffMembersListContent } from '../staffmembers/StaffMembers
 import { ShowSchedule, ShowPage } from '../shows';
 
 export default [
+  { path: '/profile/:slug', component: ProfilePage },
   { path: ['/playlists/:slug', '/playlist/:slug'], component: PlaylistPage },
   { path: ['/playlists', '/playlist'], component: PlaylistList },
   { path: ['/reviews/:slug', '/review/:slug'], component: ReviewPage },
