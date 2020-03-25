@@ -137,11 +137,14 @@ register_rest_route('wp/v2', '/g_cal', array(
                   'meta_query' => array(
                     array(
                        'key'     => 'show_page_id',
-                       'value'   => array($show['id'])
+                       'value'   => $show['id']
                     )
                   )
                 ));
                 if ($ps) {
+                  foreach ($ps as $l) {
+                    $show_temp['slug'] = $l->post_name;
+                  }
                   $k = 0;
                   $persas = $show_temp['personas'];
                   foreach ($persas as $persona) {
