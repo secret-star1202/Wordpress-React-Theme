@@ -48,9 +48,10 @@ export default function ShowPage() {
               </div>
               {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
                 <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
-                  {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} Profile`}
+                  {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
               </SamePageAnchor>))}
             </div>
+            <h5>Find {title} on social media</h5>
             {wpspin_profiles ? <div className="show-links">
               <a href={wpspin_profiles.facebook_link[0]}><Glyph symbol="facebook" type='fa' /></a>
               <a href={wpspin_profiles.instagram_link[0]}><Glyph symbol="instagram" type='fa' /></a>
