@@ -38,7 +38,7 @@ export default function ShowItem({
       <div className='show-item__info'>
         <h5 className='show-item__info-time'>{fmtStr}</h5>
         <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4>
-        <h6>Hosted by {djs}</h6>
+        <h6 className="show-item__host">Hosted by {djs}</h6>
         {description ? <div className="show-item__summary">
             {renderSummary(description, 15)}</div> : null}
       </div>

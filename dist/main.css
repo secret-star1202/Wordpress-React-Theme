@@ -1223,8 +1223,13 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show-item__info h4:hover {
   text-decoration: underline;
 }
-.show-item__info h5, .show-item__host {
+.show-item__info h5 {
   font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: 900;
+}
+.show-item__host h5 {
+  font-family: nimbus-sans-extended, sans-serif;
+  font-size: 14px;
   font-weight: 900;
 }
 .show-item__info p {
@@ -1692,6 +1697,11 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
     padding: 0;
   }
 }
+.profile__pic {
+  width: 255px;
+  height: 255px;
+  margin: 60px 50px 20px 55px;
+}
 .show-item__start-time {
   position: absolute;
   z-index: 1;
@@ -1946,7 +1956,8 @@ input[type=range] {
   float: left;
 }
 .show-links {
-  font-size: 60px;
+  padding-top: 25px;
+  font-size: 40px;
 }
 .show-links a .fa {
   min-width: 100px;

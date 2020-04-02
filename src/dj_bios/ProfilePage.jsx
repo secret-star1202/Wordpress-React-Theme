@@ -14,12 +14,13 @@ function ProfilePage() {
     <div className='profile'>
       <div className='profile__left'>
         <img className='profile__pic' src={image} />
-      </div>
-      <div className='profile__info'>
+        <div className='profile__info'>
         <div className='profile__bio' dangerouslySetInnerHTML={{
           __html: bio || `<i>(${name} hasn't filled out a bio yet.)</i>`
         }} />
       </div>
+      </div>
+
     </div>];
   }
 
