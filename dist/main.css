@@ -1072,7 +1072,11 @@ img.show__image {
 div.grid__item__mnl1{margin-top:40px; margin-left:20px;width:350px;}
 div.grid__item__mnl2{margin-top:20px; margin-left:20px; width:350px;}
 div.submit__podcast1{height:100%;padding:5px 30px;overflow:auto;background-color:#5940DE;color:white;}
-div.submit__podcast{text-align:center;}
+div.submit__podcast{
+  text-align: center;
+  padding-right: 300px;
+  padding-bottom: 10px;
+}
 .show__time{margin-top:0;}
 audio,td button span,.faq__answer:not(.expanded){display:none;}
 .events-list__content{width:100%;display:block;}
@@ -1977,7 +1981,7 @@ input[type=range] {
   height: 250px;
 }
 .podcast__title {
-  float: right;
+  float: left;
 }
 .ig_action_bar .ig_headline {
   display: inline-block;
@@ -2015,11 +2019,16 @@ input[type=range] {
   height: 375px;
   width: 400px;
 }
-.show__page-playlist {
-
+.show-page__playlist {
+  float: left;
+  padding-top: 20px;
 }
 .show-page__profile-link {
   padding-top: 15px;
 }
+show-page__button {
+  padding-right: 15px;
+}
+.profile__bio {
 
-
+}

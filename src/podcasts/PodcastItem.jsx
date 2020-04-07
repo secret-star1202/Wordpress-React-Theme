@@ -31,7 +31,7 @@ export default function PodcastItem() {
       <h4 className="podcast__title">Hosted by {host}</h4>,
       <h5 className="podcast__title">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>,
       <h5 className="podcast__title">{time || new Date().toString()}</h5>,
-      <a><IThing height="400" width="1200" {...{ src }} /></a>
+      <a><IThing height="350" width="500" {...{ src }} /></a>
     ];
   }
   return null;

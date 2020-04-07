@@ -46,10 +46,10 @@ export default function ShowPage() {
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
-              {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
+              <div className="show-page__button"> {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
                 <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
                   {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
-              </SamePageAnchor>))}
+                </SamePageAnchor>))} </div>
             </div>
             <h5>Find {title} on social media</h5>
             {wpspin_profiles ? <div className="show-links">
@@ -59,7 +59,7 @@ export default function ShowPage() {
               <a href={wpspin_profiles.mixcloud_link[0]}><Glyph symbol="mixcloud" type='fa' /></a>
             </div> : null}
           </div>
-          <div>
+          <div className="show-page__playlist">
             <h4>Latest Playlist - {
               parseDate(latestEpisode.start).toLocaleDateString()}</h4>
             {latestEpisodeLink
