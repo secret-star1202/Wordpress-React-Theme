@@ -2020,14 +2020,15 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  float: left;
   padding-top: 20px;
 }
 .show-page__profile-link {
-  padding-top: 15px;
+  padding-top: 11px;
+  margin-left: 15px;
 }
 .show-page__button {
   padding-right: 15px;
+  margin: 25px 0px 20px 35px;
 }
 .profile__bio {
 
