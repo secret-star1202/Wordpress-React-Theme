@@ -59,7 +59,8 @@ export default function ShowPage() {
               <a href={wpspin_profiles.mixcloud_link[0]}><Glyph symbol="mixcloud" type='fa' /></a>
             </div> : null}
           </div>
-          <div>
+          <br />
+          <div style={{ float: 'right' }}>
             <h4>Latest Playlist - {
               parseDate(latestEpisode.start).toLocaleDateString()}</h4>
             {latestEpisodeLink
