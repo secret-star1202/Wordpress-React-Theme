@@ -1845,6 +1845,12 @@ input[type=range] {
 }
 
 @media (max-width: 600px) {
+  .podcast-grid__cover {
+    padding-left: 60px;
+  }
+  .podcast-page__desc {
+    text-align: center;
+  }
   .playlist__sidebar {
     width: 100%;
     margin-top: 0;
@@ -1972,6 +1978,7 @@ input[type=range] {
 .podcast-page__desc {
   margin-left: 58px;
   padding-right: 70px;
+  padding-left: 55px;
 }
 .podcast-page__photo {
   height: 250px;
@@ -1991,9 +1998,6 @@ input[type=range] {
 .ig_action_bar.ig_hello.ig_container {
   border-bottom: none;
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,.4);
-}
-.podcast-page__desc {
-  padding-left: 55px;
 }
 .podcast-grid__cover {
   background-color: #262626;
@@ -2017,15 +2021,20 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  float: left;
   padding-top: 20px;
+  color: #1c1c1c;
+}
+.show-page__profile-link {
+  padding-top: 11px;
+  margin-left: 15px;
 }
 .show-page__button {
   padding-right: 15px;
+  margin: 25px 0px 20px 35px;
 }
 .profile__bio {
 
 }
-.show-page__playlist h4 {
+.show-page__playlist h4, .show-page__playlist h3 {
   width: fit-content;
 }

@@ -60,8 +60,8 @@ export default function ShowPage() {
             </div> : null}
           </div>
           <div className="show-page__playlist">
-            <h4>Latest Playlist - {
-              parseDate(latestEpisode.start).toLocaleDateString()}</h4>
+            <h4>Latest Episode </h4><h3>{
+              parseDate(latestEpisode.start).toLocaleDateString()}</h3>
             {latestEpisodeLink
               && latestEpisodeLink.data.ktuh_latest_show_archive !== false
               && latestEpisodeLink.data.ktuh_latest_show_archive[0]
