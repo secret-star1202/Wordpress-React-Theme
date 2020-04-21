@@ -2038,3 +2038,13 @@ input[type=range] {
 .show-page__playlist h4, .show-page__playlist h3 {
   width: fit-content;
 }
+.landing__loading-circle {
+  margin: 0 0em 0 1.35em;
+  top: 40%;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  border: solid 2px #fff;
+  border-radius: 100%;
+  float: left;
+}

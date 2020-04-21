@@ -10,12 +10,16 @@ const { Provider } = PlayingContext;
 export const PlayingContextProvider = ({ children }) => {
   let [playing, setPlaying] = useState(false),
     [url, setUrl] = useState(null), [loaded, setLoaded] = useState(false),
-    mainUrl = useApiRequest(null, 'stream_url'),
+    mainUrl = useApiRequest(null, 'stream_url', function (data, fxn) {
+      setUrl(data);
+      fxn(data);
+    }),
     [isInitial, setInitial] = useState(true), [jumpStart, setJumpStart] = useState(false);
 
   function setToMainUrl() {
     if (mainUrl) {
       setUrl(mainUrl);
+      setJumpStart(true);
     }
   }
 

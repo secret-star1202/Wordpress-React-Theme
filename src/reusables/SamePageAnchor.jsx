@@ -13,6 +13,9 @@ export default function SamePageAnchor({
     if (href.startsWith(siteUrl)) {
       event.preventDefault();
       history.push(href.replace(siteUrl, ''));
+    } else if (href.startsWith('/')) {
+      event.preventDefault();
+      history.push(href);
     }
   }
 
