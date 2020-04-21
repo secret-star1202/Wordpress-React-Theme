@@ -6,7 +6,7 @@ export default function TheRoute(props) {
   let context = useContext(TheRouterContext), location = props.location
     || context.location, history = props.history || context.history,
     match = matchThePath('/' + location.pathname.replace(
-      new RegExp(context.basename + '\\/?', 'g'), ''), {
+      new RegExp(context.basename + '\\/?'), ''), {
       path: props.path,
       exact: props.exact
     });
