@@ -51,6 +51,8 @@ export default function ShowPage() {
                   {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
                 </SamePageAnchor>))} </div>
             </div>
+          </div>
+          <div className="show-page__social-container">
             <h5>Find {title} on social media</h5>
             {wpspin_profiles ? <div className="show-links">
               <a href={wpspin_profiles.facebook_link[0]}><Glyph symbol="facebook" type='fa' /></a>
