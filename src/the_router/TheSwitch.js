@@ -17,7 +17,7 @@ export default function TheSwitch(props) {
       const path = child.props.path || child.props.from;
 
       match = path
-        ? matchThePath('/' + location.pathname.replace(new RegExp(basename + '\\/?'), ''), { ...child.props, path })
+        ? matchThePath('/' + location.pathname.replace(new RegExp(basename + '^\\/'), ''), { ...child.props, path })
         : context.match;
     }
   });
