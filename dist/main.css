@@ -2050,3 +2050,10 @@ input[type=range] {
 .show-page__social-title {
 
 }
+.submit-podcast__page {
+  font-size: 10px;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #5C5C5C;
+}
