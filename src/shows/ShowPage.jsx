@@ -42,7 +42,7 @@ export default function ShowPage() {
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
               </h5>
               <div>
-                <h5>Show Description</h5>
+                {description ? <h5>Show Description</h5> : null}
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
@@ -53,8 +53,8 @@ export default function ShowPage() {
             </div>
           </div>
           <div className="show-page__social-container">
-            <h5>Find {title} on social media</h5>
             {wpspin_profiles ? <div className="show-links">
+              <h5 className= "show-page__social-title">Find {title} on social media</h5>
               <a href={wpspin_profiles.facebook_link[0]}><Glyph symbol="facebook" type='fa' /></a>
               <a href={wpspin_profiles.instagram_link[0]}><Glyph symbol="instagram" type='fa' /></a>
               <a href={wpspin_profiles.soundcloud[0]}><Glyph symbol="soundcloud" type='fa' /></a>

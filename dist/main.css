@@ -1261,6 +1261,7 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 .show__body {
   margin: 10px 0;
   width: 500px;
+  overflow: auto;
 }
 .join__content p {
   padding: 5px 280px;
@@ -2009,6 +2010,7 @@ input[type=range] {
   border: thin #5940de solid;
   padding: 15px 10px 10px 10px;
   display: inline-block;
+  padding-top: 11px;
 }
 .show-page__profile-link:hover {
   background-color: white;
@@ -2022,12 +2024,7 @@ input[type=range] {
   padding-top: 20px;
   color: #1c1c1c;
 }
-.show-page__profile-link {
-  padding-top: 11px;
-  margin-left: 15px;
-}
 .show-page__button {
-  padding-right: 15px;
   margin: 25px 0px 20px 35px;
 }
 .profile__bio {
@@ -2048,4 +2045,8 @@ input[type=range] {
 }
 .show-page__social-container {
   width: fit-content;
+  margin-left: 380px;
+}
+.show-page__social-title {
+
 }
