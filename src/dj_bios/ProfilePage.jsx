@@ -8,7 +8,6 @@ function ProfilePage() {
   let slug = useSlug(), persona = useApiRequest(null, `persona_by_dj_slug?slug=${slug}`),
     dj_bio = useApiRequest(null, `dj_bio_by_slug?slug=${slug}`, (data, fxn) => {
       if (data && data.length) {
-        console.log(data[0]);
         fxn(data[0]);
       } else fxn(null);
     });
