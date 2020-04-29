@@ -1,18 +1,7 @@
 import React from 'react';
-import { getFullUrl, getUploadedImage } from '../utils/url_utils';
+import { getFullUrl } from '../utils/url_utils';
 import { HeadStuff, SamePageAnchor } from '../reusables';
-
-function PodcastListItem({ href, src = '2019/06/ktuh-logo.jpg', name }) {
-  return <SamePageAnchor href={getFullUrl(`podcasts/${href}`)}>
-    <div className="grid__item">
-      <img className="podcast__page-image" src={getUploadedImage(src)}
-        href={getFullUrl(`podcasts/${href}`)} />
-      <SamePageAnchor href={getFullUrl(`podcasts/${href}`)}>
-        <h4>{name}</h4>
-      </SamePageAnchor>
-    </div>
-    </SamePageAnchor>;
-}
+import PodcastListItem from './PodcastListItem';
 
 export default function PodcastList() {
   return [<HeadStuff title="KTUH Podcasts" />,
