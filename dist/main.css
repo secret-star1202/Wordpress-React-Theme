@@ -1999,7 +1999,7 @@ input[type=range] {
   box-shadow: 0 0 0.6em 0 rgba(0,0,0,.4);
 }
 .podcast-grid__cover {
-  background-color: #262626;
+  padding-left: 55px;
 }
 .show-page__profile-link {
   font-family: 'nimbus-sans',sans-serif;
@@ -2048,7 +2048,7 @@ input[type=range] {
   margin-left: 380px;
 }
 .show-page__social-title {
-
+  font-size: medium;;
 }
 .submit-podcast__page {
   font-size: 10px;
@@ -2056,4 +2056,13 @@ input[type=range] {
   font-weight: 900;
   text-transform: uppercase;
   color: #5C5C5C;
+}
+.podcast__playlist {
+
+}
+grid__item__submit {
+  padding-right: 85px;
+}
+.podcast__page-item {
+
 }

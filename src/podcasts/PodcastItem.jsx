@@ -27,13 +27,20 @@ export default function PodcastItem() {
         visual: true
       });
 
-    return [<HeadStuff title={title} />, <img className="podcast-page__photo"
+    return [<HeadStuff title={title} />, <div className="podcast__page-item"> <img className="podcast-page__photo"
       src={getMagicFieldsImg(photo) || getUploadedImage('2019/06/ktuh-logo.jpg')} />,
+      <div className="podcast__time-div">
+      <h5 className="podcast__time">{time || new Date().toString()}</h5>
+      </div>,
     (host && host.length)
-      ? <h4 className="podcast__title">{`Hosted by ${host}`}</h4> : null,
-      <h5 className="podcast__title">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>,
-      <h5 className="podcast__title">{time || new Date().toString()}</h5>,
-      <a><IThing height="350" width="500" {...{ src }} /></a>
+      ?
+      <div className="podcast__host-div">
+        <h4 className="podcast__host">{`Hosted by ${host}`}</h4>
+      </div> : null,
+      <div className="podcast__description-div">
+      <h5 className="podcast__description">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>
+      </div>,
+      <a className="podcast__playlist"><IThing height="450" width="800" {...{ src }} /></a> </div>
     ];
   }
   return null;
