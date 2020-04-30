@@ -3,6 +3,7 @@ import { useSlug, useApiRequest } from '../hooks';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 import { SocialButton } from './ProfileSocialLink';
 import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
+import {BackButton, Glyph} from "../reusables";
 
 function ProfilePage() {
   let slug = useSlug(), persona = useApiRequest(null, `persona_by_dj_slug?slug=${slug}`),
@@ -22,21 +23,19 @@ function ProfilePage() {
       } = dj_bio;
     return [<HeadStuff title={`${name}'s Profile`}
     description={`${name}'s Profile`} image={image} />,
+      <div>{show_url && show_url[0].length ? <BackButton href={show_url[0]} className='show__link' text="Show Page" /> : null}</div>,
     <div className='profile'>
       <div className='profile__left'>
         <img className='profile__pic' src={image} />
-        <div className='profile__info'>
         <div className='profile__bio' dangerouslySetInnerHTML={{
           __html: bio || `<i>(${name} hasn't filled out a bio yet.)</i>`
         }} />
-        {website_url.length ? <SocialButton url={website_url} site='globe' /> : null}
-        {soundcloud_link.length ? <SocialButton url={soundcloud_link} site='soundcloud' /> : null}
-        {instagram_link.length ? <SocialButton url={instagram_link} site='instagram' /> : null}
-        {twitter_link.length ? <SocialButton url={twitter_link} site='twitter' /> : null}
-        {facebook_link.length ? <SocialButton url={facebook_link} site='facebook' /> : null}
-        {show_url && show_url[0].length ? <div><SamePageAnchor href={show_url[0]}>
-          Show Page
-        </SamePageAnchor></div> : null}
+        <div className='profile__info'>
+        {website_url.length ? <a href={website_url}><Glyph symbol='globe' type='fa' /></a> : null}
+        {soundcloud_link.length ? <a href={soundcloud_link}><Glyph symbol='soundcloud' type='fa' /></a> : null}
+        {instagram_link.length ? <a href={instagram_link}><Glyph symbol='instagram' type='fa' /></a> : null}
+        {twitter_link.length ? <a href={twitter_link}><Glyph symbol='twitter' type='fa' /></a> : null}
+        {facebook_link.length ? <a href={facebook_link}><Glyph symbol='facebook' type='fa' /></a> : null}
       </div>
       </div>
 
