@@ -30,18 +30,20 @@ function ProfilePage() {
             </div>,
             <div className='profile'>
                 <div className='profile__left'>
-                    <div className='profile__bio' dangerouslySetInnerHTML={{
-                        __html: bio || `<i>(${name} hasn't filled out a bio yet.)</i>`
-                    }}/>
-                  {website_url.length ? <div className='show-links'>
-                        {website_url.length ? <a href={website_url}><Glyph symbol='globe' type='fa'/></a> : null}
+                    <div className='profile__name'>
+                        <h5>{name}</h5>
+                    </div>
+                    {website_url.length ? <div className='show-links'>
+                        <a href={website_url}><Glyph symbol='globe' type='fa'/></a>
                         {soundcloud_link.length ? <a href={soundcloud_link}><Glyph symbol='soundcloud' type='fa'/></a> : null}
                         {instagram_link.length ? <a href={instagram_link}><Glyph symbol='instagram' type='fa'/></a> : null}
                         {twitter_link.length ? <a href={twitter_link}><Glyph symbol='twitter' type='fa'/></a> : null}
                         {facebook_link.length ? <a href={facebook_link}><Glyph symbol='facebook' type='fa'/></a> : null}
                     </div>}
+                    <div className='profile__bio' dangerouslySetInnerHTML={{
+                        __html: bio || `<i>(${name} hasn't filled out a bio yet.)</i>`
+                    }}/>
                 </div>
-
             </div>];
     }
 

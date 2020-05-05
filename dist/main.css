@@ -1709,7 +1709,13 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
   }
 }
 .profile__pic {
-  width: 255px;
+  position: relative;
+  float: left;
+  width: auto;
+  max-height: 300px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 255px;
   margin: 60px 50px 20px 55px;
 }
@@ -2095,4 +2101,7 @@ grid__item__submit {
 }
 .podcast__playlist {
   padding-top: 20px;
+}
+.profile__left {
+
 }
