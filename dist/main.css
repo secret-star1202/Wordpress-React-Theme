@@ -1970,6 +1970,7 @@ input[type=range] {
 }
 .podcast-page__photo {
   float: left;
+  margin-left: 60px;
 }
 .show-links {
   padding-top: 25px;
@@ -2089,6 +2090,9 @@ grid__item__submit {
   text-align: left;
   vertical-align: top;
   display: inline-block;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 40px;
   width: 50%;
+}
+.podcast__playlist {
+  padding-top: 20px;
 }

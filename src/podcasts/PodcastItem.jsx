@@ -27,21 +27,24 @@ export default function PodcastItem() {
                 visual: true
             });
 
-      return [<HeadStuff title={title}/>, <div className="podcast__page-item"><div className="podcast__photo-div"><img className="podcast-page__photo" src={getMagicFieldsImg(photo) || getUploadedImage('2019/06/ktuh-logo.jpg')}/></div>,
+      return [<HeadStuff title={title}/>, <div className="podcast__page-item">
+          <div className="podcast__photo-div">
+              <img className="podcast-page__photo" src={getMagicFieldsImg(photo) || getUploadedImage('2019/06/ktuh-logo.jpg')}/>
+          </div>
             <div className="podcast__item-info">
                 <div className="podcast__time-div">
                     <h5 className="podcast__time">{time || new Date().toString()}</h5>
                 </div>
-                (host && host.length)
+                {(host && host.length)
                 ?
                 <div className="podcast__host-div">
                     <h4 className="podcast__host">{`Hosted by ${host}`}</h4>
-                </div> : null
+                </div> : null}
                 <div className="podcast__description-div">
-                    <h5 className="podcast__description">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</h5>
+                    <p className="podcast__description">{description || 'This is a pretty cool podcast! from KTUH! Check it out!'}</p>
                 </div>
             </div>
-            <a className="podcast__playlist"><IThing height="450" width="800" {...{src}} /></a></div>
+            <div className="podcast__playlist"><IThing height="450" width="800" {...{src}} /></div></div>
         ];
     }
     return null;
