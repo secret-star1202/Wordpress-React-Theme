@@ -41,6 +41,10 @@ export default function () {
   }, [url]);
 
   function handleClick() {
+    if (ref && ref.current) {
+      if (!playing) ref.current.play();
+      else ref.current.pause();
+    }
     setPlaying(!playing);
   }
 
@@ -67,7 +71,9 @@ export default function () {
   }
 
   return <div className="player__container">
-    <audio {...{ ref }} controls={url && url !== mainUrl} src={url || mainUrl}></audio>
+    <audio {...{ ref }} controls>
+      <source src={url} type='audio/aac' />
+    </audio>
     <button type="button" onClick={() => handleClick()} disabled={!loaded}>
       <Glyph symbol={pauseOrPlay} />
     </button>

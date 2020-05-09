@@ -9,7 +9,14 @@ export default function EyesorePlayButton() {
   function handleClick() {
     if (url !== mainUrl) {
       setToMainUrl();
-    } else setPlaying(!playing);
+    } else {
+      let audioRef = document.querySelector('audio');
+      if (audioRef) {
+        if (!playing) audioRef.play();
+        else audioRef.pause();
+      }
+      setPlaying(!playing);
+    }
   }
 
   return <div className='landing__play-btn-outer'
