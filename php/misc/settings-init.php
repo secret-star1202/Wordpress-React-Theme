@@ -111,6 +111,21 @@ function my_settings_init() {
         'misc-settings'
     );
 
+    // Fallback Stream URL
+    register_setting(
+        'general',
+        'fallback_stream_url',
+        'my_settings_sanitize'
+    );
+
+    add_settings_field(
+       'fallback_stream_url',
+        'Fallback Stream URL',
+        'fallback_stream_url_callback',
+        'general',
+        'misc-settings'
+    );
+
     // Email SMTP Host
     register_setting(
         'general',
@@ -319,6 +334,13 @@ function stream_url_callback()
 {
     ?><label for="stream_url">
   <input id="stream_url" name="stream_url" type="url" value="<?php echo get_option('stream_url'); ?>"/>
+  </label><?php
+}
+
+function fallback_stream_url_callback()
+{
+    ?><label for="fallback_stream_url">
+  <input id="fallback_stream_url" name="fallback_stream_url" type="url" value="<?php echo get_option('fallback_stream_url'); ?>"/>
   </label><?php
 }
 

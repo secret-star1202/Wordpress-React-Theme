@@ -6,7 +6,8 @@ import { default as PlayingContext } from '../contexts/PlayingContext';
 
 export default function () {
   let {
-      playing, setPlaying, url, mainUrl, setLoaded, loaded, jumpStart
+      playing, setPlaying, url, mainUrl, setLoaded, loaded, jumpStart,
+      fallbackUrl, setToFallbackUrl
     } = useContext(PlayingContext),
     ref = useRef(null), pauseOrPlay = loaded ? (playing
       ? 'pause' : 'play') : 'hourglass', [currentTime, setTime] = useState(0),
@@ -50,7 +51,7 @@ export default function () {
 
   useEffect(function () {
     int = setInterval(function () {
-      if (ref && ref.current && url !== mainUrl) {
+      if (ref && ref.current && url !== mainUrl && url !== fallbackUrl) {
         setTime(ref.current.currentTime);
       }
     }, 1000);
@@ -71,18 +72,18 @@ export default function () {
   }
 
   return <div className="player__container">
-    <audio {...{ ref }} controls>
-      <source src={url} type='audio/aac' />
+    <audio {...{ ref }} controls onError={() => { if (url === mainUrl) setToFallbackUrl(); }}>
+      <source src={url} />
     </audio>
     <button type="button" onClick={() => handleClick()} disabled={!loaded}>
       <Glyph symbol={pauseOrPlay} />
     </button>
-    {url ? (url === mainUrl
+    {url ? ((url === mainUrl || url === fallbackUrl)
       ? <span className="player__span">Live Broadcast</span>
       : <span>{beautifyTime(currentTime)} / {beautifyTime(ref.current.duration)}</span>)
       : <span className="player__span">Live Broadcast</span>
     }
-    {url && url !== mainUrl ? <input type="range" min={0}
+    {url && url !== mainUrl && url !== fallbackUrl ? <input type="range" min={0}
         max={ref.current.duration} value={currentTime} onInput={handleSlide}
         onChange={handleSlide}
       /> : null}
