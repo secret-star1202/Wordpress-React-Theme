@@ -46,13 +46,18 @@ export default function ShowPage() {
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
-              <div className="show-page__button"> {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
-                <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
-                  {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
-                </SamePageAnchor>))} </div>
+              {(names.length > 0)
+                  ? <div className="show-page__button-multiple"> {personaInfo.map(({slug: profileSlug, title: {rendered}}) => (
+                      <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
+                        {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
+                      </SamePageAnchor>))} </div>
+                  : <div className="show-page__button"> {personaInfo.map(({slug: profileSlug, title: {rendered}}) => (
+                      <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
+                        {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
+                      </SamePageAnchor>))} </div>
+              }
             </div>
-          </div>
-          <div className="show-page__social-container">
+            <div className="show-page__social-container">
             {wpspin_profiles ? <div className="show-links">
               <h5 className= "show-page__social-title">Find {title} on social media</h5>
               <a href={wpspin_profiles.facebook_link[0]}><Glyph symbol="facebook" type='fa' /></a>
@@ -60,6 +65,7 @@ export default function ShowPage() {
               <a href={wpspin_profiles.soundcloud[0]}><Glyph symbol="soundcloud" type='fa' /></a>
               <a href={wpspin_profiles.mixcloud_link[0]}><Glyph symbol="mixcloud" type='fa' /></a>
             </div> : null}
+          </div>
           </div>
           <div className="show-page__playlist">
             <h4>Latest Episode </h4><h3>{

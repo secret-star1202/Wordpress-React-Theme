@@ -35,8 +35,7 @@ export default function PodcastItem() {
                 <div className="podcast__time-div">
                     <h5 className="podcast__time">{time || new Date().toString()}</h5>
                 </div>
-                {(host && host.length)
-                ?
+                {(host && host.length) ?
                 <div className="podcast__host-div">
                     <h4 className="podcast__host">{`Hosted by ${host}`}</h4>
                 </div> : null}
