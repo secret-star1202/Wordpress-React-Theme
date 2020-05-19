@@ -46,10 +46,10 @@ export default function ShowPage() {
                 <div className='show__body' dangerouslySetInnerHTML=
                   {{ __html: description }} />
               </div>
-              <div className="show-page__button"> {personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
+              <div className="show-page__button">{personaInfo.map(({ slug: profileSlug, title: { rendered } }) => (
                 <SamePageAnchor className="show-page__profile-link" href={getFullUrl(`profile/${profileSlug}`)}>
                   {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
-                </SamePageAnchor>))} </div>
+                </SamePageAnchor>))}</div>
             </div>
           </div>
           <div className="show-page__social-container">
