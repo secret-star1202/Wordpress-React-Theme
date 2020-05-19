@@ -13,13 +13,20 @@ export const PlayingContextProvider = ({ children }) => {
     mainUrl = useApiRequest(null, 'stream_url', function (data, fxn) {
       setUrl(data);
       fxn(data);
-    }),
-    [isInitial, setInitial] = useState(true), [jumpStart, setJumpStart] = useState(false);
+    }), fallbackUrl = useApiRequest(null, 'fallback_stream_url'),
+    [isInitial, setInitial] = useState(true),
+    [jumpStart, setJumpStart] = useState(false);
 
   function setToMainUrl() {
     if (mainUrl) {
       setUrl(mainUrl);
       setJumpStart(true);
+    }
+  }
+
+  function setToFallbackUrl() {
+    if (mainUrl) {
+      setUrl(fallbackUrl);
     }
   }
 
@@ -38,7 +45,9 @@ export const PlayingContextProvider = ({ children }) => {
     url,
     setUrl,
     setToMainUrl,
+    setToFallbackUrl,
     mainUrl,
+    fallbackUrl,
     switchUrl,
     loaded,
     setLoaded,
