@@ -2044,9 +2044,6 @@ input[type=range] {
 .show-page__button {
   margin: 25px 0px 25px 150px;
 }
-.profile__bio {
-
-}
 .show-page__playlist h4, .show-page__playlist h3 {
   width: fit-content;
 }
@@ -2100,15 +2097,22 @@ grid__item__submit {
   width: 50%;
 }
 .podcast__playlist {
-  padding-top: 20px;
+  float: left;
+  padding: 40px 0 60px 0;
 }
-.profile__name {
+.podcast__playlist-background {
+  
+}
+div.profile__name {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
-  font-size: large;
+  font-size: xx-large;
 }
-.profile {
+div.profile {
   margin-top: 60px;
+}
+.profile__image-div {
+  float: left;
 }
 .show-page__button-multiple {
   margin: 25px 0px 25px 50px;

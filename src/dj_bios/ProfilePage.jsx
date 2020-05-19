@@ -2,7 +2,7 @@ import React from 'react';
 import { useSlug, useApiRequest } from '../hooks';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 import { SocialButton } from './ProfileSocialLink';
-import { SamePageAnchor } from '../reusables';
+import {BackButton, SamePageAnchor} from '../reusables';
 import { NotFoundRedirect } from '../utils';
 
 function ProfilePage() {
@@ -23,9 +23,8 @@ function ProfilePage() {
       } = dj_bio;
     return [<HeadStuff title={`${name}'s Profile`}
       description={`${name}'s Profile`} image={image}/>,
-      <div>{show_url && show_url[0].length
-        ? <SamePageAnchor href={show_url[0]} className='show__link' text="Show Page" /> : null}</div>,
-      <div className="profile__image-div">
+        <div> {show_url.length ? <BackButton href={show_url} className='show__link' text="Show Page" /> : null} </div>,
+        <div className="profile__image-div">
         <img className='profile__pic' src={image}/>
       </div>,
       <div className='profile'>
