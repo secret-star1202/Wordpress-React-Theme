@@ -48,7 +48,7 @@ export default function PodcastItem() {
         <div className="podcast__playlist">
           <div className="podcast__playlist-background">
           <h4>Past Episodes</h4>
-          <IThing height="450" width="800" {...{ src }} />
+          <IThing height="850" width="900" {...{ src }} />
           </div>
         </div>
       </div>

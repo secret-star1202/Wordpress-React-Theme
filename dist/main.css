@@ -2038,8 +2038,9 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  padding-top: 20px;
+  padding-top: 50px;
   color: #1c1c1c;
+  float: left;
 }
 .show-page__button {
   margin: 25px 0px 25px 150px;

@@ -12,10 +12,9 @@ export default function PodcastList() {
       <div className='grid__container'>
         <PodcastListItem href='the-future-accords' src='2020/03/The-Future-Accords.jpg' name="The Future Accords" />
         <PodcastListItem href='kwok-talk' name="Kwok Talk" />
-        <PodcastListItem href='renegade-radio' name='Renegade Radio'
-          src="2020/03/renegade-radio-logo-2020-compressed.png" />
-        <PodcastListItem href='ktuh-news' name="KTUH News" />
         <PodcastListItem href='trivia-shock' name="Trivia Shock" />
+        <PodcastListItem href='renegade-radio' name='Renegade Radio' src="2020/03/renegade-radio-logo-2020-compressed.png" />
+        <PodcastListItem href='ktuh-news' name="KTUH News" />
         <PodcastListItem href='interviews' name="Interviews" />
         <PodcastListItem href='talk-shows' name='Talk Shows' />
         <PodcastListItem href='more-podcasts' name="More Podcasts" />
