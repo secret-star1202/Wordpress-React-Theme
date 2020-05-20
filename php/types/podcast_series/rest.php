@@ -31,3 +31,15 @@ register_rest_field('podcast_series', 'host', array(
         return get_post_meta($obj['id'], 'host');
     }
 ));
+
+register_rest_field('podcast_series', 'spotify', array(
+    'get_callback' => function ($obj) {
+        return get_post_meta($obj['id'], 'spotify');
+    }
+));
+
+register_rest_field('podcast_series', 'itunes', array(
+    'get_callback' => function ($obj) {
+        return get_post_meta($obj['id'], 'itunes');
+    }
+));
