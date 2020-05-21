@@ -3,7 +3,7 @@ import { useSlug } from '../hooks/useGeneralContext';
 import { default as IThing } from '../reusables/IThing';
 import { queryToUrl, getMagicFieldsImg, getUploadedImage } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
-import { HeadStuff, BackButton } from '../reusables';
+import {HeadStuff, BackButton, Glyph} from '../reusables';
 import { NotFoundRedirect } from '../utils';
 
 export default function PodcastItem() {
@@ -14,7 +14,7 @@ export default function PodcastItem() {
 
   if (podcast) {
     let {
-        playlist_id: playlistId, title, description, time, photo, host
+        playlist_id: playlistId, title, description, time, photo, host, itunes, spotify
       } = podcast, src = `https://w.soundcloud.com/player/?${queryToUrl({
         url: `https://api.soundcloud.com/playlists/${playlistId}`,
         color: '#ff5500',
@@ -44,6 +44,11 @@ export default function PodcastItem() {
                 {{ __html: description }} />
             </div>
           </div>
+            {itunes && spotify ? <div className="show-links">
+              <h5 className= "show-page__social-title">Find {title} where podcasts are heard</h5>
+              <a href={itunes}><Glyph symbol="itunes" type='fa' /></a>
+              <a href={spotify}><Glyph symbol="spotify" type='fa' /></a>
+            </div> : null}
         </div>
         <div className="podcast__playlist">
           <div className="podcast__playlist-background">
