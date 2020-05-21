@@ -40,7 +40,9 @@ export default function ({
   return <div className='events-list__event-item'>
     <h3 className="event__name">{summary} | {printDate(new Date(start))}</h3>
     <div className='event_title'>
-      {formatTimes(start, end)} | {parseAddress(location)}
+      {location && location.length
+        ? `${formatTimes(start, end)} | ${parseAddress(location)}`
+        : formatTimes(start, end)}
     </div>
     <div className='event_title_description'
       dangerouslySetInnerHTML={{ __html: descBody }} />
