@@ -17,8 +17,8 @@ export default function PodcastItem() {
         playlist_id: playlistId, title, description, time, photo, host, itunes, spotify
       } = podcast, src = `https://w.soundcloud.com/player/?${queryToUrl({
         url: `https://api.soundcloud.com/playlists/${playlistId}`,
-        color: '#ff5500',
-        auto_play: false,
+        color: '#1c1c1c',
+        auto_play: true,
         hide_related: false,
         show_comments: true,
         show_user: true,
@@ -26,6 +26,30 @@ export default function PodcastItem() {
         show_teaser: true,
         visual: true
       })}`;
+
+    <iframe width="100%" height="450" scrolling="no" frameBorder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/737994363&color=%231c1c1c&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe> < div
+    style = "font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;" > < a
+    href = "https://soundcloud.com/ktuh"
+    title = "KTUH"
+    target = "_blank"
+    style = "color: #cccccc; text-decoration: none;" > KTUH < /a> · <a href="https:/
+    /soundcloud.com/
+    ktuh / sets / the - future - accords
+    " title="
+    The
+    Future
+    Accords
+    " target="
+    _blank
+    " style="
+    color: #cccccc;
+    text - decoration
+  :
+    none;
+    ">The Future Accords</a></div>
+
+
 
     return [<HeadStuff title={title}/>,
       <BackButton href='podcasts' className='show__link' text="Podcasts" />,
@@ -43,17 +67,17 @@ export default function PodcastItem() {
               <div className="show__body" dangerouslySetInnerHTML=
                 {{ __html: description }} />
             </div>
+              {(itunes && spotify) ? <div className="show-links">
+                <h5 className= "podcast-page__social-title">Find {title} where podcasts are heard</h5>
+                <a href={itunes}><Glyph symbol="apple" type='fa' /></a>
+                <a href={spotify}><Glyph symbol="spotify" type='fa' /></a>
+              </div> : null}
           </div>
-            {(itunes && spotify) ? <div className="show-links">
-              <h5 className= "show-page__social-title">Find {title} where podcasts are heard</h5>
-              <a href={itunes}><Glyph symbol="apple" type='fa' /></a>
-              <a href={spotify}><Glyph symbol="spotify" type='fa' /></a>
-            </div> : null}
         </div>
         <div className="podcast__playlist">
           <div className="podcast__playlist-background">
-          <h4>Past Episodes</h4>
-          <IThing height="850" width="900" {...{ src }} />
+          <h4 className="podcast__playlist-title">Past Episodes</h4>
+          <IThing height="550" width="850" {...{ src }} />
           </div>
         </div>
       </div>
