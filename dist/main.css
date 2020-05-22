@@ -1051,6 +1051,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   text-align: center;
   padding-right: 300px;
   padding-bottom: 10px;
+  max-width: 1440px;
 }
 
 .submit__podcast a {
@@ -1087,7 +1088,12 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   text-align: left;
   font-weight: 900;
 }
-.events-list__calendar{display:inline-block;vertical-align:top;margin-bottom:50px;}
+.events-list__calendar {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 50px;
+  padding: 20px 0 0 80px;
+}
 .events-list__event-item{padding-bottom:30px;}
 @media (max-width:867px){
   .events-list__calendar{width:100%;margin-left:0;}
@@ -1995,6 +2001,8 @@ input[type=range] {
   margin-left: 58px;
   padding-right: 70px;
   padding-left: 55px;
+  max-width: 1440px;
+  padding-top: 15px;
 }
 .podcast-page__photo {
   height: 250px;
