@@ -255,9 +255,17 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .review-page__rating {
   float:left;margin:0 15px 10px 0;
 }
-.playlist td{padding:10px;}.playlist td:nth-child(1){padding:10px 0 10px 15px;}
-.playlist__artist,.playlist__title,.playlist__timestamp{font-size:.875em;}
-.resend__content{margin:10px 60px;}.back-to:hover,.back-to{
+.playlist td{
+  padding:10px;
+}
+.playlist td:nth-child(1) {
+  padding:10px 0 10px 15px;
+}
+.playlist__artist,.playlist__title,.playlist__timestamp{ font-size:.875em; }
+.resend__content {
+  margin:10px 60px;
+}
+.back-to:hover,.back-to{
   color:white;
   font-size:12px;
   text-transform:uppercase;
@@ -1912,6 +1920,9 @@ input[type=range] {
     height: 8px;
     width: 8px;
     padding-right: 11px;
+  }
+  .back-to:hover,.back-to{
+    display: none;
   }
 }
 
