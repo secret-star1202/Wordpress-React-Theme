@@ -19,7 +19,7 @@ export default function PodcastList() {
       <div className='grid__container'>
         {podcasts.map(({ slug, photo, title }) => (
         <PodcastListItem href={slug} src={photo} name={title} />))};
-        <PodcastListItem href='more-podcasts' name="More Podcasts" />
+        <PodcastListItem href='https://soundcloud.com/ktuh' name="More Podcasts" />
       </div>
     </div>,
     <div className='grid__item__submit'>

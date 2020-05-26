@@ -1930,8 +1930,9 @@ input[type=range] {
   .podcast-grid__cover {
     padding-left: 60px;
   }
-  .podcast-page__desc {
+  body .podcast-page__desc {
     text-align: center;
+    margin-left: auto;
   }
   .playlist__sidebar {
     width: 100%;
@@ -2192,4 +2193,7 @@ input[type=range] {
 }
 .show-page__button-multiple {
   margin: 25px 0px 25px 50px;
+}
+.profile__bio {
+  overflow: auto;
 }
