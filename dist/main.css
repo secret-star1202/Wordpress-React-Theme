@@ -2175,7 +2175,7 @@ input[type=range] {
   padding: 70px 520px 60px 0;
 }
 .podcast__playlist-background {
-  
+
 }
 .podcast__playlist-title {
   text-align: left;
@@ -2196,4 +2196,8 @@ input[type=range] {
 }
 .profile__bio {
   overflow: auto;
+}
+.show-page__social-icons {
+  margin: 0;
+  display: inline-block;
 }
