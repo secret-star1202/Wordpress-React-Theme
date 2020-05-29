@@ -8,8 +8,14 @@ register_post_type('dj_bios',
         'public' => true,
         'has_archive' => false,
         'show_in_rest' => true,
+        'rewrite' => array(
+          'slug' => 'profile',
+          'with_front' => false
+        )
     )
 );
+
+flush_rewrite_rules();
 
 register_meta('dj_bios', 'persona_id', array(
     'show_in_rest' => true

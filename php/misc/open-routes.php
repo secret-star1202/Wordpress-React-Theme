@@ -67,9 +67,37 @@ function get_menus()
     return $menus;
 }
 
+function group_by($items) {
+  $result = array();
+  foreach ($items as $i) {
+    if (isset($i->menu_item_parent)) {
+      $val = $i->menu_item_parent;
+      if (!isset($result[$val])) {
+        $result[$val] = [];
+      }
+      $result[$val][] = $i;
+    }
+  }
+  return $result;
+}
+
+function get_menus_sorted() {
+    $menus = wp_get_nav_menus();
+    array_map(function (&$m) {
+        $m->items = wp_get_nav_menu_items($m);
+    }, $menus);
+
+    return group_by($menus[0]->items);
+}
+
 register_rest_route('wp/v2', '/menus', array(
     'methods' => 'GET',
     'callback' => 'get_menus'
+));
+
+register_rest_route('wp/v2', '/menus_sorted', array(
+    'methods' => 'GET',
+    'callback' => 'get_menus_sorted'
 ));
 
 register_rest_route('wp/v2', '/search', array(

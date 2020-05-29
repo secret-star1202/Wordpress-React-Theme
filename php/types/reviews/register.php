@@ -67,6 +67,10 @@ register_post_type('review',
             'public' => true,
             'has_archive' => true,
             'show_in_rest' => true,
+            'rewrite' => array(
+              'slug' => 'reviews',
+              'with_front' => false
+            ),
             'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'),
             'register_meta_box_cb' => function($review) {
                add_meta_box('review_artist', 'Review Artist', 'review_artist_meta', 'review', 'side', 'low');
@@ -76,3 +80,5 @@ register_post_type('review',
             }
         )
     );
+
+flush_rewrite_rules();

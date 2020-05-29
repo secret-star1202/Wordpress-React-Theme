@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { default as siteInfo } from '../utils/config';
 import { default as TheRouterContext } from '../contexts/TheRouterContext';
 
 export default function SamePageAnchor({
@@ -8,7 +7,7 @@ export default function SamePageAnchor({
   let { history } = useContext(TheRouterContext);
 
   function onClick(event) {
-    let { siteUrl } = siteInfo;
+    let siteUrl = document.querySelector('link[rel="basename"]').href;
 
     if (href.startsWith(siteUrl)) {
       event.preventDefault();

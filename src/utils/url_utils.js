@@ -1,12 +1,13 @@
-import { default as siteInfo } from './config';
-
-let { siteUrl } = siteInfo, ctt = 'wp-content/';
+let siteUrl = document.querySelector('link[rel="basename"]').href,
+  ctt = 'wp-content/';
 
 export function queryToUrl(obj) {
   let ret = [];
   for (let key in obj) {
-    ret.push(`${key}${obj[key].toString().length ?
-      `=${encodeURIComponent(obj[key].toString())}` : ''}`);
+    if (key.length) {
+      ret.push(`${key}${obj[key].toString().length
+        ? `=${encodeURIComponent(obj[key].toString())}` : ''}`);
+    }
   }
   return ret.join('&');
 }

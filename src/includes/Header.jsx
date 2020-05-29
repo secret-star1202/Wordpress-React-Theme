@@ -1,17 +1,14 @@
 import React from 'react';
-import { default as siteInfo } from '../utils/config';
 import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 import { default as StreamPlayer } from './StreamPlayer';
 import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { default as Navbar } from './Navbar';
-import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as HeaderMenu } from './HeaderMenu';
 import { default as IconBar } from './IconBar';
 
 export default function () {
-  let items = useApiRequest([], 'menus', ([{ items: data }], fxn) => {
-      if (data) fxn(data);
-    }), { siteUrl } = siteInfo, href = getFullUrl('donate');
+  let siteUrl = document.querySelector('link[rel="basename"]').href,
+    href = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
@@ -29,7 +26,7 @@ export default function () {
       </button>
     </div>
     <div className='collapse navbar-collapse' id='navigation'>
-      {items.length ? <HeaderMenu {...{ items }} /> : null }
+      <HeaderMenu />
       <Navbar addClassName='navbar-right' nodes={[
         <SamePageAnchor className='header__support-link' {...{ href }} >
           <button type='button' className='btn btn-md header__support-btn'>

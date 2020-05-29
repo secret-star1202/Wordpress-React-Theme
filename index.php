@@ -2,24 +2,30 @@
 /**
  * The main template file
  */
+
+  $theme_dir = get_template_directory_uri();
+  $dist = $theme_dir . "/dist";
+  $imgs = $dist . "/images";
+  $vid = $imgs ."/ktuhvideo";
  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php wp_head(); ?>
+    <link rel="basename" href="<?php echo get_site_url(); ?>" />
     <title>KTUH Honolulu | Radio for the People</title>
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo1.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo2.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo3.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo4.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo5.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo6.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo7.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo8.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo9.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo10.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo11.gif" as="image" />
-    <link rel="preload" href="https://manoa.hawaii.edu/ktuh/wp-content/themes/custom-react-theme/dist/images/ktuhvideo12.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>2.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>3.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>4.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>5.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>6.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>7.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>8.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>9.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>10.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>11.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>12.gif" as="image" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content=
       "KTUH,college radio,UHM,UH Manoa,UH Mānoa,KTUH radio,KTUH FM,KTUH Honolulu" />
