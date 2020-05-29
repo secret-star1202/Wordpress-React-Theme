@@ -220,6 +220,12 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   color:#bbb;
   white-space:nowrap;
 }
+.cool__text a:hover {
+  text-decoration: underline;
+}
+.cool__text {
+  color:#5940DE;
+}
 .jumbotron{text-align:center;margin-bottom:0;}
 .jumbotron h2{font-size:60px;font-weight:lighter;}
 .events-item{display:inline-block;width:24%;margin:0 5px 0 0;color:inherit;vertical-align:top;}
@@ -2174,8 +2180,15 @@ input[type=range] {
   float: left;
   padding: 70px 520px 60px 0;
 }
-.podcast__playlist-background {
-
+.show-page__social-container {
+  width: fit-content;
+  margin-left: 380px;
+  position: inherit;
+}
+@media (max-width: 760px) {
+  .ithing-playlist {
+    max-width: fit-content;
+  }
 }
 .podcast__playlist-title {
   text-align: left;
