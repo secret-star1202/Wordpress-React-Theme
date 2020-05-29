@@ -1,5 +1,5 @@
-let siteUrl = document.querySelector('link[rel="basename"]').href,
-  ctt = 'wp-content/';
+let siteUrl = document.querySelector('link[rel="basename"]')
+    .href.replace(/\/$/, ''), ctt = 'wp-content/';
 
 export function queryToUrl(obj) {
   let ret = [];

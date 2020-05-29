@@ -1,16 +1,10 @@
 let path = require('path'),
   MinifyPlugin = require('babel-minify-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin'),
-  { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+  TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   target: 'web',
-  plugins: process.env.ANALYZE ? [
-    new MinifyPlugin({}, {
-      comments: false
-    }),
-    new BundleAnalyzerPlugin()
-  ] : [
+  plugins: [
     new MinifyPlugin({}, {
       comments: false
     })
@@ -31,7 +25,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: process.env.EXP ? '[name]_exp.js' : '[name].js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.jsx'],

@@ -14,7 +14,7 @@
     <?php wp_head(); ?>
     <link rel="basename" href="<?php echo get_site_url(); ?>" />
     <title>KTUH Honolulu | Radio for the People</title>
-    <link rel="preload" href="<?php echo $vid; ?>.gif" as="image" />
+    <link rel="preload" href="<?php echo $vid; ?>1.gif" as="image" />
     <link rel="preload" href="<?php echo $vid; ?>2.gif" as="image" />
     <link rel="preload" href="<?php echo $vid; ?>3.gif" as="image" />
     <link rel="preload" href="<?php echo $vid; ?>4.gif" as="image" />
@@ -26,7 +26,10 @@
     <link rel="preload" href="<?php echo $vid; ?>10.gif" as="image" />
     <link rel="preload" href="<?php echo $vid; ?>11.gif" as="image" />
     <link rel="preload" href="<?php echo $vid; ?>12.gif" as="image" />
+    <link rel="main-stream-url" href="<?php echo get_option("stream_url"); ?>"/>
+    <link rel="backup-stream-url" href="<?php echo get_option("fallback_stream_url"); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="support-text" content="<?php echo get_option('support_text') ?>" />
     <meta name="keywords" content=
       "KTUH,college radio,UHM,UH Manoa,UH Mānoa,KTUH radio,KTUH FM,KTUH Honolulu" />
     <script src="https://use.typekit.net/kdq4qji.js"></script>

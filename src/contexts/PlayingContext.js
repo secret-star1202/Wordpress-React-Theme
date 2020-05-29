@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { default as useApiRequest } from '../hooks/useApiRequest';
 
 const PlayingContext = createContext({});
 
@@ -10,10 +9,8 @@ const { Provider } = PlayingContext;
 export const PlayingContextProvider = ({ children }) => {
   let [playing, setPlaying] = useState(false),
     [url, setUrl] = useState(null), [loaded, setLoaded] = useState(false),
-    mainUrl = useApiRequest(null, 'stream_url', function (data, fxn) {
-      setUrl(data);
-      fxn(data);
-    }), fallbackUrl = useApiRequest(null, 'fallback_stream_url'),
+    mainUrl = document.querySelector('link[rel="main-stream-url"]').href,
+    fallbackUrl = document.querySelector('link[rel="backup-stream-url"]').href,
     [isInitial, setInitial] = useState(true),
     [jumpStart, setJumpStart] = useState(false);
 

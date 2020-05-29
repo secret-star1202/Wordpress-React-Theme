@@ -1,9 +1,8 @@
 import React from 'react';
 import { getFullUrl } from '../utils';
-import { useApiRequest } from '../hooks';
 
 export default function NewsListSidebarSupport() {
-  let text = useApiRequest('', 'support_text');
+  let text = document.querySelector('meta[name="support-text"]').content;
 
   return <div className='news-list__support'>
     <p className="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
