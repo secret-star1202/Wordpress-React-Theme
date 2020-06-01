@@ -25,7 +25,7 @@ export default function () {
 
   let {
       title, start, end, id
-    } = nextOnAir, { summary, location } = events,
+    } = nextOnAir,
     startStr = toLocalStr(parseDate(start)),
     endStr = toLocalStr(parseDate(end));
 
@@ -41,16 +41,16 @@ export default function () {
           </p>
         </div>
       </div>
-      <div className='home__next-show'>
+      {events ? <div className='home__next-show'>
         <div className='home__next-show-deets'>
           <p className="home__next-on-air">Next Community Event</p>
           <p className='home__next-show-name'>
-            <SamePageAnchor href={getFullUrl('events')}>{summary}</SamePageAnchor>
+            <SamePageAnchor href={getFullUrl('events')}>{events.summary}</SamePageAnchor>
           </p>
           <p className='home__next-show-time'>
-            {location}
+            {events.location}
           </p>
         </div>
-      </div>
+      </div> : null}
     </div>;
 }
