@@ -1,5 +1,5 @@
 import React from 'react';
-import { default as useSlugRequest } from '../hooks/useApiRequest';
+import { default as useSlugRequest } from '../hooks/useSlugRequest';
 import { HeadStuff, ContentBox } from '../reusables';
 import NotFoundRedirect from '../utils/404_redirect';
 
