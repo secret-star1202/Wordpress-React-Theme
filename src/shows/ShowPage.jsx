@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useApiRequest, useSlug } from '../hooks';
+import useSlugRequest from '../hooks/useSlugRequest';
 import { HeadStuff, BackButton, Glyph } from '../reusables';
 import PlaylistTable from './PlaylistTable';
 import {
@@ -10,12 +10,12 @@ import { getFullUrl } from '../utils/url_utils';
 import { default as SamePageAnchor } from '../reusables/SamePageAnchor';
 
 export default function ShowPage() {
-  let slug = useSlug(), wpspin_profiles = useApiRequest(undefined,
-      `wpspin_profiles?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
+  let wpspin_profiles = useSlugRequest(undefined,
+      (slug) => `wpspin_profiles?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
       function (data, fxn) {
         fxn(data ? data[0] : null);
-      }), showInfo = useApiRequest(undefined,
-      `show?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
+      }), showInfo = useSlugRequest(undefined,
+      (slug) => `show?${slug.match(/^\d+$/) ? 'id' : 'slug'}=${slug}`,
       function (data, fxn) {
         fxn(data || null);
       }), { switchUrl } = useContext(PlayingContext);

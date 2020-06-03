@@ -1,14 +1,13 @@
 import React from 'react';
-import { useSlug } from '../hooks/useGeneralContext';
 import { default as IThing } from '../reusables/IThing';
 import { queryToUrl, getMagicFieldsImg, getUploadedImage } from '../utils/url_utils';
-import { default as useApiRequest } from '../hooks/useApiRequest';
+import { default as useSlugRequest } from '../hooks/useSlugRequest';
 import { HeadStuff, BackButton, Glyph } from '../reusables';
 import { NotFoundRedirect } from '../utils';
 
 export default function PodcastItem() {
-  let slug = useSlug(), podcast = useApiRequest(undefined,
-    `podcast_series?slug=${slug}`, function (data, fxn) {
+  let podcast = useSlugRequest(undefined,
+    (slug) => `podcast_series?slug=${slug}`, function (data, fxn) {
       fxn((data && data.length) ? data[0] : null);
     });
 

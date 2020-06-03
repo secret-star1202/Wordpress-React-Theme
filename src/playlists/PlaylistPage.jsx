@@ -1,13 +1,12 @@
 import React from 'react';
 import PlaylistTable from '../shows/PlaylistTable';
-import { useSlug } from '../hooks/useGeneralContext';
-import { default as useApiRequest } from '../hooks/useApiRequest';
+import useSlugRequest from '../hooks/useSlugRequest';
 import { HeadStuff, SamePageAnchor, BackButton } from '../reusables';
-import { getFullUrl } from '../utils/url_utils';
+import { getFullUrl, getImgAsset } from '../utils/url_utils';
 
 function PlaylistPage() {
-  let id = useSlug(), info = useApiRequest(undefined,
-    `playlist?id=${id.replace(/\/$/, '')}`);
+  let info = useSlugRequest(undefined,
+    (id) => `playlist?id=${id.replace(/\/$/, '')}`);
 
   if (info) {
     let { show, slug, playlist } = info;
@@ -16,8 +15,8 @@ function PlaylistPage() {
     <BackButton className='playlist__link' href='playlists' text="Back to Playlists" />,
     <div className='playlist__content'>
       <SamePageAnchor href={getFullUrl(`shows/${slug.length ? slug : show.id}`)}>
-        <img className='playlist__show-image' src={show.image ||
-          'https://ktuh.org/img/ktuh-logo.jpg'} />
+        <img className='playlist__show-image' src={show.image
+          || getImgAsset('ktuh-logo.jpg')} />
         </SamePageAnchor>
       <PlaylistTable tracks={playlist} onPage={true}/>
     </div>];

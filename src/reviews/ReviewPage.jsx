@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSlug } from '../hooks/useGeneralContext';
-import { default as useApiRequest } from '../hooks/useApiRequest';
+import useSlugRequest from '../hooks/useSlugRequest';
 import { getFeaturedImg } from '../utils/url_utils';
 import { default as NotFoundRedirect } from '../utils/404_redirect';
 import { default as HeadStuff } from '../reusables/HeadStuff';
@@ -12,8 +11,8 @@ function ReviewPage() {
     return (rating % 1 !== 0.5) ? `${Number(rating).toString()}.0` : rating;
   }
 
-  let slug = useSlug(), review = useApiRequest(undefined,
-    `review?_embed&slug=${slug}`, (data, fxn) => {
+  let review = useSlugRequest(undefined,
+    (slug) => `review?_embed&slug=${slug}`, (data, fxn) => {
       if (data) { fxn(data.length > 0 ? data[0] : null); }
     });
 

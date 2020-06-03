@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSlug, useApiRequest } from '../hooks';
+import useSlugRequest from '../hooks/useSlugRequest';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 import { SocialButton } from './ProfileSocialLink';
-import {BackButton, SamePageAnchor} from '../reusables';
+import { BackButton } from '../reusables';
 import { NotFoundRedirect } from '../utils';
 
 function ProfilePage() {
-  let slug = useSlug(), persona = useApiRequest(undefined, `persona_by_dj_slug?slug=${slug}`),
-    dj_bio = useApiRequest(undefined, `dj_bio_by_slug?slug=${slug}`, (data, fxn) => {
+  let persona = useSlugRequest(undefined, (slug) => `persona_by_dj_slug?slug=${slug}`),
+    dj_bio = useSlugRequest(undefined, (slug) => `dj_bio_by_slug?slug=${slug}`, (data, fxn) => {
       if (data && data.length) {
         fxn(data && data.length ? data[0] : null);
       } else fxn(null);

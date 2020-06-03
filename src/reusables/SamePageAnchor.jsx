@@ -7,7 +7,8 @@ export default function SamePageAnchor({
   let { history } = useContext(TheRouterContext);
 
   function onClick(event) {
-    let siteUrl = document.querySelector('link[rel="basename"]').href;
+    let siteUrl = document.querySelector('link[rel="basename"]')
+      .href.replace(/\/$/, '');
 
     if (href.startsWith(siteUrl)) {
       event.preventDefault();

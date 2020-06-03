@@ -1,15 +1,13 @@
 import React from 'react';
 import { default as ChartTable } from './ChartTable';
-import { useSlug } from '../hooks/useGeneralContext';
-import { default as useApiRequest } from '../hooks/useApiRequest';
+import useSlugRequest from '../hooks/useSlugRequest';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 import { default as BackButton } from '../reusables/BackButton';
 import { default as NotFoundRedirect } from '../utils/404_redirect';
-import { queryToUrl } from '../utils/url_utils';
 
 export default function () {
-  let slug = useSlug(), chart = useApiRequest(undefined,
-    `chart?${queryToUrl({ slug })}`, (data, fxn) => {
+  let chart = useSlugRequest(undefined,
+    (slug) => `chart?slug=${slug}`, (data, fxn) => {
       if (data) fxn(data[0]);
     });
 
