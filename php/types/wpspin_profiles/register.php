@@ -8,5 +8,11 @@ register_post_type('wpspin_profiles',
         'public' => true,
         'has_archive' => false,
         'show_in_rest' => true,
+        'rewrite' => array(
+          'slug' => 'shows',
+          'with_front' => false
+        ),
     )
 );
+
+flush_rewrite_rules();
