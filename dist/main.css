@@ -277,8 +277,19 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   text-transform:uppercase;
   font-family:'nimbus-sans-extended', sans-serif;
 }
-.news-list__wrapper{padding:20px 60px;}.news-list{float:left;padding:0 40px 0 0;}
-.news-list__content{float:left;width:67%;display:inline-block;}
+.news-list__wrapper{
+  padding:20px 60px;
+}
+.news-list{
+  float:left;
+  padding:0 40px 0 0;
+}
+.news-list__content{
+  float:left;
+  width:67%;
+  display:inline-block;
+  padding-bottom: 30px;
+}
 .news-list__sidebar{float:left;width:33%;max-width:400px;margin:0 0 30px;}
 .news-list__featured{margin:0 0 50px;}.news-list__featured-img{position:relative;}
 .news-list__featured img,.home__featured-img,.alumni__img,
@@ -468,7 +479,11 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   font-weight:900;
   text-transform:uppercase;
 }
-.button__wrapper{width:100%;text-align:center;}
+.button__wrapper {
+  width:100%;
+  text-align:center;
+  padding-bottom: 10px;
+}
 .color-button {
   max-width:250px;
   padding:10px 25px;
@@ -1931,6 +1946,11 @@ input[type=range] {
     display: none;
   }
 }
+@media  (max-width: 1180px) {
+  .events-list__calendar {
+    padding: inherit;
+  }
+}
 
 @media (max-width: 600px) {
   .podcast-grid__cover {
@@ -2045,7 +2065,6 @@ input[type=range] {
 }
 .event__name {
   width: 100%;
-  text-decoration: underline;
 }
 .podcast-page__photo {
   float: left;
@@ -2053,7 +2072,7 @@ input[type=range] {
 }
 .show-links {
   padding-top: 25px;
-  font-size: 36px;
+  font-size: 28px;
 }
 .show-links a .fa {
   min-width: 90px;
@@ -2114,7 +2133,6 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  padding-top: 50px;
   padding-right: 550px;
   color: #1c1c1c;
   float: left;

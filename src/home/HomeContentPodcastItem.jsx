@@ -14,7 +14,7 @@ export default function () {
     </div>,
     <div className='home_podcast-item'>
      <SamePageAnchor href={getFullUrl('podcasts/kwok-talk')}>
-      <img className="podcast__image" src={getUploadedImage('2019/06/ktuh-logo.jpg')}
+      <img className="podcast__image" src={getUploadedImage('2020/06/kwoktalk.png')}
         href={getFullUrl('podcasts/kwok-talk')}/>
         <SamePageAnchor href={getFullUrl('podcasts/kwok-talk')}>
           <h4>Kwok Talk</h4>
