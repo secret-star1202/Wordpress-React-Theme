@@ -521,7 +521,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .home__byline{margin:20px 0;}
 .home__news-img {
   clear:both;
-  height: 230px;
+  height: 250px;
   width:100%;
   margin:0 0 6px 0;
 }
@@ -2221,9 +2221,6 @@ input[type=range] {
 }
 .profile__image-div {
   float: left;
-}
-.show-page__button-multiple {
-  margin: 25px 0px 25px 50px;
 }
 .profile__bio {
   overflow: auto;
