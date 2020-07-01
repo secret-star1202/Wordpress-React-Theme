@@ -2229,3 +2229,6 @@ input[type=range] {
   margin: 0;
   display: inline-block;
 }
+.event_title_description {
+  margin-bottom: 5px;
+}
