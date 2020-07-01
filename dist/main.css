@@ -1113,7 +1113,6 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   margin-top: 0;
   font-size: large;
   font-family: 'nimbus-sans-extended', sans-serif;
-  border-bottom: thin black solid;
   text-align: left;
   font-weight: 900;
 }
