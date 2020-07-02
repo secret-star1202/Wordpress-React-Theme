@@ -23,7 +23,7 @@ export default function () {
     </div>,
     <div className='home_podcast-item'>
       <SamePageAnchor href={getFullUrl('podcasts/ktuh-news')}>
-        <img className="podcast__image" src={getUploadedImage('2019/06/ktuh-logo.jpg')}
+        <img className="podcast__image" src={getUploadedImage('2020/07/news.png')}
           href={getFullUrl('podcasts/ktuh-news')}/>
           <SamePageAnchor href={getFullUrl('podcasts/ktuh-news')}>
             <h4>KTUH News</h4>
