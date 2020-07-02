@@ -13,7 +13,9 @@ export default function HomeContentReviewsItem({
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img className='home__reviews-img' src={src} />
       <p className='home__title'>{artist}</p>
-      <p className='home__subtitle'>{title.rendered || title[0]}</p>
+      <p className='home__subtitle'>{(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
+        return String.fromCharCode(parseInt(p1, 10));
+      })}</p>
     </SamePageAnchor>
   </div>;
 }
