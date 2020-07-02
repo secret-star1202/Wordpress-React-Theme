@@ -18,15 +18,15 @@ function ReviewPage() {
 
   if (review) {
     let {
-      _embedded, title: [title], artist: [artist], rating: [rating],
+      _embedded, title, artist: [artist], rating: [rating],
       date_gmt: submitted, content: { rendered: content }
     } = review;
 
     let src = getFeaturedImg(_embedded);
 
     return [
-      <HeadStuff title={`Review of "${title}" by ${artist}"`} image={src}
-        headerText={`${title}\n${artist}`}/>,
+      <HeadStuff title={`Review of "${title.rendered || title[0]}" by ${artist}"`} image={src}
+        headerText={`${title.rendered || title[0]}\n${artist}`}/>,
       <BackButton className='review__link' href='reviews' text='all reviews' />,
       <div className="review__content">
         <img className='review-page__image' {...{ src }} />

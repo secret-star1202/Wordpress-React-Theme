@@ -9,12 +9,12 @@ function save_review_metadata($id, $post) {
     }
 
     if (!empty($_POST['review_artist'])) {
-           update_post_meta($id, 'artist', $_POST['artist']);
-        }
+      update_post_meta($id, 'artist', $_POST['review_artist']);
+    }
 
-        if (!empty($_POST['review_rating'])) {
-                   update_post_meta($id, 'rating', $_POST['review_rating']);
-                }
+    if (!empty($_POST['review_rating'])) {
+       update_post_meta($id, 'rating', $_POST['review_rating']);
+    }
 }
 
 add_action('save_post_review', 'save_review_metadata', 10, 2);

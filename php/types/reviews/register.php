@@ -82,3 +82,17 @@ register_post_type('review',
     );
 
 flush_rewrite_rules();
+
+
+register_meta('review', 'label', array(
+    'show_in_rest' => true
+));
+register_meta('review', 'artist', array(
+    'show_in_rest' => true
+));
+register_meta('review', 'rating', array(
+    'show_in_rest' => true
+));
+register_meta('review', 'year', array(
+  'show_in_rest' => true
+));

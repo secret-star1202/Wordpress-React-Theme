@@ -4,11 +4,6 @@
                     return get_post_meta($obj['id'], 'label');
                 }
             ));
-            register_rest_field('review', 'title', array(
-                'get_callback' => function ($obj) {
-                    return get_post_meta($obj['id'], 'title');
-                }
-            ));
             register_rest_field('review', 'artist', array(
                 'get_callback' => function ($obj) {
                     return get_post_meta($obj['id'], 'artist');
@@ -52,4 +47,3 @@ register_rest_route('wp/v2', 'review_search_count', array(
             return new \WP_REST_Response(strval($count), 200);
         }
     ));
-
