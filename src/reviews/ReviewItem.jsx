@@ -4,7 +4,7 @@ import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 function ReviewItem({
   item: {
-    _embedded, slug, title: [title], artist: [artist]
+    _embedded, slug, title, artist: [artist]
   }
 }) {
   let src = getFeaturedImg(_embedded);
@@ -12,7 +12,7 @@ function ReviewItem({
   return <div className='review-item'>
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img className='review-item__image' {...{ src }} />
-      <div className='review-item__release'>{title}</div>
+      <div className='review-item__release'>{title.rendered || title[0]}</div>
       <div className='review-item__artist'>{artist}</div>
     </SamePageAnchor>
   </div>;
