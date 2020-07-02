@@ -13,7 +13,7 @@ export default function HomeContentReviewsItem({
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img className='home__reviews-img' src={src} />
       <p className='home__title'>{artist}</p>
-      <p className='home__subtitle'>{title}</p>
+      <p className='home__subtitle'>{title.rendered || title[0]}</p>
     </SamePageAnchor>
   </div>;
 }
