@@ -14,7 +14,7 @@ function ReviewItem({
       <img className='review-item__image' {...{ src }} />
       <div className='review-item__release'>{(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
         return String.fromCharCode(parseInt(p1, 10));
-      })}</div>
+      }).replace(artist + ' - ', '')}</div>
       <div className='review-item__artist'>{artist}</div>
     </SamePageAnchor>
   </div>;
