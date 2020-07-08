@@ -18,7 +18,7 @@ function ReviewPage() {
 
   if (review) {
     let {
-      _embedded, title, artist: [artist], rating: [rating],
+      _embedded, title, artist: [artist], rating: [rating], label: [label],
       date_gmt: submitted, content: { rendered: content }
     } = review;
 
@@ -37,6 +37,9 @@ function ReviewPage() {
         <div className='review-page__copy'>
           <h4 className='review-page__rating'>
             {`${formattedRating(rating)} / 5.0`}</h4>
+          <div className='review-page__byline'>
+            {label}
+          </div>
           <div className='review-page__byline'>
             {new Date(submitted).toDateString()}
           </div>
