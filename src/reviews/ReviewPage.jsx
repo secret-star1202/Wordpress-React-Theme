@@ -30,7 +30,7 @@ function ReviewPage() {
       }).replace(artist + ' - ', '')}" by ${artist}`} image={src}
         headerText={`${(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
           return String.fromCharCode(parseInt(p1, 10));
-        }).replace(artist + ' - ', '')}\n${artist}`}/>,
+        }).replace(artist + ' - ', '')}`}/>,
       <BackButton className='review__link' href='reviews' text='all reviews' />,
       <div className="review__content">
         <img className='review-page__image' {...{ src }} />
