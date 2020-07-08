@@ -17,7 +17,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
 .reviews__content{
   padding:20px 60px 30px;
 }
-.alumni__container {
+.page-id-101 .page__content {
   width: 1300px;
   margin: auto;
 }
@@ -2136,7 +2136,7 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  padding-right: 550px;
+  padding-right: 950px;
   color: #1c1c1c;
   float: left;
 }
