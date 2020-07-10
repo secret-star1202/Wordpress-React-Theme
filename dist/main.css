@@ -263,7 +263,8 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   border-style:solid;
 }
 .review-page__rating {
-  float:left;margin:0 15px 10px 0;
+  margin:0 15px 10px 0;
+  float:left;
 }
 .playlist td{
   padding:10px;
@@ -622,8 +623,13 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
     margin-right: 25px;
   }
 }
-.review-page__byline{color:#999;font-style:italic;}
-.review-page__byline{margin-bottom:8px;}
+.review-page__byline {
+  color:#999;
+  font-style:italic;
+}
+.review-page__byline {
+  margin-bottom:8px;
+}
 .pagination{list-style-type:none;text-align:center;}
 .pagination .page{
   display:inline-block;;

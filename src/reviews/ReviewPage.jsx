@@ -35,13 +35,13 @@ function ReviewPage() {
       <div className="review__content">
         <img className='review-page__image' {...{ src }} />
         <div className='review-page__copy'>
-          <h4 className='review-page__rating'>
+          <h4>
             {`${formattedRating(rating)} / 5.0`}</h4>
           <div className='review-page__byline'>
             {label}
           </div>
           <div className='review-page__byline'>
-            {new Date(submitted).toDateString()}
+            Posted on {new Date(submitted).toDateString()}
           </div>
           <ContentBox className='review-page__body' {...{ content }}/>
         </div>
