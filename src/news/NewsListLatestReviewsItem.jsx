@@ -4,7 +4,7 @@ import { getFullUrl, getFeaturedImg } from '../utils/url_utils';
 
 export default function NewsListLatestReviewsItem({
   review: {
-    slug, artist: [artist], title: [title], _embedded
+    slug, artist: [artist], title, _embedded
   }
 }) {
   let src = getFeaturedImg(_embedded);
@@ -12,7 +12,10 @@ export default function NewsListLatestReviewsItem({
   return <div className='news-list__latest-review'>
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img {...{ src }} />
-      <p><b>{artist}</b></p><p>{title}</p>
+      <p><b>{artist}</b></p>
+      <p>{(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
+        return String.fromCharCode(parseInt(p1, 10));
+      }).replace(new RegExp(artist + ' – ', 'i'), '')}</p>
     </SamePageAnchor>
   </div>;
 }
