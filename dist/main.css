@@ -1131,13 +1131,19 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   vertical-align: top;
   margin-bottom: 50px;
   width:100%;
-  padding: 20px 25% 0 25%;
+  padding: 20px 12.5% 0 12.5%;
 }
 .events-list__event-item{padding-bottom:30px;}
 @media (max-width:867px){
   .events-list__calendar{width:100%;margin-left:0;}
   .day{min-width:calc(100% / 7);max-width:calc(100% / 7);}
   .events-list__event-item,.events-list__over{width:100%;}
+}
+@media (min-width:868px){
+  .events-list__calendar{width:50%;margin-left:0;padding:0;}
+  .day{min-width:calc(100% / 7);max-width:calc(100% / 7);}
+  .events-list__event-item{width:100%;}
+  .events-list__over{width:50%;}
 }
 .events-list__calendar > div{height:fit-content;}
 .event_title {

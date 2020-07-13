@@ -99,7 +99,7 @@ export default function ({ events }) {
   let { current } = state;
 
   return <Frame>
-        <table style={{ minWidth: '100%', maxWidth: '100%' }}>
+        <table style={{ minWidth: '100%', maxWidth: '100%', display: 'table' }}>
           <thead>
             <tr style={{ height: '50px' }}>
               <td>
