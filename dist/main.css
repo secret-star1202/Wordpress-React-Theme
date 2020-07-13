@@ -1130,7 +1130,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   display: inline-block;
   vertical-align: top;
   margin-bottom: 50px;
-  padding: 20px 0 0 80px;
+  padding: 20px 0 0 25%;
 }
 .events-list__event-item{padding-bottom:30px;}
 @media (max-width:867px){

@@ -15,7 +15,7 @@ export default function HomeContentReviewsItem({
       <p className='home__title'>{artist}</p>
       <p className='home__subtitle'>{(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
         return String.fromCharCode(parseInt(p1, 10));
-      }).replace(artist + ' - ', '')}</p>
+      }).replace(new RegExp(`${artist} – `, 'i'), '')}</p>
     </SamePageAnchor>
   </div>;
 }
