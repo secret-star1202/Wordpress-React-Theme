@@ -25,10 +25,10 @@ function ReviewPage() {
     let src = getFeaturedImg(_embedded);
 
     return [
-      <HeadStuff title={`Review of "${(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
+      <HeadStuff title={`Review of "${(title.rendered || title[0]).replace(/&#(\d+);/g, function (match, p1) {
         return String.fromCharCode(parseInt(p1, 10));
       }).replace(artist + ' - ', '')}" by ${artist}`} image={src}
-        headerText={`${(title.rendered || title[0]).replace(/&#(\d+);/, function (match, p1) {
+        headerText={`${artist} - ${(title.rendered || title[0]).replace(/&#(\d+);/g, function (match, p1) {
           return String.fromCharCode(parseInt(p1, 10));
         }).replace(artist + ' - ', '')}`}/>,
       <BackButton className='review__link' href='reviews' text='all reviews' />,
