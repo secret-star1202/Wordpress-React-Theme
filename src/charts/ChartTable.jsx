@@ -4,9 +4,22 @@ function parse(data) {
   let retval = [], lines = data.split('\n');
   for (let l = 0; l < lines.length; l++) {
     if (lines[l].length) {
-      retval.push(lines[l].replace(/\\,/g, '，').split(',').map(
-        (line) => line.replace(/，/g, ',')
-      ));
+      let line = lines[l].replace(/\\,/g, '，').split(',').map(
+        (ln) => ln.replace(/，/g, ',')
+      );
+
+      if (line.length === 5) {
+        let realLine = [];
+        let i = 0;
+        for (i; i < 5; i++) {
+          if (line[i].startsWith(' ')) {
+            realLine[realLine.length - 1] = `${line[i].substring(1)} ${realLine[realLine.length - 1]}`;
+          } else realLine.push(line[i]);
+        }
+        line = realLine;
+      }
+
+      retval.push(line);
     }
   }
   return retval;
