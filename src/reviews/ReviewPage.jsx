@@ -18,19 +18,15 @@ function ReviewPage() {
 
   if (review) {
     let {
-      _embedded, title, artist: [artist], rating: [rating], label: [label],
+      _embedded, album: [album], artist: [artist], rating: [rating], label: [label],
       date_gmt: submitted, content: { rendered: content }
     } = review;
 
     let src = getFeaturedImg(_embedded);
 
     return [
-      <HeadStuff title={`Review of "${(title.rendered || title[0]).replace(/&#(\d+);/g, function (match, p1) {
-        return String.fromCharCode(parseInt(p1, 10));
-      }).replace(artist + ' - ', '')}" by ${artist}`} image={src}
-        headerText={`${artist} - ${(title.rendered || title[0]).replace(/&#(\d+);/g, function (match, p1) {
-          return String.fromCharCode(parseInt(p1, 10));
-        }).replace(artist + ' - ', '')}`}/>,
+      <HeadStuff title={`Review of "${album}" by ${artist}`} image={src}
+        headerText={`${artist} - ${album}`}/>,
       <BackButton className='review__link' href='reviews' text='all reviews' />,
       <div className="review__content">
         <img className='review-page__image' {...{ src }} />

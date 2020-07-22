@@ -53,3 +53,6 @@ register_meta('review', 'rating', array(
 register_meta('review', 'year', array(
   'show_in_rest' => true
 ));
+register_meta('review', 'album', array(
+  'show_in_rest' => true
+));

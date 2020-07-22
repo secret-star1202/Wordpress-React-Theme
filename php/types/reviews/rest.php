@@ -21,6 +21,12 @@
                     }
                 ));
 
+            register_rest_field('review', 'album', array(
+              'get_callback' => function ($obj) {
+                  return get_post_meta($obj['id'], 'album');
+              }
+            ));
+
             register_rest_field('review', 'img_url', array(
                         'get_callback' => 'get_rest_featured_image'
                     )

@@ -4,7 +4,7 @@ import { getFullUrl, getFeaturedImg, getImgAsset } from '../utils/url_utils';
 
 export default function HomeContentReviewsItem({
   item: {
-    _embedded, slug, artist, title
+    _embedded, slug, artist: [artist], album: [album]
   }
 }) {
   let src = getFeaturedImg(_embedded, getImgAsset('mstile-310x310.png'));
@@ -13,9 +13,7 @@ export default function HomeContentReviewsItem({
     <SamePageAnchor href={getFullUrl(`reviews/${slug}`)}>
       <img className='home__reviews-img' src={src} />
       <p className='home__title'>{artist}</p>
-      <p className='home__subtitle'>{(title.rendered || title[0]).replace(/&#(\d+);/g, function (match, p1) {
-        return String.fromCharCode(parseInt(p1, 10));
-      }).replace(new RegExp(`${artist.replace(/ $/, '')}  [-–] `, 'i'), '')}</p>
+      <p className='home__subtitle'>{album}</p>
     </SamePageAnchor>
   </div>;
 }
