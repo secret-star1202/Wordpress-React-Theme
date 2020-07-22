@@ -15,7 +15,7 @@ export default function () {
           <h4>The North American College & Community Chart</h4>
           <div className="charts__text">The North American College & Community Chart (NACC) represents the top 30 most
             played albums at KTUH over a seven day period. Every week, Music Directors from college radio stations
-            around the country send their charts to the NACC where they are compiled weekly into a national
+            around the country send their charts to the NACC where they are compiled into a national
             <a className="charts__link" href="https://naccchart.com/charts"> chart. </a>
             NACC’s top 200 chart provides a broad view of albums popular at college and
             community stations across the country. NACC also publishes

@@ -13,7 +13,7 @@ export default function () {
 
   if (chart) {
     let { chart_table, title: { rendered: title } } = chart;
-    return [<HeadStuff {...{ title }} />,
+    return [<HeadStuff title="NACC Charts" />,
       <BackButton className='review__link' href='charts' text="Back To Latest Chart" />,
         <div className="news-list__wrapper">
       <div className="charts__content-static">
