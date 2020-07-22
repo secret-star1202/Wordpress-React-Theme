@@ -1,5 +1,12 @@
 import React from 'react';
 
+function cap(str) {
+  if (str.indexOf(' ') <= -1) {
+    return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
+  }
+  return str.split(' ').map(cap).join(' ');
+}
+
 function parse(data) {
   let retval = [], lines = data.split('\n');
   for (let l = 0; l < lines.length; l++) {
@@ -33,7 +40,8 @@ export default function ({ data }) {
       <tr className="playlist__info-row">{header.map((col) => <td>{col}</td>)}</tr>
     </thead>
     <tbody>
-      {body.map((row) => <tr>{row.map((col) => <td>{col.replace(/"/g, '')}</td>)}</tr>)}
+      {body.map((row) => <tr>{row.map((col, i) => <td>{i === 1 ?
+        cap(col.replace(/"/g, '')) : col.replace(/"/g, '')}</td>)}</tr>)}
     </tbody>
   </table>;
 }
