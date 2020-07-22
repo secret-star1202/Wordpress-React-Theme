@@ -5,8 +5,8 @@
   url('/fonts/icomoon.svg#icomoon')format('svg');font-weight:normal;font-style:normal;}
 body{background:#fff;color:#333;font-family:'alda',sans-serif;margin:0;}
 img{max-width:100%;height:auto;}a,a:hover,a:focus{color:#333;}a:hover{text-decoration:none;}
-h1{font-size:3em;}h2{font-size:2.25em;}h3{font-size:1.75em;}h4{font-size:1.125em;}
-h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-serif;font-weight:900;}
+h1{font-size:3em;}h2{font-size:2.25em;}h3{font-size:1.75em;}h4{font-size:1.395em;}
+h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-serif;font-weight:900;} p{font-size: 15px;}
 .caps{text-transform:uppercase;}.container{width:100%;max-width:1920px;padding:0;}
 .spacer-lg{height:100vh;max-height:1080px;width:0;}.footer,#main{z-index:10;}
 #main{position:relative;min-height:80vh;padding:0;background:#fff;}
@@ -795,6 +795,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
   font-weight:900;
 }
 .page__content p {
+  font-size: 16px;
   padding: 5px 140px 0 60px;
 }
 .alumni__img img{display:block;margin:0 auto;}
@@ -1009,7 +1010,7 @@ h5,.sm{font-size:.875em;}h1,h2,h3,h4,h5{font-family:'nimbus-sans-extended',sans-
     padding:8px 15px 8px 20px;
   }
   .home__reviews-item {width:30%;float:left;}
-  .home__news-item,.news-list__post{width:100%;float:left;}
+  .home__news-item,.news-list__post{width:250px;float:left;}
   .resend__content{margin:10px 40px;}
   .home__featured-photo{width:97%;margin-bottom:25px;}
   .home__featured-item{width:100%;padding:2px 0;}
@@ -1786,7 +1787,7 @@ input[placeholder=Search]{padding:15px;font-size:16px;margin-bottom:15px;}
 }
 table {
   width: 100%;
-  display: block;
+  display: table;
 }
 .show-item__time-div, .show-item__end-time-div {
   text-align: center;
@@ -2248,4 +2249,45 @@ input[type=range] {
 .charts__sidebar {
   font-size: 16px;
   padding: 10px 0 10px 0;
+}
+.charts__sidebar-list {
+  list-style: none;
+}
+.charts__icon {
+  padding-left: 15px;
+}
+.home__reviews-img {
+  height: 140px;
+  width: 160px;
+}
+@media (max-width: 768px) {
+  .home__reviews-img {
+    height: 140px;
+    width: 160px;
+  }
+}
+.charts__text {
+  font-size: 15px;
+  padding: inherit;
+  margin-bottom: 50px;
+}
+.charts__link {
+  font-weight: bold;
+}
+@media (max-width: 1041px) {
+  .charts__pad {
+    padding: 50px;
+  }
+}
+.charts__pad {
+  padding: 20px;
+}
+#charts__item-icon {
+  padding-left: 15px;
+}
+.charts__list-item {
+  list-style: none;
+}
+.charts__item-title {
+
 }
