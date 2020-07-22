@@ -26,7 +26,7 @@ export default function () {
           </div>
         </div>
         <div className="playlist-list__latest">
-          <h3 className="playlist__show-name">Latest Chart: {charts[0].title.rendered.replace('NACC Charts ', '')}</h3>
+          <h3 className="playlist__show-name">Latest Chart: {charts[0].title.rendered.replace('NACC Charts ' || 'NACC Chart ', '')}</h3>
           <ChartTable data={charts[0].chart_table[0] } />
         </div>
         <div className="charts__pad"></div>

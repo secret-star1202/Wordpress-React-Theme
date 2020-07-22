@@ -1124,11 +1124,22 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   padding-right: 15px;
   display:inline-block;
 }
+@media (max-width:1036px) {
+  .event__name {
+    width: 80%;
+    text-decoration: underline black;
+    margin-top: 0;
+    font-size: 22px;
+    font-family: 'nimbus-sans-extended', sans-serif;
+    text-align: left;
+    font-weight: 900;
+  }
+}
 .event__name {
   width: 100%;
   text-decoration: underline black;
   margin-top: 0;
-  font-size: large;
+  font-size: 22px;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-align: left;
   font-weight: 900;
@@ -1142,7 +1153,11 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
 }
 .events-list__event-item{padding-bottom:30px;}
 @media (max-width:867px){
-  .events-list__calendar{width:100%;margin-left:0;}
+  .events-list__calendar{
+    width:100%;
+    margin-left:0;
+    display: none;
+  }
   .day{min-width:calc(100% / 7);max-width:calc(100% / 7);}
   .events-list__event-item,.events-list__over{width:100%;}
 }
@@ -2245,6 +2260,7 @@ input[type=range] {
 }
 .event_title_description {
   margin-bottom: 5px;
+  font-size: 16px;
 }
 .charts__sidebar {
   font-size: 16px;
@@ -2273,6 +2289,7 @@ input[type=range] {
 }
 .charts__link {
   font-weight: bold;
+  color: #5940DE;
 }
 @media (max-width: 1041px) {
   .charts__pad {
@@ -2288,6 +2305,7 @@ input[type=range] {
 .charts__list-item {
   list-style: none;
 }
-.charts__item-title {
-
+.policy__list {
+  float:  right;
+  list-style: circle;
 }
