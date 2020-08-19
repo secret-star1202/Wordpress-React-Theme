@@ -150,7 +150,7 @@ export default function ({ events }) {
                             {day[1].map(function ({
                               link, title, location, start
                             }) {
-                              return <li style={{ listStyle: 'none' }}>
+                              return <li style={{ listStyle: 'none', fontWeight: 'bold' }}>
                                 <HoverLink href={link} title={`${title} @ ${location}`}>
                                   {toLocalStr(start)}
                                 </HoverLink></li>;
