@@ -25,11 +25,17 @@
             'public' => true,
             'has_archive' => false,
             'show_in_rest' => true,
+            'rewrite' => array(
+              'slug' => 'charts',
+              'with_front' => false
+            ),
             'register_meta_box_cb' => function ($post) {
                 add_meta_box('chart_table', 'Chart Table', 'chart_meta', 'chart', 'side', 'low');
             }
         )
     );
+
+    flush_rewrite_rules();
 
     register_meta('chart', 'chart_table', array(
         'show_in_rest' => true

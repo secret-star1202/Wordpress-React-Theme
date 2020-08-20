@@ -1,4 +1,8 @@
 <?php
+function parse_csv($contents) {
+  return explode("\n", $contents);
+}
+
 function save_chart_metadata($id)
 {
     if (isset($_POST['post_type'])) {
@@ -14,7 +18,7 @@ function save_chart_metadata($id)
         $uploaded_type = $arr_file_type['type'];
         if (in_array($uploaded_type, $supported_types)) {
             $upload = file_get_contents($_FILES['chart_csv']['tmp_name']);
-            update_post_meta($id, 'chart_table', $upload);
+            update_post_meta($id, 'chart_table', parse_csv($upload));
         } else {
             wp_die('The file you\'ve uploaded is not a CSV.');
         }

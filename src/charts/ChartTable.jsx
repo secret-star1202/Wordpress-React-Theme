@@ -33,15 +33,21 @@ function parse(data) {
 }
 
 export default function ({ data }) {
-  let tableVals = parse(data), [header, ...body] = tableVals;
+  let tableVals = typeof data === 'string' ? parse(data) : data,
+    [header, ...body] = tableVals;
+  console.log(tableVals);
 
   return <table className="playlist">
     <thead>
-      <tr className="playlist__info-row">{header.map((col) => <td>{col}</td>)}</tr>
+      <tr className="playlist__info-row">{header.split(',').map(
+        (col) => <td>{col}</td>
+      )}</tr>
     </thead>
     <tbody>
-      {body.map((row) => <tr>{row.map((col, i) => <td>{i === 1 ?
-        cap(col.replace(/"/g, '')) : col.replace(/"/g, '')}</td>)}</tr>)}
+      {body.map((row) => <tr>{row.split(',').map(
+        (col, i) => <td>{i === 1
+          ? cap(col.replace(/"/g, '')) : col.replace(/"/g, '')}</td>
+      )}</tr>)}
     </tbody>
   </table>;
 }
