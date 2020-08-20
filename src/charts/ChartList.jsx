@@ -27,7 +27,15 @@ export default function () {
         </div>
         <div className="playlist-list__latest">
           <h3 className="playlist__show-name">Latest Chart: {charts[0].title.rendered.replace('NACC Charts ' || 'NACC Chart ', '')}</h3>
-          <ChartTable data={charts[0].chart_table[0] } />
+          {charts[0].chart_table[0].indexOf(String.fromCharCode(13)) > -1
+            ? [
+                <h1>Top Adds</h1>,
+                <ChartTable data={charts[0].chart_table[0].slice(0, charts[0].chart_table[0].indexOf(String.fromCharCode(13)))} />,
+                <h1>Top 30</h1>,
+                <ChartTable data={charts[0].chart_table[0].slice(charts[0].chart_table[0].indexOf(String.fromCharCode(13)) + 1)} />
+            ]
+            : <ChartTable data={charts[0].chart_table[0]} />
+          }
         </div>
         <div className="charts__pad"></div>
         <div className="playlist__sidebar">

@@ -18,12 +18,14 @@ export default function () {
         <div className="news-list__wrapper">
       <div className="charts__content-static">
         <h3 className="playlist__show-name">{title}</h3>
-        {chart_table.length > 31 ?
-          [
-              <ChartTable data={chart_table[0].slice(0, chart_table[0].indexOf(''))} />,
-              <ChartTable data={chart_table[0].slice(chart_table[0].indexOf(''))} />
-          ] :
-          <ChartTable data={chart_table[0]} />
+        {chart_table[0].indexOf(String.fromCharCode(13)) > -1
+          ? [
+              <h1>Top Adds</h1>,
+              <ChartTable data={chart_table[0].slice(0, chart_table[0].indexOf(String.fromCharCode(13)))} />,
+              <h1>Top 30</h1>,
+              <ChartTable data={chart_table[0].slice(chart_table[0].indexOf(String.fromCharCode(13)) + 1)} />
+          ]
+          : <ChartTable data={chart_table[0]} />
         }
       </div>
         </div>
