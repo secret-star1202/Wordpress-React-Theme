@@ -18,7 +18,7 @@ export default function PodcastList() {
     <div className="podcast-grid__cover">
       <div className='grid__container'>
         {podcasts.map(({ slug, photo, title }) => (
-        <PodcastListItem href={slug} src={photo} name={title} />))};
+        <PodcastListItem href={slug} src={photo[0]} name={title} />))};
         <PodcastListItem href='https://soundcloud.com/ktuh/sets/ktuh-news' src='https://ktuh.org/wp-content/uploads/2020/07/news.png' name="KTUH News" />
         <PodcastListItem href='https://soundcloud.com/ktuh/sets/speaking-science' scr='https://ktuh.org/wp-content/uploads/2020/08/Speaking-Science-by-KTUH.png' name="Speaking Science" />
         <PodcastListItem href='https://soundcloud.com/ktuh/sets/talk-shows' src='https://ktuh.org/wp-content/uploads/2020/08/talkshows.png' name="Hawai'i AgDiscovery Program" />
