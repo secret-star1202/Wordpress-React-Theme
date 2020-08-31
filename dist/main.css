@@ -2099,6 +2099,11 @@ input[type=range] {
   float: left;
   margin-left: 60px;
 }
+@media (max-width: 840px) {
+  .show-links {
+    display: none;
+  }
+}
 .show-links {
   padding-top: 25px;
   font-size: 28px;
@@ -2163,6 +2168,7 @@ input[type=range] {
 }
 .show-page__playlist {
   padding-right: 950px;
+  padding-bottom: 30px;
   color: #1c1c1c;
   float: left;
 }
