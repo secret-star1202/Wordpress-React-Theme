@@ -1,7 +1,38 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useReducer } from 'react';
 import { getImgAsset } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as EyesorePlayButton } from './EyesorePlayButton';
+
+function genRandom(max) {
+  return Math.ceil(Math.random() * max);
+}
+
+function useRandomNumberQueue(max, interval, callback) {
+  let int, [state, dispatch] = useReducer((queue, action) => {
+    if (action.type === 'enqueue') {
+      queue.push(action.payload);
+      callback(queue[0]);
+      queue = queue.slice(1);
+    }
+    return queue;
+  }, [genRandom(max),
+    genRandom(max),
+    genRandom(max)]);
+
+  useEffect(function () {
+    int = setInterval(function () {
+      let num = genRandom(max);
+      dispatch({ payload: num, type: 'enqueue' });
+    }, interval);
+
+    return function cleanup() {
+      clearInterval(int);
+      int = null;
+    };
+  }, []);
+
+  return state;
+}
 
 function LandingInfo() {
   let { currentShow, nowPlaying } = useApiRequest({
@@ -42,18 +73,10 @@ function LandingInfo() {
 }
 
 function Landing() {
-  let int = useRef(), [bg, setBg] = useState(Math.ceil(Math.random() * 12));
-
-  useEffect(function () {
-    int = setInterval(function () {
-      setBg(Math.ceil(Math.random() * 12));
-    }, 9000);
-
-    return function cleanup() {
-      clearInterval(int);
-      int = null;
-    };
-  }, []);
+  let [bg, setBg] = useState(Math.ceil(Math.random() * 12)),
+    bgQueue = useRandomNumberQueue(12, 9000, function (bg_) {
+      setBg(bg_);
+    });
 
   function background() {
     return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
