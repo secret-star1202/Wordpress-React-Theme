@@ -44,7 +44,8 @@ register_rest_route('wp/v2', '/g_cal', array(
             $key = get_option('spinitron_key');
             $show = curl_ting("https://spinitron.com/api/shows?access-token=" . $key . "&count=1&expand=personas", true);
             $playlist_data = curl_ting("https://spinitron.com" . $show['items'][0]["_links"]["playlists"]["href"] . "&count=1", true);
-            $spins = curl_ting($playlist_data['items']['0']["_links"]["spins"]["href"] . "&count=200")['items'];
+            $spins = curl_ting($playlist_data['items'][0]["_links"]["spins"]["href"] . "&count=200", true);
+            $playlist = $spins['items'];
             $slug = '';
             $ps = get_posts(array(
               'posts_per_page' => -1,
@@ -57,6 +58,7 @@ register_rest_route('wp/v2', '/g_cal', array(
                 )
               )
             ));
+
             if ($ps) {
               foreach($ps as $p) {
                 $slug = $p->post_name;
@@ -66,7 +68,7 @@ register_rest_route('wp/v2', '/g_cal', array(
             return new \WP_REST_Response(array(
                 'show' => $show['items'][0],
                 'slug' => $slug,
-                'playlist' => $spins
+                'playlist' => $playlist
             ), 200);
         }
     ));
