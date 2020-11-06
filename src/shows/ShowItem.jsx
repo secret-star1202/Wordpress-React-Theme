@@ -12,7 +12,7 @@ export default function ShowItem({
   let startDate = toLocalStr(parseDate(start)),
     endDate = toLocalStr(parseDate(end)),
     fmtStr = `${startDate} - ${endDate}`,
-    djs = personas.length > 2 ? [
+    djs = personas !== null ? (personas.length > 2 ? [
       personas[0].slug
         ? <SamePageAnchor href={getFullUrl(`profile/${personas[0].slug}`)}>{personas[0].name}</SamePageAnchor>
         : personas[0].name, ' and ',
@@ -21,9 +21,9 @@ export default function ShowItem({
         : personas[1].name,
       'and others'] : personas.map(({
       name, slug: djSlug
-    }) => (djSlug ? <SamePageAnchor href={getFullUrl(`profile/${djSlug}`)}>{name}</SamePageAnchor> : name));
+    }) => (djSlug ? <SamePageAnchor href={getFullUrl(`profile/${djSlug}`)}>{name}</SamePageAnchor> : name))) : null;
 
-  if (djs.length === 2) {
+  if (djs && djs.length === 2) {
     djs = [djs[0], ' and ', djs[1]];
   }
 
@@ -38,7 +38,7 @@ export default function ShowItem({
       <div className='show-item__info'>
         <h5 className='show-item__info-time'>{fmtStr}</h5>
         <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4>
-        <h6 className="show-item__host">Hosted by {djs}</h6>
+        {personas ? <h6 className="show-item__host">Hosted by {djs}</h6> : null}
         {description ? <div className="show-item__summary">
             {renderSummary(description, 15)}</div> : null}
       </div>
