@@ -22,6 +22,8 @@ export default function NewsPage() {
     <div className='news-item'>
       <div className='review-page__byline'>
         By {author}
+      </div>
+      <div className='review-page__byline'>
         {new Date(date).toDateString()}
       </div>
       <ContentBox className='news-item__body' {...{ content }} />
