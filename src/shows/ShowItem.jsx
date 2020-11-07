@@ -37,7 +37,7 @@ export default function ShowItem({
     <td className='show-item__info-container'>
       <div className='show-item__info'>
         <h5 className='show-item__info-time'>{fmtStr}</h5>
-        {slug ? <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4> : <h4><SamePageAnchor href={getFullUrl(`not-found`)}>{title}</SamePageAnchor></h4>}
+        {slug ? <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4> : <h4><SamePageAnchor href={getFullUrl(`join-ktuh`)}>{title}</SamePageAnchor></h4>}
         {personas ? <h6 className="show-item__host">Hosted by {djs}</h6> : null}
         {description ? <div className="show-item__summary">
             {renderSummary(description, 15)}</div> : null}
