@@ -13,8 +13,11 @@ export default function PodcastList() {
   if (podcasts.length) {
     return [<HeadStuff title="KTUH Podcasts" />,
     <h4 className="podcast-page__desc">
-      Student run podcasts from the only station that loves you. Streaming all the time on Apple Podcasts, Spotify, Soundcloud, Google Play and everywhere podcasts are heard.
-    </h4>,
+      Student run podcasts from the only station that loves you. Streaming all the time on Apple Podcasts,
+      Spotify, Soundcloud, Google Play and everywhere podcasts are heard.</h4>,
+    <div className='grid__item__submit'>
+      <div className='submit__podcast'><h3><SamePageAnchor href={getFullUrl('submit-podcasts')}>
+        Submit a podcast</SamePageAnchor></h3></div></div>,
     <div className="podcast-grid__cover">
       <div className='grid__container'>
         {podcasts.map(({ slug, photo, title }) => (
@@ -25,10 +28,7 @@ export default function PodcastList() {
         <PodcastListItem href='https://soundcloud.com/ktuh/sets/student-sustainability' src='https://ktuh.org/wp-content/uploads/2020/08/studentsustai.png' name="Student Sustainability Coalition Roundtable" />
         <PodcastListItem href='https://soundcloud.com/ktuh' name="More Podcasts" />
       </div>
-    </div>,
-    <div className='grid__item__submit'>
-    <div className='submit__podcast'><h3><SamePageAnchor href={getFullUrl('submit-podcasts')}>
-          Submit a podcast</SamePageAnchor></h3></div></div>];
+    </div>];
   }
   return null;
 }

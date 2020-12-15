@@ -1094,13 +1094,13 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   background-color: #5940DE;
   color: white;
   height: 100%;
-  width: 1475px;
-  margin: 20px 21px 60px 60px;
+  width: 100%;
+  margin: 60px 21px 60px 350px;
   border-radius: 3px;
   text-align: center;
   padding-right: 300px;
   padding-bottom: 10px;
-  max-width: 1440px;
+  max-width: 1000px;
 }
 
 .submit__podcast a {
@@ -2127,7 +2127,7 @@ input[type=range] {
   margin-left: 58px;
   padding-right: 70px;
   padding-left: 55px;
-  max-width: 1500px;
+  max-width: 1680px;
   padding-top: 15px;
 }
 .podcast-page__photo {
