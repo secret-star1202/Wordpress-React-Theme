@@ -2172,7 +2172,9 @@ input[type=range] {
   width: 400px;
 }
 .show-page__playlist {
-  padding-right: 950px;
+  width: 100%;
+  height: 100%;
+  padding-right: 50px;
   padding-bottom: 30px;
   color: #1c1c1c;
   float: left;

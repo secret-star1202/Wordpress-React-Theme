@@ -52,7 +52,7 @@ export default function PlaylistTable({ tracks }) {
         <td><b>Song</b></td>
       </tr>
     </thead>
-    <tbody style={{ display: 'block', maxHeight: '1000px', maxWidth: '900px', overflow: 'scroll' }}>
+    <tbody style={{ display: 'block', maxHeight: '1000px', maxWidth: '560px', overflow: 'scroll' }}>
       {songsSorted().map(({
         start, artist, song
       }) => <tr>
