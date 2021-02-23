@@ -11,7 +11,7 @@ import { PodcastList, PodcastItem, SubmitPodcast } from '../podcasts';
 import { default as NotFound } from './NotFound';
 import { default as PagesItem } from '../pages/PagesItem';
 import {
-  FAQ, Timeline, MNL, Donate
+  FAQ, Timeline, MNL
 } from '../static_pages';
 import { default as StaffMembersListContent } from '../staffmembers/StaffMembersListContent';
 import { ShowSchedule, ShowPage } from '../shows';
@@ -36,7 +36,6 @@ export default [
   { path: ['/chart', '/charts'], component: ChartList },
   { path: '/staff', component: StaffMembersListContent },
   { path: '/faq', component: FAQ },
-  { path: '/donate', component: Donate },
   { path: '/not-found', component: NotFound },
   { path: '/:slug', component: PagesItem },
   { path: '/', component: Home }
