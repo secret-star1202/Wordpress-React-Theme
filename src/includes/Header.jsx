@@ -28,14 +28,13 @@ export default function () {
     <div className='collapse navbar-collapse' id='navigation'>
       <HeaderMenu />
       <Navbar addClassName='navbar-right' nodes={[
-        <SamePageAnchor className='header__support-link' {...{ href }} >
+        <a className='header__support-link' {...{ href }} >
           <button type='button' className='btn btn-md header__support-btn'>
             <span>
-              <SamePageAnchor className='header__support-link' {...{ href }}>
-                DONATE</SamePageAnchor>
+              <a className='header__support-link' {...{ href }}>DONATE</a>
             </span>
           </button>
-        </SamePageAnchor>]}>
+        </a>]}>
       </Navbar>
       <Navbar nodes={[<StreamPlayer />]}></Navbar>
     </div>
