@@ -8,7 +8,7 @@ import { default as IconBar } from './IconBar';
 
 export default function () {
   let siteUrl = document.querySelector('link[rel="basename"]').href,
-    href = getFullUrl('donate');
+    href = getFullUrl('radiothon');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>
@@ -31,7 +31,7 @@ export default function () {
         <a className='header__support-link' {...{ href }} >
           <button type='button' className='btn btn-md header__support-btn'>
             <span>
-              <a className='header__support-link' {...{ href }}>DONATE</a>
+              <a className='header__support-link' target='_blank' {...{ href }}>DONATE</a>
             </span>
           </button>
         </a>]}>

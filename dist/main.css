@@ -2093,7 +2093,9 @@ input[type=range] {
   font-weight: 900;
 }
 .banner.light {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
   margin-top: 4px;
 }
