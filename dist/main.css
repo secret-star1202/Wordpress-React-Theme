@@ -529,9 +529,8 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .home__byline{margin:20px 0;}
 .home__news-img {
   clear:both;
-  height: 250px;
-  width: 300px;
   margin:0 0 6px 0;
+  height: 250px;
 }
 .home__title {
   font-family:'alda', sans-serif;
