@@ -5,8 +5,16 @@ import { default as HomeContentNewsItem } from './HomeContentNewsItem';
 import { default as HomeContentReviewsItem } from './HomeContentReviewsItem';
 import { default as HomeContentPodcastItem } from './HomeContentPodcastItem';
 
+let mobile = false;
+
+if ((window.innerWidth <= 800) && (window.innerHeight <= 800)) {
+  mobile = true;
+}
+
 export default function () {
-  return <div className='content'><div className='home__main'>
+  return <div className='content'>
+    {mobile ? <HomeSidebar /> : null}
+    <div className='home__main'>
     <HomeContentSection outerDivClass='home__news' href='radioblog'
       apiUrl='posts' perPage={3} innerDivClass='home__news-content'
       headText='RADIOBLOG' moreText='NEWS' itemComp={HomeContentNewsItem} />
@@ -16,5 +24,5 @@ export default function () {
     <HomeContentSection outerDivClass='home__podcast' href='podcasts'
       apiUrl='podcast' perPage={1} innerDivClass='home__podcast-content'
       headText='PODCASTS' moreText='PODCASTS' itemComp={HomeContentPodcastItem} /></div>
-    <HomeSidebar /></div>;
+    {!mobile ? <HomeSidebar /> : null}</div>;
 }
