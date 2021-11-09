@@ -41,7 +41,8 @@ export default function () {
           </p>
         </div>
       </div>
-      {events ? <div className='home__next-show'>
+    {events ? <div className='home__next-show'>
+      <a href={getFullUrl('events')}>
         <div className='home__next-show-deets'>
           <p className="home__next-on-air">Next Community Event</p>
           <p className='home__next-show-name'>
@@ -51,6 +52,7 @@ export default function () {
             {events.location}
           </p>
         </div>
+      </a>
       </div> : null}
     </div>;
 }

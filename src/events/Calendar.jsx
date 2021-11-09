@@ -99,12 +99,19 @@ export default function ({ events }) {
   let { current } = state;
 
   return <Frame>
-        <table style={{ minWidth: '100%', maxWidth: '100%', display: 'table' }}>
+    <table style={{ maxWidth: '700px', display: 'table', marginLeft: 'auto', marginRight: 'auto' }}>
           <thead>
-            <tr style={{ height: '50px' }}>
+            <tr style={{ height: '50px', paddingBottom: '20px' }}>
               <td>
-                <button style={{ width: '100%' }} onClick={lastMonth}>
-                  &lt;&lt; <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
+                <button
+                  onClick={lastMonth}
+                  style={{
+                    width: '100%',
+                    fontSize: '.875em',
+                    fontWeight: 'bold',
+                    backgroundColor: 'white'
+                  }}
+                > &lt;&lt; <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
                 </button>
               </td>
               <td style={{ textAlign: 'center' }}
@@ -114,10 +121,16 @@ export default function ({ events }) {
                   'December'][current.month]} ${current.year}`}
               </td>
               <td>
-                <button button style={{ width: '100%' }}
-                  onClick={nextMonth}>
-                  &gt;&gt; <VanishingSpan>NEXT MONTH</VanishingSpan>
-                </button>
+              <button
+                onClick={nextMonth}
+                style={{
+                  width: '100%',
+                  fontSize: '.875em',
+                  fontWeight: 'bold',
+                  backgroundColor: 'white'
+                }}
+              > &gt;&gt; <VanishingSpan>NEXT MONTH</VanishingSpan>
+              </button>
               </td>
             </tr>
             <tr>
@@ -138,9 +151,12 @@ export default function ({ events }) {
                         <div>
                           <p style={{
                             textAlign: 'right',
-                            margin: 0,
+                            width: 'fit-content',
+                            float: 'right',
+                            padding: '0 10px 0',
+                            borderRadius: '5px',
                             backgroundColor: dateMatch(current, day[0])
-                              ? 'black' : 'white',
+                              ? '#5940DE' : 'white',
                             color: dateMatch(current, day[0])
                               ? 'white' : 'black',
                           }}>
@@ -150,12 +166,8 @@ export default function ({ events }) {
                             {day[1].map(function ({
                               link, title, location, start
                             }) {
-                              return <li style={{ listStyle: 'none',
-                                fontWeight: 'bold',
-                                backgroundColor: 'rgba(89, 64, 222 50%)',
-                                padding: '0px 0 3px 5px',
-                                margin: '5px 0 0 0' }}>
-                                <HoverLink href={link} title={`${title} @ ${location}`}>
+                              return <li style={{listStyle: 'none', textDecoration:'underline'}}>
+                                <HoverLink style={{color: '#5940DE'}} href={link} title={`${title} @ ${location}`}>
                                   {toLocalStr(start)}
                                 </HoverLink></li>;
                             })}</ul> : ''}
