@@ -2138,6 +2138,7 @@ input[type=range] {
   align-items: center;
   font-weight: bold;
   margin-top: 4px;
+  text-decoration: underline;
 }
 .podcast__image {
   height: 250px;
@@ -2368,4 +2369,11 @@ input[type=range] {
 .policy__list {
   float:  right;
   list-style: circle;
+}
+.sparkles {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(transparent, transparent),
+              url(https://media.giphy.com/media/raJa0mPRFe8zC/giphy.gif) repeat;
+  background: -o-linear-gradient(transparent, transparent);
+  -webkit-background-clip: text;
 }
