@@ -7,9 +7,7 @@ import { default as HomeContentPodcastItem } from './HomeContentPodcastItem';
 
 let mobile = false;
 
-if ((window.innerWidth <= 800) && (window.innerHeight <= 800)) {
-  mobile = true;
-}
+window.innerWidth <= 770 ? mobile = true : null;
 
 export default function () {
   return <div className='content'>

@@ -6,7 +6,7 @@ import { queryToUrl } from '../utils/url_utils';
 function NewsListLatestReviews() {
   let reviews = useApiRequest([], `review?${queryToUrl({ _embed: '' })}`);
   return <div className='news-list__latest-reviews'>
-      <h4>LATEST REVIEWS</h4>
+      <h4>LATEST MUSIC REVIEWS</h4>
       {reviews.map((review) => <NewsListLatestReviewsItem {...{ review }} />)}
     </div>;
 }

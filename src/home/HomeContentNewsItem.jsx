@@ -19,8 +19,8 @@ export default function HomeContentNewsItem({
   }
 
   return <div className='home__news-item'>
-    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}><img
-      className='home__news-img' src={src} />
+    <SamePageAnchor href={getFullUrl(`radioblog/${slug}`)}>
+      <img className='home__news-img home-img' src={src} />
       <h4 className='home__title'>{title}</h4>
     </SamePageAnchor>
     <p className='home__synopsis'>
