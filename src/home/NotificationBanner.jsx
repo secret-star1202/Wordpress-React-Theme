@@ -8,6 +8,9 @@ export default function NotificationBanner() {
 
   return text && text.length ? <div className='banner-container'>
     <div />
-      <a className='banner light' target='_blank' {...{ href }}>{text}</a>
+      {/* Banner w/ Link TODO: include link field in PHP route
+        <a className='banner light' target='_blank' {...{ href }}>{text}</a> 
+      */}
+    <a className='banner light' target='_blank' >{text}</a>
     </div> : null;
 }
