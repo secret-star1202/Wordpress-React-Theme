@@ -8,7 +8,7 @@ import { default as IconBar } from './IconBar';
 
 export default function () {
   let siteUrl = document.querySelector('link[rel="basename"]').href,
-    href = getFullUrl('donate');
+  href = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>

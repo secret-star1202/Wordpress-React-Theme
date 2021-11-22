@@ -13,7 +13,7 @@ export default function () {
       });
       let evts = items.filter((
         { start: { dateTime } }
-      ) => +new Date(dateTime) > +new Date()).slice(0, 6);
+      ) => +new Date(dateTime) > +new Date()).slice(0, 24);
       fxn(evts);
     }
   });

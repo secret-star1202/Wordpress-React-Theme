@@ -167,7 +167,7 @@ export default function ({ events }) {
                               link, title, location, start
                             }) {
                               return <li style={{listStyle: 'none', textDecoration:'underline'}}>
-                                <HoverLink style={{color: '#5940DE'}} href={link} title={`${title} @ ${location}`}>
+                                <HoverLink style={{color: '#5940DE'}} href={link} target="_blank" title={`${title} @ ${location}`}>
                                   {toLocalStr(start)}
                                 </HoverLink></li>;
                             })}</ul> : ''}
