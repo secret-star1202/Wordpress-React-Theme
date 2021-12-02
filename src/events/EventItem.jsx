@@ -37,16 +37,18 @@ export default function ({
 
   if (href) descBody = description.replace(href, '').replace(href, '');
 
-  return <div className='events-list__event-item'>
-    <div className='title__wrapper'>
-      <h4 className='event__name'>{printDate(new Date(start))} |   {summary}</h4>
+  return (
+    <div className='events-list__event-item'>
+      <div className='title__wrapper'>
+        <h4 className='event__name'>{printDate(new Date(start))} | {summary}</h4>
+        {href ? <a href={href} target='_blank' className='events__more'><span>MORE INFO</span></a> : null}
+      </div>
       <div className='event__title'>
         {location && location.length
           ? `${formatTimes(start, end)} | ${parseAddress(location)}`
           : formatTimes(start, end)}
       </div>
+      <div className='event_title_description' dangerouslySetInnerHTML={{ __html: descBody }} />
     </div>
-    {href ? <a href={href} target='_blank' className='events__more'>MORE INFO{'  '}</a> : null}
-    <div className='event_title_description' dangerouslySetInnerHTML={{ __html: descBody }} />
-  </div>;
+  );
 }

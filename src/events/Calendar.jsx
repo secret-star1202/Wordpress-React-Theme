@@ -109,9 +109,10 @@ export default function ({ events }) {
                     width: '100%',
                     fontSize: '.875em',
                     fontWeight: 'bold',
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
+                    borderColor: '#5940DE'
                   }}
-                > &lt;&lt; <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
+                ><div className='clickme'>&lt;&lt;</div> <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
                 </button>
               </td>
               <td style={{ textAlign: 'center' }}
@@ -127,9 +128,10 @@ export default function ({ events }) {
                   width: '100%',
                   fontSize: '.875em',
                   fontWeight: 'bold',
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
+                  borderColor: '#5940DE'
                 }}
-              > &gt;&gt; <VanishingSpan>NEXT MONTH</VanishingSpan>
+              ><span className='clickme'>&gt;&gt;</span><VanishingSpan>NEXT MONTH</VanishingSpan>
               </button>
               </td>
             </tr>
@@ -156,7 +158,7 @@ export default function ({ events }) {
                             padding: '0 10px 0',
                             borderRadius: '5px',
                             backgroundColor: dateMatch(current, day[0])
-                              ? '#5940DE' : 'white',
+                              ? 'black' : 'white',
                             color: dateMatch(current, day[0])
                               ? 'white' : 'black',
                           }}>

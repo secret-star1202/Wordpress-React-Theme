@@ -590,13 +590,14 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   font-family:'nimbus-sans', sans-serif;
 }
 .events__more {
+  padding: .2rem 1rem 0.2rem .8rem;
+  flex-basis: fit-content;
   bottom: 35px;
-  padding: 3px 18px;
   font-size: .875em;
   font-weight: bold;
   background-color: white;
-  color: black;
-  border: 2px #222222 solid;
+  color: #5940DE;
+  border: 2px #5940DE solid;
   font-family: 'nimbus-sans', sans-serif;
 }
 .events__more.inline {
@@ -1170,21 +1171,23 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   padding-right: 15px;
   display:inline-block; */
   float: right;
-  padding: 25px;
+  padding: 25px 0 0 0;
 }
 .event__name {
-  width: 100%;
-  text-decoration: underline black;
+  transform: translate(0px, -2px);
+  flex-basis: fit-content;
   margin-top: 0;
+  margin-bottom: 0;
   font-size: 18px;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-align: left;
   font-weight: 600;
 }
-@media (max-width:1036px) {
-  .event__name {
-    width: 80%;
-  }
+.clickme {
+  color: #5940DE;
+}
+.clickme:hover {
+  color: black;
 }
 .events-list__calendar {
   /* display: inline-block; 
@@ -1195,7 +1198,11 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   float: left;
   padding: 25px;
 }
-.events-list__event-item{padding-bottom:30px;}
+.events-list__event-item {
+  padding: 0 10px;
+  border-left: 4px solid;
+  margin-bottom: 4rem;
+}
 @media (max-width:867px){
   .events-list__calendar{
     width:100%;
@@ -1229,14 +1236,31 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
 .events-list__calendar > div {
   height:fit-content;
 }
-.title__wrapper {
-  padding-bottom: 15px;
-}
+
 .event__title {
-  margin-bottom: -1px;
-  margin-top: -8px;
+  margin-top: -.75%;
+  text-decoration: underline;
   font-size: 16px;
 }
+.title__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-height: 100%;
+}
+@media (min-width: 870px) and (max-width: 1150px), (max-width: 590px) {
+  .title__wrapper {
+    display: block;
+  }
+  .event__name {
+    margin: 0% 0 2.5% 0;
+  }
+  .event__title {
+    margin-top: 0;
+    margin: 2% 0 0% 0;
+  }
+}
+
 thead tr {
   height:auto !important;
 }
@@ -2347,8 +2371,8 @@ input[type=range] {
   margin-bottom: 5px;
   font-weight: 300px !important;
   font-size: 16px;
-  padding: 15px 0 10px 0;
-  width: 90%;
+  padding: 8.5px 0 10px 0;
+  width: 100%;
 }
 .charts__sidebar {
   font-size: 16px;
