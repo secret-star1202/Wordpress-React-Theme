@@ -28,8 +28,52 @@ export default function () {
     } = nextOnAir,
     startStr = toLocalStr(parseDate(start)),
     endStr = toLocalStr(parseDate(end));
+  
+  let d = new Date();
+  let snow = false;
+  if (d.getMonth() === 11 && d.getDate() > 9 && d.getDate() < 28) {
+    snow = true;
+  }
 
   return <div className='home__sidebar'>
+    {snow ? <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+      <div class="snowflake">
+        ❅
+      </div>
+      <div class="snowflake">
+        ❆
+      </div>
+    </div> : null}
       <div className='home__next-show'>
         <div className='home__next-show-deets'>
           <p className="home__next-on-air">Next On Air</p>
