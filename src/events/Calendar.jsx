@@ -131,7 +131,7 @@ export default function ({ events }) {
                   backgroundColor: 'white',
                   borderColor: '#5940DE'
                 }}
-              ><span className='clickme'>&gt;&gt;</span><VanishingSpan>NEXT MONTH</VanishingSpan>
+              ><div className='clickme'>&gt;&gt;</div><VanishingSpan>NEXT MONTH</VanishingSpan>
               </button>
               </td>
             </tr>
