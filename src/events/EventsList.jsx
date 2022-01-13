@@ -18,28 +18,41 @@ export default function () {
     }
   });
 
-  return [<HeadStuff title="Community Events & Calendar" />,
-      <div className='news-list__wrapper'>
+  return [
+    <HeadStuff title="Community Events & Calendar" />,
+    <div className='news-list__wrapper'>
+      <div stlye={{ padding: "10px 0 0 0" }}>
+        <h5>
+          KTUH has no special knowledge of Covid-19 related cancelations, health hazards, or requirements that venues or organizers
+          may impose, such as health affidavit forms, health screenings, face coverings or vaccination requirements. For the latest
+          Covid-19 related cancelations and regulations, KTUH recommends you check with the venue or organizer. For the latest health
+          information, please visit the
+          <a href='https://travel.state.gov/content/travel.html' target='_blank' className='charts__link'> State Department</a> or
+          <a href='https://wwwnc.cdc.gov/travel' target='_blank' className='charts__link'> CDC's </a> website.
+        </h5>
+      </div>
       <div className='events-list__content'>
-      <div className="events-list__over">
-        {events.map((item) => <EventItem {...{ item }} />)}
+        <div className="events-list__over">
+          {events.map((item) => <EventItem {...{ item }} />)}
+        </div>
+        <div className='events-list__calendar'>
+          <Calendar events={events.map(
+            function ({
+              summary: title, location, description, htmlLink: link, start:
+              { dateTime: start }, end: { dateTime: end }
+            }) {
+              return {
+                title,
+                location,
+                description,
+                link,
+                start: new Date(start),
+                end: new Date(end)
+              };
+            }
+          )} />
+        </div>
       </div>
-      <div className='events-list__calendar'>
-        <Calendar events={events.map(
-          function ({
-            summary: title, location, description, htmlLink: link, start:
-            { dateTime: start }, end: { dateTime: end }
-          }) {
-            return {
-              title,
-              location,
-              description,
-              link,
-              start: new Date(start),
-              end: new Date(end)
-            };
-          }
-        )} />
       </div>
-    </div></div>];
+  ];
 }
