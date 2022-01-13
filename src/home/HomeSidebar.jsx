@@ -15,6 +15,9 @@ export default function () {
       let evts = items.filter((
         { start: { dateTime } }
       ) => +new Date(dateTime) > +new Date()).slice(0, 6);
+      evts.sort((a, b) => {
+        return +new Date(a.start.dateTime) - +new Date(b.start.dateTime);
+      });
       fxn(evts[0]);
     }
   });
