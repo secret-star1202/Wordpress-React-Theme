@@ -8,13 +8,22 @@ function curl_ting($url, $decode) {
    return $decode ? json_decode($str, true) : $str;
 }
 
+function get_time($diff) {
+  $timeFrame = date('Y-m-d', strtotime("- " . $diff . "days"));
+  return $timeFrame;
+}
+
 register_rest_route('wp/v2', '/g_cal', array(
     'methods' => 'GET',
     'callback' => function (WP_REST_Request $request) {
         $key = get_option('calendar_key');
         $id = get_option('calendar_id');
+        $time = get_time('20');
         $cal = curl_ting("https://www.googleapis.com/calendar/v3/calendars/" .
-            $id . "/events?key=" . $key, true);
+            $id . "/events" . 
+            "?maxResults=150&timeMin=" . 
+            $time . "T10:00:00-07:00" .
+            "&key=" . $key, true);
         return new \WP_REST_Response($cal, 200);
     }
 ));
