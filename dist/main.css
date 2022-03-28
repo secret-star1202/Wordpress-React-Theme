@@ -1190,6 +1190,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   font-family: 'nimbus-sans-extended', sans-serif;
   text-align: left;
   font-weight: 600;
+  max-width: 85%;
 }
 .clickme {
   color: #5940DE;
@@ -1207,7 +1208,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   padding: 25px 30px 0 0;
 }
 .events-list__event-item {
-  padding: 0 10px;
+  padding: 0 10px 10px;
   border-left: 4px solid;
   margin-bottom: 4rem;
 }
