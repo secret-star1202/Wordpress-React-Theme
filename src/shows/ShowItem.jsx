@@ -29,7 +29,13 @@ export default function ShowItem({
 
   return <tr className='show-item'>
     <td className='show-item__time-div'>
-      <h4 className='show-item__start-time'>{fmtStr}</h4>
+      <h4 className={startDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
+        {startDate}
+      </h4>
+      <div className="show-item__time-dash">-</div>
+      <h4 className={endDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
+        {endDate}
+      </h4>
     </td>
     <td className="show-item__image-div">
       <img className='show-item__image' src={image} />
@@ -40,7 +46,7 @@ export default function ShowItem({
         {slug ? <h4><SamePageAnchor href={getFullUrl(`shows/${slug || id}`)}>{title}</SamePageAnchor></h4> : <h4><SamePageAnchor href={getFullUrl(`join-ktuh`)}>{title}</SamePageAnchor></h4>}
         {personas ? <h6 className="show-item__host">Hosted by {djs}</h6> : null}
         {description ? <div className="show-item__summary">
-            {renderSummary(description, 15)}</div> : null}
+          {renderSummary(description, 20)}</div> : null}
       </div>
     </td>
   </tr>;

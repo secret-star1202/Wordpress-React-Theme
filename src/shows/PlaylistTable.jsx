@@ -45,14 +45,14 @@ export default function PlaylistTable({ tracks }) {
 
   return [<style id='table-pag'/>,
     <table className='playlist'>
-    <thead style={{ display: 'block' }}>
+    <thead>
       <tr className='playlist__info-row'>
         <td><b>Time</b></td>
         <td><b>Artist</b></td>
         <td><b>Song</b></td>
       </tr>
     </thead>
-    <tbody style={{ display: 'block', maxHeight: '1000px', maxWidth: '560px', overflow: 'scroll' }}>
+    <tbody style={{ overflow: 'scroll' }}>
       {songsSorted().map(({
         start, artist, song
       }) => <tr>
