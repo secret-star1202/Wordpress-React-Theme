@@ -51,6 +51,11 @@ register_rest_field('wpspin_profiles', 'facebook_link', array(
             return get_post_meta($obj['id'], 'mixcloud_link');
         }
     ));
+    register_rest_field('wpspin_profiles', 'website', array(
+        'get_callback' => function ($obj) {
+            return get_post_meta($obj['id'], 'website');
+        }
+    ));
     register_rest_field('wpspin_profiles', 'show_page_id', array(
         'get_callback' => function ($obj) {
             return get_post_meta($obj['id'], 'show_page_id');
