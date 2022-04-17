@@ -35,6 +35,18 @@ export default function ({ events }) {
     }
   }, []);
 
+  function parseUrl(description) {
+    if (description) {
+      let reg = /https?:\/\/[A-Za-z0-9.]+(\/[^\s\t\n"']*)?/;
+      let url = description.match(reg);
+      if (url) {
+        console.log(url[0])
+        return url[0];
+      }
+    }
+    return undefined;
+  }
+
   function outputRows(year, month, evts) {
     let filteredEvents = evts.filter(function (event) {
         return event.start.getFullYear() === year
@@ -112,6 +124,7 @@ export default function ({ events }) {
                     backgroundColor: 'white',
                     borderColor: '#5940DE'
                   }}
+                  className='month-nav-link'
                 ><div className='clickme'>&lt;&lt;</div> <VanishingSpan>PREVIOUS MONTH</VanishingSpan>
                 </button>
               </td>
@@ -121,18 +134,19 @@ export default function ({ events }) {
                   'July', 'August', 'September', 'October', 'November',
                   'December'][current.month]} ${current.year}`}
               </td>
-              <td>
-              <button
-                onClick={nextMonth}
-                style={{
-                  width: '100%',
-                  fontSize: '.875em',
-                  fontWeight: 'bold',
-                  backgroundColor: 'white',
-                  borderColor: '#5940DE'
-                }}
-              ><div className='clickme'>&gt;&gt;</div><VanishingSpan>NEXT MONTH</VanishingSpan>
-              </button>
+              <td className='day-link'>
+                <button
+                  onClick={nextMonth}
+                  style={{
+                    width: '100%',
+                    fontSize: '.875em',
+                    fontWeight: 'bold',
+                    backgroundColor: 'white',
+                    borderColor: '#5940DE'
+                  }}
+                  className='month-nav-link'
+                ><div className='clickme'>&gt;&gt;</div><VanishingSpan>NEXT MONTH</VanishingSpan>
+                </button>
               </td>
             </tr>
             <tr>
@@ -166,10 +180,14 @@ export default function ({ events }) {
                           </p>
                           {(day[1].length) ? <ul style={{ paddingLeft: 0 }}>
                             {day[1].map(function ({
-                              link, title, location, start
+                              link, title, location, start, description
                             }) {
                               return <li style={{listStyle: 'none', textDecoration:'underline'}}>
-                                <HoverLink style={{ color: '#5940DE', whiteSpace: 'nowrap'}} href={link} target="_blank" title={`${title} @ ${location}`}>
+                                <HoverLink
+                                  className='day-link'
+                                  href={parseUrl(description)}
+                                  target='_blank'
+                                  title={`${title} @ ${location}`}>
                                   {toLocalStr(start)}
                                 </HoverLink></li>;
                             })}</ul> : ''}

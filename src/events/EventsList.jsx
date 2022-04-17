@@ -5,16 +5,24 @@ import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as HeadStuff } from '../reusables/HeadStuff';
 
 export default function () {
+  let cleanString = (str) => {
+    if ((str === null) || (str === ''))
+      return false;
+    else
+      str = str.toString();
+    return str.replace(/(<([^>]+)>)/ig, '');
+  }
+
   let events = useApiRequest([], 'g_cal', ({ items }, fxn) => {
     if (items && items.length) {
       items.sort(function ({ start: { dateTime: a } }, { start: { dateTime: b } }) {
         let aTime = +new Date(a), bTime = +new Date(b);
         return aTime < bTime ? -1 : aTime > bTime ? 1 : 0;
       });
-      let evts = items.filter((
-        { start: { dateTime } }
-      ) => +new Date(dateTime) > +new Date()).slice(0, 24);
+      let evts = items.filter(({ start: { dateTime } }) => +new Date(dateTime) > +new Date()).slice(0, 28);
       evts.sort((a, b) => {
+        a.description = cleanString(a.description);
+        b.description = cleanString(b.description);
         return +new Date(a.start.dateTime) - +new Date(b.start.dateTime);
       });
       fxn(evts);
@@ -40,15 +48,15 @@ export default function () {
         </div>
         <div className='events-list__calendar'>
           <Calendar events={events.map(
-            function ({
-              summary: title, location, description, htmlLink: link, start:
-              { dateTime: start }, end: { dateTime: end }
+            function (
+              { summary: title, location, description, htmlLink: link, start:
+                { dateTime: start }, end: { dateTime: end }
             }) {
               return {
                 title,
+                link,
                 location,
                 description,
-                link,
                 start: new Date(start),
                 end: new Date(end)
               };

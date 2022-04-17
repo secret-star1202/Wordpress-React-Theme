@@ -1,8 +1,18 @@
 /* Search icon by IcoMoon, made with http://icomoon.io/app/ */
-@font-face{font-family:'icomoon';src:url('/fonts/icomoon.eot');
-  src:url('/fonts/icomoon.eot?#iefix')format('embedded-opentype'),
-  url('/fonts/icomoon.woff')format('woff'),url('/fonts/icomoon.ttf')format('truetype'),
-  url('/fonts/icomoon.svg#icomoon')format('svg');font-weight:normal;font-style:normal;}
+@font-face{
+  font-family:'icomoon';
+  src:url('/fonts/icomoon.eot');
+  src:url('/fonts/icomoon.eot?#iefix')
+  format('embedded-opentype'),
+  url('/fonts/icomoon.woff')
+  format('woff'),
+  url('/fonts/icomoon.ttf')
+  format('truetype'),
+  url('/fonts/icomoon.svg#icomoon')
+  format('svg');
+  font-weight:normal;
+  font-style:normal;
+}
 body{background:#fff;color:#333;font-family:'alda',sans-serif;margin:0;}
 img{max-width:100%;height:auto;}a,a:hover,a:focus{color:#333;}a:hover{text-decoration:none;}
 h1{font-size:3em;}h2{font-size:2.25em;}h3{font-size:1.85em;}h4{font-size:1.595em;}
@@ -590,6 +600,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   font-family:'nimbus-sans', sans-serif;
 }
 .events__more {
+  white-space: nowrap;
   padding: .2rem 1rem 0.2rem .8rem;
   flex-basis: fit-content;
   bottom: 35px;
@@ -603,6 +614,9 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .events__more.inline {
   float: right;
   margin-top: 4px;
+}
+.events__more:hover {
+  border-color: #333 !important;
 }
 .home__more:hover {
   color:#222222;
@@ -1208,11 +1222,21 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   padding: 25px 30px 0 0;
 }
 .events-list__event-item {
-  padding: 0 10px 10px;
+  padding: 0 10px 0 10px;
   border-left: 4px solid;
   margin-bottom: 4rem;
 }
-@media (max-width:867px){
+.day-link {
+  color: #5940DE;
+  white-space: nowrap;
+}
+.day-link:hover {
+  color: #333;
+}
+.month-nav-link:hover {
+  border-color: #333 !important;
+}
+@media (max-width:1080px){
   .events-list__calendar{
     width:100%;
     margin-left:0;
@@ -1226,7 +1250,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
     width:100%;
   }
 }
-@media (min-width:868px){
+@media (min-width:1080px){
   .events-list__calendar {
     width:50%;
     margin-left:0;
@@ -1257,7 +1281,7 @@ audio,td button span,.faq__answer:not(.expanded){display:none;}
   align-items: baseline;
   max-height: 100%;
 }
-@media (min-width: 870px) and (max-width: 1150px), (max-width: 590px) {
+@media (min-width: 1080px) and (max-width: 1150px), (max-width: 590px) {
   .title__wrapper {
     display: block;
   }
