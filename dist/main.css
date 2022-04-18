@@ -853,7 +853,18 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 }
 .page__content p {
   font-size: 16px;
-  padding: 5px 140px 0 60px;
+}
+.page__content h4 {
+  font-size: 18px;
+}
+.page__content h5 {
+  font-size: 16px;
+}
+.page__content a {
+  color: #5940de;
+}
+.page__content a:hover {
+  color: #333;
 }
 .alumni__img img{display:block;margin:0 auto;}
 .about__desc p,.about__content p,.alumni__img,.alumni__content p,.join__desc p,
