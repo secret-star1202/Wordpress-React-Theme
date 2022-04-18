@@ -42,9 +42,7 @@ export default function ShowPage() {
                 {`${toLocalStr(startDate)}-${toLocalStr(endDate)}`}
               </h5>
               <div>
-                {description ? <h5>Show Description</h5> : null}
-                <div className='show__body' dangerouslySetInnerHTML=
-                  {{ __html: description }} />
+                {description ? <div className='show__body' dangerouslySetInnerHTML={{ __html: description }} /> : null}
               </div>
               {(names.length > 0)
                   ? <div className="show-page__button-multiple"> {personaInfo.map(({slug: profileSlug, title: {rendered}}) => (
@@ -56,17 +54,47 @@ export default function ShowPage() {
                         {`${rendered}'${(rendered.endsWith('s') || rendered.endsWith('z')) ? '' : 's'} DJ Profile`}
                       </SamePageAnchor>))} </div>
               }
+              {wpspin_profiles.facebook_link[0] || wpspin_profiles.instagram_link[0] || wpspin_profiles.soundcloud[0] || wpspin_profiles.mixcloud_link[0] || wpspin_profiles.website[0] ? <div className="show-page__social-container">
+                <div className="show-links">
+                  <h5 className="show-page__social-title">Find {title} online</h5>
+                  {wpspin_profiles.website[0] ?
+                    <div className="show-page__social-icons">
+                      <a href={wpspin_profiles.website[0]} target="_blank" className="show-page__social-link">
+                        <Glyph symbol="globe" type='fa' />
+                      </a>
+                    </div> : <></>
+                  }
+                  {wpspin_profiles.facebook_link[0] ?
+                    <div className="show-page__social-icons">
+                      <a href={wpspin_profiles.facebook_link[0]} target="_blank" className="show-page__social-link">
+                        <Glyph symbol="facebook" type='fa' />
+                      </a>
+                    </div> : <></>
+                  }
+                  {wpspin_profiles.instagram_link[0] ?
+                    <div className="show-page__social-icons">
+                      <a href={wpspin_profiles.instagram_link[0]} target="_blank" className="show-page__social-link">
+                        <Glyph symbol="instagram" type='fa' />
+                      </a>
+                    </div> : <></>
+                  }
+                  {wpspin_profiles.soundcloud[0] ?
+                    <div className="show-page__social-icons">
+                      <a href={wpspin_profiles.soundcloud[0]} target="_blank" className="show-page__social-link">
+                        <Glyph symbol="soundcloud" type='fa' />
+                      </a>
+                    </div> : <></>
+                  }
+                  {wpspin_profiles.mixcloud_link[0] ?
+                    <div className="show-page__social-icons">
+                      <a href={wpspin_profiles.mixcloud_link[0]} target="_blank" className="show-page__social-link">
+                        <Glyph symbol="mixcloud" type='fa' />
+                      </a>
+                    </div> : <></>
+                  }
+                </div>
+              </div> : null}
             </div>
-            {wpspin_profiles.facebook_link[0] || wpspin_profiles.instagram_link[0] || wpspin_profiles.soundcloud[0] || wpspin_profiles.mixcloud_link[0] || wpspin_profiles.website[0] ? <div className="show-page__social-container">
-            <div className="show-links">
-              <h5 className= "show-page__social-title">Find {title} online</h5>
-              {wpspin_profiles.website[0] ? <div className="show-page__social-icons"><a href={wpspin_profiles.website[0]} target="_blank"><Glyph symbol="globe" type='fa' /></a></div> : <></>}
-              {wpspin_profiles.facebook_link[0] ? <div className="show-page__social-icons"><a href={wpspin_profiles.facebook_link[0]} target="_blank"><Glyph symbol="facebook" type='fa' /></a></div> : <></>}
-              {wpspin_profiles.instagram_link[0] ? <div className="show-page__social-icons"><a href={wpspin_profiles.instagram_link[0]} target="_blank"><Glyph symbol="instagram" type='fa' /></a></div> : <></>}
-              {wpspin_profiles.soundcloud[0] ? <div className="show-page__social-icons"><a href={wpspin_profiles.soundcloud[0]} target="_blank"><Glyph symbol="soundcloud" type='fa' /></a></div> : <></>}
-              {wpspin_profiles.mixcloud_link[0] ? <div className="show-page__social-icons"><a href={wpspin_profiles.mixcloud_link[0]} target="_blank"><Glyph symbol="mixcloud" type='fa' /></a></div> : <></>}
-            </div>
-          </div> : null}
           </div>
           <div className="show-page__playlist">
             <h4>Latest Episode </h4><h3>{

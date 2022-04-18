@@ -2254,8 +2254,12 @@ input[type=range] {
   }
 }
 .show-links {
-  padding-top: 25px;
+  padding-top: 15px;
+  width: max-content;
   font-size: 28px;
+}
+.show-page__social-link:hover {
+  color: #5940de;
 }
 .show-links a .fa {
   min-width: 90px;
@@ -2337,7 +2341,6 @@ input[type=range] {
 }
 .show-page__social-container {
   width: fit-content;
-  margin-left: 420px;
   position: inherit;
 }
 .show-page__social-title {
@@ -2382,7 +2385,6 @@ input[type=range] {
 }
 .show-page__social-container {
   width: fit-content;
-  margin-left: 380px;
   position: inherit;
 }
 @media (max-width: 760px) {

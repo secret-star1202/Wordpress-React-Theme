@@ -55,6 +55,7 @@ const PaginatorContainer = ({ children, ...rest }) => <div {...rest} style={{
       height: '35px',
       display: 'inline-block',
       fontSize: '1.15em',
+      margin: '0 5px 0 0',
     };
     if (order === 'first') {
       style.borderTopLeftRadius = '3px';
