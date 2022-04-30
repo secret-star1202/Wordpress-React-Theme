@@ -573,6 +573,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   clear:both;
   margin:0 0 6px 0;
   max-height: 250px;
+  max-width: 340px;
   height: 250px;
   width: 100%;
 }
@@ -2266,7 +2267,7 @@ input[type=range] {
 }
 .show-links {
   padding-top: 15px;
-  width: max-content;
+  margin-bottom: -15px;
   font-size: 28px;
 }
 .show-page__social-link:hover {
@@ -2413,6 +2414,7 @@ input[type=range] {
 }
 .profile {
   margin-top: 60px;
+  width: 85%;
 }
 .profile__image-div {
   float: left;
