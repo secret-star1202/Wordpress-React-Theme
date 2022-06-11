@@ -6,6 +6,13 @@ export default function EyesorePlayButton() {
     playing, setPlaying, url, mainUrl, setToMainUrl, loaded, fallbackUrl
   } = useContext(PlayingContext);
 
+  window.addEventListener('keypress', function (e) {
+    e.preventDefault();
+    if (e.key === ' ') {
+      setPlaying(!playing);
+    }
+  }, false);
+
   function handleClick() {
     if (url !== mainUrl && url !== fallbackUrl) {
       setToMainUrl();
