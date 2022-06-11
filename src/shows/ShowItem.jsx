@@ -29,13 +29,13 @@ export default function ShowItem({
 
   return <tr className='show-item'>
     <td className='show-item__time-div'>
-      <h4 className={startDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
+      <h5 className={startDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
         {startDate}
-      </h4>
+      </h5>
       <div className="show-item__time-dash">-</div>
-      <h4 className={endDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
+      <h5 className={endDate.split(':')[0] > 9 ? 'show-item__start-time nudge-time' : 'show-item__start-time'}>
         {endDate}
-      </h4>
+      </h5>
     </td>
     <td className="show-item__image-div">
       <img className='show-item__image' src={image} />

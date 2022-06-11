@@ -43,6 +43,6 @@ export default function LandingPlayBar() {
     <div className='play-bar__show'>
       {currentShowName()}
     </div>
-    <LandingPlayButton/>
+    <LandingPlayButton />
   </div>;
 }

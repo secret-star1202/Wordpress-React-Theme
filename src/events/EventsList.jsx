@@ -6,7 +6,9 @@ import { default as HeadStuff } from '../reusables/HeadStuff';
 
 export default function () {
   let cleanString = (str) => {
-    if ((str === null) || (str === ''))
+    if (str === undefined)
+      return false
+    else if ((str === null) || (str === ''))
       return false;
     else
       str = str.toString();
