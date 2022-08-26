@@ -2,7 +2,6 @@ import React from 'react';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import LandingPlayButton from './LandingPlayButton';
 
-
 export default function LandingPlayBar() {
   let { currentShow, nowPlaying } = useApiRequest({
     currentShow: null,

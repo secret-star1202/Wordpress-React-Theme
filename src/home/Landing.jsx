@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { getImgAsset } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as EyesorePlayButton } from './EyesorePlayButton';
@@ -35,22 +35,23 @@ function useRandomNumberQueue(max, interval, callback) {
 }
 
 function LandingInfo() {
-  let { currentShow, nowPlaying } = useApiRequest({
-    currentShow: null,
-    nowPlaying: null
-  }, 'now_playing', function ([{
-    show: [showNow], artist: [artistNow], song: [songNow]
-  }], fxn) {
-    fxn({
-      currentShow: showNow,
-      nowPlaying: {
-        artist: artistNow,
-        song: songNow,
-      }
-    });
-  }, 30000);
+  let { currentShow, nowPlaying } = useApiRequest(
+    { currentShow: null, nowPlaying: null },
+    'now_playing', function ([{ show: [showNow], artist: [artistNow], song: [songNow] }], fxn) {
+      fxn({
+        currentShow: showNow,
+        nowPlaying: {
+          artist: artistNow,
+          song: songNow,
+        }
+      });
+    }, 30000
+  );
 
   function currentShowName() {
+    if (currentShow.includes('KTUH 90.1FM Honolulu')) {
+      currentShow = 'KTUH FM Honolulu';
+    }
     return <p className='landing__show-name caps'>
       {currentShow}
     </p>;
@@ -65,11 +66,15 @@ function LandingInfo() {
     ];
   }
 
-  return <div className='landing__info'>{currentShow && currentShowName()
-    || (nowPlaying ? <p className='landing__now-playing'>On Air Now:</p> : null)}
+  return (
+    <div className='landing__info'>
+      {currentShow && currentShowName() || (nowPlaying ? <p className='landing__now-playing'>On Air Now:</p> : null)}
       {nowPlaying ? renderNowPlaying() : [<p className='landing__show-host'>
         <b>Welcome to KTUH<br />FM Honolulu</b></p>,
-      <p className='landing__host-name'>Radio for the People</p>]}</div>;
+        <p className='landing__host-name'>Radio for the People</p>
+      ]}
+    </div>
+  );
 }
 
 function Landing() {
@@ -83,18 +88,20 @@ function Landing() {
   }
 
   function handleClickDownArrow() {
-    let position = $('#main').offset().top,
-      navHeight = $('.navbar-header').height();
+    let position = $('#main').offset().top, navHeight = $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  return [<div className='landing' style={{ backgroundImage: background() }}>
+  return [
+  <div className='landing' style={{ backgroundImage: background(), backgroundColor: 'rgb(51,51,51)' }}>
       <div className='landing__box'>
         <EyesorePlayButton />
         <LandingInfo />
       </div>
       <div className='landing__down-arrow' onClick={handleClickDownArrow} />
-  </div>, <div className='spacer-lg' />];
+  </div>,
+  <div className='spacer-lg' />
+  ];
 }
 
 export default Landing;

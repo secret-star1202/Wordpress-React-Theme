@@ -13,7 +13,7 @@ export default function ({ question, content }) {
   }
 
   return <div className='faq__section-qna-pair'>
-    <span className='toggle' {...{ onClick }}>{expanded ? '-' : '+' }</span>
+    <span className='toggle' style={{ color: '#5940de' }} {...{ onClick }}>{expanded ? '-' : '+' }</span>
     <div className='faq__section-qna-content'>
       <p {...{ onClick }} className='faq__question'>
         <span>{question}</span>

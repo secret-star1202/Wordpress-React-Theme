@@ -6,6 +6,7 @@ export default function ({ title, pairs }) {
     <div className='faq__section-header'><h4>{title}</h4></div>
     <div className='faq__section-qna'>
       {pairs.map(([question, content]) => <QAPair {...{ question, content }} />)}
+      <br />
     </div>
   </div>;
 }

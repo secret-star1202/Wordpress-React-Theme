@@ -823,8 +823,13 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .about__help div{float:left;padding-right:25px;}
 .about__help h3,.submit__podcast h3{font-family:'alda';}
 .about__help__lighter,.submit__podcast__lighter{font-weight:normal;}
-.faq__content{padding:60px;background-color:#222222;color:white;}
-.faq__section{display:inline-block;width:100%;}
+.faq__content{
+  padding:60px;
+}
+.faq__section{
+  display:inline-block;
+  width:100%;
+}
 .faq__section-qna{float:right;display:inline-block;width:85%;}
 .faq__section-header {
   display:inline-block;
@@ -865,10 +870,11 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   font-size: 16px;
 }
 .page__content a {
-  color: #5940de;
+  font-weight: normal;
+  text-decoration: underline;
 }
 .page__content a:hover {
-  color: #333;
+  color: #5940de;
 }
 .alumni__img img{display:block;margin:0 auto;}
 .about__desc p,.about__content p,.alumni__img,.alumni__content p,.join__desc p,
@@ -890,7 +896,10 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   font-weight:bold;
   vertical-align:top;
 }
-.faq__section-qna-pair span:hover{cursor:pointer;}
+.faq__section-qna-pair span:hover{
+  cursor:pointer;
+  color: #5940de;
+}
 .faq__section-qna-content{display:inline-block;width:98%;margin-left:4px;}
 .staff__item{width:32%;text-align:center;display:inline-block;}
 .staff__item a.staff__item-textlink {
@@ -1049,7 +1058,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   }
   .event__link,.review__link,.chart__link,.playlist__link{left:25px;width:calc(100% - 40px);top:45px;}
   .landing__info{max-width:calc(100% - 40px);min-width:280px;}
-  .landing__show-name,.landing__show-host,.landing__song-title,.landing__host-name,.landing__song-artist {
+  .landing__show-host,.landing__song-title,.landing__host-name,.landing__song-artist {
     font-size:1.75em;
     line-height:32px;
   }
@@ -1103,7 +1112,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   .header__support-btn{display:block;}.header__submenu-support{display:none;}
   .landing__box{flex-direction:column;}.landing__now-playing{text-align:center;}
   .landing__info,.landing__play-btn-outer{margin:0 auto 15px; color: floralwhite;}
-  .landing__show-name,.landing__show-host,.landing__song-title,.landing__host-name,
+  .landing__show-host,.landing__song-title,.landing__host-name,
   .landing__song-artist{text-align:center;font-size:1.125em;line-height:25px;}
   .news-list__post{float:none;width:100%;padding:0 0 20px 0;}
   .news-list__post:last-of-type{margin-bottom:0;}.footer__links__clear{clear:both;}
@@ -1405,9 +1414,6 @@ input[placeholder=Search] {
   font-weight: bold;
   text-transform: uppercase;
 }
-.show-item__info-time {
-  display: none;
-}
 .show-item__image-div {
   width: 150px;
   height: 150px;
@@ -1444,10 +1450,8 @@ input[placeholder=Search] {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: 900;
 }
-.show-item__host h5 {
-  font-family: 'nimbus-sans-extended', sans-serif;
+.show-item__host {
   font-size: 14px;
-  font-weight: 900;
 }
 .show-item__info p {
   font-size: .875em;
@@ -1639,7 +1643,6 @@ input[placeholder=Search] {
     max-width: calc(100% - 40px);
     min-width: 280px;
   }
-  .landing__show-name,
   .landing__show-host,
   .landing__song-title,
   .landing__host-name,
@@ -1772,7 +1775,7 @@ input[placeholder=Search] {
     max-width: 100%;
   }
   .show-item__start-time {
-    width: 60px;
+    /* width: 60px; */
     font-size: 14px;
     z-index: 1;
   }
@@ -1877,7 +1880,6 @@ input[placeholder=Search] {
   .landing__now-playing {
     text-align: center;
   }
-  .landing__show-name,
   .landing__show-host,
   .landing__song-title,
   .landing__host-name,
@@ -1942,13 +1944,13 @@ input[placeholder=Search] {
 .show-item__start-time {
   position: absolute;
   z-index: 1;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .show-item__start-time {
   position: relative;
   z-index: 2;
-  text-align: left;
   padding: 0 -37px 0 0;
-  margin-left: 10px;
 }
 .nudge-time {
   margin-left: 3%;
@@ -1959,6 +1961,7 @@ table {
 }
 .show-item__time-div, .show-item__end-time-div {
   text-align: center;
+  font-size: 15px;
   min-width: 150px;
   max-width: 150px;
   border-left: thin black solid;
@@ -2183,16 +2186,16 @@ input[type=range] {
     min-height: 64px;
   }
   .show-item__image{
-    width: 100%;
-    height: 150%;
-    padding: 0; 
+    padding: 0;
+    height: 176%;
+    width: inherit;
   }
   .show-item__time,
   .show-item__info p {
     display: none;
   }
   .show-item__info {
-    padding: 0;
+    padding: 8px;
   }
   .shows__day {
     font-size: .875em;
@@ -2205,7 +2208,7 @@ input[type=range] {
   .show-item__time-div {
     min-width: 64px;
     max-width: 64px;
-    width: 20px;
+    width: 23%;
   }
   .show__image-div {
     padding: 0;
@@ -2225,10 +2228,10 @@ input[type=range] {
     padding: 20px;
   }
   .show-item__info h4, .show-item__info h6 {
-    font-size: .75em;
+    font-size: 1.05em;
   }
   .show-item__summary {
-    font-size: .5em;
+    font-size: .9em;
   }
   .show-item__info-container {
     padding-left: 10px;
@@ -2498,13 +2501,19 @@ input[type=range] {
 .show-item__time-dash {
   font-weight: 900;
   transform: scale(2) translateY(-9%);
-  margin: -6%;
-  padding: 2px;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 @media (max-width: 500px) { 
   .show-item__time-div h4, .show-item__end-time-div h4 {
     font-size: 10px !important;
+  }
+}
+
+@media (max-width: 817px) and (min-width: 767px) { 
+  .nav.navbar-nav:last-child {
+    margin: 26px -12px;
   }
 }
 
