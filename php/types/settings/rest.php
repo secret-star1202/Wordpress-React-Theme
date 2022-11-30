@@ -9,6 +9,16 @@ register_rest_route('wp/v2', '/banner_text', array(
   )
 ));
 
+register_rest_route('wp/v2', '/banner_link', array(
+  array(
+    'methods' => 'GET',
+    'callback' => function() {
+      $str = get_option('banner_enabled') ? get_option('banner_link') : '';
+      return new \WP_REST_Response($str, 200);
+    }
+  )
+));
+
 register_rest_route('wp/v2', '/support_text', array(
     'methods' => 'GET',
     'callback' => function (WP_REST_Request $request) {

@@ -96,6 +96,21 @@ function my_settings_init() {
       'misc-settings'
     );
 
+    // Banner Link
+    register_setting(
+        'general',
+        'banner_link',
+        'my_settings_sanitize'
+    );
+
+    add_settings_field(
+      'banner_link',
+      'Banner Link',
+      'banner_link_callback',
+      'general',
+      'misc-settings'
+    );
+
     // Stream URL
     register_setting(
         'general',
@@ -328,6 +343,14 @@ function banner_text_callback() {
     ?><label for="banner_text">
   <input id="banner_text" name="banner_text" type="text" value="<?php echo get_option('banner_text'); ?>"/>
   </label><?php
+}
+
+function banner_link_callback() {
+    ?>
+    <label for="banner_link">
+  <input id="banner_link" name="banner_link" type="text" value="<?php echo get_option('banner_link'); ?>"/>
+  </label>
+  <?php
 }
 
 function stream_url_callback()

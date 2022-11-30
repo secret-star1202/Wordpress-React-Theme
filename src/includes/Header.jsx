@@ -5,10 +5,13 @@ import { getFullUrl, getImgAsset } from '../utils/url_utils';
 import { default as Navbar } from './Navbar';
 import { default as HeaderMenu } from './HeaderMenu';
 import { default as IconBar } from './IconBar';
+import { default as useApiRequest } from '../hooks/useApiRequest';
 
 export default function () {
-  let siteUrl = document.querySelector('link[rel="basename"]').href,
-  href = getFullUrl('radiothon');
+  let siteUrl = document.querySelector('link[rel="basename"]').href;
+  let href = useApiRequest(null, 'banner_link');
+
+  if(!href) href = getFullUrl('donate');
 
   return <nav className='navbar navbar-default' role='navigation'>
     <div className='info-box'>

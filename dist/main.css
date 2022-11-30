@@ -206,7 +206,12 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .navbar-right .nav-item{height:74px;}.navbar-right .nav-item button{height:100%;}
 .navbar-default.fixed-theme .navbar-right{background-color:transparent;}
 .navbar-default:not(.fixed-theme) .navbar-right{background-color:#5940de;float:right;}
-.header__support-btn{background-color:transparent;border:none;padding:0;}
+.header__support-btn{
+  background-color: #5940de;
+  border-radius: 0px;
+  border:none;
+  padding:0;
+}
 .header__support-btn span{padding:0 15px;font-weight:900;color:#fff;padding:0 27px !important;}
 .header__support-link{color:white;z-index:9001;height:100%;border-top-width:0 !important;margin:0 !important;padding:0 !important;}
 .info-box{float:left;max-width:125px;margin:auto;}
