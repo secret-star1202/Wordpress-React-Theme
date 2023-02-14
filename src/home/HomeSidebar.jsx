@@ -33,48 +33,51 @@ export default function () {
     endStr = toLocalStr(parseDate(end));
   
   let d = new Date();
-  let snow = false;
+  let emoji = '';
   if (d.getMonth() === 11 && d.getDate() > 9 && d.getDate() < 28) {
-    snow = true;
+    emoji = '❄️';
+  }
+  if (d.getMonth() === 1 && d.getDate() > 10 && d.getDate() < 15) {
+    emoji = '❤️';
   }
 
   return <div className='home__sidebar'>
-    {snow ? <div class="snowflakes" aria-hidden="true">
+    {emoji ? <div class="snowflakes" aria-hidden="true">
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
       <div class="snowflake">
-        ❅
+        {emoji}
       </div>
       <div class="snowflake">
-        ❆
+        {emoji}
       </div>
     </div> : null}
       <div className='home__next-show'>
