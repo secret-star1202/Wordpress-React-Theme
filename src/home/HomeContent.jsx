@@ -7,20 +7,22 @@ import { default as HomeContentPodcastItem } from './HomeContentPodcastItem';
 
 let mobile = false;
 
-window.innerWidth <= 770 ? mobile = true : null;
+window.innerWidth <= 870 ? mobile = true : null;
 
 export default function () {
   return <div className='content'>
     {mobile ? <HomeSidebar /> : null}
     <div className='home__main'>
-    <HomeContentSection outerDivClass='home__news' href='radioblog'
-      apiUrl='posts' perPage={3} innerDivClass='home__news-content'
-      headText='RADIOBLOG' moreText='NEWS' itemComp={HomeContentNewsItem} />
-    <HomeContentSection outerDivClass='home__reviews' href='reviews'
-      apiUrl='review' perPage={5} innerDivClass='home__reviews-content'
-      headText='MUSIC REVIEWS' moreText='REVIEWS' itemComp={HomeContentReviewsItem} />
-    <HomeContentSection outerDivClass='home__podcast' href='podcasts'
-      apiUrl='podcast' perPage={1} innerDivClass='home__podcast-content'
-      headText='PODCASTS' moreText='PODCASTS' itemComp={HomeContentPodcastItem} /></div>
-    {!mobile ? <HomeSidebar /> : null}</div>;
+      <HomeContentSection outerDivClass='home__news' href='radioblog'
+        apiUrl='posts' perPage={3} innerDivClass='home__news-content'
+        headText='RADIOBLOG' moreText='NEWS' itemComp={HomeContentNewsItem} />
+      <HomeContentSection outerDivClass='home__reviews' href='reviews'
+        apiUrl='review' perPage={5} innerDivClass='home__reviews-content'
+        headText='MUSIC REVIEWS' moreText='REVIEWS' itemComp={HomeContentReviewsItem} />
+      <HomeContentSection outerDivClass='home__podcast' href='podcasts'
+        apiUrl='podcast' perPage={1} innerDivClass='home__podcast-content'
+        headText='PODCASTS' moreText='PODCASTS' itemComp={HomeContentPodcastItem} />
+    </div>
+      {!mobile ? <HomeSidebar /> : null}
+    </div>;
 }

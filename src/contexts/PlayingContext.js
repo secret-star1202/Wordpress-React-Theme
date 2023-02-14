@@ -9,10 +9,10 @@ const { Provider } = PlayingContext;
 export const PlayingContextProvider = ({ children }) => {
   let [playing, setPlaying] = useState(false),
     [url, setUrl] = useState(null), [loaded, setLoaded] = useState(false),
-    mainUrl = document.querySelector('link[rel="main-stream-url"]').href,
-    fallbackUrl = document.querySelector('link[rel="backup-stream-url"]').href,
     [isInitial, setInitial] = useState(true),
-    [jumpStart, setJumpStart] = useState(false);
+    [jumpStart, setJumpStart] = useState(false),
+    mainUrl = document.querySelector('link[rel="main-stream-url"]').href,
+    fallbackUrl = document.querySelector('link[rel="backup-stream-url"]').href;
 
   function setToMainUrl() {
     if (mainUrl) {
@@ -34,6 +34,8 @@ export const PlayingContextProvider = ({ children }) => {
 
   useEffect(function () {
     if (mainUrl) setUrl(mainUrl);
+    mainUrl = document.querySelector('link[rel="main-stream-url"]').href;
+    fallbackUrl = document.querySelector('link[rel="backup-stream-url"]').href;
   }, []);
 
   return <Provider value={{

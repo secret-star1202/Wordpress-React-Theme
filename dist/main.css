@@ -121,9 +121,9 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   text-transform:uppercase;
 }
 .navbar{
-  /* position:fixed; */
+  position:fixed;
   top:0;
-  /* z-index:20; */
+  z-index:20;
   width:100%;
   margin:0;
   padding:0 45px;
@@ -341,7 +341,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .join__content a,.contact__content a,.home__byline a,.playlist-list__show-host a{color:#5940DE;}
 .news-list__featured-title{font-family:'alda';font-weight:bold;}
 .news-list__info {
-  display: flow-root;
+  /* display: flow-root; */
   width:66%;
   text-align:left;
   margin-top:6px;
@@ -453,13 +453,13 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   width:100%;
   margin:auto;
   clear:both;
-  display:flex;
+  /* display: inline; */
   flex-wrap:wrap;
   justify-content:space-between;
 }
 .home_podcast-item {
   display:inline-block;
-  padding:0 0 20px 0;
+  padding: 0 25px 20px 0;
   color:inherit;
   float:left;
   width: 300px;
@@ -481,8 +481,8 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .home__featured-photo{position:relative;width:49%;display:inline-block;}
 .home__news-item {
   display:inline-block;
-  width:30%;
-  padding:0 0 20px 0;
+  width:33.33%;
+  padding:0 25px 20px 0;
   color:inherit;
   float:left;
 }
@@ -590,10 +590,10 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 }
 .home__reviews-item {
   display:inline-block;
-  width:31%;
-  padding:0 0 20px 0;
+  padding: 0 25px 20px 0;
   color:inherit;
   vertical-align:top;
+  max-width: 175px;
 }
 .home__synopsis {
   text-align:left;
@@ -606,7 +606,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   margin:0 0 6px 0;
   max-height: 250px;
   max-width: 340px;
-  height: 240px;
+  min-height: 150px;
   width: 100%;
 }
 .home__title {
@@ -1017,7 +1017,6 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
 .custom__paginator-btn:hover:not(.active){color:white;background-color:black;}
 .custom__paginator-btn.active{background-color:#5940de;color:white;}
 .custom__paginator-btn a{color:inherit;font-size:inherit;}
-@media (min-width:1200px){.home__reviews-item{width:15%;}}
 @media (max-width:992px) and (min-width:768px) {
   .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:focus,
   .navbar-default .navbar-nav > li > a:hover,
@@ -1126,12 +1125,11 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     padding:8px 15px 8px 20px;
   }
-  .home__reviews-item {width:30%;float:left;}
   .home__news-item,.news-list__post{width:250px;float:left;}
   .resend__content{margin:10px 40px;}
   .home__featured-photo{width:97%;margin-bottom:25px;}
   .home__featured-item{width:100%;padding:2px 0;}
-  .home__reviews-item img{width:100%;height:150px !important;}
+  .home__reviews-item img{height:150px !important;}
   .navbar-right{display:none;}
   .review__content{margin:0 25px;}
   .review-item{width:50%;}
@@ -1171,7 +1169,7 @@ h5{font-size: .900em;}.sm{font-size:1.175em;}h1,h2,h3,h4,h5{font-family:'nimbus-
   .navbar-nav.nav.navbar-left{margin-left:20px;}
   .footer__mission-wrapper{width:100%;margin:0 0 20px 0;}
   .footer__logo-wrapper{float:none;width:80px;margin:auto;}
-  .footer__contact,.home__reviews-item,.review-item{width:100%;}
+  .footer__contact,.review-item{width:100%;}
   .footer__address,.footer__phone,.footer__links{width:33%;}
   .footer__links{float:none;margin-bottom:20px;}
   .footer .footer__links:nth-child(2) .footer__subheading{display:none;}
@@ -1824,10 +1822,6 @@ input[placeholder=Search] {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     padding: 8px 15px 8px 20px;
   }
-  .home__reviews-item {
-    width: 30%;
-    float: left;
-  }
   .home__news-item, .news-list__post {
     width: 100%;
     float: left;
@@ -1864,7 +1858,6 @@ input[placeholder=Search] {
     padding: 2px 0px;
   }
   .home__reviews-item img {
-    width: 100%;
     height: auto;
   }
   .navbar-right {
@@ -2170,7 +2163,7 @@ input[type=range] {
     display: none;
   }
 }
-@media (max-width: 930px) {
+@media (max-width: 990px) {
   .podcast-grid__cover {
     padding-left: 60px;
   }
