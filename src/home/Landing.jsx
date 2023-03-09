@@ -3,6 +3,8 @@ import { getImgAsset } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as EyesorePlayButton } from './EyesorePlayButton';
 
+let isPrimary = false;
+
 function genRandom(max) {
   return Math.ceil(Math.random() * max);
 }
@@ -84,6 +86,19 @@ function Landing() {
     });
 
   function background() {
+    let primary = `url(${getImgAsset(`ktuhvideoprimary.gif`)}`;
+
+    //if primary exists and curr video is primary, play next in line
+    if (primary && isPrimary) {
+      isPrimary = !isPrimary;
+      return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
+    }
+    //else play primary
+    if (primary && !isPrimary) {
+      isPrimary = !isPrimary;
+      return primary;
+    }
+
     return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
   }
 
