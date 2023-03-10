@@ -16,9 +16,11 @@ export default function NewsPage() {
       content: { rendered: content }, title: { rendered: title }, date, author
     } = post;
 
-    return [<HeadStuff title={entitiesToText(title)}
-      description={renderSummary(content, 50)} />,
-    <BackButton href='radioblog' className='show__link' text="Back to Radioblog" />,
+    return [
+    <div className='header__wrapper'>
+      <HeadStuff title={entitiesToText(title)} description={renderSummary(content, 50)} />
+      <BackButton href='radioblog' className='show__link' text="Back to Radioblog" />
+    </div>,
     <div className='news-item'>
       <div className='review-page__byline'>
         By {author}
@@ -27,7 +29,8 @@ export default function NewsPage() {
         {new Date(date).toDateString()}
       </div>
       <ContentBox className='news-item__body' {...{ content }} />
-    </div>];
+    </div>
+    ];
   }
 
   return <NotFoundRedirect check={post} />;
