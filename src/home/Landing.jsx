@@ -1,9 +1,16 @@
 import React, { useEffect, useState, useReducer } from 'react';
-import { getImgAsset } from '../utils/url_utils';
+import { getImgAsset, getApiRequest } from '../utils/url_utils';
 import { default as useApiRequest } from '../hooks/useApiRequest';
 import { default as EyesorePlayButton } from './EyesorePlayButton';
 
-let isPrimary = false;
+// to have a primary video in the carosuel, it must have the filename: ktuhvideo-primary.gif
+let primaryVideoStatus = false;
+const primaryVideoUrl = `ktuhvideo-primary.gif`;
+
+//TODO: put this in a useEffect and render a placeholder img until primary video is returned
+fetch(`/wp-content/themes/custom-react-theme/dist/images/${primaryVideoUrl}`).then((res) => {
+  primaryVideoStatus = res.status === 200 ? true : false;
+});
 
 function genRandom(max) {
   return Math.ceil(Math.random() * max);
@@ -86,20 +93,14 @@ function Landing() {
     });
 
   function background() {
-    let primary = `url(${getImgAsset(`ktuhvideoprimary.gif`)}`;
-
+    const primaryVideo =  `url(${getImgAsset(primaryVideoUrl)})`;
+    
     //if primary exists and curr video is primary, play next in line
-    if (primary && isPrimary) {
-      isPrimary = !isPrimary;
+    if (primaryVideoStatus) {
+      return primaryVideo;
+    } else {
       return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
     }
-    //else play primary
-    if (primary && !isPrimary) {
-      isPrimary = !isPrimary;
-      return primary;
-    }
-
-    return `url(${getImgAsset(`ktuhvideo${bg}.gif`)}`;
   }
 
   function handleClickDownArrow() {
